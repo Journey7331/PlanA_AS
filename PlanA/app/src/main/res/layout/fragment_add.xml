@@ -1,0 +1,217 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="100dp"
+        android:layout_margin="12dp">
+
+        <View
+            android:id="@+id/add_view"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:layout_centerHorizontal="true"
+            android:background="@mipmap/add" />
+
+    </RelativeLayout>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:fillViewport="true">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <EditText
+                android:id="@+id/et_content"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="120dp"
+                android:layout_marginEnd="16dp"
+                android:background="@drawable/edittext_select"
+                android:cursorVisible="false"
+                android:hint="@string/add_content"
+                android:paddingStart="16dp"
+                android:paddingEnd="16dp"
+                android:textColorHint="#333333"
+                android:textStyle="bold" />
+
+            <EditText
+                android:id="@+id/et_memo"
+                android:layout_width="match_parent"
+                android:layout_height="160dp"
+                android:layout_below="@+id/et_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="4dp"
+                android:layout_marginEnd="16dp"
+                android:background="@drawable/edittext_select"
+                android:cursorVisible="false"
+                android:gravity="top|left"
+                android:hint="@string/add_memo"
+                android:inputType="textMultiLine"
+                android:lines="8"
+                android:maxLines="10"
+                android:minLines="4"
+                android:paddingStart="16dp"
+                android:paddingTop="12dp"
+                android:paddingEnd="16dp"
+                android:paddingBottom="12dp"
+                android:text=""
+                android:textColorHint="#333333" />
+
+            <RelativeLayout
+                android:id="@+id/rl_date"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:layout_below="@+id/et_memo"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="32dp"
+                android:layout_marginEnd="16dp"
+                android:background="@drawable/edittext_select">
+
+                <ImageView
+                    android:id="@+id/icon_calendar"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentStart="true"
+                    android:layout_centerVertical="true"
+                    android:paddingStart="16dp"
+                    android:paddingEnd="8dp"
+                    android:src="@drawable/ic_baseline_calendar_today_24" />
+
+                <EditText
+                    android:id="@+id/et_date"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_toEndOf="@id/icon_calendar"
+                    android:background="@null"
+                    android:focusable="false"
+                    android:hint="@string/add_date"
+                    android:paddingStart="8dp"
+                    android:paddingEnd="16dp"
+                    android:textColorHint="#333333" />
+
+                <androidx.appcompat.widget.SwitchCompat
+                    android:id="@+id/switch_date"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentEnd="true"
+                    android:layout_centerVertical="true"
+                    android:paddingStart="8dp"
+                    android:paddingEnd="8dp"
+                    android:thumb="@drawable/switch_thumb"
+                    app:track="@drawable/switch_track_selector" />
+
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/rl_time"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:layout_below="@+id/rl_date"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginEnd="16dp"
+                android:background="@drawable/edittext_select">
+
+                <ImageView
+                    android:id="@+id/icon_time"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentStart="true"
+                    android:layout_centerVertical="true"
+                    android:paddingStart="16dp"
+                    android:paddingEnd="8dp"
+                    android:src="@drawable/ic_baseline_access_time_24" />
+
+                <EditText
+                    android:id="@+id/et_time"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_toEndOf="@id/icon_time"
+                    android:background="@null"
+                    android:focusable="false"
+                    android:hint="@string/add_time"
+                    android:paddingStart="8dp"
+                    android:paddingEnd="16dp"
+                    android:textColorHint="#333333" />
+
+                <androidx.appcompat.widget.SwitchCompat
+                    android:id="@+id/switch_time"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentEnd="true"
+                    android:layout_centerVertical="true"
+                    android:paddingStart="8dp"
+                    android:paddingEnd="8dp"
+                    android:thumb="@drawable/switch_thumb"
+                    app:track="@drawable/switch_track_selector" />
+
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/rl_level"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:layout_below="@+id/rl_time"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginEnd="16dp"
+                android:layout_marginBottom="120dp"
+                android:background="@drawable/edittext_select">
+
+                <ImageView
+                    android:id="@+id/icon_level"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentStart="true"
+                    android:layout_centerVertical="true"
+                    android:paddingStart="16dp"
+                    android:paddingEnd="8dp"
+                    android:src="@drawable/ic_baseline_star_24" />
+
+                <EditText
+                    android:id="@+id/et_level"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_toEndOf="@id/icon_level"
+                    android:background="@null"
+                    android:focusable="false"
+                    android:hint="@string/level"
+                    android:paddingStart="8dp"
+                    android:paddingEnd="16dp"
+                    android:textColorHint="#333333" />
+
+                <androidx.appcompat.widget.SwitchCompat
+                    android:id="@+id/switch_level"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentEnd="true"
+                    android:layout_centerVertical="true"
+                    android:paddingStart="8dp"
+                    android:paddingEnd="8dp"
+                    android:thumb="@drawable/switch_thumb"
+                    app:track="@drawable/switch_track_selector" />
+
+            </RelativeLayout>
+
+        </RelativeLayout>
+    </ScrollView>
+
+    <Button
+        android:id="@+id/btn_submit"
+        android:layout_width="144dp"
+        android:layout_height="40dp"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="32dp"
+        android:background="@drawable/button"
+        android:text="Finish"
+        android:textStyle="bold" />
+</RelativeLayout>
