@@ -29,7 +29,8 @@ import java.util.Locale;
  * @program: PlanA
  * @description: AddFragment extends BaseFragment
  */
-public class AddFragment extends BaseFragment implements View.OnClickListener, CompoundButton.OnCheckedChangeListener {
+public class AddFragment extends BaseFragment
+        implements View.OnClickListener, CompoundButton.OnCheckedChangeListener {
 
     EditText etContent, etMemo, etDate, etTime, etLevel;
     SwitchCompat switchDate, switchTime, switchLevel;

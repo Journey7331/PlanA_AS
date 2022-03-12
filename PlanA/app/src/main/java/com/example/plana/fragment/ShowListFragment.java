@@ -17,6 +17,7 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.widget.SwitchCompat;
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import com.example.plana.R;
 import com.example.plana.adapter.EventAdapter;
@@ -32,10 +33,8 @@ import java.util.Date;
  * @program: PlanA
  * @description:
  */
-public class ListFragment extends BaseFragment
+public class ShowListFragment extends BaseFragment
         implements CompoundButton.OnCheckedChangeListener, PopupMenu.OnMenuItemClickListener {
-
-
 
 
     EventAdapter adapter;

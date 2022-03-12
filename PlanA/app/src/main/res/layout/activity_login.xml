@@ -12,22 +12,12 @@
         android:layout_marginTop="-80dp">
 
         <View
-            android:layout_width="520dp"
-            android:layout_height="520dp"
             android:id="@+id/ellipse_1"
-            android:background="@drawable/background_circle"/>
-
-        <TextView
-            android:id="@+id/tv_skip"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerVertical="true"
-            android:layout_alignParentEnd="true"
-            android:layout_marginEnd="40dp"
-            android:text="SKIP"
-            android:textColor="@color/white"
-            android:textSize="30sp"
-            android:textStyle="bold" />
+            android:layout_width="500dp"
+            android:layout_height="500dp"
+            android:elevation="4dp"
+            android:layout_margin="10dp"
+            android:background="@drawable/background_circle" />
 
     </RelativeLayout>
 
@@ -38,37 +28,66 @@
         android:layout_centerInParent="true"
         android:fitsSystemWindows="true">
 
+        <View
+            android:id="@+id/ellipse_4"
+            android:layout_width="200dp"
+            android:layout_height="200dp"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentBottom="true"
+            android:layout_marginEnd="-50dp"
+            android:layout_marginBottom="-30dp"
+            android:background="@drawable/background_circle"
+            android:elevation="3dp" />
+
+        <TextView
+            android:id="@+id/tv_skip"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentBottom="true"
+            android:layout_marginEnd="5dp"
+            android:layout_marginBottom="85dp"
+            android:elevation="4dp"
+            android:text="@string/skip"
+            android:textColor="@color/colorPrimaryLightest"
+            android:textSize="15sp"
+            android:textStyle="bold" />
+
         <LinearLayout
             android:id="@+id/linear1"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_centerInParent="true"
-            android:layout_marginLeft="72dp"
-            android:layout_marginRight="72dp"
+            android:layout_marginLeft="66dp"
+            android:layout_marginRight="66dp"
             android:orientation="vertical">
 
             <EditText
                 android:id="@+id/et_loginUsername"
                 android:layout_width="match_parent"
                 android:layout_height="40dp"
+                android:layout_margin="10dp"
                 android:background="@drawable/edittext_select"
                 android:cursorVisible="false"
-                android:hint="Username"
+                android:elevation="3dp"
+                android:hint="@string/login_id"
                 android:inputType="textVisiblePassword|textNoSuggestions"
-                android:paddingLeft="16dp"
-                android:textColorHint="#333333" />
+                android:textAlignment="center"
+                android:textColorHint="#666666" />
 
             <EditText
                 android:id="@+id/et_loginPassword"
                 android:layout_width="match_parent"
                 android:layout_height="40dp"
-                android:layout_marginTop="12dp"
+                android:layout_margin="10dp"
                 android:background="@drawable/edittext_select"
                 android:cursorVisible="false"
-                android:hint="Password"
+                android:elevation="7dp"
+                android:hint="@string/login_password"
+
                 android:inputType="textPassword"
-                android:paddingLeft="16dp"
-                android:textColorHint="#333333" />
+                android:textAlignment="center"
+                android:textColorHint="#666666" />
         </LinearLayout>
 
         <RelativeLayout
@@ -76,7 +95,7 @@
             android:layout_height="wrap_content"
             android:layout_below="@+id/linear1"
             android:layout_centerHorizontal="true"
-            android:layout_marginTop="48dp"
+            android:layout_marginTop="25dp"
             android:orientation="vertical">
 
             <Button
@@ -84,8 +103,9 @@
                 android:layout_width="144dp"
                 android:layout_height="40dp"
                 android:layout_centerHorizontal="true"
-                android:background="@drawable/button"
-                android:text="Login"
+                android:background="@drawable/background_button"
+                android:text="@string/login"
+                android:textColor="@color/white"
                 android:textStyle="bold" />
 
             <LinearLayout
@@ -93,6 +113,7 @@
                 android:layout_height="wrap_content"
                 android:layout_below="@id/btn_login"
                 android:layout_centerHorizontal="true"
+                android:layout_marginTop="10dp"
                 android:orientation="horizontal">
 
                 <TextView
@@ -108,7 +129,7 @@
                     android:layout_marginTop="16dp"
                     android:clickable="true"
                     android:text="@string/registerRecommendLink"
-                    android:textColor="@color/colorPrimaryDark"
+                    android:textColor="@color/colorBlueGrey"
                     android:textStyle="bold" />
 
                 <TextView

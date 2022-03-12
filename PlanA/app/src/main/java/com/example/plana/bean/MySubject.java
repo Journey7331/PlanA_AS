@@ -1,4 +1,4 @@
-package com.example.plana;
+package com.example.plana.bean;
 
 import com.zhuangfei.timetable.model.Schedule;
 import com.zhuangfei.timetable.model.ScheduleEnable;

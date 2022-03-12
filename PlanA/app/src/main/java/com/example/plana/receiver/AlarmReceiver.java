@@ -12,12 +12,14 @@ import android.util.Log;
 import androidx.core.app.NotificationCompat;
 
 import com.example.plana.activity.MainActivity;
-import com.example.plana.MyConfig;
-import com.example.plana.MySubject;
+import com.example.plana.config.MyConfig;
+import com.example.plana.bean.MySubject;
 import com.example.plana.R;
-import com.example.plana.adapter.OnMyConfigHandleAdapter;
+import com.example.plana.config.OnMyConfigHandleAdapter;
+import com.example.plana.fragment.ScheduleFragment;
 import com.example.plana.utils.ContextApplication;
 import com.example.plana.utils.SharedPreferencesUtil;
+import com.example.plana.utils.SubjectRepertory;
 import com.zhuangfei.timetable.model.Schedule;
 import com.zhuangfei.timetable.model.ScheduleSupport;
 
@@ -30,6 +32,7 @@ import java.util.Map;
  * @description:
  */
 public class AlarmReceiver extends BroadcastReceiver {
+
     private static final String TAG = "AlarmReceiver";
     private String myContentText = "Default Content";
     private int curWeek, curDay;//当前周次，当前星期几
@@ -72,7 +75,7 @@ public class AlarmReceiver extends BroadcastReceiver {
         ScheduleSupport.sortList(finalData);
         myContentText = getContentText(finalData, notIsShowWhen, notIsShowWhere, notIsShowStep);
 
-        String myChannelID = "HHU_SCH_NOTIFY";
+        String myChannelID = "SCHEDULE_NOTIFY";
         String myChannelName = "次日课程提醒";
         int notID = 1001;
         NotificationManager manager = (NotificationManager) context.getSystemService(Context.NOTIFICATION_SERVICE);
@@ -84,7 +87,7 @@ public class AlarmReceiver extends BroadcastReceiver {
                 .setContentTitle("明日课程")//标题
                 .setContentText("展开以查看")
                 .setStyle(new NotificationCompat.BigTextStyle().bigText(myContentText))//内容 使用长文本展示
-                .setSmallIcon(R.mipmap.ic_launcher_trans)
+                .setSmallIcon(R.mipmap.ic_launcher_round_small)
                 .setContentIntent(PendingIntent.getActivity(context, 0, startIntent, PendingIntent.FLAG_UPDATE_CURRENT))
                 .setAutoCancel(true)
                 .build();
@@ -125,7 +128,7 @@ public class AlarmReceiver extends BroadcastReceiver {
         if (subjectListJson == null) {
             mySubjects = SubjectRepertory.loadDefaultSubjects();
         } else {
-            mySubjects = MainActivity.toGetSubjects();
+            mySubjects = ScheduleFragment.toGetSubjects();
         }
         return mySubjects;
     }

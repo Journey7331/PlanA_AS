@@ -1,4 +1,4 @@
-package com.example.plana.adapter;
+package com.example.plana.config;
 
 import com.zhuangfei.timetable.TimetableView;
 

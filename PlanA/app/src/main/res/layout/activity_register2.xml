@@ -11,6 +11,7 @@
         android:layout_alignParentTop="true"
         android:layout_marginStart="-160dp"
         android:layout_marginTop="-50dp"
+        android:elevation="2dp"
         android:background="@drawable/background_circle" />
 
     <View
@@ -21,102 +22,107 @@
         android:layout_alignParentBottom="true"
         android:layout_marginEnd="-70dp"
         android:layout_marginBottom="-30dp"
-        android:background="@drawable/background_circle"
-        />
+        android:elevation="3dp"
+        android:background="@drawable/background_circle" />
 
     <View
         android:id="@+id/ellipse_3"
-        android:layout_width="100dp"
-        android:layout_height="100dp"
+        android:layout_width="110dp"
+        android:layout_height="110dp"
         android:layout_alignParentEnd="true"
-        android:layout_marginEnd="40dp"
         android:layout_marginTop="120dp"
-        android:background="@drawable/background_circle"
-        />
+        android:layout_marginEnd="40dp"
+        android:elevation="7dp"
+        android:background="@drawable/background_circle" />
 
     <RelativeLayout
         android:id="@+id/register2_rl"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical"
+        android:layout_centerVertical="true"
         android:layout_marginLeft="40dp"
         android:layout_marginRight="40dp"
-        android:layout_centerVertical="true"
-        android:padding="20dp"
+        android:background="@drawable/background"
+        android:elevation="4dp"
         android:fitsSystemWindows="true"
-        android:background="@drawable/background">
+        android:orientation="vertical"
+        android:padding="20dp">
 
 
         <EditText
             android:id="@+id/et_registerName"
             android:layout_width="match_parent"
             android:layout_height="40dp"
+            android:autofillHints="no"
+            android:background="@drawable/edittext_select"
+            android:cursorVisible="false"
+            android:hint="@string/register_name"
+            android:inputType="textPersonName"
             android:paddingLeft="12dp"
             android:paddingRight="12dp"
-            android:cursorVisible="false"
-            android:background="@drawable/edittext_select"
-            android:hint="@string/register_name"
-            android:textColorHint="#333333"
-            android:autofillHints="no"
-            android:inputType="textPersonName" />
+            android:elevation="2dp"
+            android:textColorHint="#888888" />
 
         <EditText
             android:id="@+id/et_registerEmail"
-            android:layout_below="@id/et_registerName"
             android:layout_width="match_parent"
             android:layout_height="40dp"
+            android:layout_below="@id/et_registerName"
             android:layout_marginTop="32dp"
+            android:autofillHints="no"
+            android:background="@drawable/edittext_select"
+            android:cursorVisible="false"
+            android:hint="@string/register_email"
+            android:inputType="textEmailAddress"
             android:paddingLeft="12dp"
             android:paddingRight="12dp"
-            android:cursorVisible="false"
-            android:background="@drawable/edittext_select"
-            android:inputType="textEmailAddress"
-            android:hint="@string/register_email"
-            android:textColorHint="#333333"
-            android:autofillHints="no" />
+            android:elevation="2dp"
+            android:textColorHint="#888888" />
 
 
         <EditText
             android:id="@+id/et_registerBirth"
-            android:layout_below="@+id/et_registerEmail"
             android:layout_width="match_parent"
             android:layout_height="40dp"
+            android:layout_below="@+id/et_registerEmail"
             android:layout_marginTop="32dp"
-            android:paddingLeft="12dp"
-            android:paddingRight="12dp"
-            android:background="@drawable/edittext_select"
-            android:hint="@string/register_birth"
-            android:textColorHint="#333333"
             android:autofillHints="no"
-            android:inputType="none"
+            android:background="@drawable/edittext_select"
             android:clickable="false"
             android:cursorVisible="false"
             android:focusable="false"
-            android:focusableInTouchMode="false"/>
+            android:focusableInTouchMode="false"
+            android:hint="@string/register_birth"
+            android:inputType="none"
+            android:paddingLeft="12dp"
+            android:paddingRight="12dp"
+            android:elevation="2dp"
+            android:textColorHint="#888888" />
 
 
         <Button
             android:id="@+id/btn_register_submit"
-            android:layout_below="@+id/et_registerBirth"
-            android:layout_marginTop="32dp"
             android:layout_width="200dp"
             android:layout_height="40dp"
-            android:text="@string/register_submit"
-            android:textStyle="bold"
+            android:layout_below="@+id/et_registerBirth"
             android:layout_centerHorizontal="true"
-            android:background="@drawable/button"/>
+            android:layout_marginTop="32dp"
+            android:background="@drawable/background_button"
+            android:text="@string/register_submit"
+            android:textColor="@color/white"
+            android:textStyle="bold" />
 
         <TextView
             android:id="@+id/btn_register_back"
-            android:layout_below="@id/btn_register_submit"
-            android:layout_marginTop="8dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/register_back"
-            android:textColor="#000000"
-            android:clickable="true"
+            android:layout_below="@id/btn_register_submit"
             android:layout_centerHorizontal="true"
-            android:focusable="true"/>
+            android:layout_marginTop="8dp"
+            android:clickable="true"
+            android:focusable="true"
+            android:text="@string/register_back"
+            android:textColor="#777777" />
     </RelativeLayout>
 
 </RelativeLayout>

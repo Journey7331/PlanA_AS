@@ -1,6 +1,5 @@
 package com.example.plana.activity;
 
-import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 
 import android.os.Bundle;
@@ -9,6 +8,9 @@ import android.widget.Toast;
 import com.example.plana.R;
 import com.example.plana.base.BaseActivity;
 import com.example.plana.fragment.AddFragment;
+import com.example.plana.fragment.FocusFragment;
+import com.example.plana.fragment.MyPageFragment;
+import com.example.plana.fragment.ShowListFragment;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 /**
@@ -19,7 +21,7 @@ public class MainActivity extends BaseActivity {
     BottomNavigationView bottomNavigation;
 
     AddFragment addFragment;
-    HomeFragment homeFragment;
+    ShowListFragment listFragment;
     FocusFragment focusFragment;
     MyPageFragment myPageFragment;
     Fragment currentFragment;

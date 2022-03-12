@@ -33,7 +33,8 @@ import java.util.Locale;
  * @description:
  */
 
-public class EditFragment extends BaseFragment implements View.OnClickListener, CompoundButton.OnCheckedChangeListener {
+public class EditFragment extends BaseFragment
+        implements View.OnClickListener, CompoundButton.OnCheckedChangeListener {
 
     EditText etContent, etMemo, etDate, etTime, etLevel;
     SwitchCompat switchDate, switchTime, switchLevel;

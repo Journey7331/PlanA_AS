@@ -19,10 +19,10 @@ public class SharedPreferencesUtil {
 
     private static final String TAG = "SharedPreferencesUtil";
 
-    private static SharedPreferencesUtil sSharedPreferencesUtils;
+    private static SharedPreferencesUtil sharedPreferencesUtil;
 
-    private static SharedPreferences sSharedPreferences;
-    private static SharedPreferences.Editor sEditor;
+    private static SharedPreferences sharedPreferences;
+    private static SharedPreferences.Editor editor;
 
     private static final String DEFAULT_SP_NAME = "SharedData";
     private static final int DEFAULT_INT = 0;
@@ -31,95 +31,95 @@ public class SharedPreferencesUtil {
     private static final boolean DEFAULT_BOOLEAN = false;
     private static final Set<String> DEFAULT_STRING_SET = new HashSet<>(0);
 
-    private static String mCurSPName = DEFAULT_SP_NAME;
-    private static Context mContext;
+    private static String curSPName = DEFAULT_SP_NAME;
+    private static Context context;
 
     private SharedPreferencesUtil(Context context) {
         this(context, DEFAULT_SP_NAME);
     }
 
     private SharedPreferencesUtil(Context context, String spName) {
-        mContext = context.getApplicationContext();
-        sSharedPreferences = mContext.getSharedPreferences(spName, Context.MODE_PRIVATE);
-        sEditor = sSharedPreferences.edit();
-        mCurSPName = spName;
-        Log.i(TAG, "SharedPreferencesUtil: " + mCurSPName);
+        SharedPreferencesUtil.context = context.getApplicationContext();
+        sharedPreferences = SharedPreferencesUtil.context.getSharedPreferences(spName, Context.MODE_PRIVATE);
+        editor = sharedPreferences.edit();
+        curSPName = spName;
+        Log.i(TAG, "SharedPreferencesUtil: " + curSPName);
     }
 
     public static SharedPreferencesUtil init(Context context) {
-        if (sSharedPreferencesUtils == null || !mCurSPName.equals(DEFAULT_SP_NAME)) {
-            sSharedPreferencesUtils = new SharedPreferencesUtil(context);
+        if (sharedPreferencesUtil == null || !curSPName.equals(DEFAULT_SP_NAME)) {
+            sharedPreferencesUtil = new SharedPreferencesUtil(context);
         }
-        return sSharedPreferencesUtils;
+        return sharedPreferencesUtil;
     }
 
     public static SharedPreferencesUtil init(Context context, String spName) {
-        if (sSharedPreferencesUtils == null) {
-            sSharedPreferencesUtils = new SharedPreferencesUtil(context, spName);
-        } else if (!spName.equals(mCurSPName)) {
-            sSharedPreferencesUtils = new SharedPreferencesUtil(context, spName);
+        if (sharedPreferencesUtil == null) {
+            sharedPreferencesUtil = new SharedPreferencesUtil(context, spName);
+        } else if (!spName.equals(curSPName)) {
+            sharedPreferencesUtil = new SharedPreferencesUtil(context, spName);
         }
-        return sSharedPreferencesUtils;
+        return sharedPreferencesUtil;
     }
 
     public SharedPreferencesUtil put(@StringRes int key, Object value) {
-        return put(mContext.getString(key), value);
+        return put(context.getString(key), value);
     }
 
     public SharedPreferencesUtil put(String key, Object value) {
 
         if (value instanceof String) {
-            sEditor.putString(key, (String) value);
+            editor.putString(key, (String) value);
         } else if (value instanceof Integer) {
-            sEditor.putInt(key, (Integer) value);
+            editor.putInt(key, (Integer) value);
         } else if (value instanceof Boolean) {
-            sEditor.putBoolean(key, (Boolean) value);
+            editor.putBoolean(key, (Boolean) value);
         } else if (value instanceof Float) {
-            sEditor.putFloat(key, (Float) value);
+            editor.putFloat(key, (Float) value);
         } else if (value instanceof Long) {
-            sEditor.putLong(key, (Long) value);
+            editor.putLong(key, (Long) value);
         } else {
-            sEditor.putString(key, value.toString());
+            editor.putString(key, value.toString());
         }
-        sEditor.apply();
-        return sSharedPreferencesUtils;
+        editor.apply();
+        return sharedPreferencesUtil;
     }
 
     public Object get(@StringRes int key, Object defaultObject) {
-        return get(mContext.getString(key), defaultObject);
+        return get(context.getString(key), defaultObject);
     }
 
     public Object get(String key, Object defaultObject) {
         if (defaultObject instanceof String) {
-            return sSharedPreferences.getString(key, (String) defaultObject);
+            return sharedPreferences.getString(key, (String) defaultObject);
         } else if (defaultObject instanceof Integer) {
-            return sSharedPreferences.getInt(key, (int) defaultObject);
+            return sharedPreferences.getInt(key, (int) defaultObject);
         } else if (defaultObject instanceof Boolean) {
-            return sSharedPreferences.getBoolean(key, (boolean) defaultObject);
+            return sharedPreferences.getBoolean(key, (boolean) defaultObject);
         } else if (defaultObject instanceof Float) {
-            return sSharedPreferences.getFloat(key, (float) defaultObject);
+            return sharedPreferences.getFloat(key, (float) defaultObject);
         } else if (defaultObject instanceof Long) {
-            return sSharedPreferences.getLong(key, (long) defaultObject);
+            return sharedPreferences.getLong(key, (long) defaultObject);
         }
         return null;
     }
 
     public SharedPreferencesUtil putInt(String key, int value) {
-        sEditor.putInt(key, value);
-        sEditor.apply();
+        editor.putInt(key, value);
+        editor.apply();
         return this;
     }
 
     public SharedPreferencesUtil putInt(@StringRes int key, int value) {
-        return putInt(mContext.getString(key), value);
+        return putInt(context.getString(key), value);
     }
 
     public int getInt(@StringRes int key) {
-        return getInt(mContext.getString(key));
+        return getInt(context.getString(key));
     }
 
     public int getInt(@StringRes int key, int defValue) {
-        return getInt(mContext.getString(key), defValue);
+        return getInt(context.getString(key), defValue);
     }
 
     public int getInt(String key) {
@@ -128,17 +128,17 @@ public class SharedPreferencesUtil {
 
 
     public int getInt(String key, int defValue) {
-        return sSharedPreferences.getInt(key, defValue);
+        return sharedPreferences.getInt(key, defValue);
     }
 
     public SharedPreferencesUtil putFloat(@StringRes int key, float value) {
-        return putFloat(mContext.getString(key), value);
+        return putFloat(context.getString(key), value);
     }
 
     public SharedPreferencesUtil putFloat(String key, float value) {
-        sEditor.putFloat(key, value);
-        sEditor.apply();
-        return sSharedPreferencesUtils;
+        editor.putFloat(key, value);
+        editor.apply();
+        return sharedPreferencesUtil;
     }
 
     public float getFloat(String key) {
@@ -146,25 +146,25 @@ public class SharedPreferencesUtil {
     }
 
     public float getFloat(String key, float defValue) {
-        return sSharedPreferences.getFloat(key, defValue);
+        return sharedPreferences.getFloat(key, defValue);
     }
 
     public float getFloat(@StringRes int key) {
-        return getFloat(mContext.getString(key));
+        return getFloat(context.getString(key));
     }
 
     public float getFloat(@StringRes int key, float defValue) {
-        return getFloat(mContext.getString(key), defValue);
+        return getFloat(context.getString(key), defValue);
     }
 
     public SharedPreferencesUtil putLong(@StringRes int key, long value) {
-        return putLong(mContext.getString(key), value);
+        return putLong(context.getString(key), value);
     }
 
     public SharedPreferencesUtil putLong(String key, long value) {
-        sEditor.putLong(key, value);
-        sEditor.apply();
-        return sSharedPreferencesUtils;
+        editor.putLong(key, value);
+        editor.apply();
+        return sharedPreferencesUtil;
     }
 
     public long getLong(String key) {
@@ -172,25 +172,25 @@ public class SharedPreferencesUtil {
     }
 
     public long getLong(String key, long defValue) {
-        return sSharedPreferences.getLong(key, defValue);
+        return sharedPreferences.getLong(key, defValue);
     }
 
     public long getLong(@StringRes int key) {
-        return getLong(mContext.getString(key));
+        return getLong(context.getString(key));
     }
 
     public long getLong(@StringRes int key, long defValue) {
-        return getLong(mContext.getString(key), defValue);
+        return getLong(context.getString(key), defValue);
     }
 
     public SharedPreferencesUtil putString(@StringRes int key, String value) {
-        return putString(mContext.getString(key), value);
+        return putString(context.getString(key), value);
     }
 
     public SharedPreferencesUtil putString(String key, String value) {
-        sEditor.putString(key, value);
-        sEditor.apply();
-        return sSharedPreferencesUtils;
+        editor.putString(key, value);
+        editor.apply();
+        return sharedPreferencesUtil;
     }
 
     public String getString(String key) {
@@ -198,25 +198,25 @@ public class SharedPreferencesUtil {
     }
 
     public String getString(String key, String defValue) {
-        return sSharedPreferences.getString(key, defValue);
+        return sharedPreferences.getString(key, defValue);
     }
 
     public String getString(@StringRes int key) {
-        return getString(mContext.getString(key), DEFAULT_STRING);
+        return getString(context.getString(key), DEFAULT_STRING);
     }
 
     public String getString(@StringRes int key, String defValue) {
-        return getString(mContext.getString(key), defValue);
+        return getString(context.getString(key), defValue);
     }
 
     public SharedPreferencesUtil putBoolean(@StringRes int key, boolean value) {
-        return putBoolean(mContext.getString(key), value);
+        return putBoolean(context.getString(key), value);
     }
 
     public SharedPreferencesUtil putBoolean(String key, boolean value) {
-        sEditor.putBoolean(key, value);
-        sEditor.apply();
-        return sSharedPreferencesUtils;
+        editor.putBoolean(key, value);
+        editor.apply();
+        return sharedPreferencesUtil;
     }
 
     public boolean getBoolean(String key) {
@@ -224,27 +224,27 @@ public class SharedPreferencesUtil {
     }
 
     public boolean getBoolean(String key, boolean defValue) {
-        return sSharedPreferences.getBoolean(key, defValue);
+        return sharedPreferences.getBoolean(key, defValue);
     }
 
     public boolean getBoolean(@StringRes int key) {
-        return getBoolean(mContext.getString(key));
+        return getBoolean(context.getString(key));
     }
 
     public boolean getBoolean(@StringRes int key, boolean defValue) {
-        return getBoolean(mContext.getString(key), defValue);
+        return getBoolean(context.getString(key), defValue);
     }
 
     public SharedPreferencesUtil putStringSet(@StringRes int key, Set<String> value) {
-        return putStringSet(mContext.getString(key), value);
+        return putStringSet(context.getString(key), value);
     }
 
     public SharedPreferencesUtil putStringSet(String key, Set<String> value) {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.HONEYCOMB) {
-            sEditor.putStringSet(key, value);
-            sEditor.apply();
+            editor.putStringSet(key, value);
+            editor.apply();
         }
-        return sSharedPreferencesUtils;
+        return sharedPreferencesUtil;
     }
 
     public Set<String> getStringSet(String key) {
@@ -254,50 +254,50 @@ public class SharedPreferencesUtil {
 
     public Set<String> getStringSet(String key, Set<String> defValue) {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.HONEYCOMB) {
-            return sSharedPreferences.getStringSet(key, defValue);
+            return sharedPreferences.getStringSet(key, defValue);
         } else {
             return DEFAULT_STRING_SET;
         }
     }
 
     public Set<String> getStringSet(@StringRes int key) {
-        return getStringSet(mContext.getString(key));
+        return getStringSet(context.getString(key));
     }
 
     public Set<String> getStringSet(@StringRes int key, Set<String> defValue) {
-        return getStringSet(mContext.getString(key), defValue);
+        return getStringSet(context.getString(key), defValue);
     }
 
 
     public boolean contains(String key) {
-        return sSharedPreferences.contains(key);
+        return sharedPreferences.contains(key);
     }
 
     public boolean contains(@StringRes int key) {
-        return contains(mContext.getString(key));
+        return contains(context.getString(key));
     }
 
     public Map<String, ?> getAll() {
-        return sSharedPreferences.getAll();
+        return sharedPreferences.getAll();
     }
 
     public SharedPreferencesUtil remove(@StringRes int key) {
-        return remove(mContext.getString(key));
+        return remove(context.getString(key));
     }
 
     public SharedPreferencesUtil remove(String key) {
-        sEditor.remove(key);
-        sEditor.apply();
-        return sSharedPreferencesUtils;
+        editor.remove(key);
+        editor.apply();
+        return sharedPreferencesUtil;
     }
 
     public SharedPreferencesUtil clear() {
-        sEditor.clear();
-        sEditor.apply();
-        return sSharedPreferencesUtils;
+        editor.clear();
+        editor.apply();
+        return sharedPreferencesUtil;
     }
 
     public SharedPreferences getSharedPreferences() {
-        return sSharedPreferences;
+        return sharedPreferences;
     }
 }

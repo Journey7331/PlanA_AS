@@ -77,10 +77,10 @@
                     android:layout_marginBottom="10dp"
                     android:autofillHints="Focus Time"
                     android:background="@null"
+                    android:cursorVisible="false"
                     android:inputType="time"
                     android:text="25:00"
                     android:textAlignment="center"
-                    android:cursorVisible="false"
                     android:textSize="40sp"
                     android:textStyle="bold"
                     tools:ignore="LabelFor" />
@@ -97,14 +97,15 @@
 
         <Button
             android:id="@+id/bt_focus_submit"
-            android:layout_width="220dp"
-            android:layout_height="40dp"
-            android:textColor="@color/colorPrimaryDarkest"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:layout_alignParentBottom="true"
             android:layout_centerHorizontal="true"
             android:layout_marginBottom="80dp"
-            android:background="@drawable/button"
-            android:text="Start CountDown"
+            android:background="@drawable/background_button"
+            android:paddingHorizontal="40dp"
+            android:text="@string/start_countdown"
+            android:textColor="@color/white"
             android:textStyle="bold" />
 
     </RelativeLayout>
