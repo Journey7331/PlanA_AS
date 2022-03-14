@@ -35,25 +35,16 @@ public class MainActivity extends BaseActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        // check login status
-
-        String phone = UserDB.getPhone(mysql);
-        if ("".equals(phone)) {
-            this.user = new User(0, "", "");
-        } else {
-            this.user = UserDB.getUser(mysql, phone);
-        }
-
         // fragment setup
         addFragment = new AddFragment();
-        listFragment = new ShowListFragment(user.getName());
+        listFragment = new ShowListFragment();
         focusFragment = new FocusFragment();
-        myPageFragment = new MyPageFragment(this.user);
+        myPageFragment = new MyPageFragment();
         currentFragment = null;
 
         getSupportFragmentManager()
                 .beginTransaction()
-                .replace(R.id.body_rl, homeFragment)
+                .replace(R.id.body_rl, listFragment)
                 .commit();
 
         // bottom navigation bar
@@ -91,8 +82,8 @@ public class MainActivity extends BaseActivity {
         hideKeyboard(this);
         switch (position) {
             case 1:
-                homeFragment = new HomeFragment(this.user.getName());
-                currentFragment = homeFragment;
+                listFragment = new ShowListFragment();
+                currentFragment = listFragment;
                 break;
             case 2:
                 Toast.makeText(this, "MapFragment is developing...", Toast.LENGTH_SHORT).show();
@@ -106,7 +97,7 @@ public class MainActivity extends BaseActivity {
                 currentFragment = focusFragment;
                 break;
             case 5:
-                myPageFragment = new MyPageFragment(user);
+                myPageFragment = new MyPageFragment();
                 currentFragment = myPageFragment;
                 break;
 

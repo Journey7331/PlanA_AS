@@ -1,6 +1,7 @@
 package com.example.plana.fragment;
 
 import android.annotation.SuppressLint;
+import android.app.AlertDialog;
 import android.content.ContentValues;
 import android.content.DialogInterface;
 import android.os.Bundle;
@@ -21,10 +22,12 @@ import androidx.appcompat.widget.SwitchCompat;
 
 import com.example.plana.R;
 import com.example.plana.base.BaseFragment;
-import com.example.plana.database.EventDB;
+import com.example.plana.database.TodosDB;
 import com.example.plana.database.MyDatabaseHelper;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.Locale;
 
 /**
@@ -104,16 +107,16 @@ public class AddFragment extends BaseFragment
 
     public void insertItem() {
         ContentValues values = new ContentValues();
-        values.put(EventDB.content, etContent.getText().toString());
-        values.put(EventDB.memo, etMemo.getText().toString());
-        values.put(EventDB.done, "false");
-        values.put(EventDB.date, finalDate);
-        values.put(EventDB.time, finalTime);
-        values.put(EventDB.level, finalLevel);
+        values.put(TodosDB.content, etContent.getText().toString());
+        values.put(TodosDB.memo, etMemo.getText().toString());
+        values.put(TodosDB.done, "false");
+        values.put(TodosDB.date, finalDate);
+        values.put(TodosDB.time, finalTime);
+        values.put(TodosDB.level, finalLevel);
         // TODO Put Location
 
         MyDatabaseHelper mysql = new MyDatabaseHelper(getContext());
-        EventDB.insertEvent(mysql, values);
+        TodosDB.insertEvent(mysql, values);
 //        Toast.makeText(getContext(), "Successfully Added!  " + "Content: " + etContent.getText().toString(), Toast.LENGTH_SHORT).show();
         Toast.makeText(getContext(), "Successfully Added!", Toast.LENGTH_SHORT).show();
     }

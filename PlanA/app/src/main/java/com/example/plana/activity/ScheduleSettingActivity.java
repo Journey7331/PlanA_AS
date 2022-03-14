@@ -28,11 +28,11 @@ import java.util.TimeZone;
 
 /**
  * @program: PlanA
- * @description: set Schedule Notification Config
+ * @description: set Schedule Config
  */
-public class ScheduleNotificationConfigActivity extends BaseActivity {
+public class ScheduleSettingActivity extends BaseActivity {
 
-    protected static final String TAG = "NotConfigActivity";
+    protected static final String TAG = "ScheduleSettingActivity";
 
     // 用于存储, 读取本地配置文件
     protected static Map<String, String> configMap;
@@ -55,7 +55,7 @@ public class ScheduleNotificationConfigActivity extends BaseActivity {
 
         Log.d(TAG, "onCreate");
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_schedule_notification_config);
+        setContentView(R.layout.activity_schedule_setting);
 
         //设置工具栏
         initToolbar("通知设置");
@@ -119,28 +119,28 @@ public class ScheduleNotificationConfigActivity extends BaseActivity {
                     @Override
                     public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                         if (isChecked) {//被选中
-                            if (NotificationManagerCompat.from(ScheduleNotificationConfigActivity.this).areNotificationsEnabled()) {
+                            if (NotificationManagerCompat.from(ScheduleSettingActivity.this).areNotificationsEnabled()) {
                                 //允许系统通知
                                 startRemind(setHour, setMinute);     //22:00通知
-                                Toast.makeText(ScheduleNotificationConfigActivity.this, "通知已打开", Toast.LENGTH_SHORT).show();
+                                Toast.makeText(ScheduleSettingActivity.this, "通知已打开", Toast.LENGTH_SHORT).show();
                                 notIsOpen = true;
                                 configMap.put(OnMyConfigHandleAdapter.CONFIG_NOT_OPEN, OnMyConfigHandleAdapter.VALUE_TRUE);
                                 MyConfig.saveConfig(configMap);
                             } else {
                                 //未允许系统通知
-                                Toast.makeText(ScheduleNotificationConfigActivity.this, "请先在系统设置中允许通知", Toast.LENGTH_SHORT).show();
+                                Toast.makeText(ScheduleSettingActivity.this, "请先在系统设置中允许通知", Toast.LENGTH_SHORT).show();
                                 mySwitch.setChecked(false);
                             }
                         } else {//被关闭
-                            if (NotificationManagerCompat.from(ScheduleNotificationConfigActivity.this).areNotificationsEnabled()) {
+                            if (NotificationManagerCompat.from(ScheduleSettingActivity.this).areNotificationsEnabled()) {
                                 //允许系统通知
                                 stopRemind();
-                                Toast.makeText(ScheduleNotificationConfigActivity.this, "通知已关闭", Toast.LENGTH_SHORT).show();
+                                Toast.makeText(ScheduleSettingActivity.this, "通知已关闭", Toast.LENGTH_SHORT).show();
                                 notIsOpen = false;
                                 configMap.put(OnMyConfigHandleAdapter.CONFIG_NOT_OPEN, OnMyConfigHandleAdapter.VALUE_FALSE);
                                 MyConfig.saveConfig(configMap);
                             } else      //禁止系统通知
-                                Toast.makeText(ScheduleNotificationConfigActivity.this, "请先在系统设置中允许通知", Toast.LENGTH_SHORT).show();
+                                Toast.makeText(ScheduleSettingActivity.this, "请先在系统设置中允许通知", Toast.LENGTH_SHORT).show();
                         }
 
                     }
@@ -238,18 +238,18 @@ public class ScheduleNotificationConfigActivity extends BaseActivity {
             mCalendar.add(Calendar.DAY_OF_MONTH, 1);
         }
         //AlarmReceiver.class为广播接受者
-        Intent intent = new Intent(ScheduleNotificationConfigActivity.this, AlarmReceiver.class);
+        Intent intent = new Intent(ScheduleSettingActivity.this, AlarmReceiver.class);
         //intent添加额外信息
         intent.putExtra(OnMyConfigHandleAdapter.CONFIG_NOT_SHOW_WHEN, notIsShowWhen);
         intent.putExtra(OnMyConfigHandleAdapter.CONFIG_NOT_SHOW_WHERE, notIsShowWhere);
         intent.putExtra(OnMyConfigHandleAdapter.CONFIG_NOT_SHOW_STEP, notIsShowStep);
-        PendingIntent pi = PendingIntent.getBroadcast(ScheduleNotificationConfigActivity.this, 0, intent, 0);
+        PendingIntent pi = PendingIntent.getBroadcast(ScheduleSettingActivity.this, 0, intent, 0);
         //得到AlarmManager实例
         AlarmManager alarm = (AlarmManager) getSystemService(ALARM_SERVICE);
         //设定重复提醒，提醒周期为一天（24H）
         alarm.setRepeating(AlarmManager.RTC_WAKEUP, mCalendar.getTimeInMillis(), (1000 * 60 * 60 * 24), pi);
 
-        Log.d(ScheduleNotificationConfigActivity.TAG, "startRemind");
+        Log.d(ScheduleSettingActivity.TAG, "startRemind");
     }
 
     /**
@@ -264,15 +264,15 @@ public class ScheduleNotificationConfigActivity extends BaseActivity {
             stopRemind();
             startRemind(setHour, setMinute);
         }
-        Toast.makeText(ScheduleNotificationConfigActivity.this, "通知已修改", Toast.LENGTH_SHORT).show();
+        Toast.makeText(ScheduleSettingActivity.this, "通知已修改", Toast.LENGTH_SHORT).show();
     }
 
     /**
      * 关闭通知
      */
     protected void stopRemind() {
-        Intent intent = new Intent(ScheduleNotificationConfigActivity.this, AlarmReceiver.class);
-        PendingIntent pi = PendingIntent.getBroadcast(ScheduleNotificationConfigActivity.this, 0,
+        Intent intent = new Intent(ScheduleSettingActivity.this, AlarmReceiver.class);
+        PendingIntent pi = PendingIntent.getBroadcast(ScheduleSettingActivity.this, 0,
                 intent, 0);
         AlarmManager am = (AlarmManager) getSystemService(ALARM_SERVICE);
         //取消警报

@@ -42,8 +42,9 @@ public interface ISchedule {
          * @param v
          * @param day 星期，1：周一，7：周日
          * @param start 节次，从1开始
+         * @param id
          */
-        void onLongClick(View v, int day,int start);
+        void onLongClick(View v, int day, int start, int id);
     }
 
     /**

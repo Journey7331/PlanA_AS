@@ -19,7 +19,9 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 
 import com.example.plana.R;
-import com.example.plana.bean.Event;
+import com.example.plana.bean.Todos;
+import com.example.plana.database.TodosDB;
+import com.example.plana.database.MyDatabaseHelper;
 import com.example.plana.fragment.EditFragment;
 
 import java.text.ParseException;
@@ -35,7 +37,7 @@ import java.util.Locale;
 public class EventAdapter extends ArrayAdapter {
 
     LayoutInflater inflater;
-    ArrayList<Event> arrayList;
+    ArrayList<Todos> arrayList;
     Activity ctx;
     MyDatabaseHelper mysql = new MyDatabaseHelper(getContext());
 
@@ -46,7 +48,7 @@ public class EventAdapter extends ArrayAdapter {
         TextView tvDate;
     }
 
-    public EventAdapter(Activity context, ArrayList<Event> arr) {
+    public EventAdapter(Activity context, ArrayList<Todos> arr) {
         super(context, R.layout.fragment_home, arr);
         this.ctx = context;
         this.arrayList = arr;
@@ -60,7 +62,7 @@ public class EventAdapter extends ArrayAdapter {
 
     @Nullable
     @Override
-    public Event getItem(int position) {
+    public Todos getItem(int position) {
         return arrayList.get(position);
     }
 
@@ -129,10 +131,10 @@ public class EventAdapter extends ArrayAdapter {
 
         // CheckBox
         viewHolder.cbIsDone.setOnClickListener(v -> {
-            // Set Event Done
+            // Set Todos Done
             boolean status = viewHolder.cbIsDone.isChecked();
             arrayList.get(position).setDone(status);
-            EventDB.updateEventDoneState(mysql, arrayList.get(position).get_id() + "", status);
+            TodosDB.updateEventDoneState(mysql, arrayList.get(position).get_id() + "", status);
 //            Toast.makeText(getContext(), status + "", Toast.LENGTH_SHORT).show();
         });
 
@@ -173,7 +175,7 @@ public class EventAdapter extends ArrayAdapter {
 
             // Delete
             builder.setNegativeButton("Delete", (dialog, which) -> {
-                EventDB.deleteEventById(mysql, (getItem(position)).get_id() + "");
+                TodosDB.deleteEventById(mysql, (getItem(position)).get_id() + "");
                 remove(getItem(position));
                 notifyDataSetChanged();
 
@@ -237,3 +239,5 @@ public class EventAdapter extends ArrayAdapter {
         if (seconds < 3) return "Now";
         else return "1M";
     }
+
+}

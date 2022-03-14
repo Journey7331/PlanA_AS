@@ -22,7 +22,8 @@ import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 import com.example.plana.R;
 import com.example.plana.adapter.EventAdapter;
 import com.example.plana.base.BaseFragment;
-import com.example.plana.database.EventDB;
+import com.example.plana.bean.Todos;
+import com.example.plana.database.TodosDB;
 import com.example.plana.database.MyDatabaseHelper;
 
 import java.text.ParseException;
@@ -40,25 +41,23 @@ public class ShowListFragment extends BaseFragment
 
 
     EventAdapter adapter;
-    ArrayList<Event> arr;
-    ArrayList<Event> filtered;
+    ArrayList<Todos> arr;
+    ArrayList<Todos> filtered;
     ListView list;
     SwipeRefreshLayout pullToRefresh;
     SwitchCompat switchDone;
 
-    TextView logoIcon;
+    TextView tvHello;
     Button filterButton;
 
     RelativeLayout emptyPage;
     MyDatabaseHelper mysql;
-    String account_name;
 
-    public HomeFragment(String name) {
-        this.account_name = name;
+    public ShowListFragment() {
     }
 
     // 获取数据并刷新
-    public void refresh(ArrayList<Event> arr) {
+    public void refresh(ArrayList<Todos> arr) {
         adapter = new EventAdapter(getActivity(), arr);
         list.setAdapter(adapter);
         adapter.notifyDataSetChanged();
@@ -73,11 +72,11 @@ public class ShowListFragment extends BaseFragment
         mysql = new MyDatabaseHelper(getContext());
         filtered = new ArrayList<>();
 
-        arr = EventDB.queryAllEvent(mysql);
+        arr = TodosDB.queryAllEvent(mysql);
 
         list = view.findViewById(R.id.home_list);
         list.setItemsCanFocus(false);
-        logoIcon = view.findViewById(R.id.tv_hello);
+        tvHello = view.findViewById(R.id.tv_hello);
         pullToRefresh = view.findViewById(R.id.pullToRefresh);
         filterButton = view.findViewById(R.id.filter_button);
         switchDone = view.findViewById(R.id.switch_done);
@@ -115,26 +114,26 @@ public class ShowListFragment extends BaseFragment
         int hour = calendar.get(Calendar.HOUR_OF_DAY);
         // 5 - 9
         if (5 <= hour && hour <= 9) {
-            logoIcon.setText("Morning!");
+            tvHello.setText("Morning!");
             // 10 - 12
         } else if (10 <= hour && hour <= 12) {
-            logoIcon.setText("Noon~");
+            tvHello.setText("Noon~");
             // 13 - 15
         } else if (13 <= hour && hour <= 16) {
-            logoIcon.setText("AfterNoon!");
+            tvHello.setText("AfterNoon!");
             // 16 - 19
         } else if (17 <= hour && hour <= 19) {
-            logoIcon.setText("Evening~");
+            tvHello.setText("Evening~");
             // 20 - 22
         } else if (20 <= hour && hour <= 22) {
-            logoIcon.setText("Night!");
+            tvHello.setText("Night!");
             // 23 - 4
         } else {
-            logoIcon.setText("MidNight~");
+            tvHello.setText("MidNight~");
         }
 
-        if (!"".equals(account_name)) logoIcon.append(" " + account_name + ".");
-        else logoIcon.append(" Stranger.");
+        if (!"".equals(account_name)) tvHello.append(" " + account_name + ".");
+        else tvHello.append(" Stranger.");
     }
 
 
@@ -221,9 +220,9 @@ public class ShowListFragment extends BaseFragment
                 break;
             case R.id.sort_4:
                 filtered.clear();
-                for (Event event : arr) {
-                    if (event.isDone()) {
-                        filtered.add(event);
+                for (Todos todos : arr) {
+                    if (todos.isDone()) {
+                        filtered.add(todos);
                     }
                 }
                 refresh(filtered);
@@ -242,8 +241,8 @@ public class ShowListFragment extends BaseFragment
         menu.add(1, 0, 1, "Sort by Add-Time");
         menu.add(1, 1, 1, "Sort by Date");
         menu.add(1, 2, 1, "Sort by Priority");
-        menu.add(1, 3, 1, "Hide Done Event");
-        menu.add(1, 4, 1, "Hide UnDone Event");
+        menu.add(1, 3, 1, "Hide Done Todos");
+        menu.add(1, 4, 1, "Hide UnDone Todos");
     }
 
     @Override
@@ -252,16 +251,16 @@ public class ShowListFragment extends BaseFragment
             refresh(arr);
         } else {
             filtered.clear();
-            for (Event event : arr) {
-                if (!event.isDone()) {
-                    filtered.add(event);
+            for (Todos todos : arr) {
+                if (!todos.isDone()) {
+                    filtered.add(todos);
                 }
             }
             refresh(filtered);
         }
     }
 
-    private void checkEmpty(ArrayList<Event> arr) {
+    private void checkEmpty(ArrayList<Todos> arr) {
         if (arr.size() < 1) {
             emptyPage.setVisibility(View.VISIBLE);
             list.setVisibility(View.INVISIBLE);

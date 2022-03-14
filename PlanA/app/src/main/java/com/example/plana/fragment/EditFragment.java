@@ -22,7 +22,8 @@ import androidx.appcompat.widget.SwitchCompat;
 
 import com.example.plana.R;
 import com.example.plana.base.BaseFragment;
-import com.example.plana.database.EventDB;
+import com.example.plana.bean.Todos;
+import com.example.plana.database.TodosDB;
 import com.example.plana.database.MyDatabaseHelper;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
@@ -45,10 +46,10 @@ public class EditFragment extends BaseFragment
     String finalDate, finalTime;
     float finalLevel;
 
-    Event event;
+    Todos todos;
 
-    public EditFragment(Event event) {
-        this.event = event;
+    public EditFragment(Todos todos) {
+        this.todos = todos;
     }
 
     @Nullable
@@ -106,11 +107,11 @@ public class EditFragment extends BaseFragment
     }
 
     private void setUpEvent() {
-        etContent.setText(event.getContent());
-        etMemo.setText(event.getMemo());
-        finalDate = event.getDate();
-        finalTime = event.getTime();
-        finalLevel = event.getLevel();
+        etContent.setText(todos.getContent());
+        etMemo.setText(todos.getMemo());
+        finalDate = todos.getDate();
+        finalTime = todos.getTime();
+        finalLevel = todos.getLevel();
 
         if (finalDate.length() > 0) {
             etDate.setText(finalDate);
@@ -128,15 +129,15 @@ public class EditFragment extends BaseFragment
 
     private void editItem() {
         ContentValues values = new ContentValues();
-        values.put(EventDB.content, etContent.getText().toString());
-        values.put(EventDB.memo, etMemo.getText().toString());
-        values.put(EventDB.date, finalDate);
-        values.put(EventDB.time, finalTime);
-        values.put(EventDB.level, finalLevel);
+        values.put(TodosDB.content, etContent.getText().toString());
+        values.put(TodosDB.memo, etMemo.getText().toString());
+        values.put(TodosDB.date, finalDate);
+        values.put(TodosDB.time, finalTime);
+        values.put(TodosDB.level, finalLevel);
         //TODO Put Location
 
         MyDatabaseHelper mysql = new MyDatabaseHelper(getContext());
-        EventDB.updateEventById(mysql, event.get_id() + "", values);
+        TodosDB.updateEventById(mysql, todos.get_id() + "", values);
         Toast.makeText(getContext(), "Successfully Edited!", Toast.LENGTH_SHORT).show();
     }
 

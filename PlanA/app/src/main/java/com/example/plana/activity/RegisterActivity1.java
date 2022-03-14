@@ -14,6 +14,8 @@ import androidx.annotation.Nullable;
 
 import com.example.plana.R;
 import com.example.plana.base.BaseRegisterActivity;
+import com.example.plana.database.MyDatabaseHelper;
+import com.example.plana.database.UserDB;
 
 /**
  * @program: PlanA
@@ -27,7 +29,6 @@ public class RegisterActivity1 extends BaseRegisterActivity
     EditText etRegisterRepassword;
     Button btnRegister;
     TextView btnRegisterCancel;
-    MyDatabaseHelper mysql = new MyDatabaseHelper(this);
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {

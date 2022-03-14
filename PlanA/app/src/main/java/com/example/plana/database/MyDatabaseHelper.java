@@ -41,7 +41,7 @@ public class MyDatabaseHelper extends SQLiteOpenHelper {
     // 在创建数据库的时候onCreate会被调用，所以数据库创建之后，表会被创建且仅创建一次
     @Override
     public void onCreate(SQLiteDatabase db) {
-        EventDB.getInstance().onCreate(db);
+        TodosDB.getInstance().onCreate(db);
         UserDB.getInstance().onCreate(db);
     }
 
@@ -52,7 +52,7 @@ public class MyDatabaseHelper extends SQLiteOpenHelper {
             return;
         }
 
-        EventDB.getInstance().onUpgrade(db, oldVersion, newVersion);
+        TodosDB.getInstance().onUpgrade(db, oldVersion, newVersion);
         UserDB.getInstance().onUpgrade(db, oldVersion, newVersion);
 
     }

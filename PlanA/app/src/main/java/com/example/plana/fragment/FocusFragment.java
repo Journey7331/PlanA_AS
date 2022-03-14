@@ -37,7 +37,7 @@ public class FocusFragment extends BaseFragment
         View view = inflater.inflate(R.layout.fragment_focus_set_time, container, false);
 
         // TODO Add Pop Time-Picker
-        //  Personally input event
+        //  Personally input todos
         etFocusTime = view.findViewById(R.id.et_focus_time);
 
         btUp = view.findViewById(R.id.bt_focus_time_up);

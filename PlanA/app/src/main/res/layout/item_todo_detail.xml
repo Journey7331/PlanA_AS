@@ -67,7 +67,7 @@
                 android:layout_alignParentStart="true"
                 android:layout_centerVertical="true"
                 android:layout_marginStart="15dp"
-                android:background=""
+                android:background="@null"
                 android:text="@string/emoji_calendar"
                 android:textSize="22sp" />
 
@@ -116,7 +116,7 @@
                 android:layout_alignParentStart="true"
                 android:layout_centerVertical="true"
                 android:layout_marginStart="15dp"
-                android:background=""
+                android:background="@null"
                 android:text="@string/emoji_time"
                 android:textSize="22sp" />
 
@@ -168,7 +168,7 @@
                 android:layout_alignParentStart="true"
                 android:layout_centerVertical="true"
                 android:layout_marginStart="15dp"
-                android:background=""
+                android:background="@null"
                 android:text="@string/emoji_level"
                 android:textSize="22sp" />
 

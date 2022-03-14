@@ -109,7 +109,7 @@ public class AddCourseActivity extends AppCompatActivity {
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.savemenu, menu);
+        getMenuInflater().inflate(R.menu.menu_bar_save, menu);
         return true;
     }
 
@@ -280,7 +280,7 @@ public class AddCourseActivity extends AppCompatActivity {
      * 选择星期节次
      */
     protected void selectTime() {
-        View selectTimeDetail = getLayoutInflater().inflate(R.layout.select_time, null);
+        View selectTimeDetail = getLayoutInflater().inflate(R.layout.dialog_select_time, null);
         initTimePicker(selectTimeDetail);
         // 设置自定义布局
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
@@ -380,7 +380,7 @@ public class AddCourseActivity extends AppCompatActivity {
      * 选择周数
      */
     protected void selectWeek() {
-        View selectWeekDetail = getLayoutInflater().inflate(R.layout.select_week, null);
+        View selectWeekDetail = getLayoutInflater().inflate(R.layout.dialog_select_week, null);
         initWeekPicker(selectWeekDetail);
         // 设置自定义布局
         AlertDialog.Builder builder = new AlertDialog.Builder(this);

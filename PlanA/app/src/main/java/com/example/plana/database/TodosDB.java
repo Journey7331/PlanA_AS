@@ -7,7 +7,7 @@ import android.database.sqlite.SQLiteDatabase;
 import android.provider.BaseColumns;
 import android.util.Log;
 
-import com.example.plana.bean.Event;
+import com.example.plana.bean.Todos;
 
 import java.util.ArrayList;
 
@@ -15,9 +15,9 @@ import java.util.ArrayList;
  * @program: PlanA
  * @description:
  */
-public class EventDB implements MyDatabaseHelper.TableCreateInterface {
+public class TodosDB implements MyDatabaseHelper.TableCreateInterface {
     // 表名
-    public static String TableName = "events";
+    public static String TableName = "todos";
     // 字段名
     public static String _id = "_id";           // 主键
     public static String content = "content";   // 内容
@@ -29,37 +29,37 @@ public class EventDB implements MyDatabaseHelper.TableCreateInterface {
 //    public static String type = "type";         // 类型
 //    public static String color = "color";       // 颜色
 
-    public static EventDB eventDB = new EventDB();
+    public static TodosDB todosDB = new TodosDB();
 
-    public static EventDB getInstance() {
-        return eventDB;
+    public static TodosDB getInstance() {
+        return todosDB;
     }
 
-    public EventDB() {
+    public TodosDB() {
 
     }
 
     // 创建表
     @Override
     public void onCreate(SQLiteDatabase db) {
-        String sql = "create table if not exists " + EventDB.TableName + "("
+        String sql = "create table if not exists " + TodosDB.TableName + "("
                 + BaseColumns._ID + " integer primary key autoincrement, "
-                + EventDB.content + " text,"
-                + EventDB.memo + " text,"
-                + EventDB.done + " text,"
-                + EventDB.date + " text,"
-                + EventDB.time + " text,"
-                + EventDB.level + " float"
+                + TodosDB.content + " text,"
+                + TodosDB.memo + " text,"
+                + TodosDB.done + " text,"
+                + TodosDB.date + " text,"
+                + TodosDB.time + " text,"
+                + TodosDB.level + " float"
                 + ")";
 
         db.execSQL(sql);
-        Log.i("create", "** Event Table Created **");
+        Log.i("create", "** Todos Table Created **");
     }
 
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
         if (oldVersion < newVersion) {
-            String sql = "drop table if exists " + EventDB.TableName;
+            String sql = "drop table if exists " + TodosDB.TableName;
             db.execSQL(sql);
             this.onCreate(db);
         }
@@ -68,8 +68,8 @@ public class EventDB implements MyDatabaseHelper.TableCreateInterface {
     // 插入Event
     public static void insertEvent(MyDatabaseHelper dbHelper, ContentValues eventValues) {
         SQLiteDatabase db = dbHelper.getWritableDatabase();
-        db.insert(EventDB.TableName, null, eventValues);
-        String content = eventValues.get(EventDB.content).toString();
+        db.insert(TodosDB.TableName, null, eventValues);
+        String content = eventValues.get(TodosDB.content).toString();
         Log.i("insert", "** insert an event: " + content + " **");
         db.close();
     }
@@ -78,7 +78,7 @@ public class EventDB implements MyDatabaseHelper.TableCreateInterface {
     // 删除Event By Id
     public static void deleteEventById(MyDatabaseHelper dbHelper, String id) {
         SQLiteDatabase db = dbHelper.getWritableDatabase();
-        db.delete(EventDB.TableName, BaseColumns._ID + "=?", new String[]{id + ""});
+        db.delete(TodosDB.TableName, BaseColumns._ID + "=?", new String[]{id + ""});
         db.close();
     }
 
@@ -86,12 +86,12 @@ public class EventDB implements MyDatabaseHelper.TableCreateInterface {
     public static void updateEventById(MyDatabaseHelper dbHelper, String id, ContentValues values) {
         SQLiteDatabase db = dbHelper.getWritableDatabase();
         db.update(
-                EventDB.TableName,
+                TodosDB.TableName,
                 values,
                 BaseColumns._ID + " = ? ",
                 new String[]{id + ""}
         );
-        String content = values.get(EventDB.content).toString();
+        String content = values.get(TodosDB.content).toString();
         Log.i("update", "** Update an event: " + content);
 
         db.close();
@@ -101,8 +101,8 @@ public class EventDB implements MyDatabaseHelper.TableCreateInterface {
     public static void updateEventDoneState(MyDatabaseHelper dbHelper, String id, boolean status) {
         SQLiteDatabase db = dbHelper.getWritableDatabase();
         ContentValues values = new ContentValues();
-        values.put(EventDB.done, status + "");    // Change Boolean To String
-        db.update(EventDB.TableName, values, BaseColumns._ID + " = ? ", new String[]{id + ""});
+        values.put(TodosDB.done, status + "");    // Change Boolean To String
+        db.update(TodosDB.TableName, values, BaseColumns._ID + " = ? ", new String[]{id + ""});
         Log.i("update", "** Done State Change: " + status);
 
         db.close();
@@ -110,22 +110,22 @@ public class EventDB implements MyDatabaseHelper.TableCreateInterface {
 
     // 获取数据库中所有的Event
     @SuppressLint("Range")
-    public static ArrayList<Event> queryAllEvent(MyDatabaseHelper dbHelper) {
+    public static ArrayList<Todos> queryAllEvent(MyDatabaseHelper dbHelper) {
         SQLiteDatabase db = dbHelper.getReadableDatabase();
-        ArrayList<Event> list = new ArrayList<>();
-        Cursor cursor = db.rawQuery("select * from " + EventDB.TableName, null);
+        ArrayList<Todos> list = new ArrayList<>();
+        Cursor cursor = db.rawQuery("select * from " + TodosDB.TableName, null);
         if (cursor != null && cursor.getCount() > 0) {
             while (cursor.moveToNext()) {
-                Event event = new Event();
-                event.set_id(cursor.getInt(cursor.getColumnIndex(EventDB._id)));
-                event.setContent(cursor.getString(cursor.getColumnIndex(EventDB.content)));
-                event.setMemo(cursor.getString(cursor.getColumnIndex(EventDB.memo)));
+                Todos todos = new Todos();
+                todos.set_id(cursor.getInt(cursor.getColumnIndex(TodosDB._id)));
+                todos.setContent(cursor.getString(cursor.getColumnIndex(TodosDB.content)));
+                todos.setMemo(cursor.getString(cursor.getColumnIndex(TodosDB.memo)));
                 // Done  |  DateBase：String  |  Class: Boolean
-                event.setDone(Boolean.parseBoolean(cursor.getString(cursor.getColumnIndex(EventDB.done))));
-                event.setDate(cursor.getString(cursor.getColumnIndex(EventDB.date)));
-                event.setTime(cursor.getString(cursor.getColumnIndex(EventDB.time)));
-                event.setLevel(cursor.getFloat(cursor.getColumnIndex(EventDB.level)));
-                list.add(event);
+                todos.setDone(Boolean.parseBoolean(cursor.getString(cursor.getColumnIndex(TodosDB.done))));
+                todos.setDate(cursor.getString(cursor.getColumnIndex(TodosDB.date)));
+                todos.setTime(cursor.getString(cursor.getColumnIndex(TodosDB.time)));
+                todos.setLevel(cursor.getFloat(cursor.getColumnIndex(TodosDB.level)));
+                list.add(todos);
             }
         }
 

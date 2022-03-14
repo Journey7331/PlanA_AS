@@ -19,6 +19,12 @@ import androidx.annotation.Nullable;
 import com.example.plana.R;
 import com.example.plana.activity.LoginActivity;
 import com.example.plana.base.BaseFragment;
+import com.example.plana.bean.My;
+import com.example.plana.bean.Todos;
+import com.example.plana.bean.User;
+import com.example.plana.database.TodosDB;
+import com.example.plana.database.MyDatabaseHelper;
+import com.example.plana.database.UserDB;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 import java.util.ArrayList;
@@ -39,12 +45,7 @@ public class MyPageFragment extends BaseFragment
     Button btLogOut;
     int doneCount, unDoneCount;
 
-    ArrayList<Event> events;
-    User my_account;
-
-    // 导入已登录的用户信息
-    public MyPageFragment(User user) {
-        this.my_account = user;
+    public MyPageFragment() {
     }
 
     @Nullable
@@ -65,8 +66,6 @@ public class MyPageFragment extends BaseFragment
         tvUndoneCount = view.findViewById(R.id.tv_undone_count);
         tvDoneCount = view.findViewById(R.id.tv_done_count);
 
-        events = new ArrayList<>();
-
         myPageSetUp();
 
         viewSetting.setOnClickListener(this);
@@ -80,15 +79,14 @@ public class MyPageFragment extends BaseFragment
     private void myPageSetUp() {
         // Get Events
         MyDatabaseHelper mysql = new MyDatabaseHelper(getContext());
-        events = EventDB.queryAllEvent(mysql);
 
         // Set User Information
-        if (!"".equals(my_account.getPhone())) {
-            myName.setText(my_account.getName());
-            if ("".equals(my_account.getEmail())) {
-                myEmail.setText(my_account.getPhone());
+        if (!"".equals(My.Account.getPhone())) {
+            myName.setText(My.Account.getName());
+            if ("".equals(My.Account.getEmail())) {
+                myEmail.setText(My.Account.getPhone());
             } else {
-                myEmail.setText(my_account.getEmail());
+                myEmail.setText(My.Account.getEmail());
             }
             btLogOut.setOnClickListener(l -> {
                 ContentValues values = new ContentValues();
@@ -110,16 +108,16 @@ public class MyPageFragment extends BaseFragment
             });
         }
 
-        if (events.size() == 0) {
+        if (My.todos.size() == 0) {
             pgLevel.setProgress(0);
             tvLevelCount.setText("");
             return;
         }
 
         // Count Done
-        for (Event e : events) if (e.isDone()) doneCount++;
+        for (Todos e : My.todos) if (e.isDone()) doneCount++;
 
-        unDoneCount = events.size() - doneCount;
+        unDoneCount = My.todos.size() - doneCount;
         if (doneCount > 0) {
             tvDoneCount.setText(doneCount + "");
         }
@@ -128,7 +126,7 @@ public class MyPageFragment extends BaseFragment
         }
 
         // Set ProgressBar
-        int percent = doneCount * 100 / events.size();
+        int percent = doneCount * 100 / My.todos.size();
         pgLevel.setProgress(percent);
         pgLevel.setMax(100);
         tvLevelCount.setText(percent + "%");

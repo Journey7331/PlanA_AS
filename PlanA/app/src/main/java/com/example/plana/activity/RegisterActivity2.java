@@ -17,6 +17,7 @@ import androidx.annotation.Nullable;
 
 import com.example.plana.R;
 import com.example.plana.base.BaseRegisterActivity;
+import com.example.plana.database.UserDB;
 
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
@@ -40,7 +41,6 @@ public class RegisterActivity2 extends BaseRegisterActivity
     AlertDialog.Builder builder;
     DatePicker datePicker;
     final Calendar cal = Calendar.getInstance();
-    MyDatabaseHelper mysql = new MyDatabaseHelper(this);
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {

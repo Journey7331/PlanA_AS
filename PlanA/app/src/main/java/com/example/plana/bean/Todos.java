@@ -2,9 +2,9 @@ package com.example.plana.bean;
 
 /**
  * @program: PlanA
- * @description: Event Thing 类
+ * @description: Todos Todos 类
  */
-public class Event implements Comparable {
+public class Todos implements Comparable {
 
     private int _id;
     private String content;
@@ -16,14 +16,14 @@ public class Event implements Comparable {
     // TODO Add type
 //    private String type;
 
-    public Event() {
+    public Todos() {
         this._id = 0;
         this.content = "";
         this.done = false;
         this.date = "";
     }
 
-    public Event(int _id, String content, boolean done, String date) {
+    public Todos(int _id, String content, boolean done, String date) {
         this._id = _id;
         this.content = content;
         this.done = done;
@@ -88,7 +88,7 @@ public class Event implements Comparable {
 
     @Override
     public int compareTo(Object o) {
-        int id = ((Event) o).get_id();
+        int id = ((Todos) o).get_id();
         // 按插入的顺序排序
         return this.get_id() - id;
     }

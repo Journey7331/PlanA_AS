@@ -333,7 +333,7 @@ public class ScheduleFragment extends BaseFragment
      */
     protected void showCourseDetail(List<Schedule> beans) {
 
-        View courseDetail = getLayoutInflater().inflate(R.layout.fragment_course_detail, null);
+        View courseDetail = getLayoutInflater().inflate(R.layout.dialog_course_detail, null);
         RelativeLayout rl_include_detail = courseDetail.findViewById(R.id.include_detail);
         // 课程名
         TextView tv_item = rl_include_detail.findViewById(R.id.tv_item);
@@ -356,7 +356,7 @@ public class ScheduleFragment extends BaseFragment
         et_room.setEnabled(false);
         et_room.setText(beans.get(0).getRoom());
         // 设置自定义布局
-        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
         builder.setView(courseDetail);
         final AlertDialog dialog = builder.show();
         dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));  // 背景设置透明
@@ -413,7 +413,7 @@ public class ScheduleFragment extends BaseFragment
      * @param id 课程id
      */
     protected void showConfirmDialog(int id) {
-        View view = getLayoutInflater().inflate(R.layout.fragment_confirm, null);
+        View view = getLayoutInflater().inflate(R.layout.dialog_confirm, null);
         TextView text = view.findViewById(R.id.text);
         text.setText("确认删除？");
         TextView confirm = view.findViewById(R.id.confirm);
@@ -450,7 +450,7 @@ public class ScheduleFragment extends BaseFragment
      * 年，月，日
      */
     protected void selectDate() {
-        View selectDateDetail = getLayoutInflater().inflate(R.layout.fragment_select_date, null);
+        View selectDateDetail = getLayoutInflater().inflate(R.layout.dialog_select_date, null);
 
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
         Date date = null;
@@ -464,7 +464,7 @@ public class ScheduleFragment extends BaseFragment
         initDatePicker(selectDateDetail, c);
 
         // 设置自定义布局
-        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
         builder.setView(selectDateDetail);
         final AlertDialog dialog = builder.show();
         dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
@@ -639,7 +639,7 @@ public class ScheduleFragment extends BaseFragment
                 "11:30", "14:00", "14:50", "15:50",
                 "16:40", "18:30", "19:20", "20:10"
         };
-        OnSlideBuildAdapter listener = (OnSlideBuildAdapter) mTimetableView.onSlideBuildListener();
+        OnSlideBuildAdapter listener = (OnSlideBuildAdapter) timetableView.onSlideBuildListener();
         listener.setTimes(times)
                 .setTimeTextColor(Color.BLACK);
         timetableView.updateSlideView();
@@ -712,14 +712,14 @@ public class ScheduleFragment extends BaseFragment
                         hideTime();
                     break;
                 default:
-                    onMyConfigHandleAdapter.onParseConfig(key, value, mTimetableView);
+                    onMyConfigHandleAdapter.onParseConfig(key, value, timetableView);
                     break;
             }
 
         }
         //第一周未设定，将当前周设置为第一周
         if (myConfigMap.get(OnMyConfigHandleAdapter.CONFIG_CUR_WEEK) == null) {
-            myConfigMap.put(OnMyConfigHandleAdapter.CONFIG_CUR_WEEK, TimeCalUtil.date2Str(new Date()));
+            myConfigMap.put(OnMyConfigHandleAdapter.CONFIG_CUR_WEEK, TimeCalcUtil.date2Str(new Date()));
             myConfig.saveConfig(myConfigMap);
         }
     }

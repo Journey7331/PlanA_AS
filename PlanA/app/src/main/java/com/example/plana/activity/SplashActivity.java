@@ -46,6 +46,11 @@ public class SplashActivity extends BaseActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_splash);
 
+        gifView = findViewById(R.id.logo_gif);
+        gifView.setGifResource(R.mipmap.logo);
+        gifView.setVisibility(View.VISIBLE);
+        gifView.play();
+
         SharedPreferences auto = getSharedPreferences("auto", Activity.MODE_PRIVATE);
         auto_id = auto.getString("auto_id", null);
         auto_password = auto.getString("auto_pw", null);
@@ -57,17 +62,10 @@ public class SplashActivity extends BaseActivity {
                 if (auto_id != null && auto_password != null) {
                     login(auto_id, auto_password);
                 } else {
-                    Intent intent = new Intent(SplashActivity.this, LoginActivity.class);
-                    startActivity(intent);
-                    finish();
+                    directToLoginActivity();
                 }
             }
         }, SPLASH_TIME);
-
-        gifView = findViewById(R.id.logo_gif);
-        gifView.setGifResource(R.mipmap.logo);
-        gifView.setVisibility(View.VISIBLE);
-        gifView.play();
 
     }
 
@@ -94,6 +92,7 @@ public class SplashActivity extends BaseActivity {
                 jsonObject = JsonParser.parseString(response.body().string()).getAsJsonObject();
                 if ("ok".equals(jsonObject.get("result").getAsString())) {
 
+                    updateMy();
                     // TODO after auto login
 
                 } else {
@@ -124,9 +123,9 @@ public class SplashActivity extends BaseActivity {
 
 
     /**
-     *
+     * 更新 My 中的信息
      */
-    private void updateMy(String url) {
+    private void updateMy() {
 
     }
 

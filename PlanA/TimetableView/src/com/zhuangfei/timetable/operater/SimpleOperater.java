@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.res.TypedArray;
 import android.graphics.Color;
 import android.graphics.drawable.GradientDrawable;
+import android.os.Build;
 import android.util.AttributeSet;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -12,6 +13,8 @@ import android.view.View;
 import android.widget.FrameLayout;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+
+import androidx.annotation.RequiresApi;
 
 import com.zhuangfei.android_timetableview.sample.R;
 import com.zhuangfei.timetable.TimetableView;
@@ -147,6 +150,7 @@ public class SimpleOperater extends AbsOperater{
      * @param curWeek 当前周
      * @return View
      */
+    @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN)
     private View newItemView(final List<Schedule> originData, final List<Schedule> data, final Schedule subject, Schedule pre, int i, int curWeek) {
         //宽高
         int width = LinearLayout.LayoutParams.MATCH_PARENT;
@@ -215,7 +219,9 @@ public class SimpleOperater extends AbsOperater{
             gd.setCornerRadius(mView.corner(false));
         }
 
-        textView.setBackgroundDrawable(gd);
+      //textView.setBackgroundDrawable(gd);
+        textView.setBackground(gd);
+
         mView.onItemBuildListener().onItemUpdate(layout, textView, countTextView, subject, gd);
 
         textView.setOnClickListener(new View.OnClickListener() {
@@ -229,7 +235,7 @@ public class SimpleOperater extends AbsOperater{
         textView.setOnLongClickListener(new View.OnLongClickListener() {
             @Override
             public boolean onLongClick(View view) {
-                mView.onItemLongClickListener().onLongClick(view, subject.getDay(), subject.getStart());
+                mView.onItemLongClickListener().onLongClick(view, subject.getDay(), subject.getStart(),(int)subject.getExtras().get("extras_id"));
                 return true;
             }
         });
@@ -244,6 +250,7 @@ public class SimpleOperater extends AbsOperater{
      * @param data    某一天的数据集合
      * @param curWeek 当前周
      */
+    @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN)
     private void addToLayout(LinearLayout layout, final List<Schedule> data, int curWeek) {
         if (layout == null || data == null || data.size() < 1) return;
         layout.removeAllViews();
