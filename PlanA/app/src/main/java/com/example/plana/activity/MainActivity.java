@@ -7,6 +7,9 @@ import android.widget.Toast;
 
 import com.example.plana.R;
 import com.example.plana.base.BaseActivity;
+import com.example.plana.bean.User;
+import com.example.plana.database.MyDatabaseHelper;
+import com.example.plana.database.UserDB;
 import com.example.plana.fragment.AddFragment;
 import com.example.plana.fragment.FocusFragment;
 import com.example.plana.fragment.MyPageFragment;
@@ -18,6 +21,7 @@ import com.google.android.material.bottomnavigation.BottomNavigationView;
  * @description:
  */
 public class MainActivity extends BaseActivity {
+
     BottomNavigationView bottomNavigation;
 
     AddFragment addFragment;
@@ -26,15 +30,13 @@ public class MainActivity extends BaseActivity {
     MyPageFragment myPageFragment;
     Fragment currentFragment;
 
-    User user;
-    MyDatabaseHelper mysql = new MyDatabaseHelper(this);
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        // check log in status
+        // check login status
+
         String phone = UserDB.getPhone(mysql);
         if ("".equals(phone)) {
             this.user = new User(0, "", "");
@@ -44,7 +46,7 @@ public class MainActivity extends BaseActivity {
 
         // fragment setup
         addFragment = new AddFragment();
-        homeFragment = new HomeFragment(this.user.getName());
+        listFragment = new ShowListFragment(user.getName());
         focusFragment = new FocusFragment();
         myPageFragment = new MyPageFragment(this.user);
         currentFragment = null;

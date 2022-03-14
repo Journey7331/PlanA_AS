@@ -3,7 +3,7 @@
     android:id="@+id/toolbar"
     android:layout_width="fill_parent"
     android:layout_height="53.299988dip"
-    android:background="@android:color/white">
+    android:background="@color/google_grey">
 
     <TextView
         android:id="@+id/toolbar_title"

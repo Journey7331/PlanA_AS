@@ -14,29 +14,26 @@
     <string name="hello_blank_fragment">Hello blank fragment</string>
 
     <string name="login">登录</string>
-    <string name="login_id"> 账号</string>
+    <string name="login_id">手机号</string>
     <string name="login_password">密码</string>
 
-    <string name="register_id">账号</string>
+    <string name="register_id">手机号</string>
     <string name="register_password">密码</string>
     <string name="register_repassword">再次输入密码</string>
     <string name="register_email">邮箱</string>
-    <string name="register_btn">Get Start</string>
-    <string name="register_cancel">Cancel</string>
-    <string name="register_btn_next">Next</string>
-    <string name="register_birth">Birthday</string>
-    <string name="register_submit">Submit</string>
-    <string name="register_back">Back</string>
-    <string name="register_name">Name</string>
-    <string name="add_content">TO DO WHAT✍</string>
-    <string name="add_memo">MEMO</string>
-    <string name="add_date">DATE</string>
-    <string name="add_time">TIME</string>
-    <string name="add_location">LOCATION</string>
-    <string name="share">SHARE</string>
-    <string name="level">LEVEL</string>
+    <string name="register_btn">开始使用</string>
+    <string name="register_cancel">取消</string>
+    <string name="register_btn_next">下一步</string>
+    <string name="register_birth">生日</string>
+    <string name="register_submit">提交</string>
+    <string name="register_back">返回</string>
+    <string name="register_name">用户名</string>
+    <string name="add_content">要做什么</string>
+    <string name="add_memo">备注</string>
+    <string name="add_date">日期</string>
+    <string name="add_time">时间</string>
+    <string name="level">等级</string>
 
-    <string name="logo_play">HELLO</string>
 
     <string name="sort_add_time">Sort by Add-Time</string>
     <string name="sort_date">Sort by Date</string>
@@ -44,13 +41,20 @@
     <string name="sort_done">Hide Done Event</string>
     <string name="sort_prior">Sort by Priority</string>
     <string name="skip">不登录使用 ▶</string>
-    <string name="calendar_emoji">📅</string>
-    <string name="time_emoji">🕒</string>
-    <string name="level_emoji">🌟</string>
-    <string name="完成">Finish</string>
+    <string name="finish">完成</string>
     <string name="schedule">课程表</string>
     <string name="select_week">选择周次</string>
-    <string name="start_countdown">开始计时</string>
+    <string name="start_count">开始计时</string>
+
+    <string name="emoji_calendar">📅</string>
+    <string name="emoji_time">🕒</string>
+    <string name="emoji_level">🌟</string>
+    <string name="emoji_week">📆</string>
+    <string name="emoji_hello">👋</string>
+    <string name="emoji_teacher">🎓</string>
+    <string name="emoji_position">📍</string>
+    <string name="emoji_course_name">📚</string>
+    <string name="emoji_write">✍</string>
 
 
 </resources>

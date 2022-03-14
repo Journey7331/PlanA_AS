@@ -24,6 +24,7 @@ import androidx.appcompat.app.AlertDialog;
 import androidx.core.content.ContextCompat;
 import androidx.core.view.GravityCompat;
 
+import com.example.plana.activity.AddCourseActivity;
 import com.example.plana.config.MyConfig;
 import com.example.plana.R;
 import com.example.plana.activity.MainActivity;
@@ -216,7 +217,7 @@ public class ScheduleFragment extends BaseFragment
                     @Override
                     public void onWeekChanged(int curWeek) {
                         if (timetableView.onDateBuildListener() instanceof OnDateDelayAdapter) {
-                            OnDateDelayAdapter adapter = (OnDateDelayAdapter) mTimetableView.onDateBuildListener();
+                            OnDateDelayAdapter adapter = (OnDateDelayAdapter) timetableView.onDateBuildListener();
                             long when = adapter.whenBeginSchool();
                             if (when > 0) {
                                 titleTextView.setText("距离开学还有" + when + "天");
@@ -231,7 +232,7 @@ public class ScheduleFragment extends BaseFragment
                     @Override
                     public void onFlaglayoutClick(int day, int start) {
                         timetableView.hideFlaglayout();
-                        Intent intent = new Intent(MainActivity.this, AddCourseActivity.class);
+                        Intent intent = new Intent(getContext(), AddCourseActivity.class);
                         intent.putExtra("title", "添加课程");
                         intent.putExtra("day", day);
                         intent.putExtra("start", start);
@@ -371,7 +372,7 @@ public class ScheduleFragment extends BaseFragment
         });
 
         // 删除课程
-        TextView tv_delete_course = courseDetail.findViewById(R.id.ib_delete_course);
+        TextView tv_delete_course = courseDetail.findViewById(R.id.btn_delete_course);
         tv_delete_course.setClickable(true);
         tv_delete_course.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -389,7 +390,7 @@ public class ScheduleFragment extends BaseFragment
         });
 
         // 编辑课程
-        TextView tv_edit_course = courseDetail.findViewById(R.id.ib_edit);
+        TextView tv_edit_course = courseDetail.findViewById(R.id.btn_edit_course);
         tv_edit_course.setClickable(true);
         tv_edit_course.setOnClickListener(new View.OnClickListener() {
             @Override

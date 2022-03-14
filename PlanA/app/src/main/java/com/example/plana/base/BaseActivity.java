@@ -9,6 +9,19 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.example.plana.Constant;
+import com.example.plana.database.MyDatabaseHelper;
+import com.example.plana.service.UserService;
+
+import java.net.URL;
+import java.util.HashMap;
+import java.util.Map;
+
+import okhttp3.ResponseBody;
+import retrofit2.Call;
+import retrofit2.Retrofit;
+import retrofit2.adapter.rxjava3.RxJava3CallAdapterFactory;
+
 /**
  * @program: PlanA
  * @description: BaseActivity extends AppCompatActivity
@@ -16,11 +29,10 @@ import androidx.appcompat.app.AppCompatActivity;
 public abstract class BaseActivity extends AppCompatActivity {
 
     private long exitTime = 0;
+    private String URL = Constant.URL;
 
-
-
-
-
+    public MyDatabaseHelper mysql = new MyDatabaseHelper(this);
+    public Retrofit.Builder retrofitBuilder = new Retrofit.Builder().baseUrl(URL);
 
     // 隐藏键盘
     public static void hideKeyboard(Activity activity) {

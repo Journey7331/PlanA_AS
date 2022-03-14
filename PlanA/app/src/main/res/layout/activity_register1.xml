@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="@color/google_grey">
 
     <View
         android:id="@+id/ellipse_1"
@@ -30,7 +31,7 @@
         android:layout_width="110dp"
         android:layout_height="110dp"
         android:layout_marginStart="40dp"
-        android:layout_marginTop="120dp"
+        android:layout_marginTop="110dp"
         android:background="@drawable/background_circle"
         android:elevation="8dp" />
 
@@ -53,10 +54,12 @@
             android:layout_width="match_parent"
             android:layout_height="40dp"
             android:autofillHints="no"
-            android:background="@drawable/edittext_select"
+            android:background="@drawable/background_edittext_select"
             android:cursorVisible="false"
             android:elevation="2dp"
             android:hint="@string/register_id"
+            android:layout_marginTop="20dp"
+            android:layout_marginHorizontal="5dp"
             android:inputType="textVisiblePassword|textNoSuggestions"
             android:paddingLeft="12dp"
             android:paddingRight="12dp"
@@ -69,12 +72,13 @@
             android:layout_below="@+id/et_registerId"
             android:layout_marginTop="32dp"
             android:autofillHints="no"
-            android:background="@drawable/edittext_select"
+            android:background="@drawable/background_edittext_select"
             android:cursorVisible="false"
             android:elevation="2dp"
             android:hint="@string/register_password"
             android:inputType="textPassword"
             android:paddingLeft="12dp"
+            android:layout_marginHorizontal="5dp"
             android:paddingRight="12dp"
             android:textColorHint="#888888" />
 
@@ -83,15 +87,16 @@
             android:layout_width="match_parent"
             android:layout_height="40dp"
             android:layout_below="@+id/et_registerPassword"
-            android:layout_marginTop="8dp"
+            android:layout_marginTop="20dp"
             android:autofillHints="no"
-            android:background="@drawable/edittext_select"
+            android:background="@drawable/background_edittext_select"
             android:cursorVisible="false"
             android:elevation="2dp"
             android:hint="@string/register_repassword"
             android:inputType="textPassword"
             android:paddingLeft="12dp"
             android:paddingRight="12dp"
+            android:layout_marginHorizontal="5dp"
             android:textColorHint="#888888" />
 
         <Button

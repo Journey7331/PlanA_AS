@@ -22,6 +22,8 @@ import androidx.appcompat.widget.SwitchCompat;
 
 import com.example.plana.R;
 import com.example.plana.base.BaseFragment;
+import com.example.plana.database.EventDB;
+import com.example.plana.database.MyDatabaseHelper;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 import java.text.SimpleDateFormat;
@@ -181,8 +183,8 @@ public class EditFragment extends BaseFragment
     private void setupLevel() {
         AlertDialog.Builder builder = new AlertDialog.Builder(getContext(), R.style.AlertDialogTheme);
         LayoutInflater inflater = getLayoutInflater();
-        View view = inflater.inflate(R.layout.add_level, null);
-        View titleView = inflater.inflate(R.layout.add_title, null);
+        View view = inflater.inflate(R.layout.dialog_add_level, null);
+        View titleView = inflater.inflate(R.layout.dialog_add_title, null);
         TextView title = titleView.findViewById(R.id.dialog_title);
         title.setText("Choose Priority");
         RatingBar ratingBar = view.findViewById(R.id.add_rating);
@@ -214,7 +216,7 @@ public class EditFragment extends BaseFragment
     private void setupTime() {
         AlertDialog.Builder builder = new AlertDialog.Builder(getContext(), R.style.AlertDialogTheme);
         LayoutInflater inflater = getLayoutInflater();
-        View view = inflater.inflate(R.layout.add_time, null);
+        View view = inflater.inflate(R.layout.dialog_add_time, null);
         TimePicker timePicker = view.findViewById(R.id.add_time_picker);
         timePicker.setIs24HourView(true);
         builder.setView(view);
@@ -245,7 +247,7 @@ public class EditFragment extends BaseFragment
         Calendar cal = Calendar.getInstance();
         AlertDialog.Builder builder = new AlertDialog.Builder(getContext(), R.style.AlertDialogTheme);
         LayoutInflater inflater = getLayoutInflater();
-        View view = inflater.inflate(R.layout.add_date, null);
+        View view = inflater.inflate(R.layout.dialog_add_date, null);
         DatePicker datePicker = view.findViewById(R.id.add_date_picker);
         builder.setView(view);
 

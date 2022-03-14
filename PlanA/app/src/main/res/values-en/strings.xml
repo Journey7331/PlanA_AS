@@ -14,7 +14,7 @@
     <string name="hello_blank_fragment">Hello blank fragment</string>
 
     <string name="login">Login</string>
-    <string name="login_id">Account</string>
+    <string name="login_id">Account Number</string>
     <string name="login_password">Password</string>
 
     <string name="register_id">Account Number</string>
@@ -32,25 +32,29 @@
     <string name="add_memo">MEMO</string>
     <string name="add_date">DATE</string>
     <string name="add_time">TIME</string>
-    <string name="add_location">LOCATION</string>
-    <string name="share">SHARE</string>
     <string name="level">LEVEL</string>
 
-    <string name="logo_play">HELLO</string>
 
     <string name="sort_add_time">Sort by Add-Time</string>
     <string name="sort_date">Sort by Date</string>
     <string name="sort_undone">Hide UnDone Event</string>
     <string name="sort_done">Hide Done Event</string>
     <string name="sort_prior">Sort by Priority</string>
-    <string name="skip">跳过</string>
-    <string name="calendar_emoji">📅</string>
-    <string name="time_emoji">🕒</string>
-    <string name="level_emoji">🌟</string>
-    <string name="完成">Finish</string>
-    <string name="schedule">课程表</string>
-    <string name="select_week">选择周次</string>
-    <string name="start_countdown">开始计时</string>
+    <string name="skip">Visit without account ▶</string>
+    <string name="finish">Finish</string>
+    <string name="schedule">schedule</string>
+    <string name="select_week">select weeks</string>
+    <string name="start_count">start count</string>
+
+    <string name="emoji_hello">👋</string>
+    <string name="emoji_time">🕒</string>
+    <string name="emoji_level">🌟</string>
+    <string name="emoji_calendar">📅</string>
+    <string name="emoji_week">📆</string>
+    <string name="emoji_teacher">🎓</string>
+    <string name="emoji_position">📍</string>
+    <string name="emoji_course_name">📚</string>
+    <string name="emoji_write">✍</string>
 
 
 </resources>

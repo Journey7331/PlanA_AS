@@ -71,7 +71,7 @@ public class RegisterActivity2 extends BaseRegisterActivity
             builder = new AlertDialog.Builder(this);
             // inflater
             LayoutInflater inflater = getLayoutInflater();
-            final View view = inflater.inflate(R.layout.register_date, null);
+            final View view = inflater.inflate(R.layout.add_register_date, null);
             final DatePicker datePicker = view.findViewById(R.id.register_date_picker);
 
             builder.setView(view);

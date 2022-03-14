@@ -10,7 +10,7 @@
         android:orientation="vertical">
 
         <!-- 头部 header -->
-        <include layout="@layout/base_header" />
+        <include layout="@layout/item_schedule_header" />
 
         <!-- 每周预览 -->
         <com.zhuangfei.timetable.view.WeekView

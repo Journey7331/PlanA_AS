@@ -44,7 +44,7 @@ public class TimeCountActivity extends BaseActivity {
         window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
         window.setStatusBarColor(Color.TRANSPARENT);
 
-        setContentView(R.layout.time_count_down);
+        setContentView(R.layout.activity_time_count);
 
 
         tvCountTime = findViewById(R.id.tv_count_time_show);

@@ -1,0 +1,203 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <EditText
+            android:id="@+id/et_content"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="16dp"
+            android:background="@drawable/background_edittext_select"
+            android:cursorVisible="false"
+            android:elevation="4dp"
+            android:hint="@string/add_content"
+            android:paddingStart="16dp"
+            android:paddingEnd="16dp"
+            android:textColorHint="#666666"
+            android:textStyle="bold" />
+
+        <!-- android:layout_marginTop="120dp" -->
+
+
+        <EditText
+            android:id="@+id/et_memo"
+            android:layout_width="match_parent"
+            android:layout_height="160dp"
+            android:layout_below="@+id/et_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginEnd="16dp"
+            android:background="@drawable/background_edittext_select"
+            android:elevation="4dp"
+            android:gravity="top|left"
+            android:hint="@string/add_memo"
+            android:inputType="textMultiLine"
+            android:lines="8"
+            android:maxLines="10"
+            android:minLines="4"
+            android:paddingStart="16dp"
+            android:paddingTop="12dp"
+            android:paddingEnd="16dp"
+            android:paddingBottom="12dp"
+            android:textColorHint="@color/dark_grey" />
+
+        <RelativeLayout
+            android:id="@+id/rl_date"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_below="@+id/et_memo"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="32dp"
+            android:layout_marginEnd="16dp"
+            android:background="@drawable/background_edittext_select"
+            android:elevation="2dp">
+
+            <androidx.emoji2.widget.EmojiButton
+                android:id="@+id/icon_calendar"
+                android:layout_width="32dp"
+                android:layout_height="32dp"
+                android:layout_alignParentStart="true"
+                android:layout_centerVertical="true"
+                android:layout_marginStart="15dp"
+                android:background=""
+                android:text="@string/emoji_calendar"
+                android:textSize="22sp" />
+
+
+            <EditText
+                android:id="@+id/et_date"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_toEndOf="@id/icon_calendar"
+                android:background="@null"
+                android:focusable="false"
+                android:hint="@string/add_date"
+                android:paddingStart="8dp"
+                android:paddingEnd="16dp"
+                android:textColorHint="#333333" />
+
+            <androidx.appcompat.widget.SwitchCompat
+                android:id="@+id/switch_date"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentEnd="true"
+                android:layout_centerVertical="true"
+                android:paddingStart="8dp"
+                android:paddingEnd="8dp"
+                android:thumb="@drawable/switch_thumb"
+                app:track="@drawable/switch_track_selector" />
+
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/rl_time"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_below="@+id/rl_date"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="16dp"
+            android:background="@drawable/background_edittext_select"
+            android:elevation="2dp">
+
+            <androidx.emoji2.widget.EmojiButton
+                android:id="@+id/icon_time"
+                android:layout_width="32dp"
+                android:layout_height="32dp"
+                android:layout_alignParentStart="true"
+                android:layout_centerVertical="true"
+                android:layout_marginStart="15dp"
+                android:background=""
+                android:text="@string/emoji_time"
+                android:textSize="22sp" />
+
+
+            <EditText
+                android:id="@+id/et_time"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_toEndOf="@id/icon_time"
+                android:background="@null"
+                android:focusable="false"
+                android:hint="@string/add_time"
+                android:paddingStart="8dp"
+                android:paddingEnd="16dp"
+                android:textColorHint="#333333" />
+
+            <androidx.appcompat.widget.SwitchCompat
+                android:id="@+id/switch_time"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentEnd="true"
+                android:layout_centerVertical="true"
+                android:paddingStart="8dp"
+                android:paddingEnd="8dp"
+                android:thumb="@drawable/switch_thumb"
+                app:track="@drawable/switch_track_selector" />
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/rl_level"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_below="@+id/rl_time"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="16dp"
+            android:layout_marginBottom="16dp"
+            android:background="@drawable/background_edittext_select"
+            android:elevation="2dp">
+
+            <!-- android:layout_marginBottom="120dp" -->
+
+
+            <androidx.emoji2.widget.EmojiButton
+                android:id="@+id/icon_level"
+                android:layout_width="32dp"
+                android:layout_height="32dp"
+                android:layout_alignParentStart="true"
+                android:layout_centerVertical="true"
+                android:layout_marginStart="15dp"
+                android:background=""
+                android:text="@string/emoji_level"
+                android:textSize="22sp" />
+
+
+            <EditText
+                android:id="@+id/et_level"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_toEndOf="@id/icon_level"
+                android:background="@null"
+                android:focusable="false"
+                android:hint="@string/level"
+                android:paddingStart="8dp"
+                android:paddingEnd="16dp"
+                android:textColorHint="#333333" />
+
+            <androidx.appcompat.widget.SwitchCompat
+                android:id="@+id/switch_level"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentEnd="true"
+                android:layout_centerVertical="true"
+                android:paddingStart="8dp"
+                android:paddingEnd="8dp"
+                android:thumb="@drawable/switch_thumb"
+                app:track="@drawable/switch_track_selector" />
+
+        </RelativeLayout>
+
+    </RelativeLayout>
+
+</RelativeLayout>

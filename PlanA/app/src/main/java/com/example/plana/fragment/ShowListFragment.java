@@ -22,6 +22,8 @@ import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 import com.example.plana.R;
 import com.example.plana.adapter.EventAdapter;
 import com.example.plana.base.BaseFragment;
+import com.example.plana.database.EventDB;
+import com.example.plana.database.MyDatabaseHelper;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -75,7 +77,7 @@ public class ShowListFragment extends BaseFragment
 
         list = view.findViewById(R.id.home_list);
         list.setItemsCanFocus(false);
-        logoIcon = view.findViewById(R.id.tv_icon);
+        logoIcon = view.findViewById(R.id.tv_hello);
         pullToRefresh = view.findViewById(R.id.pullToRefresh);
         filterButton = view.findViewById(R.id.filter_button);
         switchDone = view.findViewById(R.id.switch_done);

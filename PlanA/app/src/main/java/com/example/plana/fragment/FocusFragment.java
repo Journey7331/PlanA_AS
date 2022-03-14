@@ -34,7 +34,7 @@ public class FocusFragment extends BaseFragment
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.focus_set_time, container, false);
+        View view = inflater.inflate(R.layout.fragment_focus_set_time, container, false);
 
         // TODO Add Pop Time-Picker
         //  Personally input event

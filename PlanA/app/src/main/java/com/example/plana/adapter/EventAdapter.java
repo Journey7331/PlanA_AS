@@ -19,10 +19,12 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 
 import com.example.plana.R;
+import com.example.plana.bean.Event;
 import com.example.plana.fragment.EditFragment;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.Locale;
 
@@ -73,7 +75,7 @@ public class EventAdapter extends ArrayAdapter {
     public View getView(int position, @Nullable View convertView, @NonNull ViewGroup parent) {
         final EventItemHolder viewHolder;
         if (convertView == null) {
-            convertView = inflater.inflate(R.layout.todos_list, parent, false);
+            convertView = inflater.inflate(R.layout.item_todos_list, parent, false);
 
             viewHolder = new EventItemHolder();
             viewHolder.tvContent = convertView.findViewById(R.id.tv_content);
@@ -152,7 +154,7 @@ public class EventAdapter extends ArrayAdapter {
         // LongPress
         convertView.setOnLongClickListener(v -> {
             AlertDialog.Builder builder = new AlertDialog.Builder(getContext(), R.style.AlertDialogTheme);
-            View titleView = inflater.inflate(R.layout.add_title, null);
+            View titleView = inflater.inflate(R.layout.dialog_add_title, null);
             TextView title = titleView.findViewById(R.id.dialog_title);
             title.setText("Delete / Modify");
             builder.setCustomTitle(titleView);
