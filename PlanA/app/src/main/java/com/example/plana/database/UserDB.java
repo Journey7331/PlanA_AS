@@ -7,7 +7,11 @@ import android.database.sqlite.SQLiteDatabase;
 import android.provider.BaseColumns;
 import android.util.Log;
 
+import com.example.plana.bean.Todos;
 import com.example.plana.bean.User;
+
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * @program: PlanA
@@ -46,14 +50,6 @@ public class UserDB implements MyDatabaseHelper.TableCreateInterface {
 
         // 执行创建语句
         db.execSQL(sql);
-
-        // 插入 记录 当前登录用户的phone 的数据条
-        // insert an data which tells who's using the account
-        ContentValues admin = new ContentValues();
-        admin.put(BaseColumns._ID, 0);
-        admin.put(UserDB.phone, "");
-        admin.put(UserDB.name, "");
-        db.insert(UserDB.TableName, null, admin);
 
         Log.i("create", "** User Table Created **");
     }
@@ -233,5 +229,31 @@ public class UserDB implements MyDatabaseHelper.TableCreateInterface {
         db.close();
         return ret;
     }
+
+    // DEBUG
+    @SuppressLint("Range")
+    public static List<User> getAllUser(MyDatabaseHelper dbHelper) {
+        SQLiteDatabase db = dbHelper.getReadableDatabase();
+        ArrayList<User> users = new ArrayList<>();
+        Cursor cursor = db.rawQuery("select * from " + UserDB.TableName, null);
+
+        if (cursor != null && cursor.getCount() > 0) {
+            while (cursor.moveToNext()) {
+                User user = new User();
+                user.set_id(cursor.getInt(cursor.getColumnIndex(BaseColumns._ID)));
+                user.setPhone(cursor.getString(cursor.getColumnIndex(UserDB.phone)));
+                user.setName(cursor.getString(cursor.getColumnIndex(UserDB.name)));
+                user.setPwd(cursor.getString(cursor.getColumnIndex(UserDB.pwd)));
+                user.setEmail(cursor.getString(cursor.getColumnIndex(UserDB.email)));
+                user.setBirth(cursor.getString(cursor.getColumnIndex(UserDB.birth)));
+                users.add(user);
+            }
+        }
+
+        cursor.close();
+        db.close();
+        return users;
+    }
+
 
 }

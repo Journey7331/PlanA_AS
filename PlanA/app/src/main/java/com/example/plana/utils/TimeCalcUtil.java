@@ -36,9 +36,34 @@ public class TimeCalcUtil {
     /**
      * 计算某一时间 某几周前的Date:
      * 计算date时间在weeksNum周前的Date
+     * <p>
+     * (注意！！输入的weeksNum为Integer，计算时间戳的差需要转为Long)
      */
     public static Date calWeeksAgo(Date date, int weeksNum) {
-        return new Date(date.getTime() - weeksNum * 7 * 24 * 60 * 60 * 1000);
+        long back = ((long) weeksNum) * 7 * 24 * 60 * 60 * 1000;
+        return new Date(date.getTime() - back);
+    }
+
+
+    /**
+     * 计算还剩几天或者过去了多长时间
+     * 返回一个显示在 EventAdapter 上的字符串
+     */
+    public static String leftTime(long late, long early) {
+        long diff = late - early;
+        // Day
+        long days = diff / (1000 * 60 * 60 * 24);
+        if (days != 0) return days + "D";
+        // Hour
+        long hours = (diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60);
+        if (hours != 0) return hours + "H";
+        // Min
+        long minutes = (diff % (1000 * 60 * 60)) / (1000 * 60);
+        if (minutes != 0) return minutes + "M";
+        // Sec
+        long seconds = (diff % (1000 * 60)) / 1000;
+        if (seconds < 3) return "Now";
+        else return "1M";
     }
 
 }

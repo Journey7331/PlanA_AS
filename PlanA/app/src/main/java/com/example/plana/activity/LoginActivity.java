@@ -1,10 +1,13 @@
 package com.example.plana.activity;
 
+import android.app.Activity;
 import android.content.ContentValues;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
@@ -12,8 +15,12 @@ import android.widget.Toast;
 
 import com.example.plana.R;
 import com.example.plana.base.BaseActivity;
+import com.example.plana.bean.My;
 import com.example.plana.database.MyDatabaseHelper;
 import com.example.plana.database.UserDB;
+import com.example.plana.fragment.ScheduleFragment;
+import com.example.plana.utils.ContextApplication;
+import com.example.plana.utils.SharedPreferencesUtil;
 
 /**
  * @program: PlanA
@@ -23,18 +30,23 @@ import com.example.plana.database.UserDB;
 public class LoginActivity extends BaseActivity
         implements View.OnClickListener {
 
+    private static final String TAG = "LoginActivity";
+
     EditText et_username, et_password;
     Button btn_login;
     TextView tv_register, tv_skip;
 
     String phone;
     String password;
-    MyDatabaseHelper mysql = new MyDatabaseHelper(this);
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
+
+        getWindow().addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
+        getWindow().getDecorView().setSystemUiVisibility(
+                View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN|View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR);
 
         et_username = findViewById(R.id.et_loginUsername);
         et_password = findViewById(R.id.et_loginPassword);
@@ -48,15 +60,6 @@ public class LoginActivity extends BaseActivity
         btn_login.setOnClickListener(this);
         tv_skip.setOnClickListener(this);
 
-        // Done
-        // TODO: 查看数据库中上次登录的用户有没有登出，如果没有登出则自动登录
-        // auto login
-        if (!UserDB.getPhone(mysql).equals("")) {
-            Log.i("login", "** auto Log in");
-            startActivity(new Intent(this, MainActivity.class));
-            finish();
-        }
-
     }
 
     @Override
@@ -65,36 +68,67 @@ public class LoginActivity extends BaseActivity
             phone = et_username.getText().toString();
             password = et_password.getText().toString();
             if ("".equals(phone)) {
-                Toast.makeText(this, "Please Enter Phone.", Toast.LENGTH_SHORT).show();
+                Toast.makeText(
+                        LoginActivity.this,
+                        "请输入账号",
+                        Toast.LENGTH_SHORT
+                ).show();
                 return;
             }
             if ("".equals(password)) {
-                Toast.makeText(this, "Please Enter Password.", Toast.LENGTH_SHORT).show();
+                Toast.makeText(
+                        LoginActivity.this,
+                        "请输入密码",
+                        Toast.LENGTH_SHORT
+                ).show();
                 return;
             }
             int ret = UserDB.login(mysql, phone, password);
             if (ret == 0) {
-                Toast.makeText(this, "Password Wrong.", Toast.LENGTH_SHORT).show();
+                Toast.makeText(
+                        LoginActivity.this,
+                        "密码错误",
+                        Toast.LENGTH_SHORT
+                ).show();
             } else if (ret == -1) {
-                Toast.makeText(this, "This Phone Hasn't Been Registered.", Toast.LENGTH_SHORT).show();
+                Toast.makeText(
+                        LoginActivity.this,
+                        "这个手机号暂时没有被注册",
+                        Toast.LENGTH_SHORT
+                ).show();
             } else if (ret == 1) {
-                Toast.makeText(this, "Login Successfully.", Toast.LENGTH_SHORT).show();
-                hideKeyboard(this);
-                // 当前登录用户的手机号存到 User 表中的第一个
-                ContentValues values = new ContentValues();
-                values.put(UserDB.phone, phone);
-                UserDB.updateUser(mysql, 0, values);
-                Log.i("Login", "** Log in, Phone was Saved to Uid:0");
-                startActivity(new Intent(this, MainActivity.class));
-                // 以防止在MyPage页面中推出到这里时，上次登录的账号密码还在
-                finish();
+                Toast.makeText(
+                        LoginActivity.this,
+                        "登录成功",
+                        Toast.LENGTH_SHORT
+                ).show();
+//                hideKeyboard(this);
+
+                My.Account = UserDB.getUser(mysql, phone);
+
+                SharedPreferences auto = getSharedPreferences("auto", Activity.MODE_PRIVATE);
+                SharedPreferences.Editor autoLogin = auto.edit();
+                autoLogin.putString("auto_id", phone);
+                autoLogin.putString("auto_pw", password);
+                autoLogin.apply();
+
+                Log.d(TAG, My.Account.toString());
+                Log.i(TAG, "已经登录的账号密码保存到 SharedPreferences");
+
+                directToMainActivity();
             }
-        } else if (v.getId() == R.id.tv_register) {
-            Intent intent = new Intent(this, RegisterActivity1.class);
-            startActivity(intent);
-            finish();
-        } else if (v.getId() == R.id.tv_skip) {
-            Toast.makeText(this, "Login Without Account.", Toast.LENGTH_SHORT).show();
+        }
+
+        if (v.getId() == R.id.tv_register) {
+            directToRegisterActivity();
+        }
+
+        if (v.getId() == R.id.tv_skip) {
+            Toast.makeText(
+                    LoginActivity.this,
+                    "Login Without Account.",
+                    Toast.LENGTH_SHORT
+            ).show();
             hideKeyboard(this);
 
             ContentValues values = new ContentValues();
@@ -105,4 +139,27 @@ public class LoginActivity extends BaseActivity
         }
 
     }
+
+
+    /**
+     * 登陆成功后转到主页
+     */
+    private void directToMainActivity() {
+        Intent intent = new Intent(LoginActivity.this, MainActivity.class);
+        if (MainActivity.mainActivity != null) {
+            MainActivity.mainActivity.finish();
+        }
+        startActivity(intent);
+        finish();
+    }
+
+    /**
+     * 转到注册页
+     * */
+    private void directToRegisterActivity() {
+        Intent intent = new Intent(LoginActivity.this, RegisterActivity1.class);
+        startActivity(intent);
+        finish();
+    }
+
 }

@@ -51,7 +51,7 @@ public class OnMyConfigHandleAdapter {
                 mView.isShowNotCurWeek(value.equals(VALUE_TRUE));
                 break;
             case CONFIG_CUR_WEEK:
-                mView.curWeek(value);//value为开学周的时间
+                mView.curWeek(value);   // value为开学周的时间
                 break;
             default:
                 break;

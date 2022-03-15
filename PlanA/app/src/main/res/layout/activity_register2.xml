@@ -30,11 +30,12 @@
         android:id="@+id/ellipse_3"
         android:layout_width="110dp"
         android:layout_height="110dp"
-        android:layout_alignParentEnd="true"
-        android:layout_marginTop="120dp"
-        android:layout_marginEnd="40dp"
+        android:layout_above="@+id/register2_rl"
+        android:layout_alignEnd="@+id/register2_rl"
+        android:layout_marginEnd="-20dp"
+        android:layout_marginBottom="-30dp"
         android:background="@drawable/background_circle"
-        android:elevation="7dp" />
+        android:elevation="8dp" />
 
     <RelativeLayout
         android:id="@+id/register2_rl"
@@ -48,7 +49,6 @@
         android:fitsSystemWindows="true"
         android:orientation="vertical"
         android:padding="20dp">
-
 
         <EditText
             android:id="@+id/et_registerName"

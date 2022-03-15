@@ -7,26 +7,31 @@
     android:gravity="center">
 
 
-    <LinearLayout
+    <RelativeLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:orientation="vertical">
+        android:layout_centerInParent="true">
 
 
         <com.cunoraz.gifview.library.GifView
             android:id="@+id/logo_gif"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
+            android:layout_width="150dp"
+            android:layout_height="150dp"
+            android:layout_marginBottom="20dp"/>
 
         <TextView
+            android:id="@+id/tv_splash"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="30dp"
-            android:text="hello"
-            android:textColor="@color/colorPrimary"
-            android:textSize="20sp" />
+            android:layout_below="@+id/logo_gif"
+            android:layout_centerHorizontal="true"
+            android:text=""
+            android:textColor="@color/colorBlueGrey"
+            android:textSize="40sp"
+            android:textStyle="bold" />
 
-    </LinearLayout>
+
+    </RelativeLayout>
 
 
 </RelativeLayout>

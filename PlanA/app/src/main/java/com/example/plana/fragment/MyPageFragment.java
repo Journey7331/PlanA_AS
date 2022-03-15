@@ -1,7 +1,9 @@
 package com.example.plana.fragment;
 
 import android.content.ContentValues;
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -18,16 +20,13 @@ import androidx.annotation.Nullable;
 
 import com.example.plana.R;
 import com.example.plana.activity.LoginActivity;
+import com.example.plana.activity.MainActivity;
 import com.example.plana.base.BaseFragment;
 import com.example.plana.bean.My;
 import com.example.plana.bean.Todos;
-import com.example.plana.bean.User;
-import com.example.plana.database.TodosDB;
 import com.example.plana.database.MyDatabaseHelper;
 import com.example.plana.database.UserDB;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
-
-import java.util.ArrayList;
 
 /**
  * @program: PlanA
@@ -36,6 +35,8 @@ import java.util.ArrayList;
 
 public class MyPageFragment extends BaseFragment
         implements View.OnClickListener {
+
+    public static final String TAG = "MyPageFragment";
 
     TextView myName, myEmail, tvLevelCount, tvUndoneCount, tvDoneCount;
     RelativeLayout rlUndone, rlDone, rlGoals;
@@ -77,11 +78,9 @@ public class MyPageFragment extends BaseFragment
     }
 
     private void myPageSetUp() {
-        // Get Events
-        MyDatabaseHelper mysql = new MyDatabaseHelper(getContext());
 
         // Set User Information
-        if (!"".equals(My.Account.getPhone())) {
+        if (My.Account != null) {
             myName.setText(My.Account.getName());
             if ("".equals(My.Account.getEmail())) {
                 myEmail.setText(My.Account.getPhone());
@@ -89,35 +88,40 @@ public class MyPageFragment extends BaseFragment
                 myEmail.setText(My.Account.getEmail());
             }
             btLogOut.setOnClickListener(l -> {
-                ContentValues values = new ContentValues();
-                values.put(UserDB.phone, "");
-                UserDB.updateUser(new MyDatabaseHelper(getContext()), 0, values);
+                Toast.makeText(
+                        getContext(),
+                        "登出",
+                        Toast.LENGTH_SHORT
+                ).show();
+                My.Account = null;
                 startActivity(new Intent(getContext(), LoginActivity.class));
-                // 防止 返回键可以重新回到MyPage
-                getActivity().finish();
-                Log.i("Logout", "** Log out, Logged Phone Cleaned");
-                Toast.makeText(getContext(), "Log Out", Toast.LENGTH_SHORT).show();
+                MainActivity.mainActivity.finish();
+
+                SharedPreferences auto = MainActivity.mainActivity.getSharedPreferences("auto", Context.MODE_PRIVATE);
+                SharedPreferences.Editor autoLogin = auto.edit();
+                autoLogin.clear();
+                autoLogin.apply();
+
+                Log.d(TAG, "登出，删除 auto SharedPreferences ");
             });
         } else {
-            btLogOut.setText("Log In");
+            btLogOut.setText("登录");
             btLogOut.setOnClickListener(l -> {
                 startActivity(new Intent(getContext(), LoginActivity.class));
-                // 防止 返回键可以重新回到MyPage
-                getActivity().finish();
-                Log.i("Login", "** Go to Log in Page");
+                Log.d(TAG, "进入登录页");
             });
         }
 
-        if (My.todos.size() == 0) {
+        if (My.todosList.size() == 0) {
             pgLevel.setProgress(0);
             tvLevelCount.setText("");
             return;
         }
 
         // Count Done
-        for (Todos e : My.todos) if (e.isDone()) doneCount++;
+        for (Todos e : My.todosList) if (e.isDone()) doneCount++;
 
-        unDoneCount = My.todos.size() - doneCount;
+        unDoneCount = My.todosList.size() - doneCount;
         if (doneCount > 0) {
             tvDoneCount.setText(doneCount + "");
         }
@@ -126,7 +130,7 @@ public class MyPageFragment extends BaseFragment
         }
 
         // Set ProgressBar
-        int percent = doneCount * 100 / My.todos.size();
+        int percent = doneCount * 100 / My.todosList.size();
         pgLevel.setProgress(percent);
         pgLevel.setMax(100);
         tvLevelCount.setText(percent + "%");

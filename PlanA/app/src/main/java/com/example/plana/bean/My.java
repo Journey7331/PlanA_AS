@@ -8,9 +8,11 @@ import java.util.ArrayList;
  */
 public class My {
 
-    public static User Account = new User();
+    public static User Account;
 
-    public static ArrayList<Todos> todos = new ArrayList<>();
+    public static Todos editTodo;
+
+    public static ArrayList<Todos> todosList = new ArrayList<>();
     public static ArrayList<MySubject> mySubjects = new ArrayList<>();
 
 

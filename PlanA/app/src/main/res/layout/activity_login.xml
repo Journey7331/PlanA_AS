@@ -7,18 +7,17 @@
     <RelativeLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentTop="true"
-        android:layout_marginLeft="-132dp"
-        android:layout_marginTop="-80dp">
+        android:layout_marginStart="-132dp"
+        android:layout_marginTop="-100dp"
+        android:gravity="top|start">
 
         <View
             android:id="@+id/ellipse_1"
             android:layout_width="500dp"
             android:layout_height="500dp"
-            android:elevation="3dp"
             android:layout_margin="10dp"
-            android:background="@drawable/background_circle" />
+            android:background="@drawable/background_circle"
+            android:elevation="3dp" />
 
     </RelativeLayout>
 
@@ -85,7 +84,6 @@
                 android:cursorVisible="false"
                 android:elevation="5dp"
                 android:hint="@string/login_password"
-
                 android:inputType="textPassword"
                 android:textAlignment="center"
                 android:textColorHint="#666666" />

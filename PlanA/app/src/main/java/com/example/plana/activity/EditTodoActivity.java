@@ -1,14 +1,12 @@
-package com.example.plana.fragment;
+package com.example.plana.activity;
 
-import android.annotation.SuppressLint;
 import android.app.AlertDialog;
 import android.content.ContentValues;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.CompoundButton;
 import android.widget.DatePicker;
@@ -18,13 +16,14 @@ import android.widget.TextView;
 import android.widget.TimePicker;
 import android.widget.Toast;
 
+import androidx.annotation.Nullable;
 import androidx.appcompat.widget.SwitchCompat;
 
 import com.example.plana.R;
-import com.example.plana.base.BaseFragment;
+import com.example.plana.base.BaseActivity;
+import com.example.plana.bean.My;
+import com.example.plana.bean.Todos;
 import com.example.plana.database.TodosDB;
-import com.example.plana.database.MyDatabaseHelper;
-import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
@@ -32,68 +31,48 @@ import java.util.Locale;
 
 /**
  * @program: PlanA
- * @description: AddFragment extends BaseFragment
+ * @description:
  */
-public class AddFragment extends BaseFragment
+public class EditTodoActivity extends BaseActivity
         implements View.OnClickListener, CompoundButton.OnCheckedChangeListener {
+
+    private static final String TAG = "EditTodoActivity";
 
     EditText etContent, etMemo, etDate, etTime, etLevel;
     SwitchCompat switchDate, switchTime, switchLevel;
-    Button btnSubmit;
+    Button tvBack, btnSubmit;
 
     String finalDate, finalTime;
     float finalLevel;
 
-    public AddFragment() {
-    }
+    Todos todos;
 
     @Override
-    public void onCreate(Bundle savedInstanceState) {
+    protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_edit_todos);
+
+        init();
+        setUpEvent();
+
+        // 聚焦 content
+        etContent.requestFocus();
+
     }
 
-    @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
-        View view = inflater.inflate(R.layout.fragment_add, container, false);
+    private void init() {
+        etContent = findViewById(R.id.et_content);
+        etMemo = findViewById(R.id.et_memo);
+        etDate = findViewById(R.id.et_date);
+        etTime = findViewById(R.id.et_time);
+        etLevel = findViewById(R.id.et_level);
 
-        init(view);
+        switchDate = findViewById(R.id.switch_date);
+        switchTime = findViewById(R.id.switch_time);
+        switchLevel = findViewById(R.id.switch_level);
 
-        btnSubmit.setOnClickListener(v -> {
-            hideKeyboard(getActivity());
-            if (etContent.length() == 0) {
-                Toast.makeText(getContext(), "Tell Me What You Wanna Do.", Toast.LENGTH_SHORT).show();
-                etContent.requestFocus();
-            } else if (etDate.length() == 0 && etTime.length() > 0) {
-                Toast.makeText(getContext(), "Choose A Day.", Toast.LENGTH_SHORT).show();
-                switchDate.setChecked(true);
-                etDate.performClick();
-                etDate.requestFocus();
-            } else {
-                insertItem();
-                ((BottomNavigationView) getActivity().findViewById(R.id.bottom_navigation)).setSelectedItemId(R.id.page_1);
-            }
-        });
-        return view;
-    }
-
-    private void init(View view) {
-
-        etContent = view.findViewById(R.id.et_content);
-        etMemo = view.findViewById(R.id.et_memo);
-        etDate = view.findViewById(R.id.et_date);
-        etTime = view.findViewById(R.id.et_time);
-        etLevel = view.findViewById(R.id.et_level);
-
-        switchDate = view.findViewById(R.id.switch_date);
-        switchTime = view.findViewById(R.id.switch_time);
-        switchLevel = view.findViewById(R.id.switch_level);
-
-        btnSubmit = view.findViewById(R.id.btn_submit);
-
-        finalDate = "";
-        finalTime = "";
-        finalLevel = -1;
+        btnSubmit = findViewById(R.id.btn_submit);
+        tvBack = findViewById(R.id.edit_back);
 
         etDate.setOnClickListener(this);
         etTime.setOnClickListener(this);
@@ -103,45 +82,102 @@ public class AddFragment extends BaseFragment
         switchTime.setOnCheckedChangeListener(this);
         switchLevel.setOnCheckedChangeListener(this);
 
+        tvBack.setOnClickListener(l -> finish());
+
+        btnSubmit.setOnClickListener(l -> {
+            if (etContent.length() == 0) {
+                Toast.makeText(
+                        EditTodoActivity.this,
+                        "要做什么呢？",
+                        Toast.LENGTH_SHORT
+                ).show();
+                etContent.requestFocus();
+            } else if (etDate.length() == 0 && etTime.length() > 0) {
+                Toast.makeText(
+                        EditTodoActivity.this,
+                        "选一个日期吧",
+                        Toast.LENGTH_SHORT
+                ).show();
+                // 因为避免了【初始化的时候触发监听器】，这里修改并不会调用 onCheckedChanged
+                switchDate.setChecked(true);
+                // 模拟点击 View
+                etDate.performClick();
+                etDate.requestFocus();
+            } else {
+                editItem();
+                directToListView();
+            }
+        });
+
     }
 
-    public void insertItem() {
+    private void directToListView() {
+        Intent intent = new Intent(EditTodoActivity.this, MainActivity.class);
+        if (MainActivity.mainActivity != null) {
+            MainActivity.mainActivity.finish();
+        }
+        startActivity(intent);
+        overridePendingTransition(R.anim.fade_in, R.anim.slide_back2);
+        finish();
+    }
+
+    private void setUpEvent() {
+        todos = My.editTodo;
+        etContent.setText(todos.getContent());
+        etMemo.setText(todos.getMemo());
+        finalDate = todos.getDate();
+        finalTime = todos.getTime();
+        finalLevel = todos.getLevel();
+
+        if (finalDate.length() > 0) {
+            etDate.setText(finalDate);
+            switchDate.setChecked(true);
+        }
+        if (finalTime.length() > 0) {
+            etTime.setText(finalTime);
+            switchTime.setChecked(true);
+        }
+        if (finalLevel > 0) {
+            etLevel.setText(finalLevel + "");
+            switchLevel.setChecked(true);
+        }
+    }
+
+
+    private void editItem() {
         ContentValues values = new ContentValues();
         values.put(TodosDB.content, etContent.getText().toString());
         values.put(TodosDB.memo, etMemo.getText().toString());
-        values.put(TodosDB.done, "false");
         values.put(TodosDB.date, finalDate);
         values.put(TodosDB.time, finalTime);
         values.put(TodosDB.level, finalLevel);
-        // TODO Put Location
 
-        MyDatabaseHelper mysql = new MyDatabaseHelper(getContext());
-        TodosDB.insertEvent(mysql, values);
-//        Toast.makeText(getContext(), "Successfully Added!  " + "Content: " + etContent.getText().toString(), Toast.LENGTH_SHORT).show();
-        Toast.makeText(getContext(), "Successfully Added!", Toast.LENGTH_SHORT).show();
+        My.editTodo = null;
+
+        TodosDB.updateEventById(mysql, todos.get_id() + "", values);
+        Toast.makeText(
+                EditTodoActivity.this,
+                "修改成功",
+                Toast.LENGTH_SHORT
+        ).show();
     }
 
-    // Press EditView
     @Override
     public void onClick(View v) {
         if (v.getId() == R.id.et_date) {
             setupDate();
-            Log.i("addEvent", "** Select Date.");
         } else if (v.getId() == R.id.et_time) {
             setupTime();
-            Log.i("addEvent", "** Select Time.");
         } else if (v.getId() == R.id.et_level) {
             setupLevel();
-            Log.i("addEvent", "** Select Level.");
         }
     }
 
     @Override
     public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-        // 防止 java 操作 switchCompat 时触发监听器，再次弹出选择窗口
-        if (!buttonView.isPressed()) {
-            return;
-        }
+        // 防止初始化的时候触发监听器
+        if (!buttonView.isPressed()) return;
+
         if (buttonView.getId() == R.id.switch_date) {
             if (isChecked) {
                 setupDate();
@@ -166,8 +202,9 @@ public class AddFragment extends BaseFragment
         }
     }
 
+
     private void setupLevel() {
-        AlertDialog.Builder builder = new AlertDialog.Builder(getContext(), R.style.AlertDialogTheme);
+        AlertDialog.Builder builder = new AlertDialog.Builder(EditTodoActivity.this, R.style.AlertDialogTheme);
         LayoutInflater inflater = getLayoutInflater();
         View view = inflater.inflate(R.layout.dialog_add_level, null);
         View titleView = inflater.inflate(R.layout.dialog_add_title, null);
@@ -177,23 +214,30 @@ public class AddFragment extends BaseFragment
         builder.setCustomTitle(titleView);
         builder.setView(view);
 
-        builder.setNegativeButton("Cancel", (dialog, which) -> {
-            if (switchLevel.isChecked() && etLevel.getText().toString().length() == 0) {
-                switchLevel.setChecked(false);
+        builder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                if (switchLevel.isChecked() && etLevel.getText().toString().length() == 0) {
+                    switchLevel.setChecked(false);
+                }
             }
         });
-        builder.setPositiveButton("Submit", (dialog, which) -> {
-            float rating = ratingBar.getRating();
-            etLevel.setText(rating + "");
-            switchLevel.setChecked(true);
-            finalLevel = rating;
+
+        builder.setPositiveButton("Submit", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                float rating = ratingBar.getRating();
+                etLevel.setText(rating + "");
+                switchLevel.setChecked(true);
+                finalLevel = rating;
+            }
         });
+
         builder.create().show();
     }
 
-    @SuppressLint("SetTextI18n")
     private void setupTime() {
-        AlertDialog.Builder builder = new AlertDialog.Builder(getContext(), R.style.AlertDialogTheme);
+        AlertDialog.Builder builder = new AlertDialog.Builder(EditTodoActivity.this, R.style.AlertDialogTheme);
         LayoutInflater inflater = getLayoutInflater();
         View view = inflater.inflate(R.layout.dialog_add_time, null);
         TimePicker timePicker = view.findViewById(R.id.add_time_picker);
@@ -224,7 +268,7 @@ public class AddFragment extends BaseFragment
 
     private void setupDate() {
         Calendar cal = Calendar.getInstance();
-        AlertDialog.Builder builder = new AlertDialog.Builder(getContext(), R.style.AlertDialogTheme);
+        AlertDialog.Builder builder = new AlertDialog.Builder(EditTodoActivity.this, R.style.AlertDialogTheme);
         LayoutInflater inflater = getLayoutInflater();
         View view = inflater.inflate(R.layout.dialog_add_date, null);
         DatePicker datePicker = view.findViewById(R.id.add_date_picker);

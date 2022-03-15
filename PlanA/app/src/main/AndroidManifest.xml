@@ -3,13 +3,16 @@
     package="com.example.plana">
 
     <uses-permission android:name="android.permission.INTERNET"/>
+    <uses-permission android:name="android.permission.VIBRATE" />
 
     <application
+        android:name=".utils.ContextApplication"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
+        android:fullBackupContent="true"
         android:theme="@style/Theme.PlanA">
 
         <activity android:name=".activity.SplashActivity">
@@ -28,6 +31,8 @@
         <activity android:name=".activity.ScheduleSettingActivity"/>
         <activity android:name=".activity.AddCourseActivity"/>
 
+        <activity android:name=".activity.AddTodoActivity" />
+        <activity android:name=".activity.EditTodoActivity" />
         <activity android:name=".activity.TimeCountActivity"/>
 
         <receiver android:name=".receiver.AlarmReceiver" />

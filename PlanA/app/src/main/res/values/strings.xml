@@ -27,7 +27,7 @@
     <string name="register_birth">生日</string>
     <string name="register_submit">提交</string>
     <string name="register_back">返回</string>
-    <string name="register_name">用户名</string>
+    <string name="register_name">昵称</string>
     <string name="add_content">要做什么</string>
     <string name="add_memo">备注</string>
     <string name="add_date">日期</string>
@@ -50,11 +50,15 @@
     <string name="emoji_time">🕒</string>
     <string name="emoji_level">🌟</string>
     <string name="emoji_week">📆</string>
-    <string name="emoji_hello">👋</string>
+    <string name="emoji_hello">👋&#160;</string>
     <string name="emoji_teacher">🎓</string>
     <string name="emoji_position">📍</string>
     <string name="emoji_course_name">📚</string>
     <string name="emoji_write">✍</string>
+    <string name="add_todo">添加</string>
+    <string name="cancel">取消</string>
+    <string name="stop">暂停</string>
+    <string name="log_out">登出</string>
 
 
 </resources>

@@ -3,16 +3,15 @@ package com.example.plana.activity;
 import androidx.fragment.app.Fragment;
 
 import android.os.Bundle;
+import android.view.View;
+import android.view.WindowManager;
 import android.widget.Toast;
 
 import com.example.plana.R;
 import com.example.plana.base.BaseActivity;
-import com.example.plana.bean.User;
-import com.example.plana.database.MyDatabaseHelper;
-import com.example.plana.database.UserDB;
-import com.example.plana.fragment.AddFragment;
 import com.example.plana.fragment.FocusFragment;
 import com.example.plana.fragment.MyPageFragment;
+import com.example.plana.fragment.ScheduleFragment;
 import com.example.plana.fragment.ShowListFragment;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
@@ -22,10 +21,14 @@ import com.google.android.material.bottomnavigation.BottomNavigationView;
  */
 public class MainActivity extends BaseActivity {
 
+    public static final String TAG = "MainActivity";
+    public static MainActivity mainActivity;
+
     BottomNavigationView bottomNavigation;
 
-    AddFragment addFragment;
     ShowListFragment listFragment;
+    ScheduleFragment scheduleFragment;
+
     FocusFragment focusFragment;
     MyPageFragment myPageFragment;
     Fragment currentFragment;
@@ -34,12 +37,13 @@ public class MainActivity extends BaseActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        mainActivity = this;
 
         // fragment setup
-        addFragment = new AddFragment();
         listFragment = new ShowListFragment();
-        focusFragment = new FocusFragment();
-        myPageFragment = new MyPageFragment();
+//        scheduleFragment = new ScheduleFragment();
+//        focusFragment = new FocusFragment();
+//        myPageFragment = new MyPageFragment();
         currentFragment = null;
 
         getSupportFragmentManager()
@@ -52,6 +56,7 @@ public class MainActivity extends BaseActivity {
         bottomNavigation.setItemIconTintList(null);
         bottomNavigation.setOnNavigationItemSelectedListener(bottomNavigationSelectedListener);
 
+        // do what?
         if (getIntent().getIntExtra("page", 0) == 4) {
             bottomNavigation.setSelectedItemId(R.id.page_4);
         }
@@ -86,11 +91,11 @@ public class MainActivity extends BaseActivity {
                 currentFragment = listFragment;
                 break;
             case 2:
-                Toast.makeText(this, "MapFragment is developing...", Toast.LENGTH_SHORT).show();
+                scheduleFragment = new ScheduleFragment();
+                currentFragment = scheduleFragment;
                 break;
             case 3:
-                addFragment = new AddFragment();
-                currentFragment = addFragment;
+                Toast.makeText(this, "will be changed into schedule...", Toast.LENGTH_SHORT).show();
                 break;
             case 4:
                 focusFragment = new FocusFragment();

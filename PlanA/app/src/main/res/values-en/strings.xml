@@ -46,7 +46,7 @@
     <string name="select_week">select weeks</string>
     <string name="start_count">start count</string>
 
-    <string name="emoji_hello">👋</string>
+    <string name="emoji_hello">👋&#160;</string>
     <string name="emoji_time">🕒</string>
     <string name="emoji_level">🌟</string>
     <string name="emoji_calendar">📅</string>
@@ -55,6 +55,10 @@
     <string name="emoji_position">📍</string>
     <string name="emoji_course_name">📚</string>
     <string name="emoji_write">✍</string>
+    <string name="add_todo">添加</string>
+    <string name="cancel">取消</string>
+    <string name="stop">暂停</string>
+    <string name="log_out">登出</string>
 
 
 </resources>

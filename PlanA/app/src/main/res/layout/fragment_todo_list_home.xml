@@ -9,32 +9,33 @@
     <RelativeLayout
         android:id="@+id/rl_menubar"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="50dp"
         android:background="@drawable/background_straight">
 
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="32dp"
-            android:layout_margin="12dp">
+            android:layout_margin="8dp">
 
             <androidx.emoji2.widget.EmojiTextView
                 android:id="@+id/tv_hello"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="10dp"
+                android:layout_marginStart="4dp"
+                android:layout_centerVertical="true"
                 android:text="@string/emoji_hello"
-                android:textSize="25sp"
-                android:textStyle="bold"/>
+                android:textSize="22sp"
+                android:textStyle="bold" />
 
             <androidx.appcompat.widget.SwitchCompat
                 android:id="@+id/switch_done"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_centerVertical="true"
+                android:layout_marginEnd="10dp"
                 android:layout_toStartOf="@+id/filter_button"
                 android:paddingStart="8dp"
                 android:paddingEnd="8dp"
-                android:layout_marginEnd="10dp"
                 android:thumb="@drawable/switch_thumb"
                 app:track="@drawable/switch_track_selector" />
 
@@ -85,5 +86,18 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent" />
     </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/add_todo_fab"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentBottom="true"
+        android:layout_margin="30dp"
+        android:contentDescription="@string/add_todo"
+        android:elevation="7dp"
+        android:src="@drawable/icon_add_todo"
+        android:backgroundTint="@color/colorPrimary"
+        app:fabSize="auto" />
 
 </RelativeLayout>

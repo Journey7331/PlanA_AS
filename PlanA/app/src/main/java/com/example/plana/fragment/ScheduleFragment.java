@@ -25,6 +25,9 @@ import androidx.core.content.ContextCompat;
 import androidx.core.view.GravityCompat;
 
 import com.example.plana.activity.AddCourseActivity;
+import com.example.plana.activity.LoginActivity;
+import com.example.plana.activity.ScheduleSettingActivity;
+import com.example.plana.activity.SplashActivity;
 import com.example.plana.config.MyConfig;
 import com.example.plana.R;
 import com.example.plana.activity.MainActivity;
@@ -76,14 +79,14 @@ public class ScheduleFragment extends BaseFragment
 
     LinearLayout layout;
     TextView titleTextView;
+    ImageView ivScheduleSetting;
 
-    // TODO check NumberPickerView source
     NumberPickerView yearPicker;
     NumberPickerView monthPicker;
     NumberPickerView dayPicker;
 
     int target = -1;     // 记录切换的周次，不一定是当前周
-    String startDate = "2021-3-1"; // 开学时间
+    String startDate = "2022-2-27"; // 开学时间
 
 
     @Nullable
@@ -92,10 +95,17 @@ public class ScheduleFragment extends BaseFragment
         View view = inflater.inflate(R.layout.fragment_schedule, container, false);
 
         titleTextView = view.findViewById(R.id.id_title);
-
-        // 点击 title layout 查看周预览
         layout = view.findViewById(R.id.id_layout);
+        ivScheduleSetting = view.findViewById(R.id.schedule_setting);
         layout.setOnClickListener(this);
+        ivScheduleSetting.setOnClickListener(this);
+
+        startDate = SharedPreferencesUtil.init(ContextApplication.getAppContext(), CONFIG_FILENAME)
+                .getString(
+                        OnMyConfigHandleAdapter.CONFIG_START_DATE,
+                        startDate
+                );
+//        Log.d(TAG, startDate);
 
         loadSubjects();     // 加载课程
         initTimetableView(view);  // 初始化界面
@@ -121,7 +131,7 @@ public class ScheduleFragment extends BaseFragment
             titleTextView.setText(str);
         }
 
-        //更新map
+        // init config map
         myConfigMap = MyConfig.loadConfig();
 
     }
@@ -135,6 +145,10 @@ public class ScheduleFragment extends BaseFragment
                 if (weekView.isShowing()) hideWeekView();
                 else showWeekView();
                 break;
+            case R.id.schedule_setting:
+                Intent intent = new Intent(MainActivity.mainActivity, ScheduleSettingActivity.class);
+                startActivity(intent);
+                break;
         }
     }
 
@@ -143,7 +157,7 @@ public class ScheduleFragment extends BaseFragment
      * 载入课程数据到list中
      */
     private void loadSubjects() {
-        String subjectListJson = SharedPreferencesUtil.init(ContextApplication.getAppContext(),"COURSE_DATA").getString("SUBJECT_LIST", null);
+        String subjectListJson = SharedPreferencesUtil.init(ContextApplication.getAppContext(), "COURSE_DATA").getString("SUBJECT_LIST", null);
         if (subjectListJson == null) {
             mySubjects = SubjectRepertory.loadDefaultSubjects();
             if (!mySubjects.isEmpty()) {
@@ -165,7 +179,7 @@ public class ScheduleFragment extends BaseFragment
 
         //设置周次选择属性
         weekView.source(mySubjects)
-                //     .curWeek(1)
+                .curWeek(1)
                 .itemCount(25)  // 周数
                 .callback(new IWeekView.OnWeekItemClickedListener() {
                     @Override
@@ -187,17 +201,13 @@ public class ScheduleFragment extends BaseFragment
                 .showView();
 
         timetableView.source(mySubjects)  // 课程源
-                //      .curWeek(1)
+//                .curWeek(week)
                 .curTerm(null)     // 当前学期
                 .maxSlideItem(12)  // 节数
                 .monthWidthDp(40)  // 月份宽度
                 .cornerAll(20)     // 圆角弧度
                 .marTop(10)        // 顶部距离
                 .marLeft(10)       // 左侧距离
-                //透明度
-                //日期栏0.1f、侧边栏0.1f，周次选择栏0.6f
-                //透明度范围为0->1，0为全透明，1为不透明
-                //.alpha(0.1f, 0.1f, 0.6f)
                 .callback(new ISchedule.OnItemClickListener() {
                     @Override
                     public void onItemClick(View v, List<Schedule> scheduleList) {
@@ -272,7 +282,7 @@ public class ScheduleFragment extends BaseFragment
         Log.e(TAG, "month: " + month);
         Log.e(TAG, "day: " + day);
         // 第一个是月份，后面七个第一周的日期
-        //计算开学时的一周日期，我这里模拟一下
+        //计算开学时的一周日期，这里模拟一下
         //List<String> dateList = Arrays.asList("9", "3", "4", "5", "6", "7", "8", "9");
         List<String> dateList = new ArrayList<String>();
         dateList.add(String.valueOf(month));
@@ -297,7 +307,7 @@ public class ScheduleFragment extends BaseFragment
         for (int i = 0; i < itemCount; i++) {
             items[i] = "第" + (i + 1) + "周";
         }
-        target = -1;
+        target = timetableView.curWeek() - 1;
         AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
         builder.setTitle("设置当前周");
         builder.setSingleChoiceItems(items, timetableView.curWeek() - 1,
@@ -307,19 +317,16 @@ public class ScheduleFragment extends BaseFragment
                         target = i;
                     }
                 });
-        builder.setPositiveButton("设置为当前周", new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialog, int which) {
-                if (target != -1) {
-                    weekView.curWeek(target + 1).updateView();
-                    timetableView.changeWeekForce(target + 1);
-                    Date curDate = new Date();
-                    String startTime;//(注意！)存放开学日期！形式"yyyy-MM-dd HH:mm:ss"
-                    startTime = TimeCalcUtil.date2Str(TimeCalcUtil.calWeeksAgo(curDate, target));
-                    myConfigMap.put(OnMyConfigHandleAdapter.CONFIG_CUR_WEEK, startTime);
-                    myConfig.saveConfig(myConfigMap);
-                }
-            }
+        builder.setPositiveButton("设置为当前周", (dialog, which) -> {
+//            if (target != -1) {
+            weekView.curWeek(target + 1).updateView();
+            timetableView.changeWeekForce(target + 1);
+            Date curDate = new Date();
+            String startTime;//(注意！)存放开学日期！形式"yyyy-MM-dd HH:mm:ss"
+            startTime = TimeCalcUtil.date2Str(TimeCalcUtil.calWeeksAgo(curDate, target));
+            myConfigMap.put(OnMyConfigHandleAdapter.CONFIG_CUR_WEEK, startTime);
+            MyConfig.saveConfig(myConfigMap);
+//            }
         });
         builder.setNegativeButton("取消", null);
         builder.create().show();
@@ -397,7 +404,7 @@ public class ScheduleFragment extends BaseFragment
             public void onClick(View v) {
 //                String str = "编辑课程";
 //                Toast.makeText(MainActivity.this,str,Toast.LENGTH_SHORT).show();
-                Intent intent = new Intent(MainActivity.this, AddCourseActivity.class);
+                Intent intent = new Intent(MainActivity.mainActivity, AddCourseActivity.class);
                 intent.putExtra("title", "编辑课程");
                 intent.putExtra("scheduleList", new Gson().toJson(beans));
                 startActivity(intent);
@@ -432,7 +439,7 @@ public class ScheduleFragment extends BaseFragment
             public void onClick(View v) {
                 dialog.dismiss();
                 deleteSubject(id);
-                 Toast.makeText(getContext(), "删除成功", Toast.LENGTH_SHORT).show();
+                Toast.makeText(getContext(), "删除成功", Toast.LENGTH_SHORT).show();
             }
         });
         // 取消
@@ -661,7 +668,7 @@ public class ScheduleFragment extends BaseFragment
      */
     public void hideWeekView() {
         weekView.isShow(false);
-        titleTextView.setTextColor(ContextCompat.getColor(ContextApplication.getAppContext(), R.color.app_course_textcolor_blue));
+        titleTextView.setTextColor(ContextCompat.getColor(ContextApplication.getAppContext(), R.color.colorBlueGrey));
         int cur = timetableView.curWeek();
         timetableView.onDateBuildListener()
                 .onUpdateDate(cur, cur);
@@ -669,11 +676,11 @@ public class ScheduleFragment extends BaseFragment
     }
 
     /**
-     * 隐藏WeekView
+     * 显示WeekView
      */
     public void showWeekView() {
         weekView.isShow(true);
-        titleTextView.setTextColor(ContextCompat.getColor(ContextApplication.getAppContext(), R.color.app_red));
+        titleTextView.setTextColor(ContextCompat.getColor(ContextApplication.getAppContext(), R.color.my_red));
     }
 
 
@@ -695,8 +702,6 @@ public class ScheduleFragment extends BaseFragment
      * 从本地配置文件中读取信息并应用
      */
     public void loadLocalConfig() {
-        //   mMyConfig = new MyConfig(MainActivity.this);
-//        mMyConfig = new MyConfig();
         myConfigMap = MyConfig.loadConfig();
         OnMyConfigHandleAdapter onMyConfigHandleAdapter = new OnMyConfigHandleAdapter();
         for (String key : myConfigMap.keySet()) {
@@ -720,7 +725,7 @@ public class ScheduleFragment extends BaseFragment
         //第一周未设定，将当前周设置为第一周
         if (myConfigMap.get(OnMyConfigHandleAdapter.CONFIG_CUR_WEEK) == null) {
             myConfigMap.put(OnMyConfigHandleAdapter.CONFIG_CUR_WEEK, TimeCalcUtil.date2Str(new Date()));
-            myConfig.saveConfig(myConfigMap);
+            MyConfig.saveConfig(myConfigMap);
         }
     }
 
@@ -760,68 +765,68 @@ public class ScheduleFragment extends BaseFragment
         return subjectList;
     }
 
-
-    private void initNavView() {
-        mDrawerLayout = findViewById(R.id.drawyer_layout);
-        ImageView b = findViewById(R.id.menu);
-        b.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                mDrawerLayout.openDrawer(GravityCompat.START);
-            }
-        });
-        NavigationView navView = findViewById(R.id.nave_view);
-        navView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
-            @Override
-            public boolean onNavigationItemSelected(MenuItem item) {
-                switch (item.getItemId()) {
-                    case R.id.import_class:
-                        Intent intent = new Intent(MainActivity.this, ParseHtmlActivity.class);
-                        startActivity(intent);
-                        break;
-                    case R.id.select_date:
-                        selectDate();
-                        break;
-                    case R.id.hide_not_tish_week:
-                        hideNonThisWeek();
-                        myConfigMap.put(OnMyConfigHandleAdapter.CONFIG_SHOW_NOT_CUR_WEEK, OnMyConfigHandleAdapter.VALUE_FALSE);
-                        break;
-                    case R.id.show_not_this_week:
-                        showNonThisWeek();
-                        myConfigMap.put(OnMyConfigHandleAdapter.CONFIG_SHOW_NOT_CUR_WEEK, OnMyConfigHandleAdapter.VALUE_TRUE);
-                        break;
-                    case R.id.show_time:
-                        showTime();
-                        myConfigMap.put(OnMyConfigHandleAdapter.CONFIG_SHOW_TIME, OnMyConfigHandleAdapter.VALUE_TRUE);
-                        break;
-                    case R.id.hide_time:
-                        hideTime();
-                        myConfigMap.put(OnMyConfigHandleAdapter.CONFIG_SHOW_TIME, OnMyConfigHandleAdapter.VALUE_FALSE);
-                        break;
-                    case R.id.hide_weekends:
-                        hideWeekends();
-                        myConfigMap.put(OnMyConfigHandleAdapter.CONFIG_SHOW_WEEKENDS, OnMyConfigHandleAdapter.VALUE_FALSE);
-                        break;
-                    case R.id.show_weekends:
-                        showWeekends();
-                        myConfigMap.put(OnMyConfigHandleAdapter.CONFIG_SHOW_WEEKENDS, OnMyConfigHandleAdapter.VALUE_TRUE);
-                        break;
-                    case R.id.about_activity:
-                        Intent intentAbout = new Intent(MainActivity.this, AboutActivity.class);
-                        startActivity(intentAbout);
-                        break;
-                    case R.id.notification_activity:
-                        Intent intentNotConfig = new Intent(MainActivity.this, NotificationConfigActivity.class);
-                        startActivity(intentNotConfig);
-                        break;
-                    default:
-                        break;
-                }
-                myConfig.saveConfig(myConfigMap);//保存设置信息至本地配置文件
-                return true;
-            }
-        });
-    }
+//
+//    private void initNavView() {
+//        mDrawerLayout = findViewById(R.id.drawyer_layout);
+//        ImageView b = findViewById(R.id.menu);
+//        b.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                mDrawerLayout.openDrawer(GravityCompat.START);
+//            }
+//        });
+//        NavigationView navView = findViewById(R.id.nave_view);
+//        navView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
+//            @Override
+//            public boolean onNavigationItemSelected(MenuItem item) {
+//                switch (item.getItemId()) {
+//                    case R.id.import_class:
+//                        Intent intent = new Intent(MainActivity.this, ParseHtmlActivity.class);
+//                        startActivity(intent);
+//                        break;
+//                    case R.id.select_date:
+//                        selectDate();
+//                        break;
+//                    case R.id.hide_not_tish_week:
+//                        hideNonThisWeek();
+//                        myConfigMap.put(OnMyConfigHandleAdapter.CONFIG_SHOW_NOT_CUR_WEEK, OnMyConfigHandleAdapter.VALUE_FALSE);
+//                        break;
+//                    case R.id.show_not_this_week:
+//                        showNonThisWeek();
+//                        myConfigMap.put(OnMyConfigHandleAdapter.CONFIG_SHOW_NOT_CUR_WEEK, OnMyConfigHandleAdapter.VALUE_TRUE);
+//                        break;
+//                    case R.id.show_time:
+//                        showTime();
+//                        myConfigMap.put(OnMyConfigHandleAdapter.CONFIG_SHOW_TIME, OnMyConfigHandleAdapter.VALUE_TRUE);
+//                        break;
+//                    case R.id.hide_time:
+//                        hideTime();
+//                        myConfigMap.put(OnMyConfigHandleAdapter.CONFIG_SHOW_TIME, OnMyConfigHandleAdapter.VALUE_FALSE);
+//                        break;
+//                    case R.id.hide_weekends:
+//                        hideWeekends();
+//                        myConfigMap.put(OnMyConfigHandleAdapter.CONFIG_SHOW_WEEKENDS, OnMyConfigHandleAdapter.VALUE_FALSE);
+//                        break;
+//                    case R.id.show_weekends:
+//                        showWeekends();
+//                        myConfigMap.put(OnMyConfigHandleAdapter.CONFIG_SHOW_WEEKENDS, OnMyConfigHandleAdapter.VALUE_TRUE);
+//                        break;
+//                    case R.id.about_activity:
+//                        Intent intentAbout = new Intent(MainActivity.this, AboutActivity.class);
+//                        startActivity(intentAbout);
+//                        break;
+//                    case R.id.notification_activity:
+//                        Intent intentNotConfig = new Intent(MainActivity.this, NotificationConfigActivity.class);
+//                        startActivity(intentNotConfig);
+//                        break;
+//                    default:
+//                        break;
+//                }
+//                myConfig.saveConfig(myConfigMap);//保存设置信息至本地配置文件
+//                return true;
+//            }
+//        });
+//    }
 
 
 }

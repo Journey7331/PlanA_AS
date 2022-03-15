@@ -1,26 +1,43 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
     <!-- Base application theme. -->
-    <style name="Theme.PlanA" parent="Theme.MaterialComponents.DayNight.DarkActionBar.Bridge">
+
+    <!-- 取消深色模式 -->
+<!--    <style name="Theme.PlanA" parent="Theme.MaterialComponents.DayNight.NoActionBar">-->
+    <style name="Theme.PlanA" parent="Theme.MaterialComponents.Light.NoActionBar">
+
+
         <!-- Primary brand color. -->
+        <!-- PrimaryColor：主题颜色。app的主要颜色，即整个屏幕和所有控件的主要颜色，首选颜色。 -->
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryVariant">@color/colorPrimaryLight</item>
         <item name="colorOnPrimary">@color/white</item>
 
+
         <!-- Secondary brand color. -->
+        <!-- SecondaryColor：提示性颜色。这颜色一般比PrimaryColor亮一些或暗一些，取决于白天模式还是黑暗模式。一般用于提示相关动作或信息，提示性颜色。 -->
 <!--        <item name="colorSecondary">@color/teal_200</item>-->
 <!--        <item name="colorSecondaryVariant">@color/teal_700</item>-->
-        <item name="colorOnSecondary">@color/black</item>
+        <item name="colorOnSecondary">@color/white</item>
+
+
+        <!-- AccentColor：交互性颜色。这颜色一般用于交互性的控件颜色，比如FloatingButton、TextField、Cursor、ProgressBar、Selection、Links等具体交互性的颜色 -->
+<!--        <item name="colorAccent">@color/colorBlueGrey</item>-->
+
 
         <!-- Status bar color. -->
-        <item name="android:statusBarColor" tools:targetApi="l">?attr/colorPrimaryVariant</item>
+        <item name="android:statusBarColor" tools:targetApi="l">?attr/colorPrimary</item>
+
+
         <!-- Customize your theme here. -->
+<!--        <item name="android:textColorSecondary">@color/colorBlueGrey</item>-->
+
+
     </style>
 
 
     <style name="AppTheme.NumberPicker" parent="AppTheme">
         <item name="colorControlNormal">@color/colorPrimaryDark</item>
     </style>
-
 
 
     <style name="AlertDialogTheme" parent="ThemeOverlay.MaterialComponents.Dialog.Alert">
@@ -40,7 +57,6 @@
     <style name="NeutralButtonStyle" parent="Widget.MaterialComponents.Button.TextButton.Dialog">
         <item name="android:textColor">@color/colorBlueGrey</item>
     </style>
-
 
 
     <style name="DialogTheme" parent="Theme.AppCompat.Light.Dialog">

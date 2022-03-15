@@ -14,7 +14,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerInParent="true"
-            android:paddingBottom="70dp">
+            android:layout_marginBottom="70dp">
 
             <TextView
                 android:id="@+id/tv_count_time_show"
@@ -64,7 +64,7 @@
                 android:layout_height="wrap_content"
                 android:layout_alignParentStart="true"
                 android:layout_marginStart="70dp"
-                android:text="Cancel"
+                android:text="@string/cancel"
                 android:textColor="@color/white"
                 android:textSize="30sp"
                 android:textStyle="bold" />
@@ -75,7 +75,7 @@
                 android:layout_height="wrap_content"
                 android:layout_alignParentEnd="true"
                 android:layout_marginEnd="70dp"
-                android:text="Stop"
+                android:text="@string/stop"
                 android:textColor="@color/white"
                 android:textSize="30sp"
                 android:textStyle="bold" />

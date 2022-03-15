@@ -32,7 +32,7 @@ public abstract class BaseActivity extends AppCompatActivity {
     private String URL = Constant.URL;
 
     public MyDatabaseHelper mysql = new MyDatabaseHelper(this);
-    public Retrofit.Builder retrofitBuilder = new Retrofit.Builder().baseUrl(URL);
+//    public Retrofit.Builder retrofitBuilder = new Retrofit.Builder().baseUrl(URL);
 
     // 隐藏键盘
     public static void hideKeyboard(Activity activity) {
@@ -49,11 +49,13 @@ public abstract class BaseActivity extends AppCompatActivity {
         server.toggleSoftInput(InputMethodManager.SHOW_FORCED, 0);
     }
 
-
-    // 按两下返回键退出程序
+    /**
+     * 按两下返回键退出程序
+     * 注意 isTaskRoot() 判断是不是最后一个 activity
+     */
     @Override
     public boolean onKeyDown(int keyCode, KeyEvent event) {
-        if (keyCode == KeyEvent.KEYCODE_BACK && event.getAction() == KeyEvent.ACTION_DOWN) {
+        if (isTaskRoot() && keyCode == KeyEvent.KEYCODE_BACK && event.getAction() == KeyEvent.ACTION_DOWN) {
             if ((System.currentTimeMillis() - exitTime > 3000)) {
                 Toast.makeText(getApplicationContext(), "再按一次返回键退出软件", Toast.LENGTH_SHORT).show();
                 exitTime = System.currentTimeMillis();
@@ -65,6 +67,5 @@ public abstract class BaseActivity extends AppCompatActivity {
         }
         return super.onKeyDown(keyCode, event);
     }
-
 
 }

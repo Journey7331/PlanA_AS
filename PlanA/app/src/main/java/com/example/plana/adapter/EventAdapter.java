@@ -4,6 +4,7 @@ import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.Context;
+import android.content.Intent;
 import android.content.res.ColorStateList;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -19,10 +20,12 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 
 import com.example.plana.R;
+import com.example.plana.activity.EditTodoActivity;
+import com.example.plana.bean.My;
 import com.example.plana.bean.Todos;
 import com.example.plana.database.TodosDB;
 import com.example.plana.database.MyDatabaseHelper;
-import com.example.plana.fragment.EditFragment;
+import com.example.plana.utils.TimeCalcUtil;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -38,7 +41,7 @@ public class EventAdapter extends ArrayAdapter {
 
     LayoutInflater inflater;
     ArrayList<Todos> arrayList;
-    Activity ctx;
+    Activity thisContext;
     MyDatabaseHelper mysql = new MyDatabaseHelper(getContext());
 
     // 内部类
@@ -49,8 +52,8 @@ public class EventAdapter extends ArrayAdapter {
     }
 
     public EventAdapter(Activity context, ArrayList<Todos> arr) {
-        super(context, R.layout.fragment_home, arr);
-        this.ctx = context;
+        super(context, R.layout.fragment_todo_list_home, arr);
+        this.thisContext = context;
         this.arrayList = arr;
         inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
     }
@@ -114,16 +117,16 @@ public class EventAdapter extends ArrayAdapter {
 
             long nowtime = new Date().getTime();
             if (nowtime > dateParse) {
-                String calc = DateCalc(nowtime, dateParse);
+                String calc = TimeCalcUtil.leftTime(nowtime, dateParse);
                 // Today but no exact Time
                 if (calc.contains("H") && "".equals(time)) {
-                    viewHolder.tvDate.setText("Today");
+                    viewHolder.tvDate.setText("今天");
                 } else {
                     viewHolder.tvDate.setTextColor(0xFFDE3143);
                     viewHolder.tvDate.setText(calc);
                 }
             } else if (nowtime < dateParse) {
-                viewHolder.tvDate.setText(DateCalc(dateParse, nowtime));
+                viewHolder.tvDate.setText(TimeCalcUtil.leftTime(dateParse, nowtime));
             }
         } else {
             viewHolder.tvDate.setText("");
@@ -149,7 +152,7 @@ public class EventAdapter extends ArrayAdapter {
             if (!"".equals(memo)) {
                 Toast.makeText(getContext(), memo, Toast.LENGTH_SHORT).show();
             } else {
-                Toast.makeText(getContext(), "No More Detail.", Toast.LENGTH_SHORT).show();
+                Toast.makeText(getContext(), "没有备注", Toast.LENGTH_SHORT).show();
             }
         });
 
@@ -158,23 +161,17 @@ public class EventAdapter extends ArrayAdapter {
             AlertDialog.Builder builder = new AlertDialog.Builder(getContext(), R.style.AlertDialogTheme);
             View titleView = inflater.inflate(R.layout.dialog_add_title, null);
             TextView title = titleView.findViewById(R.id.dialog_title);
-            title.setText("Delete / Modify");
+            title.setText("删除 / 更改");
             builder.setCustomTitle(titleView);
 
             // Modify
-            builder.setPositiveButton("Modify", (dialog, which) -> {
-                Fragment editFragment = new EditFragment(getItem(position));
-                // Fragment 之间的跳转
-                ((AppCompatActivity) ctx).getSupportFragmentManager().beginTransaction().setCustomAnimations(
-                        R.anim.slide_in,
-                        R.anim.fade_out,
-                        R.anim.fade_in,
-                        R.anim.slide_out
-                ).replace(R.id.body_rl, editFragment).addToBackStack(null).commit();
+            builder.setPositiveButton("更改", (dialog, which) -> {
+                My.editTodo = getItem(position);
+                directToEditActivity();
             });
 
             // Delete
-            builder.setNegativeButton("Delete", (dialog, which) -> {
+            builder.setNegativeButton("删除", (dialog, which) -> {
                 TodosDB.deleteEventById(mysql, (getItem(position)).get_id() + "");
                 remove(getItem(position));
                 notifyDataSetChanged();
@@ -183,8 +180,8 @@ public class EventAdapter extends ArrayAdapter {
                 // TODO: 不下拉就可以更新 emptyPage 的 VISIBLE 状态
                 //  update the VISIBLE state of the EmptyPage without pulling
                 if (arrayList.size() < 1) {
-                    ctx.findViewById(R.id.home_list).setVisibility(View.INVISIBLE);
-                    ctx.findViewById(R.id.empty_status).setVisibility(View.VISIBLE);
+                    thisContext.findViewById(R.id.home_list).setVisibility(View.INVISIBLE);
+                    thisContext.findViewById(R.id.empty_status).setVisibility(View.VISIBLE);
                 }
 
                 Toast.makeText(getContext(), "Delete Successful", Toast.LENGTH_SHORT).show();
@@ -198,6 +195,14 @@ public class EventAdapter extends ArrayAdapter {
         });
 
         return convertView;
+    }
+
+    private void directToEditActivity() {
+        Intent intent = new Intent(thisContext, EditTodoActivity.class);
+        thisContext.startActivity(intent);
+        // transaction animation
+        thisContext.overridePendingTransition(R.anim.slide_in, R.anim.fade_out);
+//        thisContext.finish();
     }
 
 
@@ -221,23 +226,5 @@ public class EventAdapter extends ArrayAdapter {
         return new ColorStateList(states, colors);
     }
 
-
-    // Calculate how much time left
-    private String DateCalc(long late, long early) {
-        long diff = late - early;
-        // Day
-        long days = diff / (1000 * 60 * 60 * 24);
-        if (days != 0) return days + "D";
-        // Hour
-        long hours = (diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60);
-        if (hours != 0) return hours + "H";
-        // Min
-        long minutes = (diff % (1000 * 60 * 60)) / (1000 * 60);
-        if (minutes != 0) return minutes + "M";
-        // Sec
-        long seconds = (diff % (1000 * 60)) / 1000;
-        if (seconds < 3) return "Now";
-        else return "1M";
-    }
 
 }

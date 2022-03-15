@@ -30,6 +30,16 @@ public class Todos implements Comparable {
         this.date = date;
     }
 
+    public Todos(int _id, String content, String memo, boolean done, String date, String time, float level) {
+        this._id = _id;
+        this.content = content;
+        this.memo = memo;
+        this.done = done;
+        this.date = date;
+        this.time = time;
+        this.level = level;
+    }
+
     public String getMemo() {
         return memo;
     }
@@ -93,4 +103,16 @@ public class Todos implements Comparable {
         return this.get_id() - id;
     }
 
+    @Override
+    public String toString() {
+        return "Todos{" +
+                "_id=" + _id +
+                ", content='" + content + '\'' +
+                ", memo='" + memo + '\'' +
+                ", done=" + done +
+                ", date='" + date + '\'' +
+                ", time='" + time + '\'' +
+                ", level=" + level +
+                '}';
+    }
 }
