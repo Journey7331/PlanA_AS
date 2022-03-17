@@ -2,6 +2,7 @@ package com.example.plana.utils;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.Locale;
 
@@ -64,6 +65,18 @@ public class TimeCalcUtil {
         long seconds = (diff % (1000 * 60)) / 1000;
         if (seconds < 3) return "Now";
         else return "1M";
+    }
+
+
+    /**
+     * 将 Calendar 型 转换成 "yyyy-MM-dd HH:mm:ss"格式的时间字符串
+     */
+    public static String calToStr(Calendar cal) {
+        cal.set(Calendar.HOUR, 7);
+        cal.set(Calendar.MINUTE, 1);
+        cal.set(Calendar.SECOND, 1);
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss", Locale.CHINA);
+        return sdf.format(cal.getTime());
     }
 
 }

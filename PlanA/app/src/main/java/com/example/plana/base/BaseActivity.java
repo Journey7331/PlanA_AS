@@ -1,7 +1,7 @@
 package com.example.plana.base;
 
 import android.app.Activity;
-import android.content.Context;
+import android.util.Log;
 import android.view.KeyEvent;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
@@ -9,18 +9,8 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.example.plana.Constant;
+import com.example.plana.config.Constant;
 import com.example.plana.database.MyDatabaseHelper;
-import com.example.plana.service.UserService;
-
-import java.net.URL;
-import java.util.HashMap;
-import java.util.Map;
-
-import okhttp3.ResponseBody;
-import retrofit2.Call;
-import retrofit2.Retrofit;
-import retrofit2.adapter.rxjava3.RxJava3CallAdapterFactory;
 
 /**
  * @program: PlanA
@@ -55,6 +45,7 @@ public abstract class BaseActivity extends AppCompatActivity {
      */
     @Override
     public boolean onKeyDown(int keyCode, KeyEvent event) {
+
         if (isTaskRoot() && keyCode == KeyEvent.KEYCODE_BACK && event.getAction() == KeyEvent.ACTION_DOWN) {
             if ((System.currentTimeMillis() - exitTime > 3000)) {
                 Toast.makeText(getApplicationContext(), "再按一次返回键退出软件", Toast.LENGTH_SHORT).show();

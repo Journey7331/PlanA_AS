@@ -5,6 +5,7 @@ import android.app.AlertDialog;
 import android.content.ContentValues;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -25,6 +26,7 @@ import com.example.plana.R;
 import com.example.plana.base.BaseActivity;
 import com.example.plana.bean.My;
 import com.example.plana.bean.Todos;
+import com.example.plana.config.Constant;
 import com.example.plana.database.TodosDB;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
@@ -184,92 +186,99 @@ public class AddTodoActivity extends BaseActivity
 
 
     private void setupLevel() {
-        AlertDialog.Builder builder = new AlertDialog.Builder(AddTodoActivity.this, R.style.AlertDialogTheme);
         LayoutInflater inflater = getLayoutInflater();
         View view = inflater.inflate(R.layout.dialog_add_level, null);
         View titleView = inflater.inflate(R.layout.dialog_add_title, null);
         TextView title = titleView.findViewById(R.id.dialog_title);
         title.setText("选择优先级");
         RatingBar ratingBar = view.findViewById(R.id.add_rating);
-        builder.setCustomTitle(titleView);
-        builder.setView(view);
 
-        builder.setNegativeButton("取消", (dialog, which) -> {
-            if (switchLevel.isChecked() && etLevel.getText().toString().length() == 0) {
-                switchLevel.setChecked(false);
-            }
-        });
-        builder.setPositiveButton("确定", (dialog, which) -> {
-            float rating = ratingBar.getRating();
-            etLevel.setText(rating + "");
-            switchLevel.setChecked(true);
-            finalLevel = rating;
-        });
-        builder.create().show();
+        AlertDialog alertDialog = new AlertDialog
+                .Builder(AddTodoActivity.this, R.style.AlertDialogTheme)
+                .setCustomTitle(titleView)
+                .setView(view)
+                .setNegativeButton("取消", (dialog, which) -> {
+                    if (switchLevel.isChecked() && etLevel.getText().toString().length() == 0) {
+                        switchLevel.setChecked(false);
+                    }
+                })
+                .setPositiveButton("确定", (dialog, which) -> {
+                    float rating = ratingBar.getRating();
+                    etLevel.setText(rating + "");
+                    switchLevel.setChecked(true);
+                    finalLevel = rating;
+                })
+                .create();
+        alertDialog.show();
+        alertDialog.getButton(AlertDialog.BUTTON_POSITIVE).setTextColor(Constant.ColorBlueGrey);
+        alertDialog.getButton(AlertDialog.BUTTON_NEGATIVE).setTextColor(Constant.ColorBlueGrey);
+
     }
 
     @SuppressLint("SetTextI18n")
     private void setupTime() {
-        AlertDialog.Builder builder = new AlertDialog.Builder(AddTodoActivity.this, R.style.AlertDialogTheme);
         LayoutInflater inflater = getLayoutInflater();
         View view = inflater.inflate(R.layout.dialog_add_time, null);
         TimePicker timePicker = view.findViewById(R.id.add_time_picker);
         timePicker.setIs24HourView(true);
-        builder.setView(view);
 
-        builder.setNegativeButton("取消", (dialog, which) -> {
-            if (switchTime.isChecked() && etTime.getText().toString().length() == 0) {
-                switchTime.setChecked(false);
-            }
-        });
-        builder.setPositiveButton("确定", (dialog, which) -> {
-            int hour = timePicker.getHour();
-            int min = timePicker.getMinute();
-            finalTime = hour + ":" + min;
+        AlertDialog alertDialog = new AlertDialog
+                .Builder(AddTodoActivity.this, R.style.AlertDialogTheme)
+                .setView(view)
+                .setNegativeButton("取消", (dialog, which) -> {
+                    if (switchTime.isChecked() && etTime.getText().toString().length() == 0) {
+                        switchTime.setChecked(false);
+                    }
+                })
+                .setPositiveButton("确定", (dialog, which) -> {
+                    int hour = timePicker.getHour();
+                    int min = timePicker.getMinute();
+                    finalTime = hour + ":" + min;
 
-            String am_pm = "AM";
-            if (hour > 12) {
-                am_pm = "PM";
-                hour = hour - 12;
-            }
-            etTime.setText(hour + ":" + min + " " + am_pm);
-            switchTime.setChecked(true);
-        });
+                    String am_pm = "AM";
+                    if (hour > 12) {
+                        am_pm = "PM";
+                        hour = hour - 12;
+                    }
+                    etTime.setText(hour + ":" + min + " " + am_pm);
+                    switchTime.setChecked(true);
+                })
+                .create();
+        alertDialog.show();
+        alertDialog.getButton(AlertDialog.BUTTON_POSITIVE).setTextColor(Constant.ColorBlueGrey);
+        alertDialog.getButton(AlertDialog.BUTTON_NEGATIVE).setTextColor(Constant.ColorBlueGrey);
 
-        builder.create().show();
     }
 
     private void setupDate() {
         Calendar cal = Calendar.getInstance();
-        AlertDialog.Builder builder = new AlertDialog.Builder(AddTodoActivity.this, R.style.AlertDialogTheme);
         LayoutInflater inflater = getLayoutInflater();
         View view = inflater.inflate(R.layout.dialog_add_date, null);
         DatePicker datePicker = view.findViewById(R.id.add_date_picker);
-        builder.setView(view);
 
-        builder.setNegativeButton("取消", new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialog, int which) {
-                if (switchDate.isChecked() && etDate.getText().toString().length() == 0) {
-                    switchDate.setChecked(false);
-                }
-            }
-        });
+        AlertDialog alertDialog = new AlertDialog
+                .Builder(AddTodoActivity.this, R.style.AlertDialogTheme)
+                .setView(view)
+                .setNegativeButton("取消", (dialog, which) -> {
+                    if (switchDate.isChecked() && etDate.getText().toString().length() == 0) {
+                        switchDate.setChecked(false);
+                    }
+                })
+                .setPositiveButton("确定", (dialog, which) -> {
+                    cal.set(Calendar.YEAR, datePicker.getYear());
+                    cal.set(Calendar.MONTH, datePicker.getMonth());
+                    cal.set(Calendar.DAY_OF_MONTH, datePicker.getDayOfMonth());
 
-        builder.setPositiveButton("确定", (dialog, which) -> {
-            cal.set(Calendar.YEAR, datePicker.getYear());
-            cal.set(Calendar.MONTH, datePicker.getMonth());
-            cal.set(Calendar.DAY_OF_MONTH, datePicker.getDayOfMonth());
+                    SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd", Locale.CHINA);
+                    etDate.setText(sdf.format(cal.getTime()));
+                    finalDate = sdf.format(cal.getTime());
 
-            SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd", Locale.CHINA);
-            etDate.setText(sdf.format(cal.getTime()));
-            finalDate = sdf.format(cal.getTime());
-
-            switchDate.setChecked(true);
-        });
-
-        builder.create().show();
+                    switchDate.setChecked(true);
+                })
+                .create();
+        alertDialog.show();
+        alertDialog.getButton(AlertDialog.BUTTON_POSITIVE).setTextColor(Constant.ColorBlueGrey);
+        alertDialog.getButton(AlertDialog.BUTTON_NEGATIVE).setTextColor(Constant.ColorBlueGrey);
     }
-
 
 }

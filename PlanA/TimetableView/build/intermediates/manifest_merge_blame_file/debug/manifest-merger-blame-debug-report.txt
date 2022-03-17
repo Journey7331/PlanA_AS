@@ -8,7 +8,7 @@
 7-->D:\GitHub\PlanA_AS\PlanA\TimetableView\AndroidManifest.xml:7:5-9:41
 8        android:minSdkVersion="27"
 8-->D:\GitHub\PlanA_AS\PlanA\TimetableView\AndroidManifest.xml:8:9-35
-9        android:targetSdkVersion="30" />
+9        android:targetSdkVersion="31" />
 9-->D:\GitHub\PlanA_AS\PlanA\TimetableView\AndroidManifest.xml:9:9-38
 10
 11</manifest>

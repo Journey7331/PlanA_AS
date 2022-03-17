@@ -7,8 +7,11 @@ import android.util.AttributeSet;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.widget.HorizontalScrollView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+
+import androidx.annotation.NonNull;
 
 import com.zhuangfei.android_timetableview.sample.R;
 import com.zhuangfei.timetable.listener.IWeekView;
@@ -35,11 +38,14 @@ public class WeekView extends LinearLayout implements WeekViewEnable<WeekView>{
     //周次的容器
     LinearLayout container;
 
-    //跟布局
+    //根布局
     LinearLayout root;
 
     //左侧按钮
     LinearLayout leftlayout;
+
+    // add 横向 ScrollView perWidth
+    HorizontalScrollView scrollView;
 
     //数据
     private List<Schedule> dataSource;
@@ -172,7 +178,10 @@ public class WeekView extends LinearLayout implements WeekViewEnable<WeekView>{
         mInflate.inflate(R.layout.view_weekview, this);
         container = findViewById(R.id.id_weekview_container);
         root=findViewById(R.id.id_root);
-        leftlayout=findViewById(R.id.id_weekview_leftlayout);
+        leftlayout = findViewById(R.id.id_weekview_leftlayout);
+
+        // add init scrollView
+        scrollView = findViewById(R.id.id_weekview_scrollview);
     }
 
     /**
@@ -225,6 +234,46 @@ public class WeekView extends LinearLayout implements WeekViewEnable<WeekView>{
         return this;
     }
 
+
+    /**
+     * add
+     * 添加滑到当前周功能
+     * */
+    public void directScrollToCurWeek() {
+        // 没界面直接 return
+        if (layouts == null || layouts.size() == 0) return;
+        if (textViews == null || textViews.size() == 0) return;
+
+        if (curWeek > 0 && curWeek <= layouts.size()) {
+            // 等到 Layout 加载好了再获取位置
+            int position = container.getChildAt(curWeek - 1).getLeft();
+            scrollView.smoothScrollTo(position, 0);
+        }
+    }
+
+    public void smoothScrollToCurWeek() {
+        if (layouts == null || layouts.size() == 0) return;
+        if (textViews == null || textViews.size() == 0) return;
+
+        if (curWeek > 0 && curWeek <= layouts.size()) {
+            View cur = container.getChildAt(curWeek - 1);
+            if (cur.getLeft() == 0 && curWeek != 1) {
+                // 等到 Layout 加载好了再获取位置
+                // 没加载好，会返回 position = 0
+                cur.addOnLayoutChangeListener(new View.OnLayoutChangeListener(){
+                    @Override
+                    public void onLayoutChange(View v, int left, int top, int right, int bottom, int oldLeft, int oldTop, int oldRight, int oldBottom) {
+                        scrollView.scrollTo(left, 0);
+                        v.removeOnLayoutChangeListener(this);
+                    }
+                });
+            }else {
+                scrollView.smoothScrollTo(cur.getLeft(), 0);
+            }
+        }
+    }
+
+
     /**
      * 当前周被改变后可以调用该方式修正一下底部的文本
      * @return
@@ -266,6 +315,9 @@ public class WeekView extends LinearLayout implements WeekViewEnable<WeekView>{
     	return this;
 	}
 
+
+    // 这个函数实际上是控制root的可见性
+    // 所以 对weekView直接判断可见性 会有问题
     /**
      * 设置控件的可见性
      * @param isShow true:显示，false:隐藏
@@ -274,6 +326,8 @@ public class WeekView extends LinearLayout implements WeekViewEnable<WeekView>{
     public WeekView isShow(boolean isShow){
         if(isShow){
             root.setVisibility(VISIBLE);
+            // 这时出现了 weekView
+            smoothScrollToCurWeek();
         }else{
             root.setVisibility(GONE);
         }

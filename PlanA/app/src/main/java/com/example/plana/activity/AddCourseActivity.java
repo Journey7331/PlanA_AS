@@ -19,6 +19,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
 import com.example.plana.R;
+import com.example.plana.bean.My;
 import com.example.plana.bean.MySubject;
 import com.example.plana.fragment.ScheduleFragment;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
@@ -100,11 +101,8 @@ public class AddCourseActivity extends AppCompatActivity {
 
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);// 添加默认的返回图标
         getSupportActionBar().setHomeButtonEnabled(true);     // 设置返回键可用
-        toolbar.setNavigationOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                finish();
-            }
+        toolbar.setNavigationOnClickListener(v -> {
+            finish();
         });
     }
 
@@ -156,8 +154,9 @@ public class AddCourseActivity extends AppCompatActivity {
             if (MainActivity.mainActivity != null) {
                 MainActivity.mainActivity.finish();
             }
+            My.page = R.id.page_2;
             startActivity(intent);
-            ((BottomNavigationView) MainActivity.mainActivity.findViewById(R.id.bottom_navigation)).setSelectedItemId(R.id.page_2);
+            overridePendingTransition(R.anim.fade_in, R.anim.slide_back2);
             finish();
             return true;
         }

@@ -70,6 +70,7 @@ com/zhuangfei/timetable/view/WeekView.java
  com.zhuangfei.timetable.view.WeekView
  com.zhuangfei.timetable.view.WeekView$1
  com.zhuangfei.timetable.view.WeekView$2
+ com.zhuangfei.timetable.view.WeekView$3
 com/zhuangfei/timetable/model/ScheduleConfig.java
  com.zhuangfei.timetable.model.ScheduleConfig
 com/zhuangfei/timetable/model/ScheduleSupport.java

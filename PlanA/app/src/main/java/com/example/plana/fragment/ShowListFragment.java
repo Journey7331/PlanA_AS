@@ -29,6 +29,7 @@ import com.example.plana.bean.My;
 import com.example.plana.bean.Todos;
 import com.example.plana.database.TodosDB;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import com.yalantis.phoenix.PullToRefreshView;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -49,7 +50,7 @@ public class ShowListFragment extends BaseFragment
 
     TextView tvHello;
     ListView listView;
-    SwipeRefreshLayout pullToRefresh;
+    PullToRefreshView pullToRefresh;
     SwitchCompat switchDone;
     Button filterButton;
     FloatingActionButton fab;
@@ -85,11 +86,10 @@ public class ShowListFragment extends BaseFragment
         filterButton.setOnClickListener(l -> showPopupMenu(filterButton));
 
         // Pull To Refresh
-        pullToRefresh.setOnRefreshListener(() -> {
+        pullToRefresh.setOnRefreshListener(() -> pullToRefresh.postDelayed(() -> {
             refreshListView(arr);
-            SystemClock.sleep(200);
             pullToRefresh.setRefreshing(false);
-        });
+        }, 1000));
 
         // Do not show "Done" Events
         switchDone.setOnCheckedChangeListener(this);

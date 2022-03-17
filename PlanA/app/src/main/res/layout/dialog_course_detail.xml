@@ -1,23 +1,21 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="280dp"
     android:layout_height="wrap_content"
     android:layout_gravity="center"
-    android:background="@drawable/background_dialog_radius">
+    android:background="@drawable/background_dialog_radius"
+    android:orientation="vertical">
 
     <include
         android:id="@+id/include_detail"
-        layout="@layout/item_course_detail" />
-
+        layout="@layout/item_course_detail"/>
 
     <androidx.appcompat.widget.AppCompatTextView
         android:id="@+id/tv_tips"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/include_detail"
         android:layout_marginStart="16dp"
-        android:layout_marginTop="16dp"
-        android:layout_marginEnd="16dp"
+        android:layout_marginTop="6dp"
         android:lineSpacingExtra="4sp"
         android:text="再点一次确定删除"
         android:textColor="@color/my_red"
@@ -27,29 +25,25 @@
     <androidx.appcompat.widget.LinearLayoutCompat
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/tv_tips"
-        android:layout_marginVertical="10dp"
+        android:layout_marginVertical="20dp"
         android:gravity="center">
 
-        <Button
+        <ImageButton
             android:id="@+id/btn_delete_course"
             android:layout_width="20dp"
             android:layout_height="20dp"
             android:layout_marginStart="32dp"
             android:layout_marginEnd="32dp"
-            android:background="@drawable/icon_delete"
-            android:gravity="center" />
+            android:background="@drawable/icon_delete" />
 
-
-        <Button
+        <ImageButton
             android:id="@+id/btn_edit_course"
             android:layout_width="20dp"
             android:layout_height="20dp"
             android:layout_marginStart="32dp"
             android:layout_marginEnd="32dp"
-            android:background="@drawable/icon_edit"
-            android:gravity="center" />
+            android:background="@drawable/icon_edit" />
 
     </androidx.appcompat.widget.LinearLayoutCompat>
 
-</RelativeLayout>
+</LinearLayout>

@@ -15,7 +15,7 @@
             android:layout_marginStart="16dp"
             android:layout_marginTop="16dp"
             android:layout_marginEnd="16dp"
-            android:background="@drawable/background_edittext_select"
+            android:background="@drawable/background_edit_text_select"
             android:cursorVisible="false"
             android:elevation="4dp"
             android:hint="@string/add_content"
@@ -35,7 +35,7 @@
             android:layout_marginStart="16dp"
             android:layout_marginTop="10dp"
             android:layout_marginEnd="16dp"
-            android:background="@drawable/background_edittext_select"
+            android:background="@drawable/background_edit_text_select"
             android:elevation="4dp"
             android:gravity="top|left"
             android:hint="@string/add_memo"
@@ -57,7 +57,7 @@
             android:layout_marginStart="16dp"
             android:layout_marginTop="32dp"
             android:layout_marginEnd="16dp"
-            android:background="@drawable/background_edittext_select"
+            android:background="@drawable/background_edit_text_select"
             android:elevation="2dp">
 
             <androidx.emoji2.widget.EmojiButton
@@ -106,7 +106,7 @@
             android:layout_marginStart="16dp"
             android:layout_marginTop="8dp"
             android:layout_marginEnd="16dp"
-            android:background="@drawable/background_edittext_select"
+            android:background="@drawable/background_edit_text_select"
             android:elevation="2dp">
 
             <androidx.emoji2.widget.EmojiButton
@@ -155,7 +155,7 @@
             android:layout_marginTop="8dp"
             android:layout_marginEnd="16dp"
             android:layout_marginBottom="16dp"
-            android:background="@drawable/background_edittext_select"
+            android:background="@drawable/background_edit_text_select"
             android:elevation="2dp">
 
             <!-- android:layout_marginBottom="120dp" -->

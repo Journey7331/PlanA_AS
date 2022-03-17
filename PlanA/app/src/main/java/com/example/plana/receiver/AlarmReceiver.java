@@ -15,7 +15,7 @@ import com.example.plana.activity.MainActivity;
 import com.example.plana.config.MyConfig;
 import com.example.plana.bean.MySubject;
 import com.example.plana.R;
-import com.example.plana.config.OnMyConfigHandleAdapter;
+import com.example.plana.config.MyConfigConstant;
 import com.example.plana.fragment.ScheduleFragment;
 import com.example.plana.utils.ContextApplication;
 import com.example.plana.utils.SharedPreferencesUtil;
@@ -47,9 +47,9 @@ public class AlarmReceiver extends BroadcastReceiver {
         Log.d(TAG, "onReceive");
         //获取信息，决定通知的内容
         Map<String, Boolean> notConfigMap = MyConfig.getNotConfigMap();
-        notIsShowWhen = notConfigMap.get(OnMyConfigHandleAdapter.CONFIG_NOT_SHOW_WHEN);
-        notIsShowWhere = notConfigMap.get(OnMyConfigHandleAdapter.CONFIG_NOT_SHOW_WHERE);
-        notIsShowStep = notConfigMap.get(OnMyConfigHandleAdapter.CONFIG_NOT_SHOW_STEP);
+        notIsShowWhen = notConfigMap.get(MyConfigConstant.CONFIG_NOT_SHOW_WHEN);
+        notIsShowWhere = notConfigMap.get(MyConfigConstant.CONFIG_NOT_SHOW_WHERE);
+        notIsShowStep = notConfigMap.get(MyConfigConstant.CONFIG_NOT_SHOW_STEP);
         //计算明天的日期
         curWeek = getCurWeek();
         curDay = getCurDay();
@@ -142,7 +142,7 @@ public class AlarmReceiver extends BroadcastReceiver {
     private int getCurWeek() {
         Map<String, String> configMap = MyConfig.loadConfig();
         for (String key : configMap.keySet()) {
-            if (key.equals(OnMyConfigHandleAdapter.CONFIG_CUR_WEEK)) {
+            if (key.equals(MyConfigConstant.CONFIG_CUR_WEEK)) {
                 Log.d(TAG, "load CUR_WEEK " + configMap.get(key));
                 return ScheduleSupport.timeTransfrom(configMap.get(key));
             }

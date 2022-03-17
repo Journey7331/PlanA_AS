@@ -23,6 +23,7 @@ import com.example.plana.R;
 import com.example.plana.activity.EditTodoActivity;
 import com.example.plana.bean.My;
 import com.example.plana.bean.Todos;
+import com.example.plana.config.Constant;
 import com.example.plana.database.TodosDB;
 import com.example.plana.database.MyDatabaseHelper;
 import com.example.plana.utils.TimeCalcUtil;
@@ -158,39 +159,35 @@ public class EventAdapter extends ArrayAdapter {
 
         // LongPress
         convertView.setOnLongClickListener(v -> {
-            AlertDialog.Builder builder = new AlertDialog.Builder(getContext(), R.style.AlertDialogTheme);
             View titleView = inflater.inflate(R.layout.dialog_add_title, null);
             TextView title = titleView.findViewById(R.id.dialog_title);
             title.setText("删除 / 更改");
-            builder.setCustomTitle(titleView);
 
-            // Modify
-            builder.setPositiveButton("更改", (dialog, which) -> {
-                My.editTodo = getItem(position);
-                directToEditActivity();
-            });
+            AlertDialog alertDialog = new AlertDialog
+                    .Builder(getContext(), R.style.AlertDialogTheme)
+                    .setCustomTitle(titleView)
+                    .setPositiveButton("更改", (dialog, which) -> {
+                        My.editTodo = getItem(position);
+                        directToEditActivity();
+                    })
+                    .setNegativeButton("删除", (dialog, which) -> {
+                        TodosDB.deleteEventById(mysql, (getItem(position)).get_id() + "");
+                        remove(getItem(position));
+                        notifyDataSetChanged();
 
-            // Delete
-            builder.setNegativeButton("删除", (dialog, which) -> {
-                TodosDB.deleteEventById(mysql, (getItem(position)).get_id() + "");
-                remove(getItem(position));
-                notifyDataSetChanged();
+                        if (arrayList.size() < 1) {
+                            thisContext.findViewById(R.id.home_list).setVisibility(View.INVISIBLE);
+                            thisContext.findViewById(R.id.empty_status).setVisibility(View.VISIBLE);
+                        }
 
-                // Done
-                // TODO: 不下拉就可以更新 emptyPage 的 VISIBLE 状态
-                //  update the VISIBLE state of the EmptyPage without pulling
-                if (arrayList.size() < 1) {
-                    thisContext.findViewById(R.id.home_list).setVisibility(View.INVISIBLE);
-                    thisContext.findViewById(R.id.empty_status).setVisibility(View.VISIBLE);
-                }
+                        Toast.makeText(getContext(), "成功删除", Toast.LENGTH_SHORT).show();
+                    })
+                    .setNeutralButton("取消", null).create();
+            alertDialog.show();
+            alertDialog.getButton(AlertDialog.BUTTON_POSITIVE).setTextColor(Constant.ColorBlueGrey);
+            alertDialog.getButton(AlertDialog.BUTTON_NEGATIVE).setTextColor(Constant.ColorBlueGrey);
+            alertDialog.getButton(AlertDialog.BUTTON_NEUTRAL).setTextColor(Constant.ColorBlueGrey);
 
-                Toast.makeText(getContext(), "Delete Successful", Toast.LENGTH_SHORT).show();
-            });
-
-            builder.setNeutralButton("Cancel", (dialog, which) -> {
-            });
-
-            builder.create().show();
             return true;
         });
 

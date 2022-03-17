@@ -122,49 +122,6 @@ public class UserDB implements MyDatabaseHelper.TableCreateInterface {
         return user;
     }
 
-
-    @SuppressLint("Range")
-    public static String getPhone(MyDatabaseHelper dbHelper) {
-        SQLiteDatabase db = dbHelper.getReadableDatabase();
-
-        Cursor cursor = db.query(
-                UserDB.TableName,
-                null,
-                UserDB._id + " = ? ",
-                new String[]{0 + ""},
-                null, null, null);
-        cursor.moveToFirst();
-        String phoneGet = "";
-        phoneGet = cursor.getString(cursor.getColumnIndex(UserDB.phone));
-
-        cursor.close();
-        db.close();
-        return phoneGet;
-    }
-
-
-    @SuppressLint("Range")
-    public static String getName(MyDatabaseHelper dbHelper, String phone) {
-        SQLiteDatabase db = dbHelper.getReadableDatabase();
-
-        Cursor cursor = db.query(
-                UserDB.TableName,
-                null,
-                UserDB.phone + " = ? AND " + UserDB._id + " != ? ",
-                new String[]{phone, 0 + ""},
-                null, null, null);
-
-        String nameGet = "Stranger!";
-        if (cursor.getCount() > 0) {
-            cursor.moveToFirst();
-            nameGet = cursor.getString(cursor.getColumnIndex(UserDB.name));
-        }
-
-        cursor.close();
-        db.close();
-        return nameGet;
-    }
-
     // 查重
     public static boolean checkPhoneExist(MyDatabaseHelper dbHelper, String phone) {
         SQLiteDatabase db = dbHelper.getReadableDatabase();

@@ -144,9 +144,6 @@ public class MyPageFragment extends BaseFragment
         }
         if (v.getId() == R.id.goals_rl || v.getId() == R.id.undone_rl || v.getId() == R.id.done_rl) {
             ((BottomNavigationView) getActivity().findViewById(R.id.bottom_navigation)).setSelectedItemId(R.id.page_1);
-            // TODO Go to Undone Page
-            //  Error
-//            ((SwitchCompat) getActivity().findViewById(R.id.switch_done)).setChecked(false);
         }
 
     }

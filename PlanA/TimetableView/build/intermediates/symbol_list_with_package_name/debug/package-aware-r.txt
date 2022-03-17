@@ -842,6 +842,7 @@ id id_weektext
 id id_weektext_bottom
 id id_weekview_container
 id id_weekview_leftlayout
+id id_weekview_scrollview
 id image
 id info
 id italic

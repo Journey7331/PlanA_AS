@@ -59,6 +59,13 @@
     <string name="cancel">取消</string>
     <string name="stop">暂停</string>
     <string name="log_out">登出</string>
+    <string name="emoji_notification">🔔</string>
+    <string name="emoji_time_span">⌛</string>
+    <string name="emoji_eyes">👀</string>
+    <string name="emoji_balloon">🎈</string>
+    <string name="emoji_shine">✨</string>
+    <string name="emoji_alert">⏰</string>
+    <string name="emoji_school">🏫</string>
 
 
 </resources>

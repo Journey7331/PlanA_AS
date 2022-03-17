@@ -26,7 +26,6 @@ public class TimeCountActivity extends BaseActivity {
 
     TextView tvCountTime, tvCancel, tvStop, tvSec, tvTimeOut, tvOk;
     Boolean threadStart = true;
-    private Vibrator mVibrator;
 
     int remainTime = 0;
     int remainHour = 0;
@@ -59,22 +58,16 @@ public class TimeCountActivity extends BaseActivity {
         reFreshTime();
         mHandler.post(runnable);
 
-        tvCancel.setOnClickListener(l -> {
-            Intent intent = new Intent(this, MainActivity.class);
-            intent.putExtra("page", 4);
-            ActivityOptions options = ActivityOptions.makeCustomAnimation(this, R.anim.slide_out_top, R.anim.slide_out_bottom);
-            startActivity(intent, options.toBundle());
-            finish();
-        });
+        tvCancel.setOnClickListener(l -> finish());
 
         tvStop.setOnClickListener(l -> {
             if (threadStart) {
                 mHandler.removeCallbacks(runnable);
-                tvStop.setText("Start");
+                tvStop.setText("开始");
                 threadStart = false;
             } else {
                 mHandler.post(runnable);
-                tvStop.setText("Stop");
+                tvStop.setText("暂停");
                 threadStart = true;
             }
         });
@@ -89,13 +82,13 @@ public class TimeCountActivity extends BaseActivity {
         // Time Out
         if (remainTime == 0) {
             mHandler.removeCallbacks(runnable);
-            mVibrator = (Vibrator) getSystemService(VIBRATOR_SERVICE);
+            Vibrator mVibrator = (Vibrator) getSystemService(VIBRATOR_SERVICE);
             mVibrator.vibrate(2000);
-            tvCountTime.setText("Done");
+            tvCountTime.setText("完成");
             tvCancel.setText("");
             tvStop.setText("");
-            tvTimeOut.setText(">>> Take Some Rest <<<");
-            tvOk.setText("OK");
+            tvTimeOut.setText("休息一会儿把");
+            tvOk.setText("确认");
         }
         remainHour = remainTime / 60 / 60;
         remainMin = (remainTime / 60) % 60;

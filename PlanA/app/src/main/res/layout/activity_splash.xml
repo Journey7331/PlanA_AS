@@ -12,12 +12,11 @@
         android:layout_height="wrap_content"
         android:layout_centerInParent="true">
 
-
         <com.cunoraz.gifview.library.GifView
             android:id="@+id/logo_gif"
             android:layout_width="150dp"
             android:layout_height="150dp"
-            android:layout_marginBottom="20dp"/>
+            android:layout_marginBottom="20dp" />
 
         <TextView
             android:id="@+id/tv_splash"
@@ -25,9 +24,10 @@
             android:layout_height="wrap_content"
             android:layout_below="@+id/logo_gif"
             android:layout_centerHorizontal="true"
+            android:layout_marginTop="10dp"
             android:text=""
             android:textColor="@color/colorBlueGrey"
-            android:textSize="40sp"
+            android:textSize="35sp"
             android:textStyle="bold" />
 
 

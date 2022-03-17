@@ -9,6 +9,7 @@ import android.widget.Toast;
 
 import com.example.plana.R;
 import com.example.plana.base.BaseActivity;
+import com.example.plana.bean.My;
 import com.example.plana.fragment.FocusFragment;
 import com.example.plana.fragment.MyPageFragment;
 import com.example.plana.fragment.ScheduleFragment;
@@ -41,9 +42,9 @@ public class MainActivity extends BaseActivity {
 
         // fragment setup
         listFragment = new ShowListFragment();
-//        scheduleFragment = new ScheduleFragment();
-//        focusFragment = new FocusFragment();
-//        myPageFragment = new MyPageFragment();
+        scheduleFragment = new ScheduleFragment();
+        focusFragment = new FocusFragment();
+        myPageFragment = new MyPageFragment();
         currentFragment = null;
 
         getSupportFragmentManager()
@@ -56,9 +57,9 @@ public class MainActivity extends BaseActivity {
         bottomNavigation.setItemIconTintList(null);
         bottomNavigation.setOnNavigationItemSelectedListener(bottomNavigationSelectedListener);
 
-        // do what?
-        if (getIntent().getIntExtra("page", 0) == 4) {
-            bottomNavigation.setSelectedItemId(R.id.page_4);
+        if (My.page > 0) {
+            bottomNavigation.setSelectedItemId(My.page);
+            My.page = -1;
         }
     }
 

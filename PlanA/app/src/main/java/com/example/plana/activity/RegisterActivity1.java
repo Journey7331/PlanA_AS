@@ -30,24 +30,19 @@ public class RegisterActivity1 extends BaseRegisterActivity
     EditText etRegisterRepassword;
     Button btnRegister;
     TextView btnRegisterCancel;
+    public static RegisterActivity1 registerActivity;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register1);
+        registerActivity = this;
 
         etRegisterId = findViewById(R.id.et_registerId);
         etRegisterPassword = findViewById(R.id.et_registerPassword);
         etRegisterRepassword = findViewById(R.id.et_registerRepassword);
         btnRegister = findViewById(R.id.btn_register);
         btnRegisterCancel = findViewById(R.id.btn_register_cancel);
-
-        // auto fill
-        if (getIntent().getStringExtra("phone") != null && getIntent().getStringExtra("pwd") != null) {
-            etRegisterId.setText(getIntent().getStringExtra("phone"));
-            etRegisterPassword.setText(getIntent().getStringExtra("pwd"));
-            etRegisterRepassword.setText(getIntent().getStringExtra("pwd"));
-        }
 
         // InputMethodManager
         etRegisterId.requestFocus();
@@ -65,7 +60,7 @@ public class RegisterActivity1 extends BaseRegisterActivity
             if (checkRegister1(etRegisterId, etRegisterPassword, etRegisterRepassword)) {
                 String phone = etRegisterId.getText().toString();
                 if (UserDB.checkPhoneExist(mysql, phone)) {
-                    Toast.makeText(this, "Phone Has Been Registered.", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(this, "这个手机号已经被注册过啦", Toast.LENGTH_SHORT).show();
                     etRegisterId.setText("");
                     etRegisterId.requestFocus();
                 } else {
@@ -75,20 +70,14 @@ public class RegisterActivity1 extends BaseRegisterActivity
                     intent.putExtra("pwd", pwd);
                     ActivityOptions options = ActivityOptions.makeCustomAnimation(this, R.anim.slide_next1, R.anim.slide_next2);
                     startActivity(intent, options.toBundle());
-                    finish();
                 }
 
             }
         } else if (v.getId() == R.id.btn_register_cancel) {
-            startActivity(new Intent(this, LoginActivity.class));
+            // 退出栈顶
             finish();
         }
     }
 
-    @Override
-    public void onBackPressed() {
-        startActivity(new Intent(this, LoginActivity.class));
-        finish();
-    }
 }
 

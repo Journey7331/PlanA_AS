@@ -1,6 +1,5 @@
 package com.example.plana.config;
 
-import com.example.plana.activity.MainActivity;
 import com.example.plana.fragment.ScheduleFragment;
 import com.example.plana.utils.ContextApplication;
 import com.example.plana.utils.SharedPreferencesUtil;
@@ -15,10 +14,6 @@ import java.util.Map;
 public class MyConfig {
 
     public static final String TAG = "MyConfig";
-//    private Context myContext;
-//    public MyConfig(Context myContext) {
-//        this.myContext = myContext;
-//    }
 
     /**
      * 保存当前配置信息（缓冲map）至本地文件
@@ -35,16 +30,6 @@ public class MyConfig {
     }
 
 
-//    public void saveConfig(Map<String, String> configMap){
-//        SharedPreferences.Editor editor =
-//                myContext.getSharedPreferences(MainActivity.CONFIG_FILENAME,Context.MODE_PRIVATE).edit();
-//        for(String key : configMap.keySet()){
-//            String value = configMap.get(key);
-//            editor.putString(key, value);
-//            editor.commit();
-//        }
-//    }
-
     /**
      * 从本地配置文件中读取信息至缓冲map
      */
@@ -56,13 +41,6 @@ public class MyConfig {
         return configMap;
     }
 
-//    public Map<String, String> loadConfig(){
-//        Map<String, String> configMap;
-//        SharedPreferences sharedPreferences =
-//                myContext.getSharedPreferences(MainActivity.CONFIG_FILENAME,Context.MODE_PRIVATE);
-//        configMap = (Map<String, String>) sharedPreferences.getAll();
-//        return configMap;
-//    }
 
     /**
      * 从本地配置文件里获取notConfigMap;
@@ -74,26 +52,30 @@ public class MyConfig {
         Map<String, String> originMap = MyConfig.loadConfig();
         Map<String, Boolean> notConfigMap = new HashMap<>();
         //初始化
-        notConfigMap.put(OnMyConfigHandleAdapter.CONFIG_NOT_OPEN, false);
-        notConfigMap.put(OnMyConfigHandleAdapter.CONFIG_NOT_SHOW_WHEN, false);
-        notConfigMap.put(OnMyConfigHandleAdapter.CONFIG_NOT_SHOW_WHERE, false);
-        notConfigMap.put(OnMyConfigHandleAdapter.CONFIG_NOT_SHOW_STEP, false);
+        notConfigMap.put(MyConfigConstant.CONFIG_NOT_OPEN, false);
+        notConfigMap.put(MyConfigConstant.CONFIG_NOT_SHOW_WHEN, false);
+        notConfigMap.put(MyConfigConstant.CONFIG_NOT_SHOW_WHERE, false);
+        notConfigMap.put(MyConfigConstant.CONFIG_NOT_SHOW_STEP, false);
+        notConfigMap.put(MyConfigConstant.CONFIG_SHOW_WEEKENDS, true);
+        notConfigMap.put(MyConfigConstant.CONFIG_SHOW_NOT_CUR_WEEK, true);
+        notConfigMap.put(MyConfigConstant.CONFIG_SHOW_TIME, true);
         //从配置文件里读取
         for (String key : originMap.keySet()) {
             String value = originMap.get(key);
             if (value == null)
                 continue;
             switch (key) {
-                case OnMyConfigHandleAdapter.CONFIG_NOT_OPEN:
-                case OnMyConfigHandleAdapter.CONFIG_NOT_SHOW_WHEN:
-                case OnMyConfigHandleAdapter.CONFIG_NOT_SHOW_WHERE:
-                case OnMyConfigHandleAdapter.CONFIG_NOT_SHOW_STEP:
-                    if (value.equals(OnMyConfigHandleAdapter.VALUE_TRUE))
-                        notConfigMap.put(key, true);
-                    else
-                        notConfigMap.put(key, false);
-                    break;
-                default:
+                case MyConfigConstant.CONFIG_NOT_OPEN:
+                case MyConfigConstant.CONFIG_NOT_SHOW_WHEN:
+                case MyConfigConstant.CONFIG_NOT_SHOW_WHERE:
+                case MyConfigConstant.CONFIG_NOT_SHOW_STEP:
+                case MyConfigConstant.CONFIG_SHOW_WEEKENDS:
+                case MyConfigConstant.CONFIG_SHOW_NOT_CUR_WEEK:
+                case MyConfigConstant.CONFIG_SHOW_TIME:
+                    notConfigMap.put(
+                            key,
+                            value.equals(MyConfigConstant.VALUE_TRUE)
+                    );
                     break;
             }
         }

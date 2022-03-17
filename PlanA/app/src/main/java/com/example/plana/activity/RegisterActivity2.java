@@ -18,6 +18,7 @@ import androidx.annotation.Nullable;
 
 import com.example.plana.R;
 import com.example.plana.base.BaseRegisterActivity;
+import com.example.plana.config.Constant;
 import com.example.plana.database.UserDB;
 
 import java.text.SimpleDateFormat;
@@ -39,7 +40,6 @@ public class RegisterActivity2 extends BaseRegisterActivity
     String pwd;
     String name, email, birth;
 
-    AlertDialog.Builder builder;
     DatePicker datePicker;
     final Calendar cal = Calendar.getInstance();
 
@@ -69,61 +69,47 @@ public class RegisterActivity2 extends BaseRegisterActivity
     @Override
     public void onClick(View v) {
         if (v.getId() == R.id.et_registerBirth) {
-            builder = new AlertDialog.Builder(this);
             // inflater
             LayoutInflater inflater = getLayoutInflater();
             final View view = inflater.inflate(R.layout.add_register_date, null);
             final DatePicker datePicker = view.findViewById(R.id.register_date_picker);
 
-            builder.setView(view);
-            builder.setNegativeButton("Cancel", (dialog, which) -> etBirth.setText(""));
-            builder.setPositiveButton("Submit", (dialog, which) -> {
-                cal.set(Calendar.YEAR, datePicker.getYear());
-                cal.set(Calendar.MONTH, datePicker.getMonth());
-                cal.set(Calendar.DAY_OF_MONTH, datePicker.getDayOfMonth());
-                SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd", Locale.CHINA);
-                etBirth.setText(sdf.format(cal.getTime()));
-            });
-
-            AlertDialog dialog = builder.create();
-            dialog.show();
+            AlertDialog alertDialog = new AlertDialog
+                    .Builder(this, R.style.AppTheme_NumberPicker)
+                    .setView(view)
+                    .setNegativeButton("取消", (dialog, which) -> etBirth.setText(""))
+                    .setPositiveButton("确认", (dialog, which) -> {
+                        cal.set(Calendar.YEAR, datePicker.getYear());
+                        cal.set(Calendar.MONTH, datePicker.getMonth());
+                        cal.set(Calendar.DAY_OF_MONTH, datePicker.getDayOfMonth());
+                        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd", Locale.CHINA);
+                        etBirth.setText(sdf.format(cal.getTime()));
+                    }).create();
+            alertDialog.show();
+            alertDialog.getButton(AlertDialog.BUTTON_POSITIVE).setTextColor(Constant.ColorBlueGrey);
+            alertDialog.getButton(AlertDialog.BUTTON_NEGATIVE).setTextColor(Constant.ColorBlueGrey);
 
         } else if (v.getId() == R.id.btn_register_back) {
-            Intent intent = new Intent(this, RegisterActivity1.class);
-            intent.putExtra("phone", phone);
-            intent.putExtra("pwd", pwd);
-            ActivityOptions options = ActivityOptions.makeCustomAnimation(this, R.anim.slide_back2, R.anim.slide_back1);
-            startActivity(intent, options.toBundle());
+            // pop from activity stack
             finish();
         } else if (v.getId() == R.id.btn_register_submit) {
             if (checkRegister2(etName, etBirth, etEmail)) {
-                name = etName.getText().toString();
-                birth = etBirth.getText().toString();
-                email = etEmail.getText().toString();
 
                 ContentValues values = new ContentValues();
                 values.put(UserDB.phone, phone);
                 values.put(UserDB.pwd, pwd);
-                values.put(UserDB.name, name);
-                values.put(UserDB.birth, birth);
-                values.put(UserDB.email, email);
+                values.put(UserDB.name, etName.getText().toString());
+                values.put(UserDB.birth, etBirth.getText().toString());
+                values.put(UserDB.email, etEmail.getText().toString());
                 UserDB.insertUser(mysql, values);
 
-                Toast.makeText(this,"Account Created.",Toast.LENGTH_SHORT).show();
-                ActivityOptions options = ActivityOptions.makeCustomAnimation(this, R.anim.slide_back2, R.anim.slide_back1);
-                startActivity( new Intent(this, LoginActivity.class), options.toBundle());
+                Toast.makeText(this, "注册成功", Toast.LENGTH_SHORT).show();
+                if (RegisterActivity1.registerActivity != null) {
+                    RegisterActivity1.registerActivity.finish();
+                }
                 finish();
             }
         }
     }
 
-    @Override
-    public void onBackPressed() {
-        Intent intent = new Intent(this, RegisterActivity1.class);
-        intent.putExtra("phone", phone);
-        intent.putExtra("pwd", pwd);
-        ActivityOptions options = ActivityOptions.makeCustomAnimation(this, R.anim.slide_back2, R.anim.slide_back1);
-        startActivity(intent, options.toBundle());
-        finish();
-    }
 }

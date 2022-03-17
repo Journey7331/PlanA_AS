@@ -126,14 +126,11 @@ public class LoginActivity extends BaseActivity
         if (v.getId() == R.id.tv_skip) {
             Toast.makeText(
                     LoginActivity.this,
-                    "Login Without Account.",
+                    "无账号登录",
                     Toast.LENGTH_SHORT
             ).show();
-            hideKeyboard(this);
 
-            ContentValues values = new ContentValues();
-            values.put(UserDB.phone, "");
-            UserDB.updateUser(mysql, 0, values);
+            hideKeyboard(this);
             startActivity(new Intent(this, MainActivity.class));
             finish();
         }
@@ -159,7 +156,9 @@ public class LoginActivity extends BaseActivity
     private void directToRegisterActivity() {
         Intent intent = new Intent(LoginActivity.this, RegisterActivity1.class);
         startActivity(intent);
-        finish();
+        // 直接把注册页放到 Activity 的栈顶
+        // 不直接结束当前 Activity
+//        finish();
     }
 
 }

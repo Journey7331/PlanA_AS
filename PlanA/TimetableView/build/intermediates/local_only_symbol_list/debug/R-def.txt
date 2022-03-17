@@ -146,6 +146,7 @@ id id_weektext
 id id_weektext_bottom
 id id_weekview_container
 id id_weekview_leftlayout
+id id_weekview_scrollview
 id item_slide_number
 id item_slide_textview
 id item_slide_time

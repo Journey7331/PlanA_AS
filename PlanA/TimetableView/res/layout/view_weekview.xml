@@ -21,7 +21,10 @@
             android:text="  修改  \n当前周"/>
     </LinearLayout>
 
+
+    <!-- add id -->
     <HorizontalScrollView
+        android:id="@+id/id_weekview_scrollview"
         android:layout_width="match_parent"
         android:layout_height="90dp"
         android:scrollbars="none"

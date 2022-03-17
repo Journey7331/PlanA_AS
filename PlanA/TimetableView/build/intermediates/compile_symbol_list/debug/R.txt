@@ -841,6 +841,7 @@ int id id_weektext 0x0
 int id id_weektext_bottom 0x0
 int id id_weekview_container 0x0
 int id id_weekview_leftlayout 0x0
+int id id_weekview_scrollview 0x0
 int id image 0x0
 int id info 0x0
 int id italic 0x0

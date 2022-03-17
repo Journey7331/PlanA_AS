@@ -4,6 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_marginBottom="16dp"
+    android:layout_marginTop="20dp"
     android:background="@color/google_grey">
 
     <androidx.appcompat.widget.AppCompatTextView
@@ -11,7 +12,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
-        android:layout_marginTop="24dp"
+        android:layout_marginTop="4dp"
         android:layout_marginBottom="10dp"
         android:singleLine="true"
         android:text="时间段"
@@ -28,15 +29,6 @@
         android:layout_marginTop="20dp"
         android:layout_marginEnd="20dp"
         android:background="@drawable/icon_close" />
-
-
-<!--    <View-->
-<!--        android:layout_width="match_parent"-->
-<!--        android:layout_height="1dp"-->
-<!--        android:layout_above="@id/ll_weeks"-->
-<!--        android:layout_marginHorizontal="30dp"-->
-<!--        android:alpha="0.5"-->
-<!--        android:background="@color/grey" />-->
 
 
     <androidx.appcompat.widget.LinearLayoutCompat
@@ -56,8 +48,7 @@
             android:layout_marginEnd="15dp"
             android:background="@null"
             android:text="@string/emoji_week"
-            android:textSize="22sp" />
-
+            android:textSize="20sp" />
 
         <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/et_weeks"
@@ -96,7 +87,7 @@
             android:layout_marginEnd="15dp"
             android:background="@null"
             android:text="@string/emoji_time"
-            android:textSize="22sp" />
+            android:textSize="20sp" />
 
 
         <androidx.appcompat.widget.AppCompatTextView
@@ -142,7 +133,7 @@
             android:layout_marginEnd="15dp"
             android:background="@null"
             android:text="@string/emoji_teacher"
-            android:textSize="22sp" />
+            android:textSize="20sp" />
 
 
         <androidx.appcompat.widget.AppCompatEditText
@@ -183,7 +174,7 @@
             android:layout_marginEnd="15dp"
             android:background="@null"
             android:text="@string/emoji_position"
-            android:textSize="22sp" />
+            android:textSize="20sp" />
 
         <androidx.appcompat.widget.AppCompatEditText
             android:id="@+id/et_room"
