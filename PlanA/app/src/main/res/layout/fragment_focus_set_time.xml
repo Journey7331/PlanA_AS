@@ -2,7 +2,8 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="@color/google_grey">
 
 
     <RelativeLayout
@@ -10,6 +11,16 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@drawable/background_my_detail">
+
+
+        <Button
+            android:id="@+id/bt_time_counter"
+            android:layout_width="32dp"
+            android:layout_height="32dp"
+            android:layout_alignParentStart="true"
+            android:layout_marginTop="30dp"
+            android:layout_marginStart="30dp"
+            android:background="@drawable/icon_time_counter" />
 
         <TextView
             android:layout_width="wrap_content"
@@ -20,14 +31,14 @@
             android:shadowDx="2"
             android:shadowDy="2"
             android:shadowRadius="5"
-            android:text="Focus Time"
+            android:text="@string/focus_time"
             android:textSize="30sp"
             android:textStyle="bold" />
 
         <Button
             android:id="@+id/bt_focus_data"
-            android:layout_width="24dp"
-            android:layout_height="21dp"
+            android:layout_width="32dp"
+            android:layout_height="32dp"
             android:layout_alignParentEnd="true"
             android:layout_marginTop="30dp"
             android:layout_marginEnd="30dp"
@@ -40,11 +51,24 @@
         android:layout_height="match_parent"
         android:layout_below="@id/focus_title_rl">
 
+        <TextView
+            android:id="@+id/tv_count_name"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:layout_marginTop="60dp"
+            android:alpha="0.7"
+            android:gravity="center"
+            android:text="倒计时"
+            android:textSize="20sp"
+            android:textStyle="bold" />
+
         <RelativeLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerHorizontal="true"
-            android:layout_marginTop="90dp">
+            android:layout_marginTop="80dp">
+
 
             <ProgressBar
                 android:id="@+id/count_down_progressbar"
@@ -52,11 +76,13 @@
                 android:layout_width="350dp"
                 android:layout_height="350dp"
                 android:layout_centerInParent="true"
+                android:background="@drawable/circular_focus_time_bg"
                 android:max="120"
                 android:progress="25"
                 android:progressDrawable="@drawable/circular_focus_time_progress_bar" />
 
             <LinearLayout
+                android:id="@+id/ll_show_focus_time"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_centerInParent="true"

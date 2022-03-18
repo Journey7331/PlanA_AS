@@ -71,11 +71,11 @@ public class RegisterActivity2 extends BaseRegisterActivity
         if (v.getId() == R.id.et_registerBirth) {
             // inflater
             LayoutInflater inflater = getLayoutInflater();
-            final View view = inflater.inflate(R.layout.add_register_date, null);
-            final DatePicker datePicker = view.findViewById(R.id.register_date_picker);
+            final View view = inflater.inflate(R.layout.dialog_add_date, null);
+            final DatePicker datePicker = view.findViewById(R.id.add_date_picker);
 
             AlertDialog alertDialog = new AlertDialog
-                    .Builder(this, R.style.AppTheme_NumberPicker)
+                    .Builder(this, R.style.AlertDialogTheme)
                     .setView(view)
                     .setNegativeButton("取消", (dialog, which) -> etBirth.setText(""))
                     .setPositiveButton("确认", (dialog, which) -> {

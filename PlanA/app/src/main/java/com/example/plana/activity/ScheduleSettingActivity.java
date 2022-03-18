@@ -452,7 +452,7 @@ public class ScheduleSettingActivity extends BaseActivity {
                     schoolStartTime = TimeCalcUtil.calToStr(cal);
                     configMap.put(MyConfigConstant.CONFIG_START_DATE, schoolStartTime);
                     configMap.put(MyConfigConstant.CONFIG_CUR_WEEK, schoolStartTime);
-//            MyConfig.saveConfig(configMap);     // 保存设置信息至本地配置文件
+                    MyConfig.saveConfig(configMap);     // 保存设置信息至本地配置文件
 //            Toast.makeText(getContext(), "保存成功！重启生效！", Toast.LENGTH_LONG);
                     etSchoolStartTime.setText(schoolStartTime);
                 }).create();

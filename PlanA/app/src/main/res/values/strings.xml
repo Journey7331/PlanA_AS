@@ -35,11 +35,11 @@
     <string name="level">等级</string>
 
 
-    <string name="sort_add_time">Sort by Add-Time</string>
-    <string name="sort_date">Sort by Date</string>
-    <string name="sort_undone">Hide UnDone Event</string>
-    <string name="sort_done">Hide Done Event</string>
-    <string name="sort_prior">Sort by Priority</string>
+    <string name="sort_add_time">按添加时间排序</string>
+    <string name="sort_date">按提醒时间排序</string>
+    <string name="sort_undone">隐藏未完成事件</string>
+    <string name="sort_done">隐藏已完成事件</string>
+    <string name="sort_prior">按优先级排序</string>
     <string name="skip">不登录使用 ▶</string>
     <string name="finish">完成</string>
     <string name="schedule">课程表</string>
@@ -66,6 +66,12 @@
     <string name="emoji_shine">✨</string>
     <string name="emoji_alert">⏰</string>
     <string name="emoji_school">🏫</string>
+    <string name="emoji_achievement">🏆</string>
+    <string name="emoji_paste_pad">📋</string>
+    <string name="focus_time">专注</string>
+    <string name="my_page_goal">待做</string>
+    <string name="my_page_undone">未完成</string>
+    <string name="my_page_done">已完成</string>
 
 
 </resources>

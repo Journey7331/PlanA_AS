@@ -134,22 +134,22 @@ public class ShowListFragment extends BaseFragment
         int hour = calendar.get(Calendar.HOUR_OF_DAY);
         // 5 - 9
         if (5 <= hour && hour <= 9) {
-            tvHello.append("Morning!");
+            tvHello.append("早上好！");
             // 10 - 12
         } else if (10 <= hour && hour <= 12) {
-            tvHello.append("Noon~");
+            tvHello.append("中午好~");
             // 13 - 15
         } else if (13 <= hour && hour <= 16) {
-            tvHello.append("AfterNoon!");
+            tvHello.append("下午好！");
             // 16 - 19
         } else if (17 <= hour && hour <= 19) {
-            tvHello.append("Evening~");
+            tvHello.append("傍晚好~");
             // 20 - 22
         } else if (20 <= hour && hour <= 22) {
-            tvHello.append("Night!");
+            tvHello.append("晚上好！");
             // 23 - 4
         } else {
-            tvHello.append("MidNight~");
+            tvHello.append("夜深啦！");
         }
 
         if (My.Account == null) {

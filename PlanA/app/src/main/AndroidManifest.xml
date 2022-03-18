@@ -36,6 +36,8 @@
         <activity android:name=".activity.AddTodoActivity" />
         <activity android:name=".activity.EditTodoActivity" />
         <activity android:name=".activity.TimeCountActivity"/>
+        <activity android:name=".activity.AchievementActivity" />
+        <activity android:name=".activity.AddPlanActivity" />
 
         <receiver android:name=".receiver.AlarmReceiver" />
 

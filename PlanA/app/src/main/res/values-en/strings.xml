@@ -66,6 +66,12 @@
     <string name="emoji_shine">✨</string>
     <string name="emoji_alert">⏰</string>
     <string name="emoji_school">🏫</string>
+    <string name="emoji_achievement">🏆</string>
+    <string name="emoji_paste_pad">📋</string>
+    <string name="focus_time">专注空间</string>
+    <string name="my_page_goal">待做</string>
+    <string name="my_page_undone">未做</string>
+    <string name="my_page_done">已完成</string>
 
 
 </resources>

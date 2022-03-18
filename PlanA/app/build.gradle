@@ -49,6 +49,7 @@ dependencies {
     implementation 'io.reactivex.rxjava3:rxandroid:3.0.0'
     implementation 'cn.carbswang.android:NumberPickerView:1.2.0'
     implementation 'com.github.Cutta:GifView:1.4'
+//    implementation 'devlight.io:arcprogressstackview:1.0.4'
 
     def emoji2_version = "1.2.0-alpha01"
     implementation "androidx.emoji2:emoji2:$emoji2_version"

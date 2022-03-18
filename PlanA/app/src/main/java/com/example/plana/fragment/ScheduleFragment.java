@@ -110,6 +110,8 @@ public class ScheduleFragment extends BaseFragment
     public void onStart() {
         super.onStart();
 
+        myConfigMap = MyConfig.loadConfig();
+
         //用于更正日期和weekView的显示
         int cur = timetableView.curWeek();
         timetableView.onDateBuildListener().onUpdateDate(cur, cur);
@@ -123,7 +125,6 @@ public class ScheduleFragment extends BaseFragment
             titleTextView.setText(str);
         }
 
-        myConfigMap = MyConfig.loadConfig();
 
     }
 
@@ -575,6 +576,10 @@ public class ScheduleFragment extends BaseFragment
                 case MyConfigConstant.CONFIG_SHOW_NOT_CUR_WEEK:
                     if (value.equals(MyConfigConstant.VALUE_TRUE)) showNonThisWeek();
                     else hideNonThisWeek();
+                    break;
+                case MyConfigConstant.CONFIG_CUR_WEEK:
+                    timetableView.curWeek(value);
+                    weekView.curWeek(timetableView.curWeek());
                     break;
             }
 

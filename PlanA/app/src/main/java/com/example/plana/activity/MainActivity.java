@@ -12,6 +12,7 @@ import com.example.plana.base.BaseActivity;
 import com.example.plana.bean.My;
 import com.example.plana.fragment.FocusFragment;
 import com.example.plana.fragment.MyPageFragment;
+import com.example.plana.fragment.PlanFragment;
 import com.example.plana.fragment.ScheduleFragment;
 import com.example.plana.fragment.ShowListFragment;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
@@ -29,7 +30,7 @@ public class MainActivity extends BaseActivity {
 
     ShowListFragment listFragment;
     ScheduleFragment scheduleFragment;
-
+    PlanFragment planFragment;
     FocusFragment focusFragment;
     MyPageFragment myPageFragment;
     Fragment currentFragment;
@@ -43,6 +44,7 @@ public class MainActivity extends BaseActivity {
         // fragment setup
         listFragment = new ShowListFragment();
         scheduleFragment = new ScheduleFragment();
+        planFragment = new PlanFragment();
         focusFragment = new FocusFragment();
         myPageFragment = new MyPageFragment();
         currentFragment = null;
@@ -96,7 +98,8 @@ public class MainActivity extends BaseActivity {
                 currentFragment = scheduleFragment;
                 break;
             case 3:
-                Toast.makeText(this, "will be changed into schedule...", Toast.LENGTH_SHORT).show();
+                planFragment = new PlanFragment();
+                currentFragment = planFragment;
                 break;
             case 4:
                 focusFragment = new FocusFragment();

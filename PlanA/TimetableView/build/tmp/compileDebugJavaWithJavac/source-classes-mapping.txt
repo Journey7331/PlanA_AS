@@ -12,18 +12,14 @@ com/zhuangfei/timetable/listener/OnWeekLeftClickedAdapter.java
  com.zhuangfei.timetable.listener.OnWeekLeftClickedAdapter
 com/zhuangfei/timetable/model/Schedule.java
  com.zhuangfei.timetable.model.Schedule
-com/zhuangfei/timetable/operater/SimpleOperater.java
- com.zhuangfei.timetable.operater.SimpleOperater
- com.zhuangfei.timetable.operater.SimpleOperater$1
- com.zhuangfei.timetable.operater.SimpleOperater$2
- com.zhuangfei.timetable.operater.SimpleOperater$3
- com.zhuangfei.timetable.operater.SimpleOperater$4
+com/zhuangfei/timetable/listener/OnItemClickAdapter.java
+ com.zhuangfei.timetable.listener.OnItemClickAdapter
 com/zhuangfei/timetable/listener/OnDateBuildAapter.java
  com.zhuangfei.timetable.listener.OnDateBuildAapter
 com/zhuangfei/timetable/listener/OnWeekChangedAdapter.java
  com.zhuangfei.timetable.listener.OnWeekChangedAdapter
-com/zhuangfei/timetable/TimetableView.java
- com.zhuangfei.timetable.TimetableView
+com/zhuangfei/timetable/utils/ScreenUtils.java
+ com.zhuangfei.timetable.utils.ScreenUtils
 com/zhuangfei/timetable/operater/package-info.java
  com.zhuangfei.timetable.operater.package-info
 com/zhuangfei/timetable/listener/OnSlideBuildAdapter.java
@@ -81,7 +77,11 @@ com/zhuangfei/timetable/view/package-info.java
  com.zhuangfei.timetable.view.package-info
 com/zhuangfei/timetable/model/ScheduleColorPool.java
  com.zhuangfei.timetable.model.ScheduleColorPool
-com/zhuangfei/timetable/utils/ScreenUtils.java
- com.zhuangfei.timetable.utils.ScreenUtils
-com/zhuangfei/timetable/listener/OnItemClickAdapter.java
- com.zhuangfei.timetable.listener.OnItemClickAdapter
+com/zhuangfei/timetable/operater/SimpleOperater.java
+ com.zhuangfei.timetable.operater.SimpleOperater
+ com.zhuangfei.timetable.operater.SimpleOperater$1
+ com.zhuangfei.timetable.operater.SimpleOperater$2
+ com.zhuangfei.timetable.operater.SimpleOperater$3
+ com.zhuangfei.timetable.operater.SimpleOperater$4
+com/zhuangfei/timetable/TimetableView.java
+ com.zhuangfei.timetable.TimetableView

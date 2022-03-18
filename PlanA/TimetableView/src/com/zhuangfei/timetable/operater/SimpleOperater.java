@@ -399,6 +399,7 @@ public class SimpleOperater extends AbsOperater{
     /**
      * 开始装填数据
      */
+    @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN)
     public void startTodo(){
         //清空、拆分数据
         for (int i = 0; i < 7; i++) {
@@ -461,6 +462,7 @@ public class SimpleOperater extends AbsOperater{
      * @param week
      * @param isCurWeek 是否强制设置为当前周
      */
+    @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN)
     @Override
     public void changeWeek(int week, boolean isCurWeek) {
         for (int i = 0; i < panels.length; i++) {

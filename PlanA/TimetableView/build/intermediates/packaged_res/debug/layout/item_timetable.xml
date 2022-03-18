@@ -12,7 +12,7 @@
         android:gravity="center_horizontal|top"
         android:padding="2dp"
         android:textColor="@color/app_white"
-        android:textSize="12sp" />
+        android:textSize="14sp" />
 
     <TextView
         android:id="@+id/id_course_item_count"

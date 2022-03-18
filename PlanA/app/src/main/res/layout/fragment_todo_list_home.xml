@@ -98,7 +98,7 @@
         android:layout_margin="30dp"
         android:contentDescription="@string/add_todo"
         android:elevation="7dp"
-        android:src="@drawable/icon_add_todo"
+        android:src="@drawable/icon_fab_add"
         android:backgroundTint="@color/colorPrimary"
         app:fabSize="auto" />
 
