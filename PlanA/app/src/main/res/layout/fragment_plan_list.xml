@@ -57,54 +57,66 @@
 
     </RelativeLayout>
 
-
-    <com.yalantis.phoenix.PullToRefreshView
-        android:id="@+id/pullToRefresh"
+    <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@+id/rl_menu_bar">
 
-
-        <LinearLayout
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/plans_recycler_view"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:orientation="vertical">
+            android:layout_height="match_parent" />
+
+    </RelativeLayout>
 
 
-            <androidx.appcompat.widget.LinearLayoutCompat
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_marginHorizontal="30dp"
-                android:layout_marginVertical="10dp"
-                android:orientation="horizontal">
+    <!--        <GridView-->
+    <!--            android:id="@+id/plans_grid_view"-->
+    <!--            android:layout_width="match_parent"-->
+    <!--            android:layout_height="match_parent"-->
+    <!--            android:layout_marginHorizontal="30dp"-->
+    <!--            android:layout_marginVertical="10dp"-->
+    <!--            android:numColumns="2" />-->
 
-                <include
-                    android:id="@+id/plan_brief_1"
-                    layout="@layout/item_plan_brief"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_margin="10dp"
-                    android:layout_weight="1" />
-
-                <include
-                    android:id="@+id/plan_brief_2"
-                    layout="@layout/item_plan_brief"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_margin="10dp"
-                    android:layout_weight="1" />
+    <!--        <LinearLayout-->
+    <!--            android:layout_width="match_parent"-->
+    <!--            android:layout_height="match_parent"-->
+    <!--            android:orientation="vertical">-->
 
 
-            </androidx.appcompat.widget.LinearLayoutCompat>
+    <!--            <androidx.appcompat.widget.LinearLayoutCompat-->
+    <!--                android:layout_width="match_parent"-->
+    <!--                android:layout_height="match_parent"-->
+    <!--                android:layout_marginHorizontal="30dp"-->
+    <!--                android:layout_marginVertical="10dp"-->
+    <!--                android:orientation="horizontal">-->
 
-        </LinearLayout>
+    <!--                <include-->
+    <!--                    android:id="@+id/plan_brief_1"-->
+    <!--                    layout="@layout/item_plan_brief"-->
+    <!--                    android:layout_width="0dp"-->
+    <!--                    android:layout_height="wrap_content"-->
+    <!--                    android:layout_margin="10dp"-->
+    <!--                    android:layout_weight="1" />-->
 
-        <!--        <ListView-->
-        <!--            android:id="@+id/home_list"-->
-        <!--            android:layout_width="match_parent"-->
-        <!--            android:layout_height="match_parent" />-->
+    <!--                <include-->
+    <!--                    android:id="@+id/plan_brief_2"-->
+    <!--                    layout="@layout/item_plan_brief"-->
+    <!--                    android:layout_width="0dp"-->
+    <!--                    android:layout_height="wrap_content"-->
+    <!--                    android:layout_margin="10dp"-->
+    <!--                    android:layout_weight="1" />-->
 
-    </com.yalantis.phoenix.PullToRefreshView>
+
+    <!--            </androidx.appcompat.widget.LinearLayoutCompat>-->
+
+    <!--        </LinearLayout>-->
+
+    <!--        <ListView-->
+    <!--            android:id="@+id/home_list"-->
+    <!--            android:layout_width="match_parent"-->
+    <!--            android:layout_height="match_parent" />-->
+
     <!--    </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>-->
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton

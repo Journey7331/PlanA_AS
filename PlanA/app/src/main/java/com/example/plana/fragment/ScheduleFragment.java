@@ -1,6 +1,5 @@
 package com.example.plana.fragment;
 
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
@@ -21,7 +20,6 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AlertDialog;
-import androidx.core.content.ContextCompat;
 
 import com.example.plana.activity.AddCourseActivity;
 import com.example.plana.activity.ScheduleSettingActivity;
@@ -348,7 +346,7 @@ public class ScheduleFragment extends BaseFragment
         TextView tv_item = rl_include_detail.findViewById(R.id.tv_item);
         tv_item.setText(beans.get(0).getName());
         // 周数
-        TextView et_weeks = rl_include_detail.findViewById(R.id.et_weeks);
+        TextView et_weeks = rl_include_detail.findViewById(R.id.tv_plan_brief_left_days);
         String str_weeks = "第" + beans.get(0).getWeekList().get(0) + "-" + beans.get(0).getWeekList().get(beans.get(0).getWeekList().size() - 1) + "周";
         et_weeks.setText(str_weeks);
         // 节数

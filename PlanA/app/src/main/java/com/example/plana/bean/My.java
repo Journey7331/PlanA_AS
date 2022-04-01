@@ -14,10 +14,11 @@ public class My {
     public static User Account;
     public static Todos editTodo;
 
+    public static Plan plan;
+
     public static int page = -1;
 
     public static ArrayList<Todos> todosList = new ArrayList<>();
     public static List<MySubject> mySubjects = new ArrayList<>();
-
 
 }

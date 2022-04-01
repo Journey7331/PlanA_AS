@@ -1,6 +1,5 @@
 package com.example.plana.fragment;
 
-import android.content.ContentValues;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -24,8 +23,6 @@ import com.example.plana.activity.MainActivity;
 import com.example.plana.base.BaseFragment;
 import com.example.plana.bean.My;
 import com.example.plana.bean.Todos;
-import com.example.plana.database.MyDatabaseHelper;
-import com.example.plana.database.UserDB;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 /**
@@ -62,7 +59,7 @@ public class MyPageFragment extends BaseFragment
         rlUndone = view.findViewById(R.id.undone_rl);
         rlDone = view.findViewById(R.id.done_rl);
 
-        pgLevel = view.findViewById(R.id.pg_level);
+        pgLevel = view.findViewById(R.id.progressbar_plan_brief);
         tvLevelCount = view.findViewById(R.id.tv_level_count);
         tvUndoneCount = view.findViewById(R.id.tv_undone_count);
         tvDoneCount = view.findViewById(R.id.tv_done_count);

@@ -79,4 +79,10 @@ public class TimeCalcUtil {
         return sdf.format(cal.getTime());
     }
 
+    public static String getLeftDay(int days) {
+        if (days == 0) {
+            return "已完成";
+        }
+        return "还剩" + days + "天";
+    }
 }

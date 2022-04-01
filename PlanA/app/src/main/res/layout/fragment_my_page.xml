@@ -108,7 +108,7 @@
                     android:layout_height="100dp">
 
                     <ProgressBar
-                        android:id="@+id/pg_level"
+                        android:id="@+id/progressbar_plan_brief"
                         style="?android:attr/progressBarStyleHorizontal"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"

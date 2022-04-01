@@ -1,4 +1,3 @@
-include ':LibrarySample'
 include ':Library'
 include ':TimetableView'
 include ':app'

@@ -17,12 +17,12 @@ import android.widget.Toast;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.plana.R;
 import com.example.plana.bean.My;
 import com.example.plana.bean.MySubject;
 import com.example.plana.fragment.ScheduleFragment;
-import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 import com.zhuangfei.timetable.model.Schedule;
@@ -176,7 +176,7 @@ public class AddCourseActivity extends AppCompatActivity {
 
         rl_include_detail = ll_addCourse.findViewById(R.id.include_add_course_detail);
         // 周数
-        et_weeks = rl_include_detail.findViewById(R.id.et_weeks);
+        et_weeks = rl_include_detail.findViewById(R.id.tv_plan_brief_left_days);
         weeks = beans.get(0).getWeekList();
         String str_weeks = "第" + beans.get(0).getWeekList().get(0) + "-" + beans.get(0).getWeekList().get(beans.get(0).getWeekList().size() - 1) + "周";
         et_weeks.setText(str_weeks);
@@ -239,7 +239,7 @@ public class AddCourseActivity extends AppCompatActivity {
         et_courseName = findViewById(R.id.et_name);
         rl_include_detail = ll_addCourse.findViewById(R.id.include_add_course_detail);
         // 周数
-        et_weeks = rl_include_detail.findViewById(R.id.et_weeks);
+        et_weeks = rl_include_detail.findViewById(R.id.tv_plan_brief_left_days);
         et_weeks.setClickable(true);
         et_weeks.setOnClickListener(new View.OnClickListener() {
             @Override

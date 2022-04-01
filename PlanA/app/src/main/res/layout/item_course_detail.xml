@@ -51,7 +51,7 @@
             android:textSize="20sp" />
 
         <androidx.appcompat.widget.AppCompatTextView
-            android:id="@+id/et_weeks"
+            android:id="@+id/tv_plan_brief_left_days"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_marginEnd="24dp"
