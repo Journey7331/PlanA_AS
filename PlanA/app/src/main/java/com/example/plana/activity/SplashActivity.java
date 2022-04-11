@@ -47,6 +47,7 @@ public class SplashActivity extends BaseActivity {
         auto_id = auto.getString("auto_id", null);
         auto_password = auto.getString("auto_pw", null);
 
+
         splashAnimation();
 
     }

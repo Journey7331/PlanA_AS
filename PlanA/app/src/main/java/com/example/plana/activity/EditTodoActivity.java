@@ -2,7 +2,6 @@ package com.example.plana.activity;
 
 import android.app.AlertDialog;
 import android.content.ContentValues;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -227,8 +226,8 @@ public class EditTodoActivity extends BaseActivity
                     finalLevel = rating;
                 }).create();
         alertDialog.show();
-        alertDialog.getButton(AlertDialog.BUTTON_POSITIVE).setTextColor(Constant.ColorBlueGrey);
-        alertDialog.getButton(AlertDialog.BUTTON_NEGATIVE).setTextColor(Constant.ColorBlueGrey);
+        alertDialog.getButton(AlertDialog.BUTTON_POSITIVE).setTextColor(Constant.MyColor.BlueGrey);
+        alertDialog.getButton(AlertDialog.BUTTON_NEGATIVE).setTextColor(Constant.MyColor.BlueGrey);
 
     }
 
@@ -258,8 +257,8 @@ public class EditTodoActivity extends BaseActivity
                     switchTime.setChecked(true);
                 }).create();
         alertDialog.show();
-        alertDialog.getButton(AlertDialog.BUTTON_POSITIVE).setTextColor(Constant.ColorBlueGrey);
-        alertDialog.getButton(AlertDialog.BUTTON_NEGATIVE).setTextColor(Constant.ColorBlueGrey);
+        alertDialog.getButton(AlertDialog.BUTTON_POSITIVE).setTextColor(Constant.MyColor.BlueGrey);
+        alertDialog.getButton(AlertDialog.BUTTON_NEGATIVE).setTextColor(Constant.MyColor.BlueGrey);
 
     }
 
@@ -288,8 +287,8 @@ public class EditTodoActivity extends BaseActivity
                     switchDate.setChecked(true);
                 }).create();
         alertDialog.show();
-        alertDialog.getButton(AlertDialog.BUTTON_POSITIVE).setTextColor(Constant.ColorBlueGrey);
-        alertDialog.getButton(AlertDialog.BUTTON_NEGATIVE).setTextColor(Constant.ColorBlueGrey);
+        alertDialog.getButton(AlertDialog.BUTTON_POSITIVE).setTextColor(Constant.MyColor.BlueGrey);
+        alertDialog.getButton(AlertDialog.BUTTON_NEGATIVE).setTextColor(Constant.MyColor.BlueGrey);
 
     }
 

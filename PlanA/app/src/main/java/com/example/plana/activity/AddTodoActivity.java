@@ -3,11 +3,8 @@ package com.example.plana.activity;
 import android.annotation.SuppressLint;
 import android.app.AlertDialog;
 import android.content.ContentValues;
-import android.content.DialogInterface;
 import android.content.Intent;
-import android.graphics.Color;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Button;
@@ -24,11 +21,8 @@ import androidx.appcompat.widget.SwitchCompat;
 
 import com.example.plana.R;
 import com.example.plana.base.BaseActivity;
-import com.example.plana.bean.My;
-import com.example.plana.bean.Todos;
 import com.example.plana.config.Constant;
 import com.example.plana.database.TodosDB;
-import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
@@ -144,13 +138,13 @@ public class AddTodoActivity extends BaseActivity
     public void onClick(View v) {
         if (v.getId() == R.id.et_date) {
             setupDate();
-            Log.i(TAG, "选择日期");
+//            Log.i(TAG, "选择日期");
         } else if (v.getId() == R.id.et_time) {
             setupTime();
-            Log.i(TAG, "选择时间");
+//            Log.i(TAG, "选择时间");
         } else if (v.getId() == R.id.et_level) {
             setupLevel();
-            Log.i(TAG, "选择优先级");
+//            Log.i(TAG, "选择优先级");
         }
     }
 
@@ -210,8 +204,8 @@ public class AddTodoActivity extends BaseActivity
                 })
                 .create();
         alertDialog.show();
-        alertDialog.getButton(AlertDialog.BUTTON_POSITIVE).setTextColor(Constant.ColorBlueGrey);
-        alertDialog.getButton(AlertDialog.BUTTON_NEGATIVE).setTextColor(Constant.ColorBlueGrey);
+        alertDialog.getButton(AlertDialog.BUTTON_POSITIVE).setTextColor(Constant.MyColor.BlueGrey);
+        alertDialog.getButton(AlertDialog.BUTTON_NEGATIVE).setTextColor(Constant.MyColor.BlueGrey);
 
     }
 
@@ -245,8 +239,8 @@ public class AddTodoActivity extends BaseActivity
                 })
                 .create();
         alertDialog.show();
-        alertDialog.getButton(AlertDialog.BUTTON_POSITIVE).setTextColor(Constant.ColorBlueGrey);
-        alertDialog.getButton(AlertDialog.BUTTON_NEGATIVE).setTextColor(Constant.ColorBlueGrey);
+        alertDialog.getButton(AlertDialog.BUTTON_POSITIVE).setTextColor(Constant.MyColor.BlueGrey);
+        alertDialog.getButton(AlertDialog.BUTTON_NEGATIVE).setTextColor(Constant.MyColor.BlueGrey);
 
     }
 
@@ -277,8 +271,8 @@ public class AddTodoActivity extends BaseActivity
                 })
                 .create();
         alertDialog.show();
-        alertDialog.getButton(AlertDialog.BUTTON_POSITIVE).setTextColor(Constant.ColorBlueGrey);
-        alertDialog.getButton(AlertDialog.BUTTON_NEGATIVE).setTextColor(Constant.ColorBlueGrey);
+        alertDialog.getButton(AlertDialog.BUTTON_POSITIVE).setTextColor(Constant.MyColor.BlueGrey);
+        alertDialog.getButton(AlertDialog.BUTTON_NEGATIVE).setTextColor(Constant.MyColor.BlueGrey);
     }
 
 }

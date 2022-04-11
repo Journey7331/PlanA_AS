@@ -21,7 +21,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AlertDialog;
 
-import com.example.plana.activity.AddCourseActivity;
+import com.example.plana.activity.CourseActivity;
 import com.example.plana.activity.ScheduleSettingActivity;
 import com.example.plana.bean.My;
 import com.example.plana.config.Constant;
@@ -32,7 +32,7 @@ import com.example.plana.adapter.OnDateDelayAdapter;
 import com.example.plana.config.MyConfigConstant;
 import com.example.plana.base.BaseFragment;
 import com.example.plana.bean.MySubject;
-import com.example.plana.utils.ContextApplication;
+import com.example.plana.base.MainApplication;
 import com.example.plana.utils.SharedPreferencesUtil;
 import com.example.plana.utils.SubjectRepertory;
 import com.example.plana.utils.TimeCalcUtil;
@@ -89,7 +89,7 @@ public class ScheduleFragment extends BaseFragment
         layout.setOnClickListener(this);
         ivScheduleSetting.setOnClickListener(this);
 
-        startDate = SharedPreferencesUtil.init(ContextApplication.getAppContext(), CONFIG_FILENAME)
+        startDate = SharedPreferencesUtil.init(MainApplication.getAppContext(), CONFIG_FILENAME)
                 .getString(
                         MyConfigConstant.CONFIG_START_DATE,
                         startDate
@@ -155,7 +155,7 @@ public class ScheduleFragment extends BaseFragment
      * 载入课程数据到list中
      */
     private void loadSubjects() {
-        String subjectListJson = SharedPreferencesUtil.init(ContextApplication.getAppContext(), "COURSE_DATA").getString("SUBJECT_LIST", null);
+        String subjectListJson = SharedPreferencesUtil.init(MainApplication.getAppContext(), "COURSE_DATA").getString("SUBJECT_LIST", null);
         if (subjectListJson == null) {
             mySubjects = SubjectRepertory.loadDefaultSubjects();
             if (!mySubjects.isEmpty()) {
@@ -241,7 +241,7 @@ public class ScheduleFragment extends BaseFragment
                     @Override
                     public void onFlaglayoutClick(int day, int start) {
                         timetableView.hideFlaglayout();
-                        Intent intent = new Intent(getContext(), AddCourseActivity.class);
+                        Intent intent = new Intent(getContext(), CourseActivity.class);
                         intent.putExtra("title", "添加课程");
                         intent.putExtra("day", day);
                         intent.putExtra("start", start);
@@ -328,8 +328,8 @@ public class ScheduleFragment extends BaseFragment
                 .setNegativeButton("取消", null)
                 .create();
         alertDialog.show();
-        alertDialog.getButton(android.app.AlertDialog.BUTTON_POSITIVE).setTextColor(Constant.ColorBlueGrey);
-        alertDialog.getButton(android.app.AlertDialog.BUTTON_NEGATIVE).setTextColor(Constant.ColorBlueGrey);
+        alertDialog.getButton(android.app.AlertDialog.BUTTON_POSITIVE).setTextColor(Constant.MyColor.BlueGrey);
+        alertDialog.getButton(android.app.AlertDialog.BUTTON_NEGATIVE).setTextColor(Constant.MyColor.BlueGrey);
     }
 
 
@@ -394,7 +394,7 @@ public class ScheduleFragment extends BaseFragment
         bt_edit_course.setOnClickListener(v -> {
 //                String str = "编辑课程";
 //                Toast.makeText(MainActivity.this,str,Toast.LENGTH_SHORT).show();
-            Intent intent = new Intent(MainActivity.mainActivity, AddCourseActivity.class);
+            Intent intent = new Intent(MainActivity.mainActivity, CourseActivity.class);
             intent.putExtra("title", "编辑课程");
             intent.putExtra("scheduleList", new Gson().toJson(beans));
             startActivity(intent);
@@ -503,7 +503,7 @@ public class ScheduleFragment extends BaseFragment
      */
     public void hideWeekView() {
         weekView.isShow(false);
-        titleTextView.setTextColor(Constant.ColorBlueGrey);
+        titleTextView.setTextColor(Constant.MyColor.BlueGrey);
         int cur = timetableView.curWeek();
         timetableView.onDateBuildListener()
                 .onUpdateDate(cur, cur);
@@ -515,7 +515,7 @@ public class ScheduleFragment extends BaseFragment
      */
     public void showWeekView() {
         weekView.isShow(true);
-        titleTextView.setTextColor(Constant.ColorMyRed);
+        titleTextView.setTextColor(Constant.MyColor.MyRed);
     }
 
 
@@ -601,7 +601,7 @@ public class ScheduleFragment extends BaseFragment
         String str_subjectJSON = gson.toJson(subject);
         My.mySubjects = subject;
 
-        SharedPreferencesUtil.init(ContextApplication.getAppContext(), "COURSE_DATA").putString("SUBJECT_LIST", str_subjectJSON); //存入json串
+        SharedPreferencesUtil.init(MainApplication.getAppContext(), "COURSE_DATA").putString("SUBJECT_LIST", str_subjectJSON); //存入json串
         Log.e(TAG, "toSaveSubjects: " + str_subjectJSON);
 
     }
@@ -616,7 +616,7 @@ public class ScheduleFragment extends BaseFragment
 //        SharedPreferences sp = getSharedPreferences("COURSE_DATA", Activity.MODE_PRIVATE);//创建sp对象
 //        String str_subjectJSON = sp.getString("SUBJECT_LIST", null);  //取出key为"SUBJECT_LIST"的值，如果值为空，则将第二个参数作为默认值赋值
 //        Log.e(TAG, "toGetSubjects: " + str_subjectJSON);//str_subjectJSON便是取出的数据了
-        String str_subjectJSON = SharedPreferencesUtil.init(ContextApplication.getAppContext(), "COURSE_DATA").getString("SUBJECT_LIST", null);
+        String str_subjectJSON = SharedPreferencesUtil.init(MainApplication.getAppContext(), "COURSE_DATA").getString("SUBJECT_LIST", null);
         Gson gson = new Gson();
         List<MySubject> subjectList = gson.fromJson(str_subjectJSON, new TypeToken<List<MySubject>>() {
         }.getType());

@@ -16,8 +16,6 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.fragment.app.Fragment;
 
 import com.example.plana.R;
 import com.example.plana.activity.EditTodoActivity;
@@ -184,9 +182,9 @@ public class EventAdapter extends ArrayAdapter {
                     })
                     .setNeutralButton("取消", null).create();
             alertDialog.show();
-            alertDialog.getButton(AlertDialog.BUTTON_POSITIVE).setTextColor(Constant.ColorBlueGrey);
-            alertDialog.getButton(AlertDialog.BUTTON_NEGATIVE).setTextColor(Constant.ColorBlueGrey);
-            alertDialog.getButton(AlertDialog.BUTTON_NEUTRAL).setTextColor(Constant.ColorBlueGrey);
+            alertDialog.getButton(AlertDialog.BUTTON_POSITIVE).setTextColor(Constant.MyColor.BlueGrey);
+            alertDialog.getButton(AlertDialog.BUTTON_NEGATIVE).setTextColor(Constant.MyColor.BlueGrey);
+            alertDialog.getButton(AlertDialog.BUTTON_NEUTRAL).setTextColor(Constant.MyColor.BlueGrey);
 
             return true;
         });

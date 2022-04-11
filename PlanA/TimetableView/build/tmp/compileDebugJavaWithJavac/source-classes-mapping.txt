@@ -38,12 +38,12 @@ com/zhuangfei/android_timetableview/sample/BuildConfig.java
  com.zhuangfei.android_timetableview.sample.BuildConfig
 com/zhuangfei/timetable/listener/package-info.java
  com.zhuangfei.timetable.listener.package-info
+com/zhuangfei/timetable/listener/OnScrollViewBuildAdapter.java
+ com.zhuangfei.timetable.listener.OnScrollViewBuildAdapter
 com/zhuangfei/timetable/listener/IWeekView.java
  com.zhuangfei.timetable.listener.IWeekView
  com.zhuangfei.timetable.listener.IWeekView$OnWeekItemClickedListener
  com.zhuangfei.timetable.listener.IWeekView$OnWeekLeftClickedListener
-com/zhuangfei/timetable/listener/OnScrollViewBuildAdapter.java
- com.zhuangfei.timetable.listener.OnScrollViewBuildAdapter
 com/zhuangfei/timetable/listener/OnWeekItemClickedAdapter.java
  com.zhuangfei.timetable.listener.OnWeekItemClickedAdapter
 com/zhuangfei/timetable/listener/OnItemBuildAdapter.java

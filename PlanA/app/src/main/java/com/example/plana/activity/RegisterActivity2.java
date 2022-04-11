@@ -1,13 +1,10 @@
 package com.example.plana.activity;
 
-import android.app.ActivityOptions;
 import android.app.AlertDialog;
 import android.content.ContentValues;
-import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
-import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
@@ -86,8 +83,8 @@ public class RegisterActivity2 extends BaseRegisterActivity
                         etBirth.setText(sdf.format(cal.getTime()));
                     }).create();
             alertDialog.show();
-            alertDialog.getButton(AlertDialog.BUTTON_POSITIVE).setTextColor(Constant.ColorBlueGrey);
-            alertDialog.getButton(AlertDialog.BUTTON_NEGATIVE).setTextColor(Constant.ColorBlueGrey);
+            alertDialog.getButton(AlertDialog.BUTTON_POSITIVE).setTextColor(Constant.MyColor.BlueGrey);
+            alertDialog.getButton(AlertDialog.BUTTON_NEGATIVE).setTextColor(Constant.MyColor.BlueGrey);
 
         } else if (v.getId() == R.id.btn_register_back) {
             // pop from activity stack

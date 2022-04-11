@@ -17,7 +17,6 @@ import android.widget.Toast;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
-import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.plana.R;
 import com.example.plana.bean.My;
@@ -37,9 +36,9 @@ import cn.carbswang.android.numberpickerview.library.NumberPickerView;
  * @program: PlanA
  * @description: 添加课程
  */
-public class AddCourseActivity extends AppCompatActivity {
+public class CourseActivity extends AppCompatActivity {
 
-    private static final String TAG = "AddCourseActivity";
+    private static final String TAG = "CourseActivity";
 
     String title;
     List<Schedule> scheduleList;
@@ -122,13 +121,13 @@ public class AddCourseActivity extends AppCompatActivity {
             teacher = et_teacher.getText().toString();
 
             if (name == null || name.length() == 0) {
-                Toast.makeText(AddCourseActivity.this, "请输入课程名！", Toast.LENGTH_SHORT).show();
-//                Toasty.error(AddCourseActivity.this, "请输入课程名！", Toast.LENGTH_SHORT, true).show();
+                Toast.makeText(CourseActivity.this, "请输入课程名！", Toast.LENGTH_SHORT).show();
+//                Toasty.error(CourseActivity.this, "请输入课程名！", Toast.LENGTH_SHORT, true).show();
                 return false;
             }
             if (weeks == null || weeks.isEmpty()) {
-                Toast.makeText(AddCourseActivity.this, "请选择周数！", Toast.LENGTH_SHORT).show();
-//                Toasty.error(AddCourseActivity.this, "请选择周数！", Toast.LENGTH_SHORT, true).show();
+                Toast.makeText(CourseActivity.this, "请选择周数！", Toast.LENGTH_SHORT).show();
+//                Toasty.error(CourseActivity.this, "请选择周数！", Toast.LENGTH_SHORT, true).show();
                 return false;
             }
 
@@ -150,7 +149,7 @@ public class AddCourseActivity extends AppCompatActivity {
             }
             mySubjects.add(new MySubject(null, name, position, teacher, weeks, start, step, day, -1, null));
             ScheduleFragment.toSaveSubjects(mySubjects);  // 保存课程
-            Intent intent = new Intent(AddCourseActivity.this, MainActivity.class);
+            Intent intent = new Intent(CourseActivity.this, MainActivity.class);
             if (MainActivity.mainActivity != null) {
                 MainActivity.mainActivity.finish();
             }
@@ -215,8 +214,8 @@ public class AddCourseActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 String str = "至少要保留一个时间段";
-                Toast.makeText(AddCourseActivity.this, str, Toast.LENGTH_SHORT).show();
-//                Toasty.error(AddCourseActivity.this, str, Toast.LENGTH_SHORT, true).show();
+                Toast.makeText(CourseActivity.this, str, Toast.LENGTH_SHORT).show();
+//                Toasty.error(CourseActivity.this, str, Toast.LENGTH_SHORT, true).show();
             }
         });
     }
@@ -271,8 +270,8 @@ public class AddCourseActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 String str = "至少要保留一个时间段";
-                Toast.makeText(AddCourseActivity.this, str, Toast.LENGTH_SHORT).show();
-//                Toasty.error(AddCourseActivity.this, str, Toast.LENGTH_SHORT, true).show();
+                Toast.makeText(CourseActivity.this, str, Toast.LENGTH_SHORT).show();
+//                Toasty.error(CourseActivity.this, str, Toast.LENGTH_SHORT, true).show();
             }
         });
     }

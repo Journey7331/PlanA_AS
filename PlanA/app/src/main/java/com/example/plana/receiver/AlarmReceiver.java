@@ -17,7 +17,7 @@ import com.example.plana.bean.MySubject;
 import com.example.plana.R;
 import com.example.plana.config.MyConfigConstant;
 import com.example.plana.fragment.ScheduleFragment;
-import com.example.plana.utils.ContextApplication;
+import com.example.plana.base.MainApplication;
 import com.example.plana.utils.SharedPreferencesUtil;
 import com.example.plana.utils.SubjectRepertory;
 import com.zhuangfei.timetable.model.Schedule;
@@ -122,7 +122,7 @@ public class AlarmReceiver extends BroadcastReceiver {
      * @return 课程信息
      */
     private List<MySubject> getOriginalData() {
-        String subjectListJson = SharedPreferencesUtil.init(ContextApplication.getAppContext(),
+        String subjectListJson = SharedPreferencesUtil.init(MainApplication.getAppContext(),
                 "SP_Data_List").getString("SUBJECT_LIST", null);
         List<MySubject> mySubjects;
         if (subjectListJson == null) {

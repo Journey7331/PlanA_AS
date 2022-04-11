@@ -21,10 +21,4 @@ public class PlanDetailActivity extends BaseActivity {
 
     }
 
-
-
-
-
-
-
 }

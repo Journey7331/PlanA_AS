@@ -1,0 +1,14 @@
+{
+    "tpns": {
+        "access_id": "1580010996",
+        "access_key": "AEWHMELH4LZH"
+    },
+    "com.example.plana": {
+        "channel": {
+            "enable": true
+        }
+    },
+    "debug": false,
+    "version": "1.3.2.0-release",
+    "upgrade": true
+}

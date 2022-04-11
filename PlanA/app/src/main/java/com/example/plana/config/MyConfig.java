@@ -1,7 +1,7 @@
 package com.example.plana.config;
 
 import com.example.plana.fragment.ScheduleFragment;
-import com.example.plana.utils.ContextApplication;
+import com.example.plana.base.MainApplication;
 import com.example.plana.utils.SharedPreferencesUtil;
 
 import java.util.HashMap;
@@ -22,7 +22,7 @@ public class MyConfig {
      */
     public static void saveConfig(Map<String, String> configMap) {
         SharedPreferencesUtil sharedPreferencesUtil =
-                SharedPreferencesUtil.init(ContextApplication.getAppContext(), ScheduleFragment.CONFIG_FILENAME);
+                SharedPreferencesUtil.init(MainApplication.getAppContext(), ScheduleFragment.CONFIG_FILENAME);
         for (String key : configMap.keySet()) {
             String value = configMap.get(key);
             sharedPreferencesUtil.putString(key, value);
@@ -36,7 +36,7 @@ public class MyConfig {
     public static Map<String, String> loadConfig() {
         Map<String, String> configMap;
         SharedPreferencesUtil sharedPreferencesUtil =
-                SharedPreferencesUtil.init(ContextApplication.getAppContext(), ScheduleFragment.CONFIG_FILENAME);
+                SharedPreferencesUtil.init(MainApplication.getAppContext(), ScheduleFragment.CONFIG_FILENAME);
         configMap = (Map<String, String>) sharedPreferencesUtil.getAll();
         return configMap;
     }

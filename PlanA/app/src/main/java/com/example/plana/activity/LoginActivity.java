@@ -1,7 +1,6 @@
 package com.example.plana.activity;
 
 import android.app.Activity;
-import android.content.ContentValues;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -16,11 +15,7 @@ import android.widget.Toast;
 import com.example.plana.R;
 import com.example.plana.base.BaseActivity;
 import com.example.plana.bean.My;
-import com.example.plana.database.MyDatabaseHelper;
 import com.example.plana.database.UserDB;
-import com.example.plana.fragment.ScheduleFragment;
-import com.example.plana.utils.ContextApplication;
-import com.example.plana.utils.SharedPreferencesUtil;
 
 /**
  * @program: PlanA
