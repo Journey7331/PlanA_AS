@@ -24,7 +24,7 @@ public class MySubject implements ScheduleEnable {
     /**
      * 时间
      */
-    private String time;
+//    private String time;
 
     /**
      * 教室
@@ -56,7 +56,7 @@ public class MySubject implements ScheduleEnable {
      */
     private int day;
 
-    private String term;
+//    private String term;
 
     /**
      * 一个随机数，用于对应课程的颜色
@@ -71,22 +71,6 @@ public class MySubject implements ScheduleEnable {
 
     public String getUrl() {
         return url;
-    }
-
-    public void setTime(String time) {
-        this.time = time;
-    }
-
-    public String getTime() {
-        return time;
-    }
-
-    public void setTerm(String term) {
-        this.term = term;
-    }
-
-    public String getTerm() {
-        return term;
     }
 
     public String getName() {
@@ -163,9 +147,8 @@ public class MySubject implements ScheduleEnable {
         return id;
     }
 
-    public MySubject(String term, String name, String room, String teacher, List<Integer> weekList, int start, int step, int day, int colorRandom, String time) {
+    public MySubject(String name, String room, String teacher, List<Integer> weekList, int start, int step, int day, int colorRandom) {
         super();
-        this.term = term;
         this.name = name;
         this.room = room;
         this.teacher = teacher;
@@ -174,7 +157,7 @@ public class MySubject implements ScheduleEnable {
         this.step = step;
         this.day = day;
         this.colorRandom = colorRandom;
-        this.time = time;
+//        this.time = time;
     }
 
     /**

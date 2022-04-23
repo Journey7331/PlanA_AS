@@ -11,13 +11,13 @@ import android.util.Log;
 
 import androidx.core.app.NotificationCompat;
 
-import com.example.plana.activity.MainActivity;
+import com.example.plana.function.MainActivity;
 import com.example.plana.config.MyConfig;
 import com.example.plana.bean.MySubject;
 import com.example.plana.R;
 import com.example.plana.config.MyConfigConstant;
-import com.example.plana.fragment.ScheduleFragment;
 import com.example.plana.base.MainApplication;
+import com.example.plana.function.fragment.ScheduleFragment;
 import com.example.plana.utils.SharedPreferencesUtil;
 import com.example.plana.utils.SubjectRepertory;
 import com.zhuangfei.timetable.model.Schedule;

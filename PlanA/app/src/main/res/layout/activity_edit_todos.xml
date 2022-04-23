@@ -23,12 +23,21 @@
         <!-- TODO WHY? -->
         <!-- Button is not Clickable if Locate in this RL -->
 
-        <View
-            android:id="@+id/edit_view"
-            android:layout_width="100dp"
-            android:layout_height="100dp"
-            android:layout_centerHorizontal="true"
-            android:background="@mipmap/edit" />
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:text="@string/todo_edit"
+            android:textColor="@color/colorPrimary"
+            android:textSize="30sp"
+            android:textStyle="bold" />
+
+<!--        <View-->
+<!--            android:id="@+id/edit_view"-->
+<!--            android:layout_width="100dp"-->
+<!--            android:layout_height="100dp"-->
+<!--            android:layout_centerHorizontal="true"-->
+<!--            android:background="@mipmap/edit" />-->
 
     </RelativeLayout>
 

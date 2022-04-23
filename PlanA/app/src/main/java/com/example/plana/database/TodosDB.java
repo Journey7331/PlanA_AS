@@ -8,6 +8,7 @@ import android.provider.BaseColumns;
 import android.util.Log;
 
 import com.example.plana.bean.Todos;
+import com.example.plana.config.Constant;
 
 import java.util.ArrayList;
 
@@ -53,7 +54,8 @@ public class TodosDB implements MyDatabaseHelper.TableCreateInterface {
                 + ")";
 
         db.execSQL(sql);
-        Log.i("create", "** Todos Table Created **");
+        Log.i(Constant.TAG.DATE_BASE_TAG,
+                TodosDB.TableName + " --- Table Created ---");
     }
 
     @Override

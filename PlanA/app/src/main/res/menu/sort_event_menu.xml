@@ -12,9 +12,6 @@
         android:title="@string/sort_prior" />
     <item
         android:id="@+id/sort_4"
-        android:title="@string/sort_undone" />
-    <item
-        android:id="@+id/sort_5"
         android:title="@string/sort_done" />
 
 </menu>

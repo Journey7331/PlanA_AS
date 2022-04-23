@@ -54,11 +54,10 @@
     <string name="emoji_teacher">🎓</string>
     <string name="emoji_position">📍</string>
     <string name="emoji_course_name">📚</string>
-    <string name="emoji_write">✍</string>
-    <string name="add_todo">添加</string>
-    <string name="cancel">取消</string>
-    <string name="stop">暂停</string>
-    <string name="log_out">登出</string>
+    <string name="add_todo">add</string>
+    <string name="cancel">cancel</string>
+    <string name="stop">stop</string>
+    <string name="log_out">log out</string>
     <string name="emoji_notification">🔔</string>
     <string name="emoji_time_span">⌛</string>
     <string name="emoji_eyes">👀</string>
@@ -68,10 +67,19 @@
     <string name="emoji_school">🏫</string>
     <string name="emoji_achievement">🏆</string>
     <string name="emoji_paste_pad">📋</string>
-    <string name="focus_time">专注空间</string>
-    <string name="my_page_goal">待做</string>
-    <string name="my_page_undone">未做</string>
-    <string name="my_page_done">已完成</string>
+    <string name="emoji_cloud">☁️</string>
+
+    <string name="focus_time">focus</string>
+    <string name="my_page_goal">undone</string>
+    <string name="my_page_undone">undone</string>
+    <string name="my_page_done">done</string>
+    <string name="todo_add">add</string>
+    <string name="todo_edit">edit</string>
+    <string name="emoji_person">👤</string>
+    <string name="emoji_trash_bin">♻️</string>
+    <string name="emoji_box">📦</string>
+    <string name="time_record">计时记录</string>
+    <string name="emoji_timer">⌛️</string>
 
 
 </resources>

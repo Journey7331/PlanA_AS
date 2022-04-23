@@ -5,6 +5,7 @@
     <uses-permission android:name="android.permission.INTERNET"/>
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.VIBRATE" />
+<!--    <uses-permission android:name="android.permission.ACCESS_NOTIFICATION_POLICY" />-->
 
     <application
         android:name=".base.MainApplication"
@@ -16,7 +17,7 @@
         android:fullBackupContent="true"
         android:theme="@style/Theme.PlanA">
 
-        <activity android:name=".activity.SplashActivity"
+        <activity android:name=".function.SplashActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -24,21 +25,22 @@
             </intent-filter>
         </activity>
 
-        <activity android:name=".activity.AchievementActivity" />
-        <activity android:name=".activity.AddTodoActivity" />
-        <activity android:name=".activity.AddPlanActivity" />
-        <activity android:name=".activity.CourseActivity"/>
+        <activity android:name=".function.AchievementActivity" />
+        <activity android:name=".function.AddTodoActivity" />
+        <activity android:name=".function.AddPlanActivity" />
+        <activity android:name=".function.CourseActivity"/>
 
-        <activity android:name=".activity.EditTodoActivity" />
-        <activity android:name=".activity.LoginActivity"/>
-        <activity android:name=".activity.MainActivity"/>
-        <activity android:name=".activity.PlanDetailActivity"/>
+        <activity android:name=".function.EditTodoActivity" />
+        <activity android:name=".function.LoginActivity"/>
+        <activity android:name=".function.MainActivity"/>
+        <activity android:name=".function.PlanDetailActivity"/>
 
-        <activity android:name=".activity.RegisterActivity1"/>
-        <activity android:name=".activity.RegisterActivity2"/>
+        <activity android:name=".function.RegisterActivity1"/>
+        <activity android:name=".function.RegisterActivity2"/>
 
-        <activity android:name=".activity.ScheduleSettingActivity"/>
-        <activity android:name=".activity.TimeCountActivity"/>
+        <activity android:name=".function.ScheduleSettingActivity"/>
+        <activity android:name=".function.TimerActivity"/>
+        <activity android:name=".function.TimerRecorderActivity"/>
 
         <receiver android:name=".receiver.AlarmReceiver" />
 

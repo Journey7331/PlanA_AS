@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/rl_plan_brief"
+    android:layout_width="match_parent"
+    android:layout_height="60dp"
+    android:layout_marginHorizontal="15dp"
+    android:layout_marginTop="15dp"
+    android:background="@drawable/background_dialog_radius_white">
+
+    <androidx.emoji2.widget.EmojiButton
+        android:id="@+id/emoji_timer"
+        android:layout_width="32dp"
+        android:layout_height="32dp"
+        android:layout_alignParentStart="true"
+        android:layout_centerVertical="true"
+        android:layout_marginStart="15dp"
+        android:background="@null"
+        android:text="@string/emoji_timer"
+        android:textSize="22sp" />
+
+    <TextView
+        android:id="@+id/tv_timer_day"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerVertical="true"
+        android:layout_marginStart="20dp"
+        android:layout_toEndOf="@+id/emoji_timer"
+        android:text="22.04.02"
+        android:textSize="14sp" />
+
+    <TextView
+        android:id="@+id/tv_timer_time"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_centerVertical="true"
+        android:layout_marginStart="30dp"
+        android:layout_marginEnd="20dp"
+        android:layout_toStartOf="@+id/tv_timer_count"
+        android:layout_toEndOf="@+id/tv_timer_day"
+        android:lines="1"
+        android:text="12:00 - 01:00"
+        android:textColor="@color/black"
+        android:textSize="14sp" />
+
+    <TextView
+        android:id="@+id/tv_timer_count"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_centerVertical="true"
+        android:layout_marginEnd="20dp"
+        android:text="60分钟"
+        android:textColor="@color/colorBlueGrey"
+        android:textSize="16sp"
+        android:textStyle="bold" />
+
+
+</RelativeLayout>

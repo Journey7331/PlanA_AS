@@ -37,6 +37,20 @@ public class Constant {
 
     public static class TAG {
         public static final String NOTIFY_TAG = "NOTIFY_TAG";
+        public static final String DATE_BASE_TAG = "DATE_BASE_TAG";
+    }
+
+
+    public static class Timer {
+        /**
+         * 正计时
+         */
+        public static final String POSITIVE = "POSITIVE";
+
+        /**
+         * 倒计时
+         */
+        public static final String NEGATIVE = "NEGATIVE";
     }
 
 

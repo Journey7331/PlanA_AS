@@ -1,7 +1,7 @@
 package com.example.plana.config;
 
-import com.example.plana.fragment.ScheduleFragment;
 import com.example.plana.base.MainApplication;
+import com.example.plana.function.fragment.ScheduleFragment;
 import com.example.plana.utils.SharedPreferencesUtil;
 
 import java.util.HashMap;

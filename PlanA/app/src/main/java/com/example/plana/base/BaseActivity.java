@@ -21,7 +21,7 @@ public abstract class BaseActivity extends AppCompatActivity {
     private long exitTime = 0;
     private String URL = Constant.URL;
 
-    public MyDatabaseHelper mysql = new MyDatabaseHelper(this);
+    public MyDatabaseHelper sqlite = new MyDatabaseHelper(this);
 //    public Retrofit.Builder retrofitBuilder = new Retrofit.Builder().baseUrl(URL);
 
     // 隐藏键盘

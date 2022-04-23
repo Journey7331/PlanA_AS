@@ -79,10 +79,72 @@ public class TimeCalcUtil {
         return sdf.format(cal.getTime());
     }
 
+    /**
+     * 将 Calendar 型 转换成 "yyyy-MM-dd"格式的时间字符串
+     */
+    public static String calToSimpleStr(Calendar cal) {
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd", Locale.CHINA);
+        return sdf.format(cal.getTime());
+    }
+
     public static String getLeftDay(int days) {
         if (days == 0) {
             return "已完成";
         }
         return "还剩" + days + "天";
     }
+
+
+    /**
+     * 计算多少分钟后是什么时候
+     * 返回值 "HH:mm"
+     * 如果是下一天，在末尾加上「第二天」
+     */
+    public static String calcEndTime(int startHour, int startMinute, int time) {
+        StringBuilder endTime = new StringBuilder();
+        boolean flag = false;
+
+        int endMinute = startMinute + time;
+        int endHour = startHour + endMinute / 60;
+        endMinute %= 60;
+
+        if (endHour >= 24) {
+            endHour %= 24;
+            flag = true;
+        }
+        if (endHour < 10) endTime.append("0");
+        endTime.append(endHour).append(":");
+
+        if (endMinute<10) endTime.append("0");
+        endTime.append(endMinute);
+
+        if (flag) endTime.append(" (+1)");
+
+        return endTime.toString();
+    }
+
+    /**
+     * 拼接时间
+     * */
+    public static String format02d(int Hour, int Minute) {
+        StringBuilder startTime = new StringBuilder();
+
+        if (Hour < 10) startTime.append("0");
+        startTime.append(Hour).append(":");
+
+        if (Minute<10) startTime.append("0");
+        startTime.append(Minute);
+
+        return startTime.toString();
+    }
+
+    /**
+     * 转为两位数
+     * */
+    public static String format02d(int num) {
+        if (num >= 10) return String.valueOf(num);
+        return "0" + num;
+    }
+
+
 }

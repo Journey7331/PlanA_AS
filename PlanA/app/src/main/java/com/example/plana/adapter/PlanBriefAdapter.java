@@ -1,7 +1,6 @@
 package com.example.plana.adapter;
 
 import android.app.Activity;
-import android.content.Context;
 import android.content.Intent;
 import android.os.Handler;
 import android.view.LayoutInflater;
@@ -15,10 +14,10 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.plana.R;
-import com.example.plana.activity.PlanDetailActivity;
 import com.example.plana.bean.My;
 import com.example.plana.bean.Plan;
 import com.example.plana.bean.PlanBrief;
+import com.example.plana.function.plan.PlanDetailActivity;
 import com.example.plana.utils.TimeCalcUtil;
 
 import java.util.LinkedList;

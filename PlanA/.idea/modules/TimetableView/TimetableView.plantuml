@@ -1,0 +1,270 @@
+@startuml
+
+title __PLANA.TIMETABLEVIEW's Class Diagram__\n
+
+  namespace com.zhuangfei.android_timetableview.sample {
+    class com.zhuangfei.android_timetableview.sample.BuildConfig {
+    }
+  }
+  
+
+  namespace com.zhuangfei.timetable {
+    class com.zhuangfei.timetable.TimetableView {
+    }
+  }
+  
+
+  namespace com.zhuangfei.timetable {
+    namespace listener {
+      interface com.zhuangfei.timetable.listener.ISchedule {
+      }
+    }
+  }
+  
+
+  namespace com.zhuangfei.timetable {
+    namespace listener {
+      interface com.zhuangfei.timetable.listener.IWeekView {
+      }
+    }
+  }
+  
+
+  namespace com.zhuangfei.timetable {
+    namespace listener {
+      class com.zhuangfei.timetable.listener.OnConfigHandleAdapter {
+      }
+    }
+  }
+  
+
+  namespace com.zhuangfei.timetable {
+    namespace listener {
+      class com.zhuangfei.timetable.listener.OnDateBuildAapter {
+      }
+    }
+  }
+  
+
+  namespace com.zhuangfei.timetable {
+    namespace listener {
+      class com.zhuangfei.timetable.listener.OnFlaglayoutClickAdapter {
+      }
+    }
+  }
+  
+
+  namespace com.zhuangfei.timetable {
+    namespace listener {
+      class com.zhuangfei.timetable.listener.OnItemBuildAdapter {
+      }
+    }
+  }
+  
+
+  namespace com.zhuangfei.timetable {
+    namespace listener {
+      class com.zhuangfei.timetable.listener.OnItemClickAdapter {
+      }
+    }
+  }
+  
+
+  namespace com.zhuangfei.timetable {
+    namespace listener {
+      class com.zhuangfei.timetable.listener.OnItemLongClickAdapter {
+      }
+    }
+  }
+  
+
+  namespace com.zhuangfei.timetable {
+    namespace listener {
+      class com.zhuangfei.timetable.listener.OnScrollViewBuildAdapter {
+      }
+    }
+  }
+  
+
+  namespace com.zhuangfei.timetable {
+    namespace listener {
+      class com.zhuangfei.timetable.listener.OnSlideBuildAdapter {
+      }
+    }
+  }
+  
+
+  namespace com.zhuangfei.timetable {
+    namespace listener {
+      class com.zhuangfei.timetable.listener.OnSpaceItemClickAdapter {
+      }
+    }
+  }
+  
+
+  namespace com.zhuangfei.timetable {
+    namespace listener {
+      class com.zhuangfei.timetable.listener.OnWeekChangedAdapter {
+      }
+    }
+  }
+  
+
+  namespace com.zhuangfei.timetable {
+    namespace listener {
+      class com.zhuangfei.timetable.listener.OnWeekItemClickedAdapter {
+      }
+    }
+  }
+  
+
+  namespace com.zhuangfei.timetable {
+    namespace listener {
+      class com.zhuangfei.timetable.listener.OnWeekLeftClickedAdapter {
+      }
+    }
+  }
+  
+
+  namespace com.zhuangfei.timetable {
+    namespace model {
+      class com.zhuangfei.timetable.model.Schedule {
+      }
+    }
+  }
+  
+
+  namespace com.zhuangfei.timetable {
+    namespace model {
+      class com.zhuangfei.timetable.model.ScheduleColorPool {
+      }
+    }
+  }
+  
+
+  namespace com.zhuangfei.timetable {
+    namespace model {
+      class com.zhuangfei.timetable.model.ScheduleConfig {
+      }
+    }
+  }
+  
+
+  namespace com.zhuangfei.timetable {
+    namespace model {
+      interface com.zhuangfei.timetable.model.ScheduleEnable {
+      }
+    }
+  }
+  
+
+  namespace com.zhuangfei.timetable {
+    namespace model {
+      class com.zhuangfei.timetable.model.ScheduleSupport {
+      }
+    }
+  }
+  
+
+  namespace com.zhuangfei.timetable {
+    namespace model {
+      interface com.zhuangfei.timetable.model.WeekViewEnable {
+      }
+    }
+  }
+  
+
+  namespace com.zhuangfei.timetable {
+    namespace operater {
+      abstract class com.zhuangfei.timetable.operater.AbsOperater {
+      }
+    }
+  }
+  
+
+  namespace com.zhuangfei.timetable {
+    namespace operater {
+      class com.zhuangfei.timetable.operater.SimpleOperater {
+      }
+    }
+  }
+  
+
+  namespace com.zhuangfei.timetable {
+    namespace utils {
+      class com.zhuangfei.timetable.utils.ColorUtils {
+      }
+    }
+  }
+  
+
+  namespace com.zhuangfei.timetable {
+    namespace utils {
+      class com.zhuangfei.timetable.utils.ScreenUtils {
+      }
+    }
+  }
+  
+
+  namespace com.zhuangfei.timetable {
+    namespace view {
+      class com.zhuangfei.timetable.view.PerWeekView {
+      }
+    }
+  }
+  
+
+  namespace com.zhuangfei.timetable {
+    namespace view {
+      class com.zhuangfei.timetable.view.WeekView {
+      }
+    }
+  }
+  
+
+  com.zhuangfei.timetable.TimetableView -up-|> android.widget.LinearLayout
+  com.zhuangfei.timetable.TimetableView o-- com.zhuangfei.timetable.model.ScheduleColorPool : colorPool
+  com.zhuangfei.timetable.TimetableView o-- com.zhuangfei.timetable.listener.ISchedule.OnConfigHandleListener : onConfigHandleListener
+  com.zhuangfei.timetable.TimetableView o-- com.zhuangfei.timetable.listener.ISchedule.OnDateBuildListener : onDateBuildListener
+  com.zhuangfei.timetable.TimetableView o-- com.zhuangfei.timetable.listener.ISchedule.OnFlaglayoutClickListener : onFlaglayoutClickListener
+  com.zhuangfei.timetable.TimetableView o-- com.zhuangfei.timetable.listener.ISchedule.OnItemBuildListener : onItemBuildListener
+  com.zhuangfei.timetable.TimetableView o-- com.zhuangfei.timetable.listener.ISchedule.OnItemClickListener : onItemClickListener
+  com.zhuangfei.timetable.TimetableView o-- com.zhuangfei.timetable.listener.ISchedule.OnItemLongClickListener : onItemLongClickListener
+  com.zhuangfei.timetable.TimetableView o-- com.zhuangfei.timetable.listener.ISchedule.OnScrollViewBuildListener : onScrollViewBuildListener
+  com.zhuangfei.timetable.TimetableView o-- com.zhuangfei.timetable.listener.ISchedule.OnSlideBuildListener : onSlideBuildListener
+  com.zhuangfei.timetable.TimetableView o-- com.zhuangfei.timetable.listener.ISchedule.OnSpaceItemClickListener : onSpaceItemClickListener
+  com.zhuangfei.timetable.TimetableView o-- com.zhuangfei.timetable.listener.ISchedule.OnWeekChangedListener : onWeekChangedListener
+  com.zhuangfei.timetable.TimetableView o-- com.zhuangfei.timetable.operater.AbsOperater : operater
+  com.zhuangfei.timetable.listener.OnConfigHandleAdapter .up.|> com.zhuangfei.timetable.listener.ISchedule.OnConfigHandleListener
+  com.zhuangfei.timetable.listener.OnDateBuildAapter .up.|> com.zhuangfei.timetable.listener.ISchedule.OnDateBuildListener
+  com.zhuangfei.timetable.listener.OnFlaglayoutClickAdapter .up.|> com.zhuangfei.timetable.listener.ISchedule.OnFlaglayoutClickListener
+  com.zhuangfei.timetable.listener.OnItemBuildAdapter .up.|> com.zhuangfei.timetable.listener.ISchedule.OnItemBuildListener
+  com.zhuangfei.timetable.listener.OnItemClickAdapter .up.|> com.zhuangfei.timetable.listener.ISchedule.OnItemClickListener
+  com.zhuangfei.timetable.listener.OnItemLongClickAdapter .up.|> com.zhuangfei.timetable.listener.ISchedule.OnItemLongClickListener
+  com.zhuangfei.timetable.listener.OnScrollViewBuildAdapter .up.|> com.zhuangfei.timetable.listener.ISchedule.OnScrollViewBuildListener
+  com.zhuangfei.timetable.listener.OnSlideBuildAdapter .up.|> com.zhuangfei.timetable.listener.ISchedule.OnSlideBuildListener
+  com.zhuangfei.timetable.listener.OnSpaceItemClickAdapter .up.|> com.zhuangfei.timetable.listener.ISchedule.OnSpaceItemClickListener
+  com.zhuangfei.timetable.listener.OnWeekChangedAdapter .up.|> com.zhuangfei.timetable.listener.ISchedule.OnWeekChangedListener
+  com.zhuangfei.timetable.listener.OnWeekItemClickedAdapter .up.|> com.zhuangfei.timetable.listener.IWeekView.OnWeekItemClickedListener
+  com.zhuangfei.timetable.listener.OnWeekLeftClickedAdapter .up.|> com.zhuangfei.timetable.listener.IWeekView.OnWeekLeftClickedListener
+  com.zhuangfei.timetable.model.Schedule .up.|> java.io.Serializable
+  com.zhuangfei.timetable.model.Schedule .up.|> java.lang.Comparable
+  com.zhuangfei.timetable.model.ScheduleConfig o-- com.zhuangfei.timetable.listener.ISchedule.OnConfigHandleListener : mOnConfigHandleListener
+  com.zhuangfei.timetable.operater.SimpleOperater -up-|> com.zhuangfei.timetable.operater.AbsOperater
+  com.zhuangfei.timetable.operater.SimpleOperater o-- com.zhuangfei.timetable.TimetableView : mView
+  com.zhuangfei.timetable.operater.SimpleOperater o-- com.zhuangfei.timetable.model.ScheduleConfig : scheduleConfig
+  com.zhuangfei.timetable.view.PerWeekView -up-|> android.view.View
+  com.zhuangfei.timetable.view.WeekView .up.|> com.zhuangfei.timetable.model.WeekViewEnable
+  com.zhuangfei.timetable.view.WeekView -up-|> android.widget.LinearLayout
+  com.zhuangfei.timetable.view.WeekView o-- com.zhuangfei.timetable.listener.IWeekView.OnWeekItemClickedListener : onWeekItemClickedListener
+  com.zhuangfei.timetable.view.WeekView o-- com.zhuangfei.timetable.listener.IWeekView.OnWeekLeftClickedListener : onWeekLeftClickedListener
+
+
+right footer
+
+
+PlantUML diagram generated by SketchIt! (https://bitbucket.org/pmesmeur/sketch.it)
+For more information about this tool, please contact philippe.mesmeur@gmail.com
+endfooter
+
+@enduml

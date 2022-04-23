@@ -35,9 +35,12 @@
             android:id="@+id/rl_school_time_1"
             android:layout_width="match_parent"
             android:layout_height="38dp"
-            android:layout_margin="3dp"
-            android:paddingEnd="20dp"
-            android:background="@drawable/background_edit_text_select">
+            android:layout_marginStart="3dp"
+            android:layout_marginTop="3dp"
+            android:layout_marginEnd="3dp"
+            android:layout_marginBottom="3dp"
+            android:background="@drawable/background_edit_text_select"
+            android:paddingEnd="20dp">
 
             <androidx.emoji2.widget.EmojiButton
                 android:id="@+id/emoji_school_time"
@@ -53,13 +56,13 @@
                 android:id="@+id/et_school_start_time"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:focusable="false"
                 android:layout_centerVertical="true"
                 android:layout_marginStart="20dp"
                 android:layout_toEndOf="@+id/emoji_school_time"
                 android:background="@null"
-                android:textColor="@color/google_grey_700"
+                android:focusable="false"
                 android:hint="选择开学日期"
+                android:textColor="@color/google_grey_700"
                 android:textSize="15sp" />
 
         </RelativeLayout>

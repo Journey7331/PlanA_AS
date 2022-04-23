@@ -18,12 +18,12 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
 import com.example.plana.R;
-import com.example.plana.activity.EditTodoActivity;
 import com.example.plana.bean.My;
 import com.example.plana.bean.Todos;
 import com.example.plana.config.Constant;
 import com.example.plana.database.TodosDB;
 import com.example.plana.database.MyDatabaseHelper;
+import com.example.plana.function.todo.EditTodoActivity;
 import com.example.plana.utils.TimeCalcUtil;
 
 import java.text.ParseException;

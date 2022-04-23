@@ -57,7 +57,7 @@ public class SubjectRepertory {
                 List<Integer> weeks = courseinfo.get(i).getWeeks();
                 int start = courseinfo.get(i).getSections().get(0).getSection();
                 int step = courseinfo.get(i).getSections().size();
-                course.add(new MySubject(null, name, position, teacher, weeks, start, step, day, -1, null));
+                course.add(new MySubject( name, position, teacher, weeks, start, step, day, -1));
             }
         } catch (Exception e) {
             e.printStackTrace();

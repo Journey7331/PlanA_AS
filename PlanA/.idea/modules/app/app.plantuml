@@ -1,0 +1,508 @@
+@startuml
+
+title __PLANA.APP's Class Diagram__\n
+
+  namespace  {
+    namespace om.example.plana {
+      class com.example.plana.BuildConfig {
+      }
+    }
+  }
+  
+
+  namespace  {
+    namespace om.example.plana {
+      namespace activity {
+        class com.example.plana.activity.AchievementActivity {
+        }
+      }
+    }
+  }
+  
+
+  namespace  {
+    namespace om.example.plana {
+      namespace activity {
+        class com.example.plana.activity.AddCourseActivity {
+        }
+      }
+    }
+  }
+  
+
+  namespace  {
+    namespace om.example.plana {
+      namespace activity {
+        class com.example.plana.activity.AddPlanActivity {
+        }
+      }
+    }
+  }
+  
+
+  namespace  {
+    namespace om.example.plana {
+      namespace activity {
+        class com.example.plana.activity.AddTodoActivity {
+        }
+      }
+    }
+  }
+  
+
+  namespace  {
+    namespace om.example.plana {
+      namespace activity {
+        class com.example.plana.activity.EditTodoActivity {
+        }
+      }
+    }
+  }
+  
+
+  namespace  {
+    namespace om.example.plana {
+      namespace activity {
+        class com.example.plana.activity.LoginActivity {
+        }
+      }
+    }
+  }
+  
+
+  namespace  {
+    namespace om.example.plana {
+      namespace activity {
+        class com.example.plana.activity.MainActivity {
+        }
+      }
+    }
+  }
+  
+
+  namespace  {
+    namespace om.example.plana {
+      namespace activity {
+        class com.example.plana.activity.PlanDetailActivity {
+        }
+      }
+    }
+  }
+  
+
+  namespace  {
+    namespace om.example.plana {
+      namespace activity {
+        class com.example.plana.activity.RegisterActivity1 {
+        }
+      }
+    }
+  }
+  
+
+  namespace  {
+    namespace om.example.plana {
+      namespace activity {
+        class com.example.plana.activity.RegisterActivity2 {
+        }
+      }
+    }
+  }
+  
+
+  namespace  {
+    namespace om.example.plana {
+      namespace activity {
+        class com.example.plana.activity.ScheduleSettingActivity {
+        }
+      }
+    }
+  }
+  
+
+  namespace  {
+    namespace om.example.plana {
+      namespace activity {
+        class com.example.plana.activity.SplashActivity {
+        }
+      }
+    }
+  }
+  
+
+  namespace  {
+    namespace om.example.plana {
+      namespace activity {
+        class com.example.plana.activity.TimeCountActivity {
+        }
+      }
+    }
+  }
+  
+
+  namespace  {
+    namespace om.example.plana {
+      namespace adapter {
+        class com.example.plana.adapter.EventAdapter {
+        }
+      }
+    }
+  }
+  
+
+  namespace  {
+    namespace om.example.plana {
+      namespace adapter {
+        class com.example.plana.adapter.OnDateDelayAdapter {
+        }
+      }
+    }
+  }
+  
+
+  namespace  {
+    namespace om.example.plana {
+      namespace adapter {
+        class com.example.plana.adapter.PlanBriefAdapter {
+        }
+      }
+    }
+  }
+  
+
+  namespace  {
+    namespace om.example.plana {
+      namespace base {
+        abstract class com.example.plana.base.BaseActivity {
+        }
+      }
+    }
+  }
+  
+
+  namespace  {
+    namespace om.example.plana {
+      namespace base {
+        abstract class com.example.plana.base.BaseFragment {
+        }
+      }
+    }
+  }
+  
+
+  namespace  {
+    namespace om.example.plana {
+      namespace base {
+        abstract class com.example.plana.base.BaseRegisterActivity {
+        }
+      }
+    }
+  }
+  
+
+  namespace  {
+    namespace om.example.plana {
+      namespace base {
+        class com.example.plana.base.MainApplication {
+        }
+      }
+    }
+  }
+  
+
+  namespace  {
+    namespace om.example.plana {
+      namespace bean {
+        class com.example.plana.bean.JsonRootBean {
+        }
+      }
+    }
+  }
+  
+
+  namespace  {
+    namespace om.example.plana {
+      namespace bean {
+        class com.example.plana.bean.My {
+        }
+      }
+    }
+  }
+  
+
+  namespace  {
+    namespace om.example.plana {
+      namespace bean {
+        class com.example.plana.bean.MySubject {
+        }
+      }
+    }
+  }
+  
+
+  namespace  {
+    namespace om.example.plana {
+      namespace bean {
+        class com.example.plana.bean.Plan {
+        }
+      }
+    }
+  }
+  
+
+  namespace  {
+    namespace om.example.plana {
+      namespace bean {
+        class com.example.plana.bean.PlanBrief {
+        }
+      }
+    }
+  }
+  
+
+  namespace  {
+    namespace om.example.plana {
+      namespace bean {
+        class com.example.plana.bean.Todos {
+        }
+      }
+    }
+  }
+  
+
+  namespace  {
+    namespace om.example.plana {
+      namespace bean {
+        class com.example.plana.bean.User {
+        }
+      }
+    }
+  }
+  
+
+  namespace  {
+    namespace om.example.plana {
+      namespace config {
+        class com.example.plana.config.Constant {
+        }
+      }
+    }
+  }
+  
+
+  namespace  {
+    namespace om.example.plana {
+      namespace config {
+        class com.example.plana.config.MyConfig {
+        }
+      }
+    }
+  }
+  
+
+  namespace  {
+    namespace om.example.plana {
+      namespace config {
+        class com.example.plana.config.MyConfigConstant {
+        }
+      }
+    }
+  }
+  
+
+  namespace  {
+    namespace om.example.plana {
+      namespace database {
+        class com.example.plana.database.MyDatabaseHelper {
+        }
+      }
+    }
+  }
+  
+
+  namespace  {
+    namespace om.example.plana {
+      namespace database {
+        class com.example.plana.database.TodosDB {
+        }
+      }
+    }
+  }
+  
+
+  namespace  {
+    namespace om.example.plana {
+      namespace database {
+        class com.example.plana.database.UserDB {
+        }
+      }
+    }
+  }
+  
+
+  namespace  {
+    namespace om.example.plana {
+      namespace fragment {
+        class com.example.plana.fragment.FocusFragment {
+        }
+      }
+    }
+  }
+  
+
+  namespace  {
+    namespace om.example.plana {
+      namespace fragment {
+        class com.example.plana.fragment.MyPageFragment {
+        }
+      }
+    }
+  }
+  
+
+  namespace  {
+    namespace om.example.plana {
+      namespace fragment {
+        class com.example.plana.fragment.PlanFragment {
+        }
+      }
+    }
+  }
+  
+
+  namespace  {
+    namespace om.example.plana {
+      namespace fragment {
+        class com.example.plana.fragment.ScheduleFragment {
+        }
+      }
+    }
+  }
+  
+
+  namespace  {
+    namespace om.example.plana {
+      namespace fragment {
+        class com.example.plana.fragment.ShowListFragment {
+        }
+      }
+    }
+  }
+  
+
+  namespace  {
+    namespace om.example.plana {
+      namespace receiver {
+        class com.example.plana.receiver.AlarmReceiver {
+        }
+      }
+    }
+  }
+  
+
+  namespace  {
+    namespace om.example.plana {
+      namespace service {
+        interface com.example.plana.service.UserService {
+        }
+      }
+    }
+  }
+  
+
+  namespace  {
+    namespace om.example.plana {
+      namespace utils {
+        class com.example.plana.utils.SharedPreferencesUtil {
+        }
+      }
+    }
+  }
+  
+
+  namespace  {
+    namespace om.example.plana {
+      namespace utils {
+        class com.example.plana.utils.SubjectRepertory {
+        }
+      }
+    }
+  }
+  
+
+  namespace  {
+    namespace om.example.plana {
+      namespace utils {
+        class com.example.plana.utils.TimeCalcUtil {
+        }
+      }
+    }
+  }
+  
+
+  com.example.plana.activity.AchievementActivity -up-|> com.example.plana.base.BaseActivity
+  com.example.plana.activity.AddCourseActivity -up-|> androidx.appcompat.app.AppCompatActivity
+  com.example.plana.activity.AddPlanActivity -up-|> com.example.plana.base.BaseActivity
+  com.example.plana.activity.AddTodoActivity .up.|> android.view.View.OnClickListener
+  com.example.plana.activity.AddTodoActivity .up.|> android.widget.CompoundButton.OnCheckedChangeListener
+  com.example.plana.activity.AddTodoActivity -up-|> com.example.plana.base.BaseActivity
+  com.example.plana.activity.EditTodoActivity .up.|> android.view.View.OnClickListener
+  com.example.plana.activity.EditTodoActivity .up.|> android.widget.CompoundButton.OnCheckedChangeListener
+  com.example.plana.activity.EditTodoActivity -up-|> com.example.plana.base.BaseActivity
+  com.example.plana.activity.EditTodoActivity o-- com.example.plana.bean.Todos : todos
+  com.example.plana.activity.LoginActivity .up.|> android.view.View.OnClickListener
+  com.example.plana.activity.LoginActivity -up-|> com.example.plana.base.BaseActivity
+  com.example.plana.activity.MainActivity -up-|> com.example.plana.base.BaseActivity
+  com.example.plana.activity.MainActivity o-- com.example.plana.fragment.FocusFragment : focusFragment
+  com.example.plana.activity.MainActivity o-- com.example.plana.fragment.ShowListFragment : listFragment
+  com.example.plana.activity.MainActivity o-- com.example.plana.fragment.MyPageFragment : myPageFragment
+  com.example.plana.activity.MainActivity o-- com.example.plana.fragment.PlanFragment : planFragment
+  com.example.plana.activity.MainActivity o-- com.example.plana.fragment.ScheduleFragment : scheduleFragment
+  com.example.plana.activity.PlanDetailActivity -up-|> com.example.plana.base.BaseActivity
+  com.example.plana.activity.RegisterActivity1 .up.|> android.view.View.OnClickListener
+  com.example.plana.activity.RegisterActivity1 -up-|> com.example.plana.base.BaseRegisterActivity
+  com.example.plana.activity.RegisterActivity2 .up.|> android.view.View.OnClickListener
+  com.example.plana.activity.RegisterActivity2 -up-|> com.example.plana.base.BaseRegisterActivity
+  com.example.plana.activity.ScheduleSettingActivity -up-|> com.example.plana.base.BaseActivity
+  com.example.plana.activity.SplashActivity -up-|> com.example.plana.base.BaseActivity
+  com.example.plana.activity.TimeCountActivity -up-|> com.example.plana.base.BaseActivity
+  com.example.plana.adapter.EventAdapter -up-|> android.widget.ArrayAdapter
+  com.example.plana.adapter.EventAdapter o-- com.example.plana.database.MyDatabaseHelper : mysql
+  com.example.plana.adapter.OnDateDelayAdapter -up-|> com.zhuangfei.timetable.listener.OnDateBuildAapter
+  com.example.plana.adapter.PlanBriefAdapter -up-|> androidx.recyclerview.widget.RecyclerView.Adapter
+  com.example.plana.base.BaseActivity -up-|> androidx.appcompat.app.AppCompatActivity
+  com.example.plana.base.BaseActivity o-- com.example.plana.database.MyDatabaseHelper : mysql
+  com.example.plana.base.BaseFragment -up-|> androidx.fragment.app.Fragment
+  com.example.plana.base.BaseRegisterActivity -up-|> com.example.plana.base.BaseActivity
+  com.example.plana.base.MainApplication -up-|> android.app.Application
+  com.example.plana.bean.MySubject .up.|> com.zhuangfei.timetable.model.ScheduleEnable
+  com.example.plana.bean.Todos .up.|> java.lang.Comparable
+  com.example.plana.database.MyDatabaseHelper -up-|> android.database.sqlite.SQLiteOpenHelper
+  com.example.plana.database.TodosDB .up.|> com.example.plana.database.MyDatabaseHelper.TableCreateInterface
+  com.example.plana.database.UserDB .up.|> com.example.plana.database.MyDatabaseHelper.TableCreateInterface
+  com.example.plana.fragment.FocusFragment .up.|> android.view.View.OnClickListener
+  com.example.plana.fragment.FocusFragment -up-|> com.example.plana.base.BaseFragment
+  com.example.plana.fragment.MyPageFragment .up.|> android.view.View.OnClickListener
+  com.example.plana.fragment.MyPageFragment -up-|> com.example.plana.base.BaseFragment
+  com.example.plana.fragment.PlanFragment -up-|> com.example.plana.base.BaseFragment
+  com.example.plana.fragment.ScheduleFragment .up.|> android.view.View.OnClickListener
+  com.example.plana.fragment.ScheduleFragment -up-|> com.example.plana.base.BaseFragment
+  com.example.plana.fragment.ScheduleFragment o-- com.example.plana.config.MyConfig : myConfig
+  com.example.plana.fragment.ScheduleFragment o-- com.zhuangfei.timetable.TimetableView : timetableView
+  com.example.plana.fragment.ScheduleFragment o-- com.zhuangfei.timetable.view.WeekView : weekView
+  com.example.plana.fragment.ShowListFragment .up.|> android.widget.CompoundButton.OnCheckedChangeListener
+  com.example.plana.fragment.ShowListFragment .up.|> android.widget.PopupMenu.OnMenuItemClickListener
+  com.example.plana.fragment.ShowListFragment -up-|> com.example.plana.base.BaseFragment
+  com.example.plana.fragment.ShowListFragment o-- com.example.plana.adapter.EventAdapter : adapter
+  com.example.plana.fragment.ShowListFragment o-- com.yalantis.phoenix.PullToRefreshView : pullToRefresh
+  com.example.plana.receiver.AlarmReceiver -up-|> android.content.BroadcastReceiver
+
+
+right footer
+
+
+PlantUML diagram generated by SketchIt! (https://bitbucket.org/pmesmeur/sketch.it)
+For more information about this tool, please contact philippe.mesmeur@gmail.com
+endfooter
+
+@enduml

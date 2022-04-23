@@ -13,13 +13,14 @@
         android:background="@drawable/background_my_detail">
 
 
-        <Button
-            android:id="@+id/bt_time_counter"
+        <ImageView
+            android:id="@+id/bt_timer_selector"
             android:layout_width="32dp"
             android:layout_height="32dp"
             android:layout_alignParentStart="true"
-            android:layout_marginTop="30dp"
             android:layout_marginStart="30dp"
+            android:layout_marginTop="30dp"
+            android:alpha="0.8"
             android:background="@drawable/icon_time_counter" />
 
         <TextView
@@ -35,14 +36,15 @@
             android:textSize="30sp"
             android:textStyle="bold" />
 
-        <Button
-            android:id="@+id/bt_focus_data"
+        <ImageView
+            android:id="@+id/bt_timer_recorder"
             android:layout_width="32dp"
             android:layout_height="32dp"
             android:layout_alignParentEnd="true"
             android:layout_marginTop="30dp"
             android:layout_marginEnd="30dp"
-            android:background="@drawable/icon_focus_data" />
+            android:alpha="0.8"
+            android:background="@drawable/icon_timer_recorder" />
     </RelativeLayout>
 
     <RelativeLayout
@@ -52,7 +54,7 @@
         android:layout_below="@id/focus_title_rl">
 
         <TextView
-            android:id="@+id/tv_count_name"
+            android:id="@+id/tv_timer_name"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_alignParentTop="true"
@@ -104,6 +106,7 @@
                     android:autofillHints="Focus Time"
                     android:background="@null"
                     android:cursorVisible="false"
+                    android:clickable="false"
                     android:inputType="time"
                     android:text="25:00"
                     android:textAlignment="center"
