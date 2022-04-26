@@ -50,14 +50,10 @@
     <string name="emoji_time">🕒</string>
     <string name="emoji_level">🌟</string>
     <string name="emoji_week">📆</string>
-    <string name="emoji_hello">👋&#160;</string>
+    <string name="emoji_hello">👋</string>
     <string name="emoji_teacher">🎓</string>
     <string name="emoji_position">📍</string>
     <string name="emoji_course_name">📚</string>
-    <string name="add_todo">添加</string>
-    <string name="cancel">取消</string>
-    <string name="stop">暂停</string>
-    <string name="log_out">登出</string>
     <string name="emoji_notification">🔔</string>
     <string name="emoji_time_span">⌛</string>
     <string name="emoji_eyes">👀</string>
@@ -68,6 +64,16 @@
     <string name="emoji_achievement">🏆</string>
     <string name="emoji_paste_pad">📋</string>
     <string name="emoji_cloud">☁️</string>
+    <string name="emoji_person">👤</string>
+    <string name="emoji_trash_bin">♻️</string>
+    <string name="emoji_box">📦</string>
+    <string name="emoji_timer">⌛️</string>
+    <string name="emoji_tick_timer">⏱</string>
+
+    <string name="add_todo">添加</string>
+    <string name="cancel">取消</string>
+    <string name="stop">暂停</string>
+    <string name="log_out">登出</string>
 
     <string name="focus_time">专注</string>
     <string name="my_page_goal">待做</string>
@@ -75,11 +81,12 @@
     <string name="my_page_done">已完成</string>
     <string name="todo_add">添加</string>
     <string name="todo_edit">编辑</string>
-    <string name="emoji_person">👤</string>
-    <string name="emoji_trash_bin">♻️</string>
-    <string name="emoji_box">📦</string>
     <string name="time_record">计时记录</string>
-    <string name="emoji_timer">⌛️</string>
+    <string name="personal_information_modify">个人信息修改</string>
+    <string name="notification_modify">通知设置</string>
+    <string name="upload_data_to_cloud">上传本地内容到云</string>
+    <string name="trash_bin">回收站</string>
+    <string name="about">关于</string>
 
 
 </resources>

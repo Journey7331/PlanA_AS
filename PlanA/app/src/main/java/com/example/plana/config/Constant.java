@@ -41,7 +41,7 @@ public class Constant {
     }
 
 
-    public static class Timer {
+    public static class Clock {
         /**
          * 正计时
          */

@@ -14,7 +14,7 @@ public class MyDatabaseHelper extends SQLiteOpenHelper {
 
     // 数据库名
     private static final String db_name = "test";
-    private static final int version = 4;
+    private static final int version = 5;
 
     /**
      * 构造方法，创建数据库
@@ -43,17 +43,20 @@ public class MyDatabaseHelper extends SQLiteOpenHelper {
     public void onCreate(SQLiteDatabase db) {
         TodosDB.getInstance().onCreate(db);
         UserDB.getInstance().onCreate(db);
+        TimerDB.getInstance().onCreate(db);
     }
 
+
+    /**
+     * sqlite 数据库的 version 升级时会删除原表及数据
+     * */
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
-
         if (oldVersion >= newVersion) {
             return;
         }
-
         TodosDB.getInstance().onUpgrade(db, oldVersion, newVersion);
         UserDB.getInstance().onUpgrade(db, oldVersion, newVersion);
-
+        TimerDB.getInstance().onUpgrade(db, oldVersion, newVersion);
     }
 }

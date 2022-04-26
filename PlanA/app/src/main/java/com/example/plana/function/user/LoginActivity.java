@@ -30,7 +30,8 @@ public class LoginActivity extends BaseActivity
 
     EditText et_username, et_password;
     Button btn_login;
-    TextView tv_register, tv_skip;
+    TextView tv_register;
+//    TextView tv_skip;
 
     String phone;
     String password;
@@ -47,14 +48,14 @@ public class LoginActivity extends BaseActivity
         et_username = findViewById(R.id.et_loginUsername);
         et_password = findViewById(R.id.et_loginPassword);
         tv_register = findViewById(R.id.tv_register);
-        tv_skip = findViewById(R.id.tv_skip);
+//        tv_skip = findViewById(R.id.tv_skip);
         btn_login = findViewById(R.id.btn_login);
         phone = "";
         password = "";
 
         tv_register.setOnClickListener(this);
         btn_login.setOnClickListener(this);
-        tv_skip.setOnClickListener(this);
+//        tv_skip.setOnClickListener(this);
 
     }
 
@@ -119,17 +120,17 @@ public class LoginActivity extends BaseActivity
             directToRegisterActivity();
         }
 
-        if (v.getId() == R.id.tv_skip) {
-            Toast.makeText(
-                    LoginActivity.this,
-                    "无账号登录",
-                    Toast.LENGTH_SHORT
-            ).show();
-
-            hideKeyboard(this);
-            startActivity(new Intent(this, MainActivity.class));
-            finish();
-        }
+//        if (v.getId() == R.id.tv_skip) {
+//            Toast.makeText(
+//                    LoginActivity.this,
+//                    "无账号登录",
+//                    Toast.LENGTH_SHORT
+//            ).show();
+//
+//            hideKeyboard(this);
+//            startActivity(new Intent(this, MainActivity.class));
+//            finish();
+//        }
 
     }
 
@@ -152,9 +153,6 @@ public class LoginActivity extends BaseActivity
     private void directToRegisterActivity() {
         Intent intent = new Intent(LoginActivity.this, RegisterActivity1.class);
         startActivity(intent);
-        // 直接把注册页放到 Activity 的栈顶
-        // 不直接结束当前 Activity
-//        finish();
     }
 
 }

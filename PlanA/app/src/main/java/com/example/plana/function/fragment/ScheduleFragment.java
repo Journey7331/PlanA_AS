@@ -62,13 +62,12 @@ public class ScheduleFragment extends BaseFragment
         implements View.OnClickListener {
 
     private static final String TAG = "ScheduleFragment";
-    public static final String CONFIG_FILENAME = "myConfig";    // 本地配置文件 文件名称
+    public static final String CONFIG_FILENAME = MyConfig.SCHEDULE_CONFIG_FILENAME;    // 本地配置文件 文件名称
 
     TimetableView timetableView;
     WeekView weekView;
     List<MySubject> mySubjects;
 
-    MyConfig myConfig;  // 存放配置信息
     Map<String, String> myConfigMap;
 
     LinearLayout layout;
@@ -108,7 +107,7 @@ public class ScheduleFragment extends BaseFragment
     public void onStart() {
         super.onStart();
 
-        myConfigMap = MyConfig.loadConfig();
+        myConfigMap = MyConfig.loadScheduleConfig();
 
         //用于更正日期和weekView的显示
         int cur = timetableView.curWeek();
@@ -323,7 +322,7 @@ public class ScheduleFragment extends BaseFragment
                     String startTime;//(注意！)存放开学日期！形式"yyyy-MM-dd HH:mm:ss"
                     startTime = TimeCalcUtil.date2Str(TimeCalcUtil.calWeeksAgo(curDate, target));
                     myConfigMap.put(MyConfigConstant.CONFIG_CUR_WEEK, startTime);
-                    MyConfig.saveConfig(myConfigMap);
+                    MyConfig.saveScheduleConfig(myConfigMap);
                 })
                 .setNegativeButton("取消", null)
                 .create();
@@ -413,8 +412,9 @@ public class ScheduleFragment extends BaseFragment
         TextView cancel = view.findViewById(R.id.cancel);
 
         // 创建dialog
-        AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
-        builder.setView(view);
+        AlertDialog.Builder builder = new AlertDialog
+                .Builder(getContext())
+                .setView(view);
         final AlertDialog dialog = builder.show();
         dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
         dialog.getWindow().setLayout(700, WindowManager.LayoutParams.WRAP_CONTENT);
@@ -554,7 +554,7 @@ public class ScheduleFragment extends BaseFragment
      * 从本地配置文件中读取信息并应用
      */
     public void loadLocalConfig() {
-        myConfigMap = MyConfig.loadConfig();
+        myConfigMap = MyConfig.loadScheduleConfig();
         for (String key : myConfigMap.keySet()) {
             String value = myConfigMap.get(key);
             if (value == null)
@@ -582,7 +582,7 @@ public class ScheduleFragment extends BaseFragment
         //第一周未设定，将当前周设置为第一周
         if (myConfigMap.get(MyConfigConstant.CONFIG_CUR_WEEK) == null) {
             myConfigMap.put(MyConfigConstant.CONFIG_CUR_WEEK, TimeCalcUtil.date2Str(new Date()));
-            MyConfig.saveConfig(myConfigMap);
+            MyConfig.saveScheduleConfig(myConfigMap);
         }
     }
 

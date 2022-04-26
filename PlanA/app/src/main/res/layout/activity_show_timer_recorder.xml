@@ -12,6 +12,14 @@
         android:background="@drawable/background_straight"
         app:layout_constraintTop_toTopOf="parent">
 
+        <Button
+            android:id="@+id/bt_timer_recorder_back"
+            android:layout_width="25dp"
+            android:layout_height="25dp"
+            android:layout_centerVertical="true"
+            android:layout_marginStart="15dp"
+            android:background="@drawable/icon_back" />
+
         <TextView
             android:layout_width="match_parent"
             android:layout_height="match_parent"

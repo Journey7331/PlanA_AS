@@ -140,7 +140,7 @@ public class AlarmReceiver extends BroadcastReceiver {
      * @return
      */
     private int getCurWeek() {
-        Map<String, String> configMap = MyConfig.loadConfig();
+        Map<String, String> configMap = MyConfig.loadScheduleConfig();
         for (String key : configMap.keySet()) {
             if (key.equals(MyConfigConstant.CONFIG_CUR_WEEK)) {
                 Log.d(TAG, "load CUR_WEEK " + configMap.get(key));

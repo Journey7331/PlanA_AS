@@ -6,6 +6,22 @@ package com.example.plana.config;
  */
 public class MyConfigConstant {
 
+    public class Todo{
+        /**
+         * 待办显示 config
+         */
+        public static final String CONFIG_HIDE_DONE_TODO = "config_hide_done_todo";
+
+        /**
+         * 待办排序 config
+         */
+        public static final String CONFIG_TODO_SORT = "config_todo_sort";
+
+        public static final String SORT_BY_ADD_TIME = "sort_by_add_time";
+        public static final String SORT_BY_DATE = "sort_by_date";
+        public static final String SORT_BY_PRIORITY = "sort_by_priority";
+    }
+
     /**
      * 课程表显示 Config
      * */

@@ -12,36 +12,90 @@
         <entry key="TimetableView/res/layout/item_weekview.xml" value="0.3138888888888889" />
         <entry key="TimetableView/res/layout/timetable_layout.xml" value="0.3138888888888889" />
         <entry key="TimetableView/res/layout/view_content.xml" value="0.3138888888888889" />
+        <entry key="TimetableView/res/layout/view_simplescrollview.xml" value="0.33229166666666665" />
+        <entry key="TimetableView/res/layout/view_weekview.xml" value="0.33229166666666665" />
+        <entry key="app/src/main/res/drawable/background.xml" value="0.1675" />
+        <entry key="app/src/main/res/drawable/background_button.xml" value="0.1675" />
+        <entry key="app/src/main/res/drawable/background_circle.xml" value="0.1675" />
+        <entry key="app/src/main/res/drawable/background_circle_gradient.xml" value="0.1675" />
         <entry key="app/src/main/res/drawable/background_circle_grey.xml" value="0.2115" />
         <entry key="app/src/main/res/drawable/background_circle_shape.xml" value="0.2115" />
         <entry key="app/src/main/res/drawable/background_dialog_radius.xml" value="0.2115" />
         <entry key="app/src/main/res/drawable/background_dialog_radius_grey.xml" value="0.141" />
         <entry key="app/src/main/res/drawable/background_dialog_radius_white.xml" value="0.2115" />
+        <entry key="app/src/main/res/drawable/background_edit_text_normal.xml" value="0.1535" />
+        <entry key="app/src/main/res/drawable/background_edit_text_select.xml" value="0.1535" />
+        <entry key="app/src/main/res/drawable/background_edittext_focused.xml" value="0.1535" />
+        <entry key="app/src/main/res/drawable/background_grey_button_normal.xml" value="0.1675" />
+        <entry key="app/src/main/res/drawable/background_grey_button_press.xml" value="0.1675" />
+        <entry key="app/src/main/res/drawable/background_grey_button_select.xml" value="0.1675" />
+        <entry key="app/src/main/res/drawable/background_my_detail.xml" value="0.1675" />
+        <entry key="app/src/main/res/drawable/background_straight.xml" value="0.1675" />
+        <entry key="app/src/main/res/drawable/baseline_account_circle_24.xml" value="0.1675" />
+        <entry key="app/src/main/res/drawable/baseline_clock_24.xml" value="0.1675" />
+        <entry key="app/src/main/res/drawable/baseline_home_24.xml" value="0.1675" />
+        <entry key="app/src/main/res/drawable/baseline_tick.xml" value="0.1675" />
+        <entry key="app/src/main/res/drawable/bg_button.xml" value="0.137" />
+        <entry key="app/src/main/res/drawable/bg_dialog_radius_grey.xml" value="0.211" />
+        <entry key="app/src/main/res/drawable/bg_dialog_radius_white.xml" value="0.1675" />
+        <entry key="app/src/main/res/drawable/bg_edit_text_normal.xml" value="0.1675" />
+        <entry key="app/src/main/res/drawable/bg_edit_text_select.xml" value="0.1675" />
+        <entry key="app/src/main/res/drawable/bg_grey_button_select.xml" value="0.211" />
+        <entry key="app/src/main/res/drawable/bg_rl_select.xml" value="0.1675" />
+        <entry key="app/src/main/res/drawable/bottom_navi_account_circle.xml" value="0.1675" />
+        <entry key="app/src/main/res/drawable/bottom_navi_count_down.xml" value="0.1675" />
+        <entry key="app/src/main/res/drawable/bottom_navi_schedule.xml" value="0.1675" />
+        <entry key="app/src/main/res/drawable/bottom_navi_skills.xml" value="0.1675" />
+        <entry key="app/src/main/res/drawable/bottom_navi_todolist_home.xml" value="0.1675" />
+        <entry key="app/src/main/res/drawable/circular_focus_time_bg.xml" value="0.1675" />
+        <entry key="app/src/main/res/drawable/circular_focus_time_progress_bar.xml" value="0.1675" />
+        <entry key="app/src/main/res/drawable/circular_plan_bg.xml" value="0.1675" />
+        <entry key="app/src/main/res/drawable/circular_plan_percent.xml" value="0.1675" />
+        <entry key="app/src/main/res/drawable/circular_progress_bar.xml" value="0.1675" />
+        <entry key="app/src/main/res/drawable/icon_back.xml" value="0.211" />
         <entry key="app/src/main/res/drawable/icon_back_arrows.xml" value="0.2305" />
+        <entry key="app/src/main/res/drawable/icon_close.xml" value="0.1675" />
+        <entry key="app/src/main/res/drawable/icon_delete.xml" value="0.1675" />
+        <entry key="app/src/main/res/drawable/icon_down.xml" value="0.1675" />
         <entry key="app/src/main/res/drawable/icon_edit.xml" value="0.192" />
+        <entry key="app/src/main/res/drawable/icon_fab_add.xml" value="0.1675" />
         <entry key="app/src/main/res/drawable/icon_focus_data.xml" value="0.1" />
+        <entry key="app/src/main/res/drawable/icon_more_horiz.xml" value="0.1675" />
         <entry key="app/src/main/res/drawable/icon_next.xml" value="0.192" />
+        <entry key="app/src/main/res/drawable/icon_plan_setting.xml" value="0.2095" />
         <entry key="app/src/main/res/drawable/icon_schedule_load.xml" value="0.192" />
         <entry key="app/src/main/res/drawable/icon_schedule_setting.xml" value="0.192" />
         <entry key="app/src/main/res/drawable/icon_setting.xml" value="0.192" />
         <entry key="app/src/main/res/drawable/icon_time_counter.xml" value="0.192" />
+        <entry key="app/src/main/res/drawable/icon_timer_recorder.xml" value="0.1675" />
         <entry key="app/src/main/res/drawable/icon_up.xml" value="0.192" />
+        <entry key="app/src/main/res/drawable/outline_account_circle_24.xml" value="0.1675" />
+        <entry key="app/src/main/res/drawable/outline_clock_24.xml" value="0.1675" />
+        <entry key="app/src/main/res/drawable/outline_home_24.xml" value="0.1675" />
+        <entry key="app/src/main/res/drawable/outline_schedule.xml" value="0.1675" />
+        <entry key="app/src/main/res/drawable/outline_tick.xml" value="0.1675" />
+        <entry key="app/src/main/res/drawable/switch_thumb.xml" value="0.1675" />
+        <entry key="app/src/main/res/drawable/switch_track_off.xml" value="0.1675" />
+        <entry key="app/src/main/res/drawable/switch_track_on.xml" value="0.137" />
+        <entry key="app/src/main/res/drawable/switch_track_selector.xml" value="0.137" />
+        <entry key="app/src/main/res/layout/activity_about.xml" value="0.29334259033203125" />
         <entry key="app/src/main/res/layout/activity_add_course.xml" value="0.22708333333333333" />
         <entry key="app/src/main/res/layout/activity_add_plan.xml" value="0.22708333333333333" />
         <entry key="app/src/main/res/layout/activity_add_todos.xml" value="0.2078804347826087" />
         <entry key="app/src/main/res/layout/activity_edit_todos.xml" value="0.297554347826087" />
+        <entry key="app/src/main/res/layout/activity_info_midify.xml" value="0.2559127807617188" />
         <entry key="app/src/main/res/layout/activity_login.xml" value="0.3138888888888889" />
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.1" />
         <entry key="app/src/main/res/layout/activity_plan_detail.xml" value="0.18177083333333333" />
         <entry key="app/src/main/res/layout/activity_register1.xml" value="0.3138888888888889" />
         <entry key="app/src/main/res/layout/activity_register2.xml" value="0.1" />
-        <entry key="app/src/main/res/layout/activity_schedule_setting.xml" value="0.2078804347826087" />
+        <entry key="app/src/main/res/layout/activity_schedule_setting.xml" value="0.3380623195482337" />
         <entry key="app/src/main/res/layout/activity_show_achievement.xml" value="0.1" />
         <entry key="app/src/main/res/layout/activity_show_timer.xml" value="0.22708333333333333" />
         <entry key="app/src/main/res/layout/activity_show_timer_recorder.xml" value="0.21666666666666667" />
         <entry key="app/src/main/res/layout/activity_splash.xml" value="0.1" />
         <entry key="app/src/main/res/layout/activity_time_count.xml" value="0.25562744140625" />
-        <entry key="app/src/main/res/layout/add_register_date.xml" value="0.28351449275362317" />
+        <entry key="app/src/main/res/layout/add_register_date.xml" value="0.25" />
         <entry key="app/src/main/res/layout/dialog_add_date.xml" value="0.1" />
         <entry key="app/src/main/res/layout/dialog_add_level.xml" value="0.22708333333333333" />
         <entry key="app/src/main/res/layout/dialog_add_title.xml" value="0.28351449275362317" />
@@ -50,14 +104,15 @@
         <entry key="app/src/main/res/layout/dialog_select_date.xml" value="0.28351449275362317" />
         <entry key="app/src/main/res/layout/dialog_select_time.xml" value="0.22708333333333333" />
         <entry key="app/src/main/res/layout/dialog_select_week.xml" value="0.28351449275362317" />
-        <entry key="app/src/main/res/layout/fragment_focus_set_time.xml" value="0.2078804347826087" />
-        <entry key="app/src/main/res/layout/fragment_my_page.xml" value="0.165" />
-        <entry key="app/src/main/res/layout/fragment_plan_list.xml" value="0.28351449275362317" />
+        <entry key="app/src/main/res/layout/fragment_focus_set_time.xml" value="0.21855548361073374" />
+        <entry key="app/src/main/res/layout/fragment_my_page.xml" value="0.25" />
+        <entry key="app/src/main/res/layout/fragment_plan_list.xml" value="0.10876818516457726" />
         <entry key="app/src/main/res/layout/fragment_schedule.xml" value="0.28351449275362317" />
         <entry key="app/src/main/res/layout/fragment_todo_list_home.xml" value="0.28351449275362317" />
         <entry key="app/src/main/res/layout/item_course_detail.xml" value="0.28351449275362317" />
         <entry key="app/src/main/res/layout/item_course_name.xml" value="0.2078804347826087" />
         <entry key="app/src/main/res/layout/item_plan_brief.xml" value="0.28351449275362317" />
+        <entry key="app/src/main/res/layout/item_plan_list.xml" value="0.3046875" />
         <entry key="app/src/main/res/layout/item_schedule_header.xml" value="0.2078804347826087" />
         <entry key="app/src/main/res/layout/item_timer_recorder.xml" value="0.33085784912109373" />
         <entry key="app/src/main/res/layout/item_todo_detail.xml" value="0.1703125" />

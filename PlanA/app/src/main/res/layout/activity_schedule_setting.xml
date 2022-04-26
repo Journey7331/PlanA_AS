@@ -17,29 +17,28 @@
         android:layout_alignParentStart="true"
         android:layout_marginStart="30dp"
         android:layout_marginTop="15dp"
-        android:text="选择开学时间"
+        android:text="开学时间"
         android:textColor="@color/google_grey_500"
         android:textSize="12sp" />
 
     <RelativeLayout
-        android:id="@+id/rl_school_time"
+        android:id="@+id/rl_school_time_part"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@+id/tv_school_start_time"
         android:layout_marginHorizontal="16dp"
         android:layout_marginVertical="4dp"
-        android:background="@drawable/background_edit_text_normal"
-        android:elevation="2dp">
+        android:background="@drawable/bg_dialog_radius_white">
 
         <RelativeLayout
-            android:id="@+id/rl_school_time_1"
+            android:id="@+id/rl_school_time"
             android:layout_width="match_parent"
             android:layout_height="38dp"
             android:layout_marginStart="3dp"
             android:layout_marginTop="3dp"
             android:layout_marginEnd="3dp"
             android:layout_marginBottom="3dp"
-            android:background="@drawable/background_edit_text_select"
+            android:background="@drawable/bg_rl_view_select"
             android:paddingEnd="20dp">
 
             <androidx.emoji2.widget.EmojiButton
@@ -72,7 +71,7 @@
         android:id="@+id/tv_notification"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/rl_school_time"
+        android:layout_below="@+id/rl_school_time_part"
         android:layout_alignParentStart="true"
         android:layout_marginStart="30dp"
         android:layout_marginTop="15dp"
@@ -87,16 +86,19 @@
         android:layout_below="@+id/tv_notification"
         android:layout_marginHorizontal="16dp"
         android:layout_marginVertical="4dp"
-        android:background="@drawable/background_edit_text_normal"
-        android:elevation="2dp">
+        android:background="@drawable/bg_dialog_radius_white"
+        >
 
         <RelativeLayout
             android:id="@+id/rl_notifi_1_1"
             android:layout_width="match_parent"
             android:layout_height="38dp"
-            android:layout_margin="3dp"
-            android:paddingEnd="20dp"
-            android:background="@drawable/background_edit_text_select">
+            android:layout_marginStart="3dp"
+            android:layout_marginTop="3dp"
+            android:layout_marginEnd="3dp"
+            android:layout_marginBottom="3dp"
+            android:background="@drawable/bg_rl_view_select"
+            android:paddingEnd="20dp">
 
             <androidx.emoji2.widget.EmojiButton
                 android:id="@+id/emoji_alert_time"
@@ -116,9 +118,9 @@
                 android:layout_marginStart="20dp"
                 android:layout_toEndOf="@+id/emoji_alert_time"
                 android:background="@null"
-                android:textColor="@color/google_grey_700"
                 android:focusable="false"
                 android:hint="选择提醒时间  默认22:00"
+                android:textColor="@color/google_grey_700"
                 android:textSize="15sp" />
 
         </RelativeLayout>
@@ -138,10 +140,10 @@
             android:layout_height="38dp"
             android:layout_below="@id/v_line_5"
             android:layout_margin="3dp"
-            android:background="@drawable/background_edit_text_select">
+            android:background="@drawable/bg_rl_view_select">
 
             <androidx.emoji2.widget.EmojiButton
-                android:id="@+id/emoji_notifi"
+                android:id="@+id/emoji_notify"
                 android:layout_width="30dp"
                 android:layout_height="30dp"
                 android:layout_centerVertical="true"
@@ -156,7 +158,7 @@
                 android:layout_height="wrap_content"
                 android:layout_centerVertical="true"
                 android:layout_marginStart="20dp"
-                android:layout_toEndOf="@+id/emoji_notifi"
+                android:layout_toEndOf="@+id/emoji_notify"
                 android:text="每天22:00推送第二天的课程信息"
                 android:textSize="15sp" />
 
@@ -194,8 +196,8 @@
         android:layout_below="@+id/tv_notifi_detail"
         android:layout_marginHorizontal="16dp"
         android:layout_marginTop="3dp"
-        android:background="@drawable/background_edit_text_normal"
-        android:elevation="2dp">
+        android:background="@drawable/bg_dialog_radius_white"
+        >
 
 
         <RelativeLayout
@@ -203,7 +205,7 @@
             android:layout_width="wrap_content"
             android:layout_height="38dp"
             android:layout_margin="3dp"
-            android:background="@drawable/background_edit_text_select">
+            android:background="@drawable/bg_rl_view_select">
 
             <androidx.emoji2.widget.EmojiButton
                 android:id="@+id/emoji_time"
@@ -251,7 +253,7 @@
             android:layout_height="38dp"
             android:layout_below="@+id/v_line_1"
             android:layout_margin="3dp"
-            android:background="@drawable/background_edit_text_select">
+            android:background="@drawable/bg_rl_view_select">
 
             <androidx.emoji2.widget.EmojiButton
                 android:id="@+id/emoji_room"
@@ -299,7 +301,7 @@
             android:layout_height="38dp"
             android:layout_below="@+id/v_line_2"
             android:layout_margin="3dp"
-            android:background="@drawable/background_edit_text_select">
+            android:background="@drawable/bg_rl_view_select">
 
             <androidx.emoji2.widget.EmojiButton
                 android:id="@+id/emoji_span"
@@ -354,16 +356,16 @@
         android:layout_below="@+id/tv_appearance"
         android:layout_marginHorizontal="16dp"
         android:layout_marginTop="3dp"
-        android:background="@drawable/background_edit_text_normal"
-        android:elevation="2dp">
+        android:background="@drawable/bg_dialog_radius_white"
+        >
 
 
         <RelativeLayout
-            android:id="@+id/rl_hide_weekend"
+            android:id="@+id/rl_personal_Info_modify"
             android:layout_width="wrap_content"
             android:layout_height="38dp"
             android:layout_margin="3dp"
-            android:background="@drawable/background_edit_text_select">
+            android:background="@drawable/bg_rl_view_select">
 
             <androidx.emoji2.widget.EmojiButton
                 android:id="@+id/emoji_eyes"
@@ -400,18 +402,21 @@
             android:id="@+id/v_line_3"
             android:layout_width="match_parent"
             android:layout_height="1dp"
-            android:layout_below="@id/rl_hide_weekend"
+            android:layout_below="@id/rl_personal_Info_modify"
             android:layout_marginHorizontal="15dp"
             android:alpha="0.5"
             android:background="@color/grey" />
 
         <RelativeLayout
-            android:id="@+id/rl_hide_nonThis_week"
+            android:id="@+id/rl_notify_modify"
             android:layout_width="wrap_content"
             android:layout_height="38dp"
             android:layout_below="@+id/v_line_3"
-            android:layout_margin="3dp"
-            android:background="@drawable/background_edit_text_select">
+            android:layout_marginStart="3dp"
+            android:layout_marginTop="3dp"
+            android:layout_marginEnd="3dp"
+            android:layout_marginBottom="3dp"
+            android:background="@drawable/bg_rl_view_select">
 
             <androidx.emoji2.widget.EmojiButton
                 android:id="@+id/emoji_balloon"
@@ -448,18 +453,18 @@
             android:id="@+id/v_line_4"
             android:layout_width="match_parent"
             android:layout_height="1dp"
-            android:layout_below="@id/rl_hide_nonThis_week"
+            android:layout_below="@id/rl_notify_modify"
             android:layout_marginHorizontal="15dp"
             android:alpha="0.5"
             android:background="@color/grey" />
 
         <RelativeLayout
-            android:id="@+id/rl_hide_block_time"
+            android:id="@+id/rl_upload_to_cloud"
             android:layout_width="wrap_content"
             android:layout_height="38dp"
             android:layout_below="@+id/v_line_4"
             android:layout_margin="3dp"
-            android:background="@drawable/background_edit_text_select">
+            android:background="@drawable/bg_rl_view_select">
 
             <androidx.emoji2.widget.EmojiButton
                 android:id="@+id/emoji_shine"
@@ -501,7 +506,7 @@
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
         android:layout_marginBottom="40dp"
-        android:background="@drawable/background_button"
+        android:background="@drawable/bg_button"
         android:text="完成设置"
         android:textColor="@color/white"
         android:textStyle="bold" />

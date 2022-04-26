@@ -2,57 +2,71 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.plana">
 
-    <uses-permission android:name="android.permission.INTERNET"/>
+    <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.VIBRATE" />
-<!--    <uses-permission android:name="android.permission.ACCESS_NOTIFICATION_POLICY" />-->
+    <!--    <uses-permission android:name="android.permission.ACCESS_NOTIFICATION_POLICY" />-->
 
     <application
         android:name=".base.MainApplication"
         android:allowBackup="true"
+        android:fullBackupContent="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:fullBackupContent="true"
         android:theme="@style/Theme.PlanA">
 
-        <activity android:name=".function.SplashActivity"
+        <!-- splash -->
+        <activity
+            android:name=".function.SplashActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name=".function.MainActivity" />
 
-        <activity android:name=".function.AchievementActivity" />
-        <activity android:name=".function.AddTodoActivity" />
-        <activity android:name=".function.AddPlanActivity" />
-        <activity android:name=".function.CourseActivity"/>
+        <!-- plan -->
+        <activity android:name=".function.plan.AchievementActivity" />
+        <activity android:name=".function.plan.AddPlanActivity" />
+        <activity android:name=".function.plan.PlanDetailActivity" />
 
-        <activity android:name=".function.EditTodoActivity" />
-        <activity android:name=".function.LoginActivity"/>
-        <activity android:name=".function.MainActivity"/>
-        <activity android:name=".function.PlanDetailActivity"/>
+        <!-- schedule -->
+        <activity android:name=".function.schedule.CourseActivity" />
+        <activity android:name=".function.schedule.ScheduleSettingActivity" />
 
-        <activity android:name=".function.RegisterActivity1"/>
-        <activity android:name=".function.RegisterActivity2"/>
+        <!-- setting -->
+        <activity android:name=".function.setting.InfoModifyActivity" />
 
-        <activity android:name=".function.ScheduleSettingActivity"/>
-        <activity android:name=".function.TimerActivity"/>
-        <activity android:name=".function.TimerRecorderActivity"/>
+        <!-- timer -->
+        <activity android:name=".function.timer.TimerActivity" />
+        <activity android:name=".function.timer.TimerRecorderActivity" />
 
+        <!-- todos -->
+        <activity android:name=".function.todo.AddTodoActivity" />
+        <activity android:name=".function.todo.EditTodoActivity" />
+
+        <!-- user -->
+        <activity android:name=".function.user.LoginActivity" />
+        <activity android:name=".function.user.RegisterActivity1" />
+        <activity android:name=".function.user.RegisterActivity2" />
+        <activity android:name=".function.user.AboutActivity" />
+
+
+        <!-- receiver -->
         <receiver android:name=".receiver.AlarmReceiver" />
 
-        <service android:name="cn.leancloud.push.PushService"/>
-        <receiver android:name="cn.leancloud.push.LCBroadcastReceiver"
-            android:exported="true">
-            <intent-filter>
-                <action android:name="android.intent.action.BOOT_COMPLETED" />
-                <action android:name="android.intent.action.USER_PRESENT" />
-                <action android:name="android.net.conn.CONNECTIVITY_CHANGE" />
-            </intent-filter>
-        </receiver>
+        <!--        <service android:name="cn.leancloud.push.PushService"/>-->
+        <!--        <receiver android:name="cn.leancloud.push.LCBroadcastReceiver"-->
+        <!--            android:exported="true">-->
+        <!--            <intent-filter>-->
+        <!--                <action android:name="android.intent.action.BOOT_COMPLETED" />-->
+        <!--                <action android:name="android.intent.action.USER_PRESENT" />-->
+        <!--                <action android:name="android.net.conn.CONNECTIVITY_CHANGE" />-->
+        <!--            </intent-filter>-->
+        <!--        </receiver>-->
 
 
     </application>

@@ -52,6 +52,7 @@ dependencies {
     implementation 'io.reactivex.rxjava3:rxandroid:3.0.0'
     implementation 'cn.carbswang.android:NumberPickerView:1.2.0'
     implementation 'com.github.Cutta:GifView:1.4'
+    implementation 'com.akexorcist:round-corner-progress-bar:2.1.2'
 
     implementation 'cn.leancloud:realtime-android:8.2.5'
 

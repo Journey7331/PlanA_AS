@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+    <!--默认情况下的显示，也即控件未被点击时的效果-->
+    <item android:drawable="@drawable/bg_dialog_radius_white"
+        android:state_window_focused="false" />
+
+    <!--当控件被按下的时候的效果显示-->
+    <item android:drawable="@drawable/bg_dialog_radius_grey"
+        android:state_pressed="true" />
+</selector>

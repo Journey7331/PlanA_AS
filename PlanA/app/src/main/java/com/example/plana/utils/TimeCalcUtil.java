@@ -48,7 +48,7 @@ public class TimeCalcUtil {
 
     /**
      * 计算还剩几天或者过去了多长时间
-     * 返回一个显示在 EventAdapter 上的字符串
+     * 返回一个显示在 TodoAdapter 上的字符串
      */
     public static String leftTime(long late, long early) {
         long diff = late - early;
@@ -72,7 +72,7 @@ public class TimeCalcUtil {
      * 将 Calendar 型 转换成 "yyyy-MM-dd HH:mm:ss"格式的时间字符串
      */
     public static String calToStr(Calendar cal) {
-        cal.set(Calendar.HOUR, 7);
+        cal.set(Calendar.HOUR_OF_DAY, 7);
         cal.set(Calendar.MINUTE, 1);
         cal.set(Calendar.SECOND, 1);
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss", Locale.CHINA);
@@ -87,6 +87,17 @@ public class TimeCalcUtil {
         return sdf.format(cal.getTime());
     }
 
+    /**
+     * 将 Calendar 型 转换成 "HH:mm"格式的时间字符串
+     */
+    public static String calToHourMinStr(Calendar cal) {
+        SimpleDateFormat sdf = new SimpleDateFormat("HH:mm", Locale.CHINA);
+        return sdf.format(cal.getTime());
+    }
+
+    /**
+     * 计算计划的剩余日期
+     * */
     public static String getLeftDay(int days) {
         if (days == 0) {
             return "已完成";

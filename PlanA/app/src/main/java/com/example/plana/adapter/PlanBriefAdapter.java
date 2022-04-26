@@ -90,7 +90,7 @@ public class PlanBriefAdapter extends RecyclerView.Adapter<PlanBriefAdapter.View
                     planBrief.getDone() * 100 / planBrief.getTotal(),
                     true
             );
-        }, position*200+200);
+        }, position*100+200);
 
 
         viewHolder.rlPlan.setOnClickListener(v -> {

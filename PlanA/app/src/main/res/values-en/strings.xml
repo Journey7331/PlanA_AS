@@ -68,6 +68,8 @@
     <string name="emoji_achievement">🏆</string>
     <string name="emoji_paste_pad">📋</string>
     <string name="emoji_cloud">☁️</string>
+    <string name="emoji_tick_timer">⏱</string>
+
 
     <string name="focus_time">focus</string>
     <string name="my_page_goal">undone</string>
@@ -80,6 +82,11 @@
     <string name="emoji_box">📦</string>
     <string name="time_record">计时记录</string>
     <string name="emoji_timer">⌛️</string>
+    <string name="personal_information_modify">个人信息修改</string>
+    <string name="notification_modify">通知设置</string>
+    <string name="upload_data_to_cloud">上传本地内容到云</string>
+    <string name="trash_bin">回收站</string>
+    <string name="about">关于</string>
 
 
 </resources>

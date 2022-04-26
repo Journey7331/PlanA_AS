@@ -9,6 +9,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -19,6 +20,8 @@ import com.example.plana.R;
 import com.example.plana.function.MainActivity;
 import com.example.plana.base.BaseFragment;
 import com.example.plana.bean.My;
+import com.example.plana.function.setting.InfoModifyActivity;
+import com.example.plana.function.user.AboutActivity;
 import com.example.plana.function.user.LoginActivity;
 
 /**
@@ -26,22 +29,19 @@ import com.example.plana.function.user.LoginActivity;
  * @description:
  */
 
-public class MyPageFragment extends BaseFragment
-        implements View.OnClickListener {
+public class MyPageFragment extends BaseFragment {
 
     public static final String TAG = "MyPageFragment";
 
     TextView myName, myEmail;
-//    TextView tvLevelCount, tvUndoneCount, tvDoneCount;
-//    RelativeLayout rlUndone, rlDone, rlGoals;
-//    View viewSetting;
-
-//    ProgressBar pgLevel;
     Button btLogOut;
-//    int doneCount, unDoneCount;
 
-    public MyPageFragment() {
-    }
+    RelativeLayout rlInfoModify;
+    RelativeLayout rlNotifyModify;
+    RelativeLayout rlUploadToCloud;
+    RelativeLayout rlTrashBin;
+
+    RelativeLayout rlAbout;
 
     @Nullable
     @Override
@@ -51,26 +51,45 @@ public class MyPageFragment extends BaseFragment
         myName = view.findViewById(R.id.my_name);
         myEmail = view.findViewById(R.id.my_email);
         btLogOut = view.findViewById(R.id.btn_logout);
-//        viewSetting = view.findViewById(R.id.my_setting);
-//        rlGoals = view.findViewById(R.id.goals_rl);
-//        rlUndone = view.findViewById(R.id.undone_rl);
-//        rlDone = view.findViewById(R.id.done_rl);
 
-//        pgLevel = view.findViewById(R.id.progressbar_plan_brief);
-//        tvLevelCount = view.findViewById(R.id.tv_level_count);
-//        tvUndoneCount = view.findViewById(R.id.tv_undone_count);
-//        tvDoneCount = view.findViewById(R.id.tv_done_count);
+        rlInfoModify = view.findViewById(R.id.rl_personal_Info_modify);
+        rlNotifyModify = view.findViewById(R.id.rl_notify_modify);
+        rlUploadToCloud = view.findViewById(R.id.rl_upload_to_cloud);
+        rlTrashBin = view.findViewById(R.id.rl_trash_bin);
+
+        rlAbout = view.findViewById(R.id.rl_about);
 
         myPageSetUp();
-//
-//        viewSetting.setOnClickListener(this);
-//        rlGoals.setOnClickListener(this);
-//        rlUndone.setOnClickListener(this);
-//        rlDone.setOnClickListener(this);
+
+        rlInfoModify.setOnClickListener(l -> directToInfoModifyActivity());
+
+
+        rlAbout.setOnClickListener(l-> directToAboutActivity());
 
         return view;
     }
 
+
+    /**
+     * 跳转到关于界面
+     * */
+    private void directToAboutActivity() {
+        Intent intent = new Intent(getContext(), AboutActivity.class);
+        startActivity(intent);
+    }
+
+    /**
+     * 跳转到个人信息修改页面
+     * */
+    public void directToInfoModifyActivity() {
+        Intent intent = new Intent(getContext(), InfoModifyActivity.class);
+        startActivity(intent);
+    }
+
+
+    /**
+     * 初始化
+     * */
     private void myPageSetUp() {
 
         // Set User Information
@@ -106,39 +125,7 @@ public class MyPageFragment extends BaseFragment
             });
         }
 
-//        if (My.todosList.size() == 0) {
-//            pgLevel.setProgress(0);
-//            tvLevelCount.setText("");
-//            return;
-//        }
-
-//        // Count Done
-//        for (Todos e : My.todosList) if (e.isDone()) doneCount++;
-//
-//        unDoneCount = My.todosList.size() - doneCount;
-//        if (doneCount > 0) {
-//            tvDoneCount.setText(doneCount + "");
-//        }
-//        if (unDoneCount > 0) {
-//            tvUndoneCount.setText(unDoneCount + "");
-//        }
-//
-//        // Set ProgressBar
-//        int percent = doneCount * 100 / My.todosList.size();
-//        pgLevel.setProgress(percent);
-//        pgLevel.setMax(100);
-//        tvLevelCount.setText(percent + "%");
     }
 
-    @Override
-    public void onClick(View v) {
 
-//        if (v.getId() == R.id.my_setting) {
-//            Toast.makeText(getContext(), "Setting Functions is developing...", Toast.LENGTH_SHORT).show();
-//        }
-//        if (v.getId() == R.id.goals_rl || v.getId() == R.id.undone_rl || v.getId() == R.id.done_rl) {
-//            ((BottomNavigationView) getActivity().findViewById(R.id.bottom_navigation)).setSelectedItemId(R.id.page_1);
-//        }
-
-    }
 }

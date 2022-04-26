@@ -8,6 +8,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.ListView;
 import android.widget.PopupMenu;
 import android.widget.RelativeLayout;
@@ -18,9 +19,11 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.widget.SwitchCompat;
 
 import com.example.plana.R;
+import com.example.plana.adapter.TodoAdapter;
+import com.example.plana.config.MyConfig;
+import com.example.plana.config.MyConfigConstant;
 import com.example.plana.function.MainActivity;
 import com.example.plana.function.todo.AddTodoActivity;
-import com.example.plana.adapter.EventAdapter;
 import com.example.plana.base.BaseFragment;
 import com.example.plana.bean.My;
 import com.example.plana.bean.Todos;
@@ -34,6 +37,7 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Comparator;
 import java.util.Date;
+import java.util.Map;
 
 /**
  * @program: PlanA
@@ -42,7 +46,7 @@ import java.util.Date;
 public class ShowListFragment extends BaseFragment
         implements PopupMenu.OnMenuItemClickListener {
 
-    EventAdapter adapter;
+    TodoAdapter adapter;
     ArrayList<Todos> arr;
     ArrayList<Todos> filtered;
 
@@ -52,48 +56,49 @@ public class ShowListFragment extends BaseFragment
 
     // true： hide done things
     // false：show done things
-    SwitchCompat switchDone;
+    SwitchCompat switchHideDone;
 
-    Button filterButton;
+    ImageButton filterButton;
     FloatingActionButton fab;
 
     RelativeLayout emptyPage;
 
-    public ShowListFragment() {
-    }
+    Map<String, String> todoConfig;
 
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_todo_list_home, container, false);
-
         listView = view.findViewById(R.id.home_list);
         listView.setItemsCanFocus(false);
         tvHello = view.findViewById(R.id.tv_hello);
         pullToRefresh = view.findViewById(R.id.pullToRefresh);
         filterButton = view.findViewById(R.id.filter_button);
-        switchDone = view.findViewById(R.id.switch_done);
+        switchHideDone = view.findViewById(R.id.switch_done);
         fab = view.findViewById(R.id.add_todo_fab);
         emptyPage = view.findViewById(R.id.empty_status);
 
-        filtered = new ArrayList<>();
+        sayHello();
 
+        filtered = new ArrayList<>();
         My.todosList = TodosDB.queryAllEvent(MainActivity.mainActivity.sqlite);
         arr = My.todosList;
         refreshListView(arr);
 
-        sayHello();
-
         registerForContextMenu(filterButton);
+
+
+        // setOnClickListener
         filterButton.setOnClickListener(l -> showPopupMenu(filterButton));
 
-        // Pull To Refresh
         pullToRefresh.setOnRefreshListener(() -> pullToRefresh.postDelayed(() -> {
             refreshListView(arr);
             pullToRefresh.setRefreshing(false);
         }, 1000));
 
-        switchDone.setOnCheckedChangeListener((compoundButton, isChecked) -> {
+        fab.setOnClickListener(v -> directToAddActivity());
+
+        switchHideDone.setOnCheckedChangeListener((compoundButton, isChecked) -> {
             if (isChecked) {
                 filtered.clear();
                 for (Todos todos : arr) {
@@ -101,15 +106,44 @@ public class ShowListFragment extends BaseFragment
                         filtered.add(todos);
                     }
                 }
+                todoConfig.put(MyConfigConstant.Todo.CONFIG_HIDE_DONE_TODO, MyConfigConstant.VALUE_TRUE);
                 refreshListView(filtered);
-            } else
+            } else {
+                todoConfig.put(MyConfigConstant.Todo.CONFIG_HIDE_DONE_TODO, MyConfigConstant.VALUE_FALSE);
                 refreshListView(arr);
+            }
+            MyConfig.saveTodoConfig(todoConfig);
         });
-        switchDone.setChecked(false);
 
-        fab.setOnClickListener(v -> directToAddActivity());
+        loadTodoConfig();
 
         return view;
+    }
+
+    private void loadTodoConfig() {
+        todoConfig = MyConfig.loadTodoConfig();
+        String value = todoConfig.get(MyConfigConstant.Todo.CONFIG_HIDE_DONE_TODO);
+        switch (value) {
+            case MyConfigConstant.VALUE_TRUE:
+                switchHideDone.setChecked(true);
+                break;
+            case MyConfigConstant.VALUE_FALSE:
+                switchHideDone.setChecked(false);
+                break;
+        }
+
+        value = todoConfig.get(MyConfigConstant.Todo.CONFIG_TODO_SORT);
+        switch (value) {
+            case MyConfigConstant.Todo.SORT_BY_ADD_TIME:
+                sortByAddTime();
+                break;
+            case MyConfigConstant.Todo.SORT_BY_DATE:
+                sortByDate();
+                break;
+            case MyConfigConstant.Todo.SORT_BY_PRIORITY:
+                sortByLevel();
+                break;
+        }
     }
 
 
@@ -126,7 +160,7 @@ public class ShowListFragment extends BaseFragment
      * 获取数据并刷新
      */
     public void refreshListView(ArrayList<Todos> arr) {
-        adapter = new EventAdapter(getActivity(), arr);
+        adapter = new TodoAdapter(getActivity(), arr);
         listView.setAdapter(adapter);
         adapter.notifyDataSetChanged();
         checkViewEmpty(arr);
@@ -152,7 +186,6 @@ public class ShowListFragment extends BaseFragment
 
         if (My.Account == null) tvHello.append(" Stranger.");
         else tvHello.append(" " + My.Account.getName() + ".");
-
     }
 
 
@@ -167,94 +200,101 @@ public class ShowListFragment extends BaseFragment
         popupMenu.show();
     }
 
-//    @Override
-//    public void onCreateContextMenu(@NonNull ContextMenu menu, @NonNull View v, @Nullable ContextMenu.ContextMenuInfo menuInfo) {
-//        super.onCreateContextMenu(menu, v, menuInfo);
-//        menu.add(1, 0, 1, getString(R.string.sort_add_time));
-//        menu.add(1, 1, 1, getString(R.string.sort_date));
-//        menu.add(1, 2, 1, getString(R.string.sort_prior));
-//        menu.add(1, 3, 1, getString(R.string.sort_done));
-//    }
 
     @SuppressLint("SimpleDateFormat")
     @Override
     public boolean onMenuItemClick(MenuItem item) {
         switch (item.getItemId()) {
             case R.id.sort_1:
-                // Sort by add time
-                arr.sort(Comparator.comparingInt(Todos::get_id));
-                refreshListView(arr);
+                sortByAddTime();
+                todoConfig.put(MyConfigConstant.Todo.CONFIG_TODO_SORT, MyConfigConstant.Todo.SORT_BY_ADD_TIME);
+                MyConfig.saveTodoConfig(todoConfig);
                 break;
             case R.id.sort_2:
-                // sort by date
-                arr.sort((o1, o2) -> {
-                    SimpleDateFormat sdf1 = new SimpleDateFormat("yyyy-MM-dd");
-                    SimpleDateFormat sdf2 = new SimpleDateFormat("HH:mm");
-                    String date1 = o1.getDate();
-                    String date2 = o2.getDate();
-                    Date o1Date = null;
-                    Date o2Date = null;
-
-                    String time1 = o1.getTime();
-                    String time2 = o2.getTime();
-                    Date o1Time = null;
-                    Date o2Time = null;
-
-                    if (date1.isEmpty() && date2.isEmpty()) return 0;
-                    if (date1.isEmpty()) return 1;
-                    if (date2.isEmpty()) return -1;
-
-                    try {
-                        o1Date = sdf1.parse(date1);
-                        o2Date = sdf1.parse(date2);
-                    } catch (ParseException e) {
-                        e.printStackTrace();
-                    }
-
-                    int resultDate = o1Date.compareTo(o2Date);
-                    if (resultDate > 0) return 1;
-                    else if (resultDate < 0) return -1;
-                    else {
-                        // 时间排序
-                        if (time1.isEmpty() && time2.isEmpty()) return 0;
-                        if (time1.isEmpty()) return 1;
-                        if (time2.isEmpty()) return -1;
-
-                        try {
-                            o1Time = sdf2.parse(time1);
-                            o2Time = sdf2.parse(time2);
-                        } catch (ParseException e) {
-                            e.printStackTrace();
-                        }
-
-                        int resultTime = o1Time.compareTo(o2Time);
-                        return Integer.compare(resultTime, 0);
-                    }
-                });
-                refreshListView(arr);
+                sortByDate();
+                todoConfig.put(MyConfigConstant.Todo.CONFIG_TODO_SORT, MyConfigConstant.Todo.SORT_BY_DATE);
+                MyConfig.saveTodoConfig(todoConfig);
                 break;
             case R.id.sort_3:
-                // Sort by id first
-                arr.sort(Comparator.comparingInt(Todos::get_id));
-                // Sort by Level
-                arr.sort((o1, o2) -> {
-                    double diff = o1.getLevel() - o2.getLevel();
-                    if (Double.isNaN(o1.getLevel()) && Double.isNaN(o2.getLevel()))
-                        return 0;
-                    if (Double.isNaN(o1.getLevel())) return 1;
-                    if (Double.isNaN(o2.getLevel())) return -1;
-                    return Double.compare(0.0, diff);
-                });
-                refreshListView(arr);
+                sortByLevel();
+                todoConfig.put(MyConfigConstant.Todo.CONFIG_TODO_SORT, MyConfigConstant.Todo.SORT_BY_PRIORITY);
+                MyConfig.saveTodoConfig(todoConfig);
                 break;
             case R.id.sort_4:
                 // hide done
-                switchDone.setChecked(true);
+                switchHideDone.setChecked(true);
                 break;
         }
         return false;
     }
 
+    private void sortByLevel() {
+        // Sort by id first
+        arr.sort(Comparator.comparingInt(Todos::get_id));
+        // Sort by Level
+        arr.sort((o1, o2) -> {
+            double diff = o1.getLevel() - o2.getLevel();
+            if (Double.isNaN(o1.getLevel()) && Double.isNaN(o2.getLevel()))
+                return 0;
+            if (Double.isNaN(o1.getLevel())) return 1;
+            if (Double.isNaN(o2.getLevel())) return -1;
+            return Double.compare(0.0, diff);
+        });
+        refreshListView(arr);
+    }
+
+    private void sortByDate() {
+        arr.sort((o1, o2) -> {
+            SimpleDateFormat sdf1 = new SimpleDateFormat("yyyy-MM-dd");
+            SimpleDateFormat sdf2 = new SimpleDateFormat("HH:mm");
+            String date1 = o1.getDate();
+            String date2 = o2.getDate();
+            Date o1Date = null;
+            Date o2Date = null;
+
+            String time1 = o1.getTime();
+            String time2 = o2.getTime();
+            Date o1Time = null;
+            Date o2Time = null;
+
+            if (date1.isEmpty() && date2.isEmpty()) return 0;
+            if (date1.isEmpty()) return 1;
+            if (date2.isEmpty()) return -1;
+
+            try {
+                o1Date = sdf1.parse(date1);
+                o2Date = sdf1.parse(date2);
+            } catch (ParseException e) {
+                e.printStackTrace();
+            }
+
+            int resultDate = o1Date.compareTo(o2Date);
+            if (resultDate > 0) return 1;
+            else if (resultDate < 0) return -1;
+            else {
+                // 时间排序
+                if (time1.isEmpty() && time2.isEmpty()) return 0;
+                if (time1.isEmpty()) return 1;
+                if (time2.isEmpty()) return -1;
+
+                try {
+                    o1Time = sdf2.parse(time1);
+                    o2Time = sdf2.parse(time2);
+                } catch (ParseException e) {
+                    e.printStackTrace();
+                }
+
+                int resultTime = o1Time.compareTo(o2Time);
+                return Integer.compare(resultTime, 0);
+            }
+        });
+        refreshListView(arr);
+    }
+
+    private void sortByAddTime() {
+        arr.sort(Comparator.comparingInt(Todos::get_id));
+        refreshListView(arr);
+    }
 
     /**
      * 检查list是否为空，刷新不同的界面

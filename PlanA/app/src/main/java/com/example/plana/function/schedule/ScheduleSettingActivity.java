@@ -156,7 +156,7 @@ public class ScheduleSettingActivity extends BaseActivity {
         reStartRemind(notIsOpen, setHour, setMinute);
 
         // 存入设置
-        MyConfig.saveConfig(configMap);
+        MyConfig.saveScheduleConfig(configMap);
 
         // DEBUG
         Log.e(TAG, configMap.toString());
@@ -175,7 +175,7 @@ public class ScheduleSettingActivity extends BaseActivity {
      * 设置课表appearance的初始化
      */
     private void initHideSet() {
-        Map<String, String> myConfigMap = MyConfig.loadConfig();
+        Map<String, String> myConfigMap = MyConfig.loadScheduleConfig();
 
         for (String key : myConfigMap.keySet()) {
             String value = myConfigMap.get(key);
@@ -452,7 +452,7 @@ public class ScheduleSettingActivity extends BaseActivity {
                     schoolStartTime = TimeCalcUtil.calToStr(cal);
                     configMap.put(MyConfigConstant.CONFIG_START_DATE, schoolStartTime);
                     configMap.put(MyConfigConstant.CONFIG_CUR_WEEK, schoolStartTime);
-                    MyConfig.saveConfig(configMap);     // 保存设置信息至本地配置文件
+                    MyConfig.saveScheduleConfig(configMap);     // 保存设置信息至本地配置文件
                     etSchoolStartTime.setText(TimeCalcUtil.calToSimpleStr(cal));
                 }).create();
         alertDialog.show();

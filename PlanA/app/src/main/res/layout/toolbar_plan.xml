@@ -27,9 +27,6 @@
                     android:scaleType="centerCrop"
                     android:src="@mipmap/img_study_0" />
 
-
-
-
             </RelativeLayout>
 
             <androidx.appcompat.widget.Toolbar
@@ -46,11 +43,12 @@
                     android:layout_height="match_parent">
 
                     <ImageButton
-                        android:layout_width="30dp"
-                        android:layout_height="30dp"
+                        android:layout_width="25dp"
+                        android:layout_height="25dp"
                         android:layout_centerVertical="true"
                         android:layout_marginStart="15dp"
-                        android:background="@drawable/icon_back_arrows" />
+                        android:layout_alignParentStart="true"
+                        android:background="@drawable/icon_back" />
 
                     <TextView
                         android:layout_width="match_parent"
@@ -62,9 +60,19 @@
                         android:textSize="20sp"
                         android:textStyle="bold" />
 
+                    <ImageButton
+                        android:layout_width="25dp"
+                        android:layout_height="25dp"
+                        android:layout_centerVertical="true"
+                        android:layout_marginEnd="15dp"
+                        android:layout_alignParentEnd="true"
+                        android:background="@drawable/icon_plan_setting" />
 
                 </RelativeLayout>
             </androidx.appcompat.widget.Toolbar>
+
+
+
         </com.google.android.material.appbar.CollapsingToolbarLayout>
     </com.google.android.material.appbar.AppBarLayout>
 

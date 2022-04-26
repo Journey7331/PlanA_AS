@@ -14,7 +14,7 @@
             android:id="@+id/my_detail_rl"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:background="@drawable/background_my_detail"
+            android:background="@drawable/bg_my_detail"
             android:elevation="2dp">
 
             <RelativeLayout
@@ -26,17 +26,17 @@
                 android:layout_marginBottom="35dp">
 
                 <View
-                    android:id="@+id/my_profile"
+                    android:id="@+id/my_profile_img"
                     android:layout_width="100dp"
                     android:layout_height="100dp"
-                    android:background="@drawable/baseline_account_circle_24" />
+                    android:background="@drawable/baseline_account" />
 
                 <RelativeLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_centerVertical="true"
                     android:layout_marginStart="20dp"
-                    android:layout_toEndOf="@+id/my_profile">
+                    android:layout_toEndOf="@+id/my_profile_img">
 
                     <TextView
                         android:id="@+id/my_name"
@@ -61,7 +61,7 @@
                         android:layout_height="40dp"
                         android:layout_below="@id/my_email"
                         android:layout_marginTop="12dp"
-                        android:background="@drawable/background_grey_button_select"
+                        android:background="@drawable/bg_grey_button_select"
                         android:text="@string/log_out"
                         android:textColor="@color/black"
                         android:textStyle="bold" />
@@ -87,19 +87,19 @@
             android:layout_below="@+id/my_detail_rl"
             android:layout_marginHorizontal="20dp"
             android:layout_marginTop="30dp"
-            android:background="@drawable/background_edit_text_normal"
-            android:elevation="2dp">
+            android:background="@drawable/bg_dialog_radius_white"
+            >
 
 
             <RelativeLayout
-                android:id="@+id/rl_hide_weekend"
+                android:id="@+id/rl_personal_Info_modify"
                 android:layout_width="wrap_content"
                 android:layout_height="50dp"
                 android:layout_marginStart="3dp"
                 android:layout_marginTop="3dp"
                 android:layout_marginEnd="3dp"
                 android:layout_marginBottom="3dp"
-                android:background="@drawable/background_edit_text_select">
+                android:background="@drawable/bg_rl_view_select">
 
                 <androidx.emoji2.widget.EmojiButton
                     android:id="@+id/emoji_person"
@@ -117,7 +117,7 @@
                     android:layout_centerVertical="true"
                     android:layout_marginStart="20dp"
                     android:layout_toEndOf="@+id/emoji_person"
-                    android:text="个人信息修改"
+                    android:text="@string/personal_information_modify"
                     android:textSize="18sp" />
 
                 <ImageView
@@ -126,7 +126,7 @@
                     android:layout_alignParentEnd="true"
                     android:layout_centerVertical="true"
                     android:layout_marginEnd="30dp"
-                    android:alpha="0.8"
+                    android:alpha="0.5"
                     android:background="@drawable/icon_next" />
 
             </RelativeLayout>
@@ -135,13 +135,13 @@
                 android:id="@+id/v_line_3"
                 android:layout_width="match_parent"
                 android:layout_height="1dp"
-                android:layout_below="@id/rl_hide_weekend"
+                android:layout_below="@id/rl_personal_Info_modify"
                 android:layout_marginHorizontal="15dp"
                 android:alpha="0.5"
                 android:background="@color/grey" />
 
             <RelativeLayout
-                android:id="@+id/rl_hide_nonThis_week"
+                android:id="@+id/rl_notify_modify"
                 android:layout_width="wrap_content"
                 android:layout_height="50dp"
                 android:layout_below="@+id/v_line_3"
@@ -149,10 +149,10 @@
                 android:layout_marginTop="3dp"
                 android:layout_marginEnd="3dp"
                 android:layout_marginBottom="3dp"
-                android:background="@drawable/background_edit_text_select">
+                android:background="@drawable/bg_rl_view_select">
 
                 <androidx.emoji2.widget.EmojiButton
-                    android:id="@+id/emoji_notifi"
+                    android:id="@+id/emoji_notify"
                     android:layout_width="32dp"
                     android:layout_height="32dp"
                     android:layout_centerVertical="true"
@@ -166,8 +166,8 @@
                     android:layout_height="wrap_content"
                     android:layout_centerVertical="true"
                     android:layout_marginStart="20dp"
-                    android:layout_toEndOf="@+id/emoji_notifi"
-                    android:text="通知设置"
+                    android:layout_toEndOf="@+id/emoji_notify"
+                    android:text="@string/notification_modify"
                     android:textSize="18sp" />
 
                 <ImageView
@@ -176,7 +176,7 @@
                     android:layout_alignParentEnd="true"
                     android:layout_centerVertical="true"
                     android:layout_marginEnd="30dp"
-                    android:alpha="0.8"
+                    android:alpha="0.5"
                     android:background="@drawable/icon_next" />
 
             </RelativeLayout>
@@ -185,13 +185,13 @@
                 android:id="@+id/v_line_4"
                 android:layout_width="match_parent"
                 android:layout_height="1dp"
-                android:layout_below="@id/rl_hide_nonThis_week"
+                android:layout_below="@id/rl_notify_modify"
                 android:layout_marginHorizontal="15dp"
                 android:alpha="0.5"
                 android:background="@color/grey" />
 
             <RelativeLayout
-                android:id="@+id/rl_hide_block_time"
+                android:id="@+id/rl_upload_to_cloud"
                 android:layout_width="wrap_content"
                 android:layout_height="50dp"
                 android:layout_below="@+id/v_line_4"
@@ -199,7 +199,7 @@
                 android:layout_marginTop="3dp"
                 android:layout_marginEnd="3dp"
                 android:layout_marginBottom="3dp"
-                android:background="@drawable/background_edit_text_select">
+                android:background="@drawable/bg_rl_view_select">
 
                 <androidx.emoji2.widget.EmojiButton
                     android:id="@+id/emoji_cloud"
@@ -217,7 +217,7 @@
                     android:layout_centerVertical="true"
                     android:layout_marginStart="20dp"
                     android:layout_toEndOf="@+id/emoji_cloud"
-                    android:text="上传本地内容到云"
+                    android:text="@string/upload_data_to_cloud"
                     android:textSize="18sp" />
 
                 <ImageView
@@ -226,7 +226,7 @@
                     android:layout_alignParentEnd="true"
                     android:layout_centerVertical="true"
                     android:layout_marginEnd="30dp"
-                    android:alpha="0.8"
+                    android:alpha="0.5"
                     android:background="@drawable/icon_next" />
 
             </RelativeLayout>
@@ -235,7 +235,7 @@
                 android:id="@+id/v_line_5"
                 android:layout_width="match_parent"
                 android:layout_height="1dp"
-                android:layout_below="@id/rl_hide_block_time"
+                android:layout_below="@id/rl_upload_to_cloud"
                 android:layout_marginHorizontal="15dp"
                 android:alpha="0.5"
                 android:background="@color/grey" />
@@ -249,7 +249,7 @@
                 android:layout_marginTop="3dp"
                 android:layout_marginEnd="3dp"
                 android:layout_marginBottom="3dp"
-                android:background="@drawable/background_edit_text_select">
+                android:background="@drawable/bg_rl_view_select">
 
                 <androidx.emoji2.widget.EmojiButton
                     android:id="@+id/emoji_trash_bin"
@@ -267,7 +267,7 @@
                     android:layout_centerVertical="true"
                     android:layout_marginStart="20dp"
                     android:layout_toEndOf="@+id/emoji_trash_bin"
-                    android:text="回收站"
+                    android:text="@string/trash_bin"
                     android:textSize="18sp" />
 
                 <ImageView
@@ -276,7 +276,7 @@
                     android:layout_alignParentEnd="true"
                     android:layout_centerVertical="true"
                     android:layout_marginEnd="30dp"
-                    android:alpha="0.8"
+                    android:alpha="0.5"
                     android:background="@drawable/icon_next" />
 
             </RelativeLayout>
@@ -290,8 +290,7 @@
             android:layout_below="@+id/rl_my_setting"
             android:layout_marginHorizontal="20dp"
             android:layout_marginTop="20dp"
-            android:background="@drawable/background_edit_text_normal"
-            android:elevation="2dp">
+            android:background="@drawable/bg_dialog_radius_white">
 
             <RelativeLayout
                 android:id="@+id/rl_about"
@@ -301,7 +300,7 @@
                 android:layout_marginTop="3dp"
                 android:layout_marginEnd="3dp"
                 android:layout_marginBottom="3dp"
-                android:background="@drawable/background_edit_text_select">
+                android:background="@drawable/bg_rl_view_select">
 
                 <androidx.emoji2.widget.EmojiButton
                     android:id="@+id/emoji_box"
@@ -319,7 +318,7 @@
                     android:layout_centerVertical="true"
                     android:layout_marginStart="20dp"
                     android:layout_toEndOf="@+id/emoji_box"
-                    android:text="关于"
+                    android:text="@string/about"
                     android:textSize="18sp" />
 
                 <ImageView
@@ -328,7 +327,7 @@
                     android:layout_alignParentEnd="true"
                     android:layout_centerVertical="true"
                     android:layout_marginEnd="30dp"
-                    android:alpha="0.8"
+                    android:alpha="0.5"
                     android:background="@drawable/icon_next" />
             </RelativeLayout>
 
