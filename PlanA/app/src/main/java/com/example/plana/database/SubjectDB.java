@@ -62,12 +62,10 @@ public class SubjectDB implements MyDatabaseHelper.TableCreateInterface{
         }
     }
 
-    // TODO
-    public static void insertSubject(MyDatabaseHelper dbHelper, Subject subject, User user) {
-
-    }
-
-
+//    // TODO insert subject
+//    public static void insertSubject(MyDatabaseHelper dbHelper, Subject subject, User user) {
+//
+//    }
 
 
 }

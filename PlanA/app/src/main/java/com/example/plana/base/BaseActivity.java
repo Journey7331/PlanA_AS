@@ -1,12 +1,14 @@
 package com.example.plana.base;
 
 import android.app.Activity;
+import android.os.Bundle;
 import android.util.Log;
 import android.view.KeyEvent;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.Toast;
 
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.plana.config.Constant;
@@ -16,13 +18,20 @@ import com.example.plana.database.MyDatabaseHelper;
  * @program: PlanA
  * @description: BaseActivity extends AppCompatActivity
  */
-public abstract class BaseActivity extends AppCompatActivity {
+public class BaseActivity extends AppCompatActivity {
 
     private long exitTime = 0;
     private String URL = Constant.URL;
 
     public MyDatabaseHelper sqlite = new MyDatabaseHelper(this);
 //    public Retrofit.Builder retrofitBuilder = new Retrofit.Builder().baseUrl(URL);
+
+
+    @Override
+    protected void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR);
+    }
 
     // 隐藏键盘
     public static void hideKeyboard(Activity activity) {

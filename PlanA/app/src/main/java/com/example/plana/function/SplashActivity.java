@@ -8,14 +8,19 @@ import android.os.Handler;
 import android.util.Log;
 import android.view.View;
 import android.view.WindowManager;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.cunoraz.gifview.library.GifView;
 import com.example.plana.R;
+import com.example.plana.base.MainApplication;
 import com.example.plana.function.user.LoginActivity;
 import com.example.plana.base.BaseActivity;
 import com.example.plana.bean.My;
 import com.example.plana.database.UserDB;
+import com.tencent.android.tpush.XGIOperateCallback;
+import com.tencent.android.tpush.XGPushConfig;
+import com.tencent.android.tpush.XGPushManager;
 
 /**
  * @program: PlanA
@@ -31,6 +36,7 @@ public class SplashActivity extends BaseActivity {
 
     GifView gifView;
     TextView splashTextView;
+    RelativeLayout rlSplashPage;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,6 +45,7 @@ public class SplashActivity extends BaseActivity {
 
         changeStatusBar();
 
+        rlSplashPage = findViewById(R.id.rl_splash_page);
         splashTextView = findViewById(R.id.tv_splash);
         gifView = findViewById(R.id.logo_gif);
         gifView.setGifResource(R.mipmap.logo);
@@ -48,8 +55,24 @@ public class SplashActivity extends BaseActivity {
         auto_id = auto.getString("auto_id", null);
         auto_password = auto.getString("auto_pw", null);
 
-
         splashAnimation();
+
+
+        /*****
+        XGPushConfig.enableDebug(MainApplication.getAppContext(),true);
+        XGPushManager.registerPush(MainApplication.getAppContext(), new XGIOperateCallback() {
+            @Override
+            public void onSuccess(Object data, int flag) {
+                //token在设备卸载重装的时候有可能会变
+                Log.d("TPush", "注册成功，设备token为：" + data);
+            }
+
+            @Override
+            public void onFail(Object data, int errCode, String msg) {
+                Log.d("TPush", "注册失败，错误码：" + errCode + ",错误信息：" + msg);
+            }
+        });
+        /*****/
 
     }
 
@@ -95,20 +118,21 @@ public class SplashActivity extends BaseActivity {
         TextHandler.postDelayed(TextRunable, 200);
 
         Handler splashHandler = new Handler();
-        Runnable splashRunable = () -> {
+        Runnable splashRunnable = () -> {
             if (auto_id != null && auto_password != null) {
                 login(auto_id, auto_password);
             } else {
                 directToLoginActivity();
             }
         };
-        splashHandler.postDelayed(splashRunable, SPLASH_TIME);
+        splashHandler.postDelayed(splashRunnable, SPLASH_TIME);
 
-        // 提前结束
-        gifView.setOnClickListener(v -> {
-            splashHandler.removeCallbacks(splashRunable);
-            splashHandler.post(splashRunable);
+        // 把 delayed 的 splashRunnable 提前
+        rlSplashPage.setOnClickListener(v -> {
+            splashHandler.removeCallbacks(splashRunnable);
+            splashHandler.post(splashRunnable);
         });
+
     }
 
 
@@ -152,7 +176,6 @@ public class SplashActivity extends BaseActivity {
 //                if ("ok".equals(jsonObject.get("result").getAsString())) {
 //
 //                    updateMy();
-//                    // TODO after auto login
 //
 //                    directToMainActivity();
 //                } else {

@@ -14,7 +14,7 @@ public class MyDatabaseHelper extends SQLiteOpenHelper {
 
     // 数据库名
     private static final String db_name = "test";
-    private static final int version = 5;
+    private static final int version = 7;
 
     /**
      * 构造方法，创建数据库
@@ -44,6 +44,7 @@ public class MyDatabaseHelper extends SQLiteOpenHelper {
         TodosDB.getInstance().onCreate(db);
         UserDB.getInstance().onCreate(db);
         TimerDB.getInstance().onCreate(db);
+        DeletedTodosDB.getInstance().onCreate(db);
     }
 
 
@@ -58,5 +59,6 @@ public class MyDatabaseHelper extends SQLiteOpenHelper {
         TodosDB.getInstance().onUpgrade(db, oldVersion, newVersion);
         UserDB.getInstance().onUpgrade(db, oldVersion, newVersion);
         TimerDB.getInstance().onUpgrade(db, oldVersion, newVersion);
+        DeletedTodosDB.getInstance().onUpgrade(db, oldVersion, newVersion);
     }
 }

@@ -1,6 +1,7 @@
 plugins {
     id 'com.android.application'
 }
+apply plugin: "com.tencent.android.tpns"
 
 android {
     compileSdkVersion 31
@@ -14,6 +15,12 @@ android {
         versionName "1.0"
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+
+        manifestPlaceholders = [
+                XG_ACCESS_ID : "1580010996",
+                XG_ACCESS_KEY : "AEWHMELH4LZH",
+        ]
+
     }
 
     buildTypes {
@@ -54,10 +61,12 @@ dependencies {
     implementation 'com.github.Cutta:GifView:1.4'
     implementation 'com.akexorcist:round-corner-progress-bar:2.1.2'
 
-    implementation 'cn.leancloud:realtime-android:8.2.5'
+    implementation 'com.tencent.tpns:tpns:1.3.3.3-release'
+
+//    implementation 'cn.leancloud:realtime-android:8.2.5'
 
     // https://mvnrepository.com/artifact/com.github.eljah/xmindjbehaveplugin
-    implementation 'com.github.eljah:xmindjbehaveplugin:0.8'
+//    implementation 'com.github.eljah:xmindjbehaveplugin:0.8'
 //    implementation 'com.github.liufree:xmindparser-java:0.0.1'
 
 

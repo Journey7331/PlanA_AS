@@ -59,8 +59,8 @@
                 android:id="@+id/filter_button"
                 android:layout_width="32dp"
                 android:layout_height="32dp"
-                android:alpha="0.8"
                 android:layout_alignParentEnd="true"
+                android:alpha="0.8"
                 android:background="@drawable/icon_more_horiz" />
         </RelativeLayout>
     </RelativeLayout>
@@ -81,6 +81,16 @@
             android:layout_centerHorizontal="true"
             android:background="@mipmap/empty" />
 
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignTop="@+id/empty_arrow"
+            android:layout_marginTop="15dp"
+            android:gravity="center"
+            android:text="点击添加"
+            android:textColor="@color/colorBlueGrey"
+            android:textSize="20sp" />
+
         <View
             android:id="@+id/empty_arrow"
             android:layout_width="120dp"
@@ -92,9 +102,9 @@
 
 
     <!-- Pull To Refresh -->
-<!--    <androidx.swiperefreshlayout.widget.SwipeRefreshLayout-->
+    <!--    <androidx.swiperefreshlayout.widget.SwipeRefreshLayout-->
     <com.yalantis.phoenix.PullToRefreshView
-    android:id="@+id/pullToRefresh"
+        android:id="@+id/pullToRefresh"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@+id/rl_menubar">
@@ -104,7 +114,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent" />
     </com.yalantis.phoenix.PullToRefreshView>
-<!--    </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>-->
+    <!--    </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>-->
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/add_todo_fab"
@@ -113,10 +123,10 @@
         android:layout_alignParentEnd="true"
         android:layout_alignParentBottom="true"
         android:layout_margin="30dp"
+        android:backgroundTint="@color/colorPrimary"
         android:contentDescription="@string/add_todo"
         android:elevation="7dp"
         android:src="@drawable/icon_fab_add"
-        android:backgroundTint="@color/colorPrimary"
         app:fabSize="auto" />
 
 </RelativeLayout>

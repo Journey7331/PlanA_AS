@@ -609,11 +609,9 @@ public class ScheduleFragment extends BaseFragment
      * @return 保存的课程列表
      */
     public static List<MySubject> toGetSubjects() {
-
-//        SharedPreferences sp = getSharedPreferences("COURSE_DATA", Activity.MODE_PRIVATE);//创建sp对象
-//        String str_subjectJSON = sp.getString("SUBJECT_LIST", null);  //取出key为"SUBJECT_LIST"的值，如果值为空，则将第二个参数作为默认值赋值
-//        Log.e(TAG, "toGetSubjects: " + str_subjectJSON);//str_subjectJSON便是取出的数据了
-        String str_subjectJSON = SharedPreferencesUtil.init(MainApplication.getAppContext(), "COURSE_DATA").getString("SUBJECT_LIST", null);
+        String str_subjectJSON = SharedPreferencesUtil
+                .init(MainApplication.getAppContext(), "COURSE_DATA")
+                .getString("SUBJECT_LIST", null);
         Gson gson = new Gson();
         List<MySubject> subjectList = gson.fromJson(str_subjectJSON, new TypeToken<List<MySubject>>() {
         }.getType());

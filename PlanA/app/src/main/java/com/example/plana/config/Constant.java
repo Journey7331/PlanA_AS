@@ -35,6 +35,22 @@ public class Constant {
         public static final int MyRed = Color.rgb(221, 0, 27);
     }
 
+
+    /**
+     * 计划行的颜色池
+     */
+    public static int[] rowColor = {
+            Color.rgb(57, 125, 84), // colorPrimaryDark
+            Color.rgb(83, 157, 115), // colorPrimary
+            Color.rgb(141, 204, 149),
+            Color.rgb(207, 233, 211),
+            Color.rgb(236, 254, 238),
+    };
+
+
+    /**
+     * TAG
+     */
     public static class TAG {
         public static final String NOTIFY_TAG = "NOTIFY_TAG";
         public static final String DATE_BASE_TAG = "DATE_BASE_TAG";

@@ -28,9 +28,8 @@ import java.util.LinkedList;
  */
 public class PlanBriefAdapter extends RecyclerView.Adapter<PlanBriefAdapter.ViewHolder> {
 
-    static Activity ctx;
+    Activity ctx;
     LinkedList<PlanBrief> arr;
-
 
     public PlanBriefAdapter(Activity context, LinkedList<PlanBrief> list) {
         this.arr = list;
@@ -53,9 +52,6 @@ public class PlanBriefAdapter extends RecyclerView.Adapter<PlanBriefAdapter.View
             progressBar = view.findViewById(R.id.progressbar_plan_brief);
             tvLeftDays = view.findViewById(R.id.tv_plan_brief_left_days);
             rlPlan = view.findViewById(R.id.rl_plan_brief);
-
-            // Define click listener for the ViewHolder's View
-
         }
 
     }
@@ -64,7 +60,7 @@ public class PlanBriefAdapter extends RecyclerView.Adapter<PlanBriefAdapter.View
     /**
      * 创建一个view，填充item的 UI
      * (invoked by the layout manager)
-     * */
+     */
     @NonNull
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
@@ -78,24 +74,28 @@ public class PlanBriefAdapter extends RecyclerView.Adapter<PlanBriefAdapter.View
     /**
      * 替换 view 中的数据
      * (invoked by the layout manager)
-     * */
+     */
     @Override
     public void onBindViewHolder(@NonNull ViewHolder viewHolder, int position) {
         PlanBrief planBrief = arr.get(position);
         viewHolder.tvTitle.setText(planBrief.getPlanName());
-        viewHolder.tvLeftDays.setText(TimeCalcUtil.getLeftDay(planBrief.getLeftDays()));
+//        viewHolder.tvLeftDays.setText(TimeCalcUtil.getLeftDay(planBrief.getLeftDays()));
+        String str = "还剩" + (planBrief.getTotal() - planBrief.getDone()) + "小节";
+        viewHolder.tvLeftDays.setText(str);
 
         new Handler().postDelayed(() -> {
             viewHolder.progressBar.setProgress(
                     planBrief.getDone() * 100 / planBrief.getTotal(),
                     true
             );
-        }, position*100+200);
+        }, position * 80L + 200);
 
 
         viewHolder.rlPlan.setOnClickListener(v -> {
-            My.plan = getPlanDetail(planBrief);
-            directToPlanDetailActivity();
+            Intent intent = new Intent(ctx, PlanDetailActivity.class);
+            My.plan_id = planBrief.getPlanId();
+//            intent.putExtra("plan_id", planId);
+            ctx.startActivity(intent);
         });
 
     }
@@ -107,22 +107,4 @@ public class PlanBriefAdapter extends RecyclerView.Adapter<PlanBriefAdapter.View
     }
 
 
-    /**
-     * 根据planBrief获取plan的全部信息
-     */
-    private static Plan getPlanDetail(PlanBrief planBrief) {
-        Plan plan = new Plan();
-
-        return plan;
-    }
-
-
-    /**
-     * 跳转到 PlanDetailActivity
-     */
-    private static void directToPlanDetailActivity() {
-        Intent intent = new Intent(ctx, PlanDetailActivity.class);
-        ctx.startActivity(intent);
-        ctx.overridePendingTransition(R.anim.slide_in_bottom, R.anim.fade_out);
-    }
 }

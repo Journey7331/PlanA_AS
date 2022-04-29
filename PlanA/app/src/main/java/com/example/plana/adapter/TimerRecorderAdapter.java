@@ -31,7 +31,7 @@ import java.util.LinkedList;
  */
 public class TimerRecorderAdapter extends RecyclerView.Adapter<TimerRecorderAdapter.ViewHolder> {
 
-    static Activity ctx;
+    Activity ctx;
     ArrayList<TimerRecorder> arr;
     MyDatabaseHelper sqlite;
 

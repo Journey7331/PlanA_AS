@@ -13,7 +13,7 @@ import java.util.Map;
  * @program: PlanA
  * @description: BaseFragment extends Fragment
  */
-public abstract class BaseFragment extends Fragment {
+public class BaseFragment extends Fragment {
     Map<String, String> params = new HashMap<>();
     Map<String, String> header_params = new HashMap<>();
 

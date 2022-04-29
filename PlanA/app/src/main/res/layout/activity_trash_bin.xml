@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/google_grey">
+
+    <RelativeLayout
+        android:id="@+id/rl_bar"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:background="@drawable/background_straight"
+        app:layout_constraintTop_toTopOf="parent">
+
+
+        <ImageButton
+            android:id="@+id/bt_trash_bin_back"
+            android:layout_width="25dp"
+            android:layout_height="25dp"
+            android:layout_alignParentStart="true"
+            android:layout_centerVertical="true"
+            android:layout_marginStart="15dp"
+            android:background="@drawable/icon_back" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:text="@string/trash_bin"
+            android:textSize="20sp"
+            android:textStyle="bold" />
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/rl_deleted_todos"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/rl_bar"
+        android:layout_marginHorizontal="10dp"
+        android:layout_marginTop="10dp"
+        android:layout_above="@+id/ll_delete_recover"
+        android:background="@drawable/bg_dialog_radius_white">
+
+        <ListView
+            android:id="@+id/lv_deleted_todo_list"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+        </ListView>
+
+
+        <RelativeLayout
+            android:id="@+id/trash_bin_empty_status"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:visibility="invisible">
+
+            <View
+                android:id="@+id/v_trash_bin_empty_status_img"
+                android:layout_width="170dp"
+                android:layout_height="170dp"
+                android:layout_marginTop="100dp"
+                android:alpha="0.6"
+                android:layout_centerHorizontal="true"
+                android:background="@drawable/icon_empty" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/v_trash_bin_empty_status_img"
+                android:layout_marginTop="15dp"
+                android:gravity="center"
+                android:text="回收站为空"
+                android:textColor="@color/google_grey_300"
+                android:textSize="20sp" />
+   </RelativeLayout>
+
+
+    </RelativeLayout>
+
+
+    <LinearLayout
+        android:id="@+id/ll_delete_recover"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:orientation="horizontal">
+
+
+        <android.widget.Button
+            android:id="@+id/btn_delete_all"
+            android:layout_width="wrap_content"
+            android:layout_height="40dp"
+            android:background="@drawable/bg_grey_button_normal"
+            android:paddingHorizontal="20dp"
+            android:layout_margin="10dp"
+            android:text="全部删除"
+            android:textColor="@color/google_grey_700"
+            android:textStyle="bold" />
+
+        <android.widget.Button
+            android:id="@+id/btn_recover_all"
+            android:layout_width="wrap_content"
+            android:layout_height="40dp"
+            android:layout_margin="10dp"
+            android:background="@drawable/bg_button"
+            android:paddingHorizontal="20dp"
+            android:text="全部恢复"
+            android:textColor="@color/white"
+            android:textStyle="bold" />
+
+
+    </LinearLayout>
+
+
+</RelativeLayout>

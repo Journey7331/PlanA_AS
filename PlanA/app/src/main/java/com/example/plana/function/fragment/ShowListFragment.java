@@ -185,7 +185,7 @@ public class ShowListFragment extends BaseFragment
         tvHello.append(helloWords);
 
         if (My.Account == null) tvHello.append(" Stranger.");
-        else tvHello.append(" " + My.Account.getName() + ".");
+        else tvHello.append(" " + My.Account.getName() );
     }
 
 

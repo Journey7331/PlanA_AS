@@ -124,7 +124,6 @@ public class AddTodoActivity extends BaseActivity
         todo_values.put(TodosDB.date, finalDate);
         todo_values.put(TodosDB.time, finalTime);
         todo_values.put(TodosDB.level, finalLevel);
-        // TODO Put Location
 
         TodosDB.insertEvent(sqlite, todo_values);
 

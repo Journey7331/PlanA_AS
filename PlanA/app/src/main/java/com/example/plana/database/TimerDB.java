@@ -10,8 +10,10 @@ import android.util.Log;
 import com.example.plana.bean.TimerRecorder;
 import com.example.plana.bean.Todos;
 import com.example.plana.config.Constant;
+import com.example.plana.utils.TimeCalcUtil;
 
 import java.util.ArrayList;
+import java.util.List;
 
 /**
  * @program: PlanA
@@ -54,6 +56,32 @@ public class TimerDB implements MyDatabaseHelper.TableCreateInterface{
         Log.i(Constant.TAG.DATE_BASE_TAG,
                 TimerDB.TableName + " --- Table Created ---");
 
+
+        // init
+        for (ContentValues value : getValues()) {
+            db.insert(TimerDB.TableName, null, value);
+        }
+
+
+    }
+
+    private List<ContentValues> getValues() {
+        List<ContentValues> list = new ArrayList<>();
+        list.add(getValue("22.03.27",  18, 54, 30, TimerRecorder.NEGATIVE));
+        list.add(getValue("22.03.28",  16, 27, 112, TimerRecorder.POSITIVE));
+        list.add(getValue("22.04.02",  11, 3, 60, TimerRecorder.NEGATIVE));
+        list.add(getValue("22.04.09",  9, 23, 36, TimerRecorder.POSITIVE));
+        return list;
+    }
+
+    private ContentValues getValue(String day, int startHour, int startMin, int time, String count_type) {
+        ContentValues value = new ContentValues();
+        value.put(TimerDB.day, day);
+        value.put(TimerDB.start_time, TimeCalcUtil.format02d(startHour,startMin));
+        value.put(TimerDB.end_time, TimeCalcUtil.calcEndTime(startHour, startMin, time));
+        value.put(TimerDB.time, time);
+        value.put(TimerDB.count_type, count_type);
+        return value;
     }
 
 

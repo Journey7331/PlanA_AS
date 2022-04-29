@@ -3,6 +3,7 @@ package com.example.plana.adapter;
 import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.app.AlertDialog;
+import android.content.ContentValues;
 import android.content.Context;
 import android.content.Intent;
 import android.content.res.ColorStateList;
@@ -21,6 +22,7 @@ import com.example.plana.R;
 import com.example.plana.bean.My;
 import com.example.plana.bean.Todos;
 import com.example.plana.config.Constant;
+import com.example.plana.database.DeletedTodosDB;
 import com.example.plana.database.TodosDB;
 import com.example.plana.database.MyDatabaseHelper;
 import com.example.plana.function.todo.EditTodoActivity;
@@ -40,8 +42,8 @@ public class TodoAdapter extends ArrayAdapter {
 
     LayoutInflater inflater;
     ArrayList<Todos> arrayList;
-    Activity thisContext;
-    MyDatabaseHelper sqlite = new MyDatabaseHelper(getContext());
+    Activity ctx;
+    MyDatabaseHelper sqlite;
 
     // 内部类
     class EventItemHolder {
@@ -52,8 +54,9 @@ public class TodoAdapter extends ArrayAdapter {
 
     public TodoAdapter(Activity context, ArrayList<Todos> arr) {
         super(context, R.layout.fragment_todo_list_home, arr);
-        this.thisContext = context;
+        this.ctx = context;
         this.arrayList = arr;
+        this.sqlite = new MyDatabaseHelper(context);
         inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
     }
 
@@ -167,13 +170,24 @@ public class TodoAdapter extends ArrayAdapter {
                         directToEditActivity();
                     })
                     .setNegativeButton("删除", (dialog, which) -> {
-                        TodosDB.deleteEventById(sqlite, (getItem(position)).get_id() + "");
-                        remove(getItem(position));
+                        Todos item = getItem(position);
+                        ContentValues todo_values = new ContentValues();
+                        todo_values.put(TodosDB._id, item.get_id());
+                        todo_values.put(TodosDB.content, item.getContent());
+                        todo_values.put(TodosDB.memo, item.getMemo());
+                        todo_values.put(TodosDB.done, item.isDone());
+                        todo_values.put(TodosDB.date, item.getDate());
+                        todo_values.put(TodosDB.time, item.getTime());
+                        todo_values.put(TodosDB.level, item.getLevel());
+                        DeletedTodosDB.insertTodo(sqlite, todo_values);
+                        TodosDB.deleteEventById(sqlite,item.get_id()+"");
+                        My.todosList.remove(item);
+                        remove(item);
                         notifyDataSetChanged();
 
                         if (arrayList.size() < 1) {
-                            thisContext.findViewById(R.id.home_list).setVisibility(View.INVISIBLE);
-                            thisContext.findViewById(R.id.empty_status).setVisibility(View.VISIBLE);
+                            ctx.findViewById(R.id.home_list).setVisibility(View.INVISIBLE);
+                            ctx.findViewById(R.id.empty_status).setVisibility(View.VISIBLE);
                         }
 
                         Toast.makeText(getContext(), "成功删除", Toast.LENGTH_SHORT).show();
@@ -191,10 +205,10 @@ public class TodoAdapter extends ArrayAdapter {
     }
 
     private void directToEditActivity() {
-        Intent intent = new Intent(thisContext, EditTodoActivity.class);
-        thisContext.startActivity(intent);
+        Intent intent = new Intent(ctx, EditTodoActivity.class);
+        ctx.startActivity(intent);
         // transaction animation
-        thisContext.overridePendingTransition(R.anim.slide_in, R.anim.fade_out);
+        ctx.overridePendingTransition(R.anim.slide_in, R.anim.fade_out);
 //        thisContext.finish();
     }
 

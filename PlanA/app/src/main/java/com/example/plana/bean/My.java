@@ -14,7 +14,8 @@ public class My {
     public static User Account;
     public static Todos editTodo;
 
-    public static Plan plan;
+    public static List<Plan> plans = new ArrayList<>();
+    public static int plan_id = -1;
 
     public static int page = -1;
 

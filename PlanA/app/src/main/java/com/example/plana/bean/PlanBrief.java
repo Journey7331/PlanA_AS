@@ -6,10 +6,20 @@ package com.example.plana.bean;
  */
 public class PlanBrief {
 
+    private int planId;
     private String planName;
     private int total;
     private int done;
-    private int leftDays;
+
+//    private int leftDays;
+
+    public int getPlanId() {
+        return planId;
+    }
+
+    public void setPlanId(int planId) {
+        this.planId = planId;
+    }
 
     public String getPlanName() {
         return planName;
@@ -35,19 +45,16 @@ public class PlanBrief {
         this.done = done;
     }
 
-    public int getLeftDays() {
-        return leftDays;
+    public PlanBrief(int planId, String planName) {
+        this.planId = planId;
+        this.planName = planName;
     }
 
-    public void setLeftDays(int leftDays) {
-        this.leftDays = leftDays;
-    }
-
-    public PlanBrief(String planName, int total, int done, int leftDays) {
+    public PlanBrief(int id, String planName, int total, int done) {
+        this.planId = id;
         this.planName = planName;
         this.total = total;
         this.done = done;
-        this.leftDays = leftDays;
     }
 
     @Override
@@ -56,7 +63,6 @@ public class PlanBrief {
                 "planName='" + planName + '\'' +
                 ", total=" + total +
                 ", done=" + done +
-                ", leftDays=" + leftDays +
                 '}';
     }
 }

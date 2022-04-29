@@ -31,7 +31,6 @@ public class LoginActivity extends BaseActivity
     EditText et_username, et_password;
     Button btn_login;
     TextView tv_register;
-//    TextView tv_skip;
 
     String phone;
     String password;
@@ -48,14 +47,12 @@ public class LoginActivity extends BaseActivity
         et_username = findViewById(R.id.et_loginUsername);
         et_password = findViewById(R.id.et_loginPassword);
         tv_register = findViewById(R.id.tv_register);
-//        tv_skip = findViewById(R.id.tv_skip);
         btn_login = findViewById(R.id.btn_login);
         phone = "";
         password = "";
 
         tv_register.setOnClickListener(this);
         btn_login.setOnClickListener(this);
-//        tv_skip.setOnClickListener(this);
 
     }
 
@@ -65,11 +62,7 @@ public class LoginActivity extends BaseActivity
             phone = et_username.getText().toString();
             password = et_password.getText().toString();
             if ("".equals(phone)) {
-                Toast.makeText(
-                        LoginActivity.this,
-                        "请输入账号",
-                        Toast.LENGTH_SHORT
-                ).show();
+                Toast.makeText(LoginActivity.this, "请输入账号", Toast.LENGTH_SHORT).show();
                 return;
             }
             if ("".equals(password)) {
@@ -119,18 +112,6 @@ public class LoginActivity extends BaseActivity
         if (v.getId() == R.id.tv_register) {
             directToRegisterActivity();
         }
-
-//        if (v.getId() == R.id.tv_skip) {
-//            Toast.makeText(
-//                    LoginActivity.this,
-//                    "无账号登录",
-//                    Toast.LENGTH_SHORT
-//            ).show();
-//
-//            hideKeyboard(this);
-//            startActivity(new Intent(this, MainActivity.class));
-//            finish();
-//        }
 
     }
 

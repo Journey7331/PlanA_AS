@@ -20,9 +20,11 @@ import com.example.plana.R;
 import com.example.plana.function.MainActivity;
 import com.example.plana.base.BaseFragment;
 import com.example.plana.bean.My;
+import com.example.plana.function.TrashBinActivity;
 import com.example.plana.function.setting.InfoModifyActivity;
 import com.example.plana.function.user.AboutActivity;
 import com.example.plana.function.user.LoginActivity;
+import com.google.gson.Gson;
 
 /**
  * @program: PlanA
@@ -39,6 +41,7 @@ public class MyPageFragment extends BaseFragment {
     RelativeLayout rlInfoModify;
     RelativeLayout rlNotifyModify;
     RelativeLayout rlUploadToCloud;
+    RelativeLayout rlLoadToLocal;
     RelativeLayout rlTrashBin;
 
     RelativeLayout rlAbout;
@@ -55,6 +58,7 @@ public class MyPageFragment extends BaseFragment {
         rlInfoModify = view.findViewById(R.id.rl_personal_Info_modify);
         rlNotifyModify = view.findViewById(R.id.rl_notify_modify);
         rlUploadToCloud = view.findViewById(R.id.rl_upload_to_cloud);
+        rlLoadToLocal = view.findViewById(R.id.rl_load_from_cloud);
         rlTrashBin = view.findViewById(R.id.rl_trash_bin);
 
         rlAbout = view.findViewById(R.id.rl_about);
@@ -62,13 +66,45 @@ public class MyPageFragment extends BaseFragment {
         myPageSetUp();
 
         rlInfoModify.setOnClickListener(l -> directToInfoModifyActivity());
-
+        rlNotifyModify.setOnClickListener(v -> directToNotifyModifyActivity());
+        rlUploadToCloud.setOnClickListener(v -> upLoadDataToCloud());
+        rlLoadToLocal.setOnClickListener(v-> loadDataToLocal());
+        rlTrashBin.setOnClickListener(v -> directToTrashBinActivity());
 
         rlAbout.setOnClickListener(l-> directToAboutActivity());
 
         return view;
     }
 
+
+
+    private void loadDataToLocal() {
+
+
+
+    }
+
+    private void upLoadDataToCloud() {
+        Gson gson = new Gson();
+
+
+        String str_planJSON = gson.toJson(My.todosList);
+        System.out.println("====== todolist ======");
+        System.out.println(str_planJSON);
+
+    }
+
+
+    private void directToNotifyModifyActivity() {
+//        Intent intent = new Intent(getContext(), NotifyModifyActivity.class);
+//        startActivity(intent);
+    }
+
+
+    private void directToTrashBinActivity() {
+        Intent intent = new Intent(getContext(), TrashBinActivity.class);
+        startActivity(intent);
+    }
 
     /**
      * 跳转到关于界面

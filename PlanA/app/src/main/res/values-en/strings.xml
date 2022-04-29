@@ -69,6 +69,8 @@
     <string name="emoji_paste_pad">📋</string>
     <string name="emoji_cloud">☁️</string>
     <string name="emoji_tick_timer">⏱</string>
+    <string name="emoji_plan_done">✅</string>
+    <string name="emoji_plan_undone">▪️</string>
 
 
     <string name="focus_time">focus</string>
@@ -87,6 +89,8 @@
     <string name="upload_data_to_cloud">上传本地内容到云</string>
     <string name="trash_bin">回收站</string>
     <string name="about">关于</string>
+    <string name="emoji_load_data">📲</string>
+    <string name="load_data_to_local">下载内容到本地</string>
 
 
 </resources>

@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+	xmlns:app="http://schemas.android.com/apk/res-auto"
+	android:id="@+id/rl_plan_list_parent"
+	android:layout_width="match_parent"
+	android:layout_height="30dp"
+	android:layout_marginHorizontal="1dp"
+	android:layout_marginTop="1dp"
+	android:background="@android:color/transparent">
+
+
+	<View
+		android:id="@+id/v_space"
+		android:layout_width="0dp"
+		android:layout_height="30dp" />
+
+	<com.akexorcist.roundcornerprogressbar.TextRoundCornerProgressBar
+		android:id="@+id/pg_plan_list_item"
+		android:layout_width="match_parent"
+		android:layout_height="match_parent"
+		android:layout_toEndOf="@+id/v_space"
+		app:rcAnimationEnable="false"
+		app:rcBackgroundColor="@color/google_grey_50"
+		app:rcMax="100"
+		app:rcProgress="0"
+		app:rcProgressColor="@color/colorPrimaryDark"
+		app:rcRadius="80dp"
+		app:rcTextOutsideGravity="end"
+		app:rcTextPositionPriority="outside"
+		app:rcTextProgress="20%"
+		app:rcTextProgressColor="@color/google_grey_500" />
+
+	<TextView
+		android:id="@+id/tv_plan_list_item_title"
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content"
+		android:layout_alignStart="@+id/pg_plan_list_item"
+		android:layout_centerVertical="true"
+		android:layout_marginStart="20dp"
+		android:text="title"
+		android:textSize="16dp" />
+
+
+</RelativeLayout>

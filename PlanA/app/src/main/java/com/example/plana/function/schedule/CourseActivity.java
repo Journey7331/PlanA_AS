@@ -19,6 +19,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
 import com.example.plana.R;
+import com.example.plana.base.BaseActivity;
 import com.example.plana.function.MainActivity;
 import com.example.plana.bean.My;
 import com.example.plana.bean.MySubject;
@@ -37,7 +38,7 @@ import cn.carbswang.android.numberpickerview.library.NumberPickerView;
  * @program: PlanA
  * @description: 添加课程
  */
-public class CourseActivity extends AppCompatActivity {
+public class CourseActivity extends BaseActivity {
 
     private static final String TAG = "CourseActivity";
 
