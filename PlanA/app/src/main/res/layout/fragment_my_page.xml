@@ -62,20 +62,12 @@
                         android:layout_marginTop="12dp"
                         android:background="@drawable/bg_grey_button_select"
                         android:text="@string/log_out"
-                        android:textColor="@color/black"
+                        android:textColor="@color/google_grey_700"
+                        android:textSize="16sp"
                         android:textStyle="bold" />
                 </RelativeLayout>
 
             </RelativeLayout>
-
-            <!--            <View-->
-            <!--                android:id="@+id/my_setting"-->
-            <!--                android:layout_width="32dp"-->
-            <!--                android:layout_height="32dp"-->
-            <!--                android:layout_alignParentEnd="true"-->
-            <!--                android:layout_marginTop="30dp"-->
-            <!--                android:layout_marginEnd="30dp"-->
-            <!--                android:background="@drawable/icon_setting" />-->
 
         </RelativeLayout>
 
@@ -86,8 +78,7 @@
             android:layout_below="@+id/my_detail_rl"
             android:layout_marginHorizontal="20dp"
             android:layout_marginTop="30dp"
-            android:background="@drawable/bg_dialog_radius_white"
-            >
+            android:background="@drawable/bg_dialog_radius_white">
 
 
             <RelativeLayout
@@ -130,61 +121,64 @@
 
             </RelativeLayout>
 
-            <View
-                android:id="@+id/v_line_3"
-                android:layout_width="match_parent"
-                android:layout_height="1dp"
-                android:layout_below="@id/rl_personal_Info_modify"
-                android:layout_marginHorizontal="15dp"
-                android:alpha="0.5"
-                android:background="@color/grey" />
+<!--            <View-->
+<!--                android:id="@+id/v_line_3"-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="1dp"-->
+<!--                android:layout_below="@id/rl_personal_Info_modify"-->
+<!--                android:layout_marginHorizontal="15dp"-->
+<!--                android:alpha="0.5"-->
+<!--                android:background="@color/grey" />-->
 
-            <RelativeLayout
-                android:id="@+id/rl_notify_modify"
-                android:layout_width="wrap_content"
-                android:layout_height="50dp"
-                android:layout_below="@+id/v_line_3"
-                android:layout_marginStart="3dp"
-                android:layout_marginTop="3dp"
-                android:layout_marginEnd="3dp"
-                android:layout_marginBottom="3dp"
-                android:background="@drawable/bg_rl_view_select">
+<!--            <RelativeLayout-->
+<!--                android:id="@+id/rl_notify_modify"-->
+<!--                android:layout_width="wrap_content"-->
+<!--                android:layout_height="50dp"-->
+<!--                android:layout_below="@+id/v_line_3"-->
+<!--                android:layout_marginStart="3dp"-->
+<!--                android:layout_marginTop="3dp"-->
+<!--                android:layout_marginEnd="3dp"-->
+<!--                android:layout_marginBottom="3dp"-->
+<!--                android:background="@drawable/bg_rl_view_select">-->
 
-                <androidx.emoji2.widget.EmojiButton
-                    android:id="@+id/emoji_notify"
-                    android:layout_width="32dp"
-                    android:layout_height="32dp"
-                    android:layout_centerVertical="true"
-                    android:layout_marginStart="15dp"
-                    android:background="@null"
-                    android:text="@string/emoji_notification"
-                    android:textSize="20sp" />
+<!--                <androidx.emoji2.widget.EmojiButton-->
+<!--                    android:id="@+id/emoji_notify"-->
+<!--                    android:layout_width="32dp"-->
+<!--                    android:layout_height="32dp"-->
+<!--                    android:layout_centerVertical="true"-->
+<!--                    android:layout_marginStart="15dp"-->
+<!--                    android:background="@null"-->
+<!--                    android:text="@string/emoji_notification"-->
+<!--                    android:textSize="20sp" />-->
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_centerVertical="true"
-                    android:layout_marginStart="20dp"
-                    android:layout_toEndOf="@+id/emoji_notify"
-                    android:text="@string/notification_modify"
-                    android:textSize="18sp" />
+<!--                <TextView-->
+<!--                    android:layout_width="wrap_content"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:layout_centerVertical="true"-->
+<!--                    android:layout_marginStart="20dp"-->
+<!--                    android:layout_toEndOf="@+id/emoji_notify"-->
+<!--                    android:text="@string/notification_modify"-->
+<!--                    android:textSize="18sp" />-->
 
-                <ImageView
-                    android:layout_width="20dp"
-                    android:layout_height="20dp"
-                    android:layout_alignParentEnd="true"
-                    android:layout_centerVertical="true"
-                    android:layout_marginEnd="30dp"
-                    android:alpha="0.5"
-                    android:background="@drawable/icon_next" />
+<!--                <ImageView-->
+<!--                    android:layout_width="20dp"-->
+<!--                    android:layout_height="20dp"-->
+<!--                    android:layout_alignParentEnd="true"-->
+<!--                    android:layout_centerVertical="true"-->
+<!--                    android:layout_marginEnd="30dp"-->
+<!--                    android:alpha="0.5"-->
+<!--                    android:background="@drawable/icon_next" />-->
 
-            </RelativeLayout>
+<!--            </RelativeLayout>-->
+
+
+<!--            android:layout_below="@id/rl_notify_modify"-->
 
             <View
                 android:id="@+id/v_line_4"
                 android:layout_width="match_parent"
                 android:layout_height="1dp"
-                android:layout_below="@id/rl_notify_modify"
+                android:layout_below="@id/rl_personal_Info_modify"
                 android:layout_marginHorizontal="15dp"
                 android:alpha="0.5"
                 android:background="@color/grey" />

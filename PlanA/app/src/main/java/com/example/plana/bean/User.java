@@ -1,5 +1,9 @@
 package com.example.plana.bean;
 
+import androidx.annotation.Nullable;
+
+import java.util.Objects;
+
 /**
  * @program: PlanA
  * @description:
@@ -89,4 +93,22 @@ public class User {
                 ", birth='" + birth + '\'' +
                 '}';
     }
+
+    @Override
+    public boolean equals(@Nullable Object obj) {
+        if (obj == this) {
+            return true;
+        }
+        //使用 instanceof 判断obj的类型是否正确
+        if (!(obj instanceof User)) {
+            return false;
+        }
+        return ((User) obj).get_id() == this.get_id()
+                && ((User) obj).getPhone().equals(this.getPhone())
+                && ((User) obj).getPwd().equals(this.getPwd())
+                && ((User) obj).getName().equals(this.getName())
+                && ((User) obj).getEmail().equals(this.getEmail())
+                &&((User) obj).getBirth().equals(this.getBirth());
+    }
+
 }

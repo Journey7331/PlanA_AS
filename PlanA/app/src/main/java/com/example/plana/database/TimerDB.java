@@ -56,13 +56,20 @@ public class TimerDB implements MyDatabaseHelper.TableCreateInterface{
         Log.i(Constant.TAG.DATE_BASE_TAG,
                 TimerDB.TableName + " --- Table Created ---");
 
+//        // init
+//        for (ContentValues value : getValues()) {
+//            db.insert(TimerDB.TableName, null, value);
+//        }
+    }
 
-        // init
-        for (ContentValues value : getValues()) {
-            db.insert(TimerDB.TableName, null, value);
-        }
-
-
+    public static void dropTable(MyDatabaseHelper dbHelper) {
+        SQLiteDatabase db = dbHelper.getWritableDatabase();
+        String sql = "delete from " + TimerDB.TableName + ";";
+        db.execSQL(sql);
+//        sql = "update sqlite_sequence SET seq = 0 where name = " + TimerDB.TableName + ";";
+//        db.execSQL(sql);
+        Log.i("dropTable", "dropTable:" + TimerDB.TableName);
+        db.close();
     }
 
     private List<ContentValues> getValues() {

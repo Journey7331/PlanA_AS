@@ -36,10 +36,10 @@
         android:id="@+id/rl_deleted_todos"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_above="@+id/ll_delete_recover"
         android:layout_below="@+id/rl_bar"
         android:layout_marginHorizontal="10dp"
         android:layout_marginTop="10dp"
-        android:layout_above="@+id/ll_delete_recover"
         android:background="@drawable/bg_dialog_radius_white">
 
         <ListView
@@ -60,9 +60,9 @@
                 android:id="@+id/v_trash_bin_empty_status_img"
                 android:layout_width="170dp"
                 android:layout_height="170dp"
+                android:layout_centerHorizontal="true"
                 android:layout_marginTop="100dp"
                 android:alpha="0.6"
-                android:layout_centerHorizontal="true"
                 android:background="@drawable/icon_empty" />
 
             <TextView
@@ -74,7 +74,7 @@
                 android:text="回收站为空"
                 android:textColor="@color/google_grey_300"
                 android:textSize="20sp" />
-   </RelativeLayout>
+        </RelativeLayout>
 
 
     </RelativeLayout>
@@ -86,6 +86,7 @@
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
+        android:layout_marginBottom="10dp"
         android:orientation="horizontal">
 
 
@@ -93,11 +94,12 @@
             android:id="@+id/btn_delete_all"
             android:layout_width="wrap_content"
             android:layout_height="40dp"
+            android:layout_margin="10dp"
             android:background="@drawable/bg_grey_button_normal"
             android:paddingHorizontal="20dp"
-            android:layout_margin="10dp"
             android:text="全部删除"
             android:textColor="@color/google_grey_700"
+            android:textSize="16sp"
             android:textStyle="bold" />
 
         <android.widget.Button
@@ -109,6 +111,7 @@
             android:paddingHorizontal="20dp"
             android:text="全部恢复"
             android:textColor="@color/white"
+            android:textSize="16sp"
             android:textStyle="bold" />
 
 

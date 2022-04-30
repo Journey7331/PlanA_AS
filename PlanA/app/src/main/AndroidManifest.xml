@@ -13,10 +13,10 @@
     <uses-permission android:name="android.permission.RECEIVE_USER_PRESENT" />
     <uses-permission android:name="android.permission.READ_PHONE_STATE" />
 
-    <permission
-        android:name="com.example.plana.permission.XGPUSH_RECEIVE"
-        android:protectionLevel="signature" />
-    <uses-permission android:name="com.example.plana.permission.XGPUSH_RECEIVE" />
+    <!--    <permission-->
+    <!--        android:name="com.example.plana.permission.XGPUSH_RECEIVE"-->
+    <!--        android:protectionLevel="signature" />-->
+    <!--    <uses-permission android:name="com.example.plana.permission.XGPUSH_RECEIVE" />-->
 
     <application
         android:name=".base.MainApplication"
@@ -37,8 +37,9 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".function.MainActivity" />
-        <activity android:name=".function.TrashBinActivity" />
+        <activity
+            android:name=".function.MainActivity"
+            android:launchMode="singleTask" />
 
         <!-- plan -->
         <activity android:name=".function.plan.AchievementActivity" />
@@ -51,6 +52,7 @@
 
         <!-- setting -->
         <activity android:name=".function.setting.InfoModifyActivity" />
+        <activity android:name=".function.setting.TrashBinActivity" />
 
         <!-- timer -->
         <activity android:name=".function.timer.TimerActivity" />
@@ -64,11 +66,18 @@
         <activity android:name=".function.user.LoginActivity" />
         <activity android:name=".function.user.RegisterActivity1" />
         <activity android:name=".function.user.RegisterActivity2" />
-        <activity android:name=".function.user.AboutActivity" />
+        <activity android:name=".function.setting.AboutActivity" />
 
 
         <!-- receiver -->
-        <receiver android:name=".receiver.AlarmReceiver" />
+        <receiver
+            android:name=".receiver.AlarmReceiver"
+            android:enabled="true"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.net.conn.CONNECTIVITY_CHANGE" />
+            </intent-filter>
+        </receiver>
 
         <!--        <service android:name="cn.leancloud.push.PushService"/>-->
         <!--        <receiver android:name="cn.leancloud.push.LCBroadcastReceiver"-->
@@ -81,9 +90,9 @@
         <!--        </receiver>-->
 
 
-        <meta-data
-            android:name="XG_SERVER_SUFFIX"
-            android:value="tpns.sh.tencent.com" />
+        <!--        <meta-data-->
+        <!--            android:name="XG_SERVER_SUFFIX"-->
+        <!--            android:value="tpns.sh.tencent.com" />-->
 
     </application>
 

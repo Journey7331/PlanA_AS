@@ -78,38 +78,6 @@ public class OnDateDelayAdapter extends OnDateBuildAapter {
         }
     }
 
-    //这段代码可以禁止在开学前自动更新日期栏上的星期高亮
-    //它会使用开学那天的星期作为高亮
-    //根据自己的需求使用
-//    @Override
-//    public void onHighLight() {
-//        if(whenBeginSchool()<=0){
-//            super.onHighLight();
-//            return;
-//        }
-//
-//        initDateBackground();
-//        //获取周几，1->7
-//        Calendar calendar = Calendar.getInstance();
-//        calendar.setTime(new Date(startTime));
-//        //一周第一天是否为星期天
-//        boolean isFirstSunday = (calendar.getFirstDayOfWeek() == Calendar.SUNDAY);
-//        int weekDay = calendar.get(Calendar.DAY_OF_WEEK);
-//        //若一周第一天为星期天，则-1
-//        if (isFirstSunday) {
-//            weekDay = weekDay - 1;
-//            if (weekDay == 0) {
-//                weekDay = 7;
-//            }
-//        }
-//        activeDateBackground(weekDay);
-//    }
-//
-//    private void activeDateBackground(int weekDay) {
-//        layouts[weekDay].setBackgroundColor(
-//                ColorUtils.alphaColor(Color.parseColor("#BFF6F4"), alpha));
-//    }
-
     /**
      * 计算距离开学的天数
      *

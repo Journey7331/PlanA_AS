@@ -118,7 +118,7 @@ public class EditTodoActivity extends BaseActivity
             MainActivity.mainActivity.finish();
         }
         startActivity(intent);
-        overridePendingTransition(R.anim.fade_in, R.anim.slide_back2);
+//        overridePendingTransition(R.anim.fade_in, R.anim.slide_back2);
         finish();
     }
 

@@ -4,9 +4,10 @@
     android:id="@+id/rl_plan_brief"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_margin="10dp"
-    android:background="@drawable/bg_dialog_radius_grey"
-    android:elevation="5dp">
+    android:layout_marginHorizontal="10dp"
+    android:layout_marginTop="20dp"
+    android:background="@drawable/bg_dialog_radius_white"
+    android:elevation="3dp">
 
     <TextView
         android:id="@+id/tv_plan_name"

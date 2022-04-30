@@ -92,10 +92,9 @@ public class CourseActivity extends BaseActivity {
     protected void initToolbar(String title) {
 
         Toolbar toolbar = findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
-        // 设置title
-        // getSupportActionBar().setTitle(title);
         TextView textView = findViewById(R.id.toolbar_title);
+        setSupportActionBar(toolbar);
+
         Toolbar.LayoutParams layoutParams = (Toolbar.LayoutParams) textView.getLayoutParams();
         layoutParams.setMarginStart(160);
         textView.setLayoutParams(layoutParams);
@@ -158,7 +157,7 @@ public class CourseActivity extends BaseActivity {
             }
             My.page = R.id.page_2;
             startActivity(intent);
-            overridePendingTransition(R.anim.fade_in, R.anim.slide_back2);
+//            overridePendingTransition(R.anim.fade_in, R.anim.slide_back2);
             finish();
             return true;
         }

@@ -84,9 +84,11 @@
         android:id="@+id/rv_plan_list"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:overScrollMode="never"
         android:layout_below="@+id/plan_detail_bar"
         app:layout_behavior="@string/appbar_scrolling_view_behavior"
-        tools:listitem="@layout/item_plan_list_child" />
+        tools:listitem="@layout/item_plan_list_child"
+        android:layout_marginBottom="30dp"/>
 
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

@@ -18,9 +18,6 @@ import com.example.plana.function.user.LoginActivity;
 import com.example.plana.base.BaseActivity;
 import com.example.plana.bean.My;
 import com.example.plana.database.UserDB;
-import com.tencent.android.tpush.XGIOperateCallback;
-import com.tencent.android.tpush.XGPushConfig;
-import com.tencent.android.tpush.XGPushManager;
 
 /**
  * @program: PlanA
@@ -59,20 +56,18 @@ public class SplashActivity extends BaseActivity {
 
 
         /*****
-        XGPushConfig.enableDebug(MainApplication.getAppContext(),true);
-        XGPushManager.registerPush(MainApplication.getAppContext(), new XGIOperateCallback() {
-            @Override
-            public void onSuccess(Object data, int flag) {
-                //token在设备卸载重装的时候有可能会变
-                Log.d("TPush", "注册成功，设备token为：" + data);
-            }
+         XGPushConfig.enableDebug(MainApplication.getAppContext(),true);
+         XGPushManager.registerPush(MainApplication.getAppContext(), new XGIOperateCallback() {
+        @Override public void onSuccess(Object data, int flag) {
+        //token在设备卸载重装的时候有可能会变
+        Log.d("TPush", "注册成功，设备token为：" + data);
+        }
 
-            @Override
-            public void onFail(Object data, int errCode, String msg) {
-                Log.d("TPush", "注册失败，错误码：" + errCode + ",错误信息：" + msg);
-            }
+        @Override public void onFail(Object data, int errCode, String msg) {
+        Log.d("TPush", "注册失败，错误码：" + errCode + ",错误信息：" + msg);
+        }
         });
-        /*****/
+         /*****/
 
     }
 
@@ -211,6 +206,12 @@ public class SplashActivity extends BaseActivity {
      */
     private void directToMainActivity() {
         Intent intent = new Intent(SplashActivity.this, MainActivity.class);
+
+        String value = getIntent().getStringExtra("SCHEDULE_NOTIFY");
+        if (value!= null&& value.equals("SCHEDULE_NOTIFY")) {
+            intent.putExtra("SCHEDULE_NOTIFY", "SCHEDULE_NOTIFY");
+        }
+
         startActivity(intent);
         gifView.pause();
         // 如果没有 removeCallbacks， 会导致内存泄露

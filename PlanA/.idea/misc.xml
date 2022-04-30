@@ -34,7 +34,11 @@
         <entry key="app/src/main/res/drawable/baseline_account_circle_24.xml" value="0.1675" />
         <entry key="app/src/main/res/drawable/baseline_clock_24.xml" value="0.1675" />
         <entry key="app/src/main/res/drawable/baseline_home_24.xml" value="0.1675" />
+        <entry key="app/src/main/res/drawable/baseline_plan.xml" value="0.1" />
+        <entry key="app/src/main/res/drawable/baseline_schedule.xml" value="0.1" />
         <entry key="app/src/main/res/drawable/baseline_tick.xml" value="0.1675" />
+        <entry key="app/src/main/res/drawable/baseline_timer.xml" value="0.1" />
+        <entry key="app/src/main/res/drawable/baseline_todolist.xml" value="0.1" />
         <entry key="app/src/main/res/drawable/bg_button.xml" value="0.137" />
         <entry key="app/src/main/res/drawable/bg_dialog_radius_grey.xml" value="0.211" />
         <entry key="app/src/main/res/drawable/bg_dialog_radius_white.xml" value="0.1675" />
@@ -83,25 +87,26 @@
         <entry key="app/src/main/res/drawable/switch_track_selector.xml" value="0.137" />
         <entry key="app/src/main/res/layout/activity_about.xml" value="0.29334259033203125" />
         <entry key="app/src/main/res/layout/activity_add_course.xml" value="0.22708333333333333" />
-        <entry key="app/src/main/res/layout/activity_add_plan.xml" value="0.22708333333333333" />
+        <entry key="app/src/main/res/layout/activity_add_plan.xml" value="0.43255462646484377" />
         <entry key="app/src/main/res/layout/activity_add_todos.xml" value="0.2078804347826087" />
         <entry key="app/src/main/res/layout/activity_edit_todos.xml" value="0.297554347826087" />
-        <entry key="app/src/main/res/layout/activity_info_midify.xml" value="0.2559127807617188" />
+        <entry key="app/src/main/res/layout/activity_info_midify.xml" value="0.397760009765625" />
         <entry key="app/src/main/res/layout/activity_login.xml" value="0.3138888888888889" />
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.1" />
         <entry key="app/src/main/res/layout/activity_plan_detail.xml" value="0.1" />
-        <entry key="app/src/main/res/layout/activity_register1.xml" value="0.3138888888888889" />
+        <entry key="app/src/main/res/layout/activity_register1.xml" value="0.10412926391382406" />
         <entry key="app/src/main/res/layout/activity_register2.xml" value="0.1" />
-        <entry key="app/src/main/res/layout/activity_schedule_setting.xml" value="0.3380623195482337" />
+        <entry key="app/src/main/res/layout/activity_schedule_setting.xml" value="0.3164179104477612" />
         <entry key="app/src/main/res/layout/activity_show_achievement.xml" value="0.1" />
         <entry key="app/src/main/res/layout/activity_show_timer.xml" value="0.22708333333333333" />
         <entry key="app/src/main/res/layout/activity_show_timer_recorder.xml" value="0.21666666666666667" />
         <entry key="app/src/main/res/layout/activity_splash.xml" value="0.1" />
         <entry key="app/src/main/res/layout/activity_time_count.xml" value="0.25562744140625" />
-        <entry key="app/src/main/res/layout/activity_trash_bin.xml" value="0.2646666350188079" />
+        <entry key="app/src/main/res/layout/activity_trash_bin.xml" value="0.20588235294117646" />
         <entry key="app/src/main/res/layout/add_register_date.xml" value="0.25" />
         <entry key="app/src/main/res/layout/dialog_add_date.xml" value="0.1" />
         <entry key="app/src/main/res/layout/dialog_add_level.xml" value="0.22708333333333333" />
+        <entry key="app/src/main/res/layout/dialog_add_time.xml" value="0.17037037037037037" />
         <entry key="app/src/main/res/layout/dialog_add_title.xml" value="0.28351449275362317" />
         <entry key="app/src/main/res/layout/dialog_confirm.xml" value="0.28351449275362317" />
         <entry key="app/src/main/res/layout/dialog_course_detail.xml" value="0.28351449275362317" />
@@ -110,16 +115,17 @@
         <entry key="app/src/main/res/layout/dialog_select_week.xml" value="0.28351449275362317" />
         <entry key="app/src/main/res/layout/fragment_focus_set_time.xml" value="0.21855548361073374" />
         <entry key="app/src/main/res/layout/fragment_my_page.xml" value="0.25" />
-        <entry key="app/src/main/res/layout/fragment_plan_list.xml" value="0.10876818516457726" />
-        <entry key="app/src/main/res/layout/fragment_schedule.xml" value="0.28351449275362317" />
+        <entry key="app/src/main/res/layout/fragment_plan_list.xml" value="0.21412554600442102" />
+        <entry key="app/src/main/res/layout/fragment_schedule.xml" value="0.11" />
         <entry key="app/src/main/res/layout/fragment_todo_list_home.xml" value="0.29670724177706065" />
+        <entry key="app/src/main/res/layout/item_add_plan_list.xml" value="0.1" />
         <entry key="app/src/main/res/layout/item_course_detail.xml" value="0.28351449275362317" />
         <entry key="app/src/main/res/layout/item_course_name.xml" value="0.2078804347826087" />
         <entry key="app/src/main/res/layout/item_deleted_todos_list.xml" value="0.17037037037037037" />
         <entry key="app/src/main/res/layout/item_plan_brief.xml" value="0.28351449275362317" />
         <entry key="app/src/main/res/layout/item_plan_list.xml" value="0.26483221368475274" />
         <entry key="app/src/main/res/layout/item_plan_list_child.xml" value="0.1" />
-        <entry key="app/src/main/res/layout/item_plan_list_parent.xml" value="0.23936309814453122" />
+        <entry key="app/src/main/res/layout/item_plan_list_parent.xml" value="0.2178988326848249" />
         <entry key="app/src/main/res/layout/item_recycler_child.xml" value="0.247637939453125" />
         <entry key="app/src/main/res/layout/item_recycler_parent.xml" value="0.4008987426757812" />
         <entry key="app/src/main/res/layout/item_schedule_header.xml" value="0.2078804347826087" />

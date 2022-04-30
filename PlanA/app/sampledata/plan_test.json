@@ -932,5 +932,359 @@
       "total": 74,
       "done": 20
     }
+  },
+  {
+    "planId": 2,
+    "description": "Redis",
+    "img_id": 1,
+    "curPoint": 0,
+    "planBeans": [
+      {
+        "id": 0,
+        "pid": -1,
+        "title": "Redis",
+        "level": 0,
+        "totalCnt": 0,
+        "doneCnt": 0,
+        "done": false,
+        "isLeaf": false
+      },
+      {
+        "id": 1,
+        "pid": 0,
+        "title": "数据结构和缓存",
+        "level": 1,
+        "totalCnt": 0,
+        "doneCnt": 0,
+        "done": false,
+        "isLeaf": false
+      },
+      {
+        "id": 2,
+        "pid": 0,
+        "title": "高可靠、高性能",
+        "level": 1,
+        "totalCnt": 0,
+        "doneCnt": 0,
+        "done": false,
+        "isLeaf": false
+      },
+      {
+        "id": 3,
+        "pid": 0,
+        "title": "Redis 底层实现原理",
+        "level": 1,
+        "totalCnt": 0,
+        "doneCnt": 0,
+        "done": false,
+        "isLeaf": false
+      },
+      {
+        "id": 4,
+        "pid": 1,
+        "title": "1 常见数据类型",
+        "level": 2,
+        "totalCnt": 0,
+        "doneCnt": 0,
+        "done": false,
+        "isLeaf": false
+      },
+      {
+        "id": 5,
+        "pid": 1,
+        "title": "2 扩展数据类型",
+        "level": 2,
+        "totalCnt": 0,
+        "doneCnt": 0,
+        "done": false,
+        "isLeaf": false
+      },
+      {
+        "id": 6,
+        "pid": 1,
+        "title": "3 缓存",
+        "level": 2,
+        "totalCnt": 0,
+        "doneCnt": 0,
+        "done": false,
+        "isLeaf": false
+      },
+      {
+        "id": 7,
+        "pid": 2,
+        "title": "1 持久化机制",
+        "level": 2,
+        "totalCnt": 0,
+        "doneCnt": 0,
+        "done": false,
+        "isLeaf": false
+      },
+      {
+        "id": 8,
+        "pid": 2,
+        "title": "2 主从复制机制",
+        "level": 2,
+        "totalCnt": 0,
+        "doneCnt": 0,
+        "done": false,
+        "isLeaf": true
+      },
+      {
+        "id": 9,
+        "pid": 2,
+        "title": "3 哨兵机制",
+        "level": 2,
+        "totalCnt": 0,
+        "doneCnt": 0,
+        "done": false,
+        "isLeaf": true
+      },
+      {
+        "id": 10,
+        "pid": 2,
+        "title": "4 故障自动恢复",
+        "level": 2,
+        "totalCnt": 0,
+        "doneCnt": 0,
+        "done": false,
+        "isLeaf": true
+      },
+      {
+        "id": 11,
+        "pid": 2,
+        "title": "5 切片集群",
+        "level": 2,
+        "totalCnt": 0,
+        "doneCnt": 0,
+        "done": false,
+        "isLeaf": true
+      },
+      {
+        "id": 12,
+        "pid": 3,
+        "title": "1 分布式",
+        "level": 2,
+        "totalCnt": 0,
+        "doneCnt": 0,
+        "done": false,
+        "isLeaf": false
+      },
+      {
+        "id": 13,
+        "pid": 3,
+        "title": "2 哨兵集群",
+        "level": 2,
+        "totalCnt": 0,
+        "doneCnt": 0,
+        "done": false,
+        "isLeaf": true
+      },
+      {
+        "id": 14,
+        "pid": 4,
+        "title": "1 String",
+        "level": 3,
+        "totalCnt": 0,
+        "doneCnt": 0,
+        "done": false,
+        "isLeaf": true
+      },
+      {
+        "id": 15,
+        "pid": 4,
+        "title": "2 List",
+        "level": 3,
+        "totalCnt": 0,
+        "doneCnt": 0,
+        "done": false,
+        "isLeaf": true
+      },
+      {
+        "id": 16,
+        "pid": 4,
+        "title": "3 Hash",
+        "level": 3,
+        "totalCnt": 0,
+        "doneCnt": 0,
+        "done": false,
+        "isLeaf": true
+      },
+      {
+        "id": 17,
+        "pid": 4,
+        "title": "4 Set",
+        "level": 3,
+        "totalCnt": 0,
+        "doneCnt": 0,
+        "done": false,
+        "isLeaf": true
+      },
+      {
+        "id": 18,
+        "pid": 4,
+        "title": "5 Sorted Set",
+        "level": 3,
+        "totalCnt": 0,
+        "doneCnt": 0,
+        "done": false,
+        "isLeaf": true
+      },
+      {
+        "id": 19,
+        "pid": 5,
+        "title": "1 HyperLongLog",
+        "level": 3,
+        "totalCnt": 0,
+        "doneCnt": 0,
+        "done": false,
+        "isLeaf": true
+      },
+      {
+        "id": 20,
+        "pid": 5,
+        "title": "2 Bitmap",
+        "level": 3,
+        "totalCnt": 0,
+        "doneCnt": 0,
+        "done": false,
+        "isLeaf": true
+      },
+      {
+        "id": 21,
+        "pid": 5,
+        "title": "3 GEO",
+        "level": 3,
+        "totalCnt": 0,
+        "doneCnt": 0,
+        "done": false,
+        "isLeaf": true
+      },
+      {
+        "id": 22,
+        "pid": 6,
+        "title": "1 缓存击穿",
+        "level": 3,
+        "totalCnt": 0,
+        "doneCnt": 0,
+        "done": false,
+        "isLeaf": true
+      },
+      {
+        "id": 23,
+        "pid": 6,
+        "title": "2 缓存穿透",
+        "level": 3,
+        "totalCnt": 0,
+        "doneCnt": 0,
+        "done": false,
+        "isLeaf": true
+      },
+      {
+        "id": 24,
+        "pid": 6,
+        "title": "3 缓存雪崩",
+        "level": 3,
+        "totalCnt": 0,
+        "doneCnt": 0,
+        "done": false,
+        "isLeaf": true
+      },
+      {
+        "id": 25,
+        "pid": 7,
+        "title": "1 RDB",
+        "level": 3,
+        "totalCnt": 0,
+        "doneCnt": 0,
+        "done": false,
+        "isLeaf": true
+      },
+      {
+        "id": 26,
+        "pid": 7,
+        "title": "2 AOF",
+        "level": 3,
+        "totalCnt": 0,
+        "doneCnt": 0,
+        "done": false,
+        "isLeaf": true
+      },
+      {
+        "id": 27,
+        "pid": 7,
+        "title": "3 混合持久化",
+        "level": 3,
+        "totalCnt": 0,
+        "doneCnt": 0,
+        "done": false,
+        "isLeaf": true
+      },
+      {
+        "id": 28,
+        "pid": 12,
+        "title": "1 CAP",
+        "level": 3,
+        "totalCnt": 0,
+        "doneCnt": 0,
+        "done": false,
+        "isLeaf": true
+      },
+      {
+        "id": 29,
+        "pid": 12,
+        "title": "2 分布式锁",
+        "level": 3,
+        "totalCnt": 0,
+        "doneCnt": 0,
+        "done": false,
+        "isLeaf": true
+      },
+      {
+        "id": 30,
+        "pid": 12,
+        "title": "3 info指令",
+        "level": 3,
+        "totalCnt": 0,
+        "doneCnt": 0,
+        "done": false,
+        "isLeaf": true
+      },
+      {
+        "id": 31,
+        "pid": 12,
+        "title": "4 主从复制",
+        "level": 3,
+        "totalCnt": 0,
+        "doneCnt": 0,
+        "done": false,
+        "isLeaf": true
+      },
+      {
+        "id": 32,
+        "pid": 12,
+        "title": "5 哨兵",
+        "level": 3,
+        "totalCnt": 0,
+        "doneCnt": 0,
+        "done": false,
+        "isLeaf": true
+      },
+      {
+        "id": 33,
+        "pid": 12,
+        "title": "6 集群",
+        "level": 3,
+        "totalCnt": 0,
+        "doneCnt": 0,
+        "done": false,
+        "isLeaf": true
+      }
+    ],
+    "planBrief": {
+      "planId": 2,
+      "planName": "Redis学习路径",
+      "total": 25,
+      "done": 0
+    }
   }
 ]

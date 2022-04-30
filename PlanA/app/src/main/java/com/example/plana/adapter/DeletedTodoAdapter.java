@@ -165,7 +165,6 @@ public class DeletedTodoAdapter extends ArrayAdapter {
         }
     }
 
-
     /**
      * 全部还原
      */

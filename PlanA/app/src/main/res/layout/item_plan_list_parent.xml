@@ -19,7 +19,6 @@
 		android:layout_width="match_parent"
 		android:layout_height="match_parent"
 		android:layout_toEndOf="@+id/v_space"
-		app:rcAnimationEnable="false"
 		app:rcBackgroundColor="@color/google_grey_50"
 		app:rcMax="100"
 		app:rcProgress="0"
@@ -37,6 +36,7 @@
 		android:layout_alignStart="@+id/pg_plan_list_item"
 		android:layout_centerVertical="true"
 		android:layout_marginStart="20dp"
+		android:textColor="@color/black"
 		android:text="title"
 		android:textSize="16dp" />
 

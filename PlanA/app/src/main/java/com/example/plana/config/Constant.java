@@ -33,6 +33,8 @@ public class Constant {
     public static class MyColor {
         public static final int BlueGrey = Color.rgb(82, 125, 114);
         public static final int MyRed = Color.rgb(221, 0, 27);
+        public static final int white = Color.rgb(255, 255, 255);
+        public static final int grey = Color.rgb(97,97,97);
     }
 
 
@@ -55,19 +57,5 @@ public class Constant {
         public static final String NOTIFY_TAG = "NOTIFY_TAG";
         public static final String DATE_BASE_TAG = "DATE_BASE_TAG";
     }
-
-
-    public static class Clock {
-        /**
-         * 正计时
-         */
-        public static final String POSITIVE = "POSITIVE";
-
-        /**
-         * 倒计时
-         */
-        public static final String NEGATIVE = "NEGATIVE";
-    }
-
 
 }

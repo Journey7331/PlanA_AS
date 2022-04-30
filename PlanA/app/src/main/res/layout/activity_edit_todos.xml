@@ -59,6 +59,7 @@
         android:layout_marginBottom="32dp"
         android:background="@drawable/bg_button"
         android:text="@string/finish"
+        android:textSize="16sp"
         android:textColor="@color/white"
         android:textStyle="bold" />
 </RelativeLayout>

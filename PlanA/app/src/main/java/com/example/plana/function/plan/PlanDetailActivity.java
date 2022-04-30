@@ -3,6 +3,7 @@ package com.example.plana.function.plan;
 import android.graphics.Color;
 import android.os.Build;
 import android.os.Bundle;
+import android.util.Log;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -17,12 +18,18 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.plana.R;
 import com.example.plana.adapter.PlanListAdapter;
 import com.example.plana.adapter.viewholder.ItemData;
+import com.example.plana.adapter.viewholder.OnFreshStartToPoint;
 import com.example.plana.adapter.viewholder.OnScrollToListener;
 import com.example.plana.base.BaseActivity;
 
+import com.example.plana.base.MainApplication;
 import com.example.plana.bean.My;
 import com.example.plana.bean.Plan;
+import com.example.plana.utils.SharedPreferencesUtil;
 import com.google.android.material.appbar.AppBarLayout;
+import com.google.android.material.dialog.MaterialAlertDialogBuilder;
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
 
 import java.util.List;
 import java.util.Optional;
@@ -48,6 +55,8 @@ public class PlanDetailActivity extends BaseActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_plan_detail);
 
+        setResult(2);
+
         tvTitle = findViewById(R.id.tv_plan_detail_title);
         ivBanner = findViewById(R.id.iv_plan_detail_img);
         btBack = findViewById(R.id.bt_plan_detail_back);
@@ -66,17 +75,10 @@ public class PlanDetailActivity extends BaseActivity {
             }
         });
 
-        Plan plan = new Plan();
-        for (Plan p : My.plans) {
-            if (p.getPlanId() == My.plan_id) {
-                plan = p;
-                break;
-            }
-        }
-
         Optional<Plan> first = My.plans.stream().filter(p -> p.getPlanId() == My.plan_id).findFirst();
         if (first.isPresent()) {
             ivBanner.setImageResource(images[first.get().getImg_id()]);
+            tvTitle.setText(first.get().getPlanBrief().getPlanName());
         } else {
             ivBanner.setImageResource(images[0]);
         }
@@ -114,6 +116,20 @@ public class PlanDetailActivity extends BaseActivity {
         });
 
     }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        if (My.plans != null || My.plans.size() > 0) {
+            Gson gson = new Gson();
+            String str_planJSON = gson.toJson(My.plans);
+            SharedPreferencesUtil.init(
+                    MainApplication.getAppContext(),
+                    "PLAN_DATA"
+            ).putString("PLAN_LIST", str_planJSON); //存入json串
+        }
+        My.plan_id = -1;
+ }
 
     /**
      * 填充 RecyclerView 的数据

@@ -64,6 +64,16 @@ public class DeletedTodosDB implements MyDatabaseHelper.TableCreateInterface {
         }
     }
 
+    public static void dropTable(MyDatabaseHelper dbHelper) {
+        SQLiteDatabase db = dbHelper.getWritableDatabase();
+        String sql = "delete from " + DeletedTodosDB.TableName + ";";
+        db.execSQL(sql);
+//        sql = "update sqlite_sequence SET seq = 0 where name = " + DeletedTodosDB.TableName + ";";
+//        db.execSQL(sql);
+        Log.i("dropTable", "dropTable:" + DeletedTodosDB.TableName);
+        db.close();
+    }
+
     public static void insertTodo(MyDatabaseHelper dbHelper, ContentValues eventValues) {
         SQLiteDatabase db = dbHelper.getWritableDatabase();
         db.insert(DeletedTodosDB.TableName, null, eventValues);

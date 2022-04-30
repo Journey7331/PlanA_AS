@@ -14,12 +14,15 @@ import com.example.plana.adapter.viewholder.ChildViewHolder;
 import com.example.plana.adapter.viewholder.ItemData;
 import com.example.plana.adapter.viewholder.ItemDataClickListener;
 import com.example.plana.adapter.viewholder.OnDoneChangeListener;
+import com.example.plana.adapter.viewholder.OnFreshStartToPoint;
 import com.example.plana.adapter.viewholder.OnScrollToListener;
 import com.example.plana.adapter.viewholder.ParentViewHolder;
 import com.example.plana.base.BaseViewHolder;
 import com.example.plana.bean.My;
 import com.example.plana.bean.Plan;
 import com.example.plana.bean.PlanBean;
+import com.example.plana.bean.PlanBrief;
+import com.example.plana.function.fragment.PlanFragment;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -61,10 +64,88 @@ public class PlanListAdapter extends RecyclerView.Adapter<BaseViewHolder> {
 
     private final OnDoneChangeListener doneChangeListener = new OnDoneChangeListener() {
         @Override
-        public void OnRefreshList(ItemData itemData) {
-            // TODO: 2022/4/28
+        public void OnRefreshList(ItemData itemData, int position) {
+            for (Plan plan : My.plans) {
+                if (plan.getPlanId() == My.plan_id) {
+                    if (itemData.isDone()) {
+                        plan.setCurPoint(itemData.getId());
+                    } else {
+                        int lastPosition = getLastPosition(itemData.getId(), position);
+                        plan.setCurPoint(lastPosition);
+                    }
+                    updatePlanListSelf(plan);
+                    notifyItemRangeChanged(0, dataSet.size());
+                    break;
+                }
+            }
         }
     };
+
+    public void updatePlanListSelf(Plan plan) {
+        List<PlanBean> beans = plan.getPlanBeans();
+        for (PlanBean bean : beans) {
+            bean.setDoneCnt(0);
+            bean.setTotalCnt(0);
+        }
+        PlanBean bean = beans.get(0);
+        loopUpdate(beans, bean, plan.getCurPoint(), 0);
+
+        PlanBrief brief = plan.getPlanBrief();
+        brief.setTotal(bean.getTotalCnt());
+        brief.setDone(bean.getDoneCnt());
+    }
+
+    private void loopUpdate(List<PlanBean> beans, PlanBean bean, int curPoint, int level) {
+        if (bean.getLevel() != level) return;
+
+        int id = bean.getId();
+        if (bean.isLeaf()) {
+            bean.setTotalCnt(1);
+            bean.setDoneCnt(0);
+            if (id <= curPoint) {
+                bean.setISDoneOrNot(true);
+                bean.setDoneCnt(1);
+            }
+        } else {
+            for (int i = id + 1; i < beans.size(); i++) {
+                PlanBean planBean = beans.get(i);
+                if (planBean.getPid() == id) {
+                    loopUpdate(beans, planBean, curPoint, level + 1);
+                    bean.setTotalCnt(bean.getTotalCnt() + planBean.getTotalCnt());
+                    bean.setDoneCnt(bean.getDoneCnt() + planBean.getDoneCnt());
+                }
+            }
+        }
+    }
+
+
+    /**
+     * 取消的时候需要使用
+     */
+    private int getLastPosition(int id, int position) {
+        List<PlanBean> beans = null;
+        for (Plan p : My.plans) {
+            if (p.getPlanId() == My.plan_id) {
+                beans = p.getPlanBeans();
+                break;
+            }
+        }
+        if (beans == null) beans = new ArrayList<>();
+        for (int i = beans.size() - 1; i >= 0; i--) {
+            PlanBean bean = beans.get(i);
+            if (bean.isLeaf() && bean.getId() < id && bean.isDone()) {
+                if (bean.getLevel() >= dataSet.get(position).getTreeDepth()) {
+                    if (bean.getPid() <= dataSet.get(position).getPid()){
+                        return bean.getId();
+                    }else {
+                        // TODO
+                    }
+                }
+            }
+
+        }
+        return -1;
+    }
 
 
     private final ItemDataClickListener itemDataClickListener = new ItemDataClickListener() {
@@ -99,16 +180,17 @@ public class PlanListAdapter extends RecyclerView.Adapter<BaseViewHolder> {
      */
     public List<ItemData> getChildrenFromPlanList(int pid, int treeDepth) {
         List<ItemData> list = new ArrayList<>();
-        Plan plan = new Plan();
+        List<PlanBean> beans = null;
         for (Plan p : My.plans) {
             if (p.getPlanId() == My.plan_id) {
-                plan = p;
+                beans = p.getPlanBeans();
                 break;
             }
         }
-        for (PlanBean bean : plan.getPlanBeans()) {
+        if (beans == null) beans = new ArrayList<>();
+        for (PlanBean bean : beans) {
             if (bean.getPid() == pid) {
-                ItemData data = new ItemData(bean.getId(), pid, bean.getTitle(), treeDepth + 1, bean.isDone());
+                ItemData data = new ItemData(bean.getId(), pid, bean.getTitle(), treeDepth + 1, bean.getDoneCnt()>0);
                 if (bean.isLeaf()) {
                     data.setType(ItemData.ITEM_TYPE_CHILD);
                 } else {

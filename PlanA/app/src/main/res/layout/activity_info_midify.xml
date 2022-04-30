@@ -32,54 +32,357 @@
     </RelativeLayout>
 
     <RelativeLayout
-        android:id="@+id/rl_about_part"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="match_parent"
         android:layout_below="@+id/rl_bar"
-        android:layout_marginHorizontal="20dp"
-        android:layout_marginTop="20dp"
-        android:background="@drawable/bg_dialog_radius_white">
+        android:layout_alignParentBottom="true">
 
-        <RelativeLayout
-            android:id="@+id/rl_about"
-            android:layout_width="wrap_content"
-            android:layout_height="50dp"
-            android:layout_marginStart="3dp"
-            android:layout_marginTop="3dp"
-            android:layout_marginEnd="3dp"
-            android:layout_marginBottom="3dp"
-            android:background="@drawable/bg_rl_view_select">
+        <ScrollView
+            android:id="@+id/sv_scrollview"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_alignParentBottom="true"
+            android:scrollbars="none">
 
-            <androidx.emoji2.widget.EmojiButton
-                android:id="@+id/emoji_box"
-                android:layout_width="32dp"
-                android:layout_height="32dp"
-                android:layout_centerVertical="true"
-                android:layout_marginStart="15dp"
-                android:background="@null"
-                android:text="@string/emoji_box"
-                android:textSize="20sp" />
-
-            <TextView
-                android:layout_width="wrap_content"
+            <RelativeLayout
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_centerVertical="true"
-                android:layout_marginStart="20dp"
-                android:layout_toEndOf="@+id/emoji_box"
-                android:text="@string/about"
-                android:textSize="18sp" />
+                android:layout_marginHorizontal="5dp">
 
-            <ImageView
-                android:layout_width="20dp"
-                android:layout_height="20dp"
-                android:layout_alignParentEnd="true"
-                android:layout_centerVertical="true"
-                android:layout_marginEnd="30dp"
-                android:alpha="0.5"
-                android:background="@drawable/icon_next" />
-        </RelativeLayout>
+
+                <TextView
+                    android:id="@+id/tv_info_phone"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="30dp"
+                    android:layout_marginTop="25dp"
+                    android:text="手机号（不可修改）"
+                    android:textColor="@color/google_grey_500"
+                    android:textSize="12sp" />
+
+                <RelativeLayout
+                    android:id="@+id/rl_info_phone_part"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/tv_info_phone"
+                    android:layout_marginHorizontal="20dp"
+                    android:layout_marginVertical="4dp"
+                    android:background="@drawable/bg_dialog_radius_white">
+
+                    <RelativeLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="40dp"
+                        android:layout_margin="3dp"
+                        android:background="@drawable/bg_rl_view_select">
+
+                        <androidx.emoji2.widget.EmojiButton
+                            android:id="@+id/emoji_phone"
+                            android:layout_width="30dp"
+                            android:layout_height="30dp"
+                            android:layout_centerVertical="true"
+                            android:layout_marginStart="15dp"
+                            android:background="@null"
+                            android:text="📱"
+                            android:textSize="20sp" />
+
+                        <TextView
+                            android:id="@+id/tv_info_phone_show"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_centerVertical="true"
+                            android:layout_marginHorizontal="20dp"
+                            android:layout_toEndOf="@+id/emoji_phone"
+                            android:text="12345678912"
+                            android:textColor="@color/google_grey_500"
+                            android:textSize="15sp" />
+                    </RelativeLayout>
+                </RelativeLayout>
+
+
+                <TextView
+                    android:id="@+id/tv_info_nickname"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/rl_info_phone_part"
+                    android:layout_marginStart="30dp"
+                    android:layout_marginTop="15dp"
+                    android:text="昵称"
+                    android:textColor="@color/google_grey_500"
+                    android:textSize="12sp" />
+
+                <RelativeLayout
+                    android:id="@+id/rl_info_nickname_part"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/tv_info_nickname"
+                    android:layout_marginHorizontal="20dp"
+                    android:layout_marginVertical="4dp"
+                    android:background="@drawable/bg_dialog_radius_white">
+
+                    <RelativeLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="40dp"
+                        android:layout_margin="3dp"
+                        android:background="@drawable/bg_rl_view_select">
+
+                        <androidx.emoji2.widget.EmojiButton
+                            android:id="@+id/emoji_person"
+                            android:layout_width="30dp"
+                            android:layout_height="30dp"
+                            android:layout_centerVertical="true"
+                            android:layout_marginStart="15dp"
+                            android:background="@null"
+                            android:text="@string/emoji_person"
+                            android:textSize="20sp" />
+
+                        <EditText
+                            android:id="@+id/et_info_nickname"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_centerVertical="true"
+                            android:layout_marginHorizontal="20dp"
+                            android:layout_toEndOf="@+id/emoji_person"
+                            android:background="@null"
+                            android:lines="1"
+                            android:text="Tom"
+                            android:textSize="15sp" />
+                    </RelativeLayout>
+                </RelativeLayout>
+
+
+                <TextView
+                    android:id="@+id/tv_info_email"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/rl_info_nickname_part"
+                    android:layout_marginStart="30dp"
+                    android:layout_marginTop="15dp"
+                    android:text="邮箱"
+                    android:textColor="@color/google_grey_500"
+                    android:textSize="12sp" />
+
+                <RelativeLayout
+                    android:id="@+id/rl_info_email_part"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/tv_info_email"
+                    android:layout_marginHorizontal="20dp"
+                    android:layout_marginVertical="4dp"
+                    android:background="@drawable/bg_dialog_radius_white">
+
+                    <RelativeLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="40dp"
+                        android:layout_margin="3dp"
+                        android:background="@drawable/bg_rl_view_select">
+
+                        <androidx.emoji2.widget.EmojiButton
+                            android:id="@+id/emoji_email"
+                            android:layout_width="30dp"
+                            android:layout_height="30dp"
+                            android:layout_centerVertical="true"
+                            android:layout_marginStart="15dp"
+                            android:background="@null"
+                            android:text="✉️"
+                            android:textSize="20sp" />
+
+                        <EditText
+                            android:id="@+id/et_info_email"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_centerVertical="true"
+                            android:layout_marginHorizontal="20dp"
+                            android:layout_toEndOf="@+id/emoji_email"
+                            android:background="@null"
+                            android:lines="1"
+                            android:text="123@163.com"
+                            android:textSize="15sp" />
+                    </RelativeLayout>
+                </RelativeLayout>
+
+
+                <TextView
+                    android:id="@+id/tv_info_birth"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/rl_info_email_part"
+                    android:layout_marginStart="30dp"
+                    android:layout_marginTop="15dp"
+                    android:text="生日"
+                    android:textColor="@color/google_grey_500"
+                    android:textSize="12sp" />
+
+                <RelativeLayout
+                    android:id="@+id/rl_info_birth_part"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/tv_info_birth"
+                    android:layout_marginHorizontal="20dp"
+                    android:layout_marginVertical="4dp"
+                    android:background="@drawable/bg_dialog_radius_white">
+
+                    <RelativeLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="40dp"
+                        android:layout_margin="3dp"
+                        android:background="@drawable/bg_rl_view_select">
+
+                        <androidx.emoji2.widget.EmojiButton
+                            android:id="@+id/emoji_birth"
+                            android:layout_width="30dp"
+                            android:layout_height="30dp"
+                            android:layout_centerVertical="true"
+                            android:layout_marginStart="15dp"
+                            android:background="@null"
+                            android:text="🎂"
+                            android:textSize="20sp" />
+
+                        <TextView
+                            android:id="@+id/tv_info_birth_show"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_centerVertical="true"
+                            android:layout_marginHorizontal="20dp"
+                            android:layout_toEndOf="@+id/emoji_birth"
+                            android:lines="1"
+                            android:text="2001-01-01"
+                            android:textSize="15sp" />
+                    </RelativeLayout>
+                </RelativeLayout>
+
+
+                <TextView
+                    android:id="@+id/tv_info_password"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/rl_info_birth_part"
+                    android:layout_marginStart="30dp"
+                    android:layout_marginTop="15dp"
+                    android:text="密码"
+                    android:textColor="@color/google_grey_500"
+                    android:textSize="12sp" />
+
+                <RelativeLayout
+                    android:id="@+id/rl_info_password_part"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/tv_info_password"
+                    android:layout_marginHorizontal="20dp"
+                    android:layout_marginVertical="4dp"
+                    android:background="@drawable/bg_dialog_radius_white">
+
+                    <RelativeLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="40dp"
+                        android:layout_margin="3dp"
+                        android:background="@drawable/bg_rl_view_select">
+
+                        <androidx.emoji2.widget.EmojiButton
+                            android:id="@+id/emoji_key️"
+                            android:layout_width="30dp"
+                            android:layout_height="30dp"
+                            android:layout_centerVertical="true"
+                            android:layout_marginStart="15dp"
+                            android:background="@null"
+                            android:text="🔑"
+                            android:textSize="20sp" />
+
+                        <EditText
+                            android:id="@+id/et_info_password"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_centerVertical="true"
+                            android:layout_marginHorizontal="20dp"
+                            android:layout_toEndOf="@+id/emoji_key️"
+                            android:background="@null"
+                            android:hint="********"
+                            android:inputType="textPassword"
+                            android:lines="1"
+                            android:textSize="15sp" />
+                    </RelativeLayout>
+                </RelativeLayout>
+
+
+                <TextView
+                    android:id="@+id/tv_info_code"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/rl_info_password_part"
+                    android:layout_marginStart="30dp"
+                    android:layout_marginTop="15dp"
+                    android:text="验证码"
+                    android:textColor="@color/google_grey_500"
+                    android:textSize="12sp"
+                    android:visibility="invisible" />
+
+                <RelativeLayout
+                    android:id="@+id/rl_info_code_part"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/tv_info_code"
+                    android:layout_marginHorizontal="20dp"
+                    android:layout_marginVertical="4dp"
+                    android:background="@drawable/bg_dialog_radius_white"
+                    android:visibility="invisible">
+
+                    <RelativeLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="40dp"
+                        android:layout_margin="3dp"
+                        android:background="@drawable/bg_rl_view_select">
+
+                        <androidx.emoji2.widget.EmojiButton
+                            android:id="@+id/emoji_code️"
+                            android:layout_width="30dp"
+                            android:layout_height="30dp"
+                            android:layout_centerVertical="true"
+                            android:layout_marginStart="15dp"
+                            android:background="@null"
+                            android:text="📎"
+                            android:textSize="20sp" />
+
+                        <EditText
+                            android:id="@+id/et_info_code"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_centerVertical="true"
+                            android:layout_marginHorizontal="20dp"
+                            android:layout_toStartOf="@+id/bt_get_code"
+                            android:layout_toEndOf="@+id/emoji_code️"
+                            android:background="@null"
+                            android:hint="验证码"
+                            android:lines="1"
+                            android:textSize="15sp" />
+
+                        <Button
+                            android:id="@+id/bt_get_code"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentEnd="true"
+                            android:layout_marginEnd="20dp"
+                            android:text="获取验证码"
+                            android:textColor="@color/white"
+                            android:textSize="12sp" />
+
+                    </RelativeLayout>
+                </RelativeLayout>
+
+            </RelativeLayout>
+        </ScrollView>
 
     </RelativeLayout>
 
+    <Button
+        android:id="@+id/btn_info_submit"
+        android:layout_width="144dp"
+        android:layout_height="40dp"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="40dp"
+        android:background="@drawable/bg_button"
+        android:text="完成修改"
+        android:textColor="@color/white"
+        android:textSize="16sp"
+        android:textStyle="bold" />
 
 </RelativeLayout>

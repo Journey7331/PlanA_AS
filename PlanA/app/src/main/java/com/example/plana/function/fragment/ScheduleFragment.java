@@ -132,6 +132,7 @@ public class ScheduleFragment extends BaseFragment
         loadSubjects();     // 加载课程
         loadLocalConfig();
 
+
     }
 
     @Override
@@ -143,7 +144,7 @@ public class ScheduleFragment extends BaseFragment
                 else showWeekView();
                 break;
             case R.id.schedule_setting:
-                Intent intent = new Intent(MainActivity.mainActivity, ScheduleSettingActivity.class);
+                Intent intent = new Intent(getContext(), ScheduleSettingActivity.class);
                 startActivity(intent);
                 break;
         }
@@ -154,14 +155,17 @@ public class ScheduleFragment extends BaseFragment
      * 载入课程数据到list中
      */
     private void loadSubjects() {
+        if (My.mySubjects != null && My.mySubjects.size() > 0) {
+            mySubjects = My.mySubjects;
+            toSaveSubjects(mySubjects);
+            return;
+        }
+
         String subjectListJson = SharedPreferencesUtil.init(MainApplication.getAppContext(), "COURSE_DATA").getString("SUBJECT_LIST", null);
-        if (subjectListJson == null) {
-            mySubjects = SubjectRepertory.loadDefaultSubjects();
-            if (!mySubjects.isEmpty()) {
-                toSaveSubjects(mySubjects);
-            }
-        } else {
+        if (subjectListJson != null) {
             mySubjects = toGetSubjects();
+        }else {
+            mySubjects = new ArrayList<>();
         }
         My.mySubjects = mySubjects;
     }
@@ -423,6 +427,7 @@ public class ScheduleFragment extends BaseFragment
         confirm.setOnClickListener(v -> {
             dialog.dismiss();
             deleteSubject(id);
+            weekView.source(mySubjects).updateView();
             Toast.makeText(getContext(), "删除成功", Toast.LENGTH_SHORT).show();
         });
         // 取消

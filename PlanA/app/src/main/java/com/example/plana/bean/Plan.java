@@ -60,6 +60,18 @@ public class Plan {
         return planBrief;
     }
 
+    @Override
+    public String toString() {
+        return "Plan{" +
+                "planId=" + planId +
+                ", description='" + description + '\'' +
+                ", img_id=" + img_id +
+                ", curPoint=" + curPoint +
+                ", planBeans=" + planBeans +
+                ", planBrief=" + planBrief +
+                '}';
+    }
+
     public void setPlanBrief(PlanBrief planBrief) {
         this.planBrief = planBrief;
     }

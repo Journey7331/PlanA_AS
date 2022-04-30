@@ -5,15 +5,39 @@
     android:layout_height="match_parent"
     android:background="@color/google_grey">
 
-    <include
-        android:id="@+id/setting_toolbar"
-        layout="@layout/toolbar" />
+
+    <RelativeLayout
+        android:id="@+id/rl_bar"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:background="@drawable/background_straight"
+        app:layout_constraintTop_toTopOf="parent">
+
+
+        <ImageButton
+            android:id="@+id/bt_schedule_setting_back"
+            android:layout_width="25dp"
+            android:layout_height="25dp"
+            android:layout_alignParentStart="true"
+            android:layout_centerVertical="true"
+            android:layout_marginStart="15dp"
+            android:background="@drawable/icon_back" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:text="课程表设置"
+            android:textSize="20sp"
+            android:textStyle="bold" />
+
+    </RelativeLayout>
 
     <TextView
         android:id="@+id/tv_school_start_time"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/setting_toolbar"
+        android:layout_below="@+id/rl_bar"
         android:layout_alignParentStart="true"
         android:layout_marginStart="30dp"
         android:layout_marginTop="15dp"
@@ -224,7 +248,7 @@
                 android:layout_marginStart="20dp"
                 android:layout_toEndOf="@+id/emoji_time"
                 android:text="上课时间"
-                android:textSize="18sp" />
+                android:textSize="15sp" />
 
             <androidx.appcompat.widget.SwitchCompat
                 android:id="@+id/switch_notification_showWhen"
@@ -272,7 +296,7 @@
                 android:layout_marginStart="20dp"
                 android:layout_toEndOf="@+id/emoji_room"
                 android:text="上课教室"
-                android:textSize="18sp" />
+                android:textSize="15sp" />
 
             <androidx.appcompat.widget.SwitchCompat
                 android:id="@+id/switch_notification_showWhere"
@@ -320,7 +344,7 @@
                 android:layout_marginStart="20dp"
                 android:layout_toEndOf="@+id/emoji_span"
                 android:text="课程时长"
-                android:textSize="18sp" />
+                android:textSize="15sp" />
 
             <androidx.appcompat.widget.SwitchCompat
                 android:id="@+id/switch_notification_showStep"
@@ -384,7 +408,7 @@
                 android:layout_marginStart="20dp"
                 android:layout_toEndOf="@+id/emoji_eyes"
                 android:text="隐藏周末"
-                android:textSize="18sp" />
+                android:textSize="15sp" />
 
             <androidx.appcompat.widget.SwitchCompat
                 android:id="@+id/switch_hide_weekend"
@@ -435,7 +459,7 @@
                 android:layout_marginStart="20dp"
                 android:layout_toEndOf="@+id/emoji_balloon"
                 android:text="隐藏非本周课程"
-                android:textSize="18sp" />
+                android:textSize="15sp" />
 
             <androidx.appcompat.widget.SwitchCompat
                 android:id="@+id/switch_hide_nonThis_week"
@@ -483,7 +507,7 @@
                 android:layout_marginStart="20dp"
                 android:layout_toEndOf="@+id/emoji_shine"
                 android:text="隐藏节次时间"
-                android:textSize="18sp" />
+                android:textSize="15sp" />
 
             <androidx.appcompat.widget.SwitchCompat
                 android:id="@+id/switch_hide_block_time"
@@ -508,6 +532,7 @@
         android:layout_marginBottom="40dp"
         android:background="@drawable/bg_button"
         android:text="完成设置"
+        android:textSize="16sp"
         android:textColor="@color/white"
         android:textStyle="bold" />
 

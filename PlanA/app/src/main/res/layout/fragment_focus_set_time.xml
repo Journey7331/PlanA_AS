@@ -137,6 +137,7 @@
         android:background="@drawable/bg_button"
         android:paddingHorizontal="40dp"
         android:text="@string/start_count"
+        android:textSize="16sp"
         android:textColor="@color/white"
         android:textStyle="bold" />
 

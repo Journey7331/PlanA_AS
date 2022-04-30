@@ -208,7 +208,7 @@ public class TodoAdapter extends ArrayAdapter {
         Intent intent = new Intent(ctx, EditTodoActivity.class);
         ctx.startActivity(intent);
         // transaction animation
-        ctx.overridePendingTransition(R.anim.slide_in, R.anim.fade_out);
+//        ctx.overridePendingTransition(R.anim.slide_in, R.anim.fade_out);
 //        thisContext.finish();
     }
 

@@ -1,7 +1,7 @@
 plugins {
     id 'com.android.application'
 }
-apply plugin: "com.tencent.android.tpns"
+//apply plugin: "com.tencent.android.tpns"
 
 android {
     compileSdkVersion 31
@@ -16,10 +16,10 @@ android {
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
 
-        manifestPlaceholders = [
-                XG_ACCESS_ID : "1580010996",
-                XG_ACCESS_KEY : "AEWHMELH4LZH",
-        ]
+//        manifestPlaceholders = [
+//                XG_ACCESS_ID : "1580010996",
+//                XG_ACCESS_KEY : "AEWHMELH4LZH",
+//        ]
 
     }
 
@@ -41,9 +41,7 @@ dependencies {
     implementation 'com.google.android.material:material:1.3.0'
     implementation 'androidx.constraintlayout:constraintlayout:2.0.4'
     implementation 'androidx.swiperefreshlayout:swiperefreshlayout:1.1.0'
-//    testImplementation 'junit:junit:'
     testImplementation 'junit:junit:4.12'
-//    testImplementation 'org.junit.jupiter:junit-jupiter'
     androidTestImplementation 'androidx.test.ext:junit:1.1.3'
     implementation 'com.android.support.test.espresso:espresso-core:3.0.2'
     implementation 'com.android.support.test:rules:1.0.2'
@@ -61,7 +59,10 @@ dependencies {
     implementation 'com.github.Cutta:GifView:1.4'
     implementation 'com.akexorcist:round-corner-progress-bar:2.1.2'
 
-    implementation 'com.tencent.tpns:tpns:1.3.3.3-release'
+    // https://mvnrepository.com/artifact/org.apache.commons/commons-lang3
+    implementation 'org.apache.commons:commons-lang3:3.4'
+
+//    implementation 'com.tencent.tpns:tpns:1.3.3.3-release'
 
 //    implementation 'cn.leancloud:realtime-android:8.2.5'
 

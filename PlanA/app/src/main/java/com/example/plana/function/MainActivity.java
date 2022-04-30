@@ -1,8 +1,12 @@
 package com.example.plana.function;
 
+import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.text.TextUtils;
+import android.util.Log;
 
 import com.example.plana.R;
 import com.example.plana.base.BaseActivity;
@@ -38,6 +42,8 @@ public class MainActivity extends BaseActivity {
         setContentView(R.layout.activity_main);
         mainActivity = this;
 
+        hideKeyboard(this);
+
         // fragment setup
         listFragment = new ShowListFragment();
         scheduleFragment = new ScheduleFragment();
@@ -59,6 +65,37 @@ public class MainActivity extends BaseActivity {
         if (My.page > 0) {
             bottomNavigation.setSelectedItemId(My.page);
             My.page = -1;
+        }
+
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (requestCode == 1 && resultCode == 2) {
+            mainActivity.bottomNavigation.setSelectedItemId(R.id.page_3);
+        }
+    }
+
+    @Override
+    protected void onResume() {
+        getNotify(getIntent());
+        super.onResume();
+    }
+
+    @Override
+    protected void onNewIntent(Intent intent) {
+        super.onNewIntent(intent);
+        getNotify(intent);
+        setIntent(intent);
+    }
+
+    private void getNotify(Intent intent) {
+        String value = intent.getStringExtra("SCHEDULE_NOTIFY");
+        Log.i("TAG", "onNewIntent: " + value);
+
+        if (value != null && value.equals("SCHEDULE_NOTIFY")) {
+            bottomNavigation.setSelectedItemId(R.id.page_2);
         }
     }
 
@@ -84,7 +121,6 @@ public class MainActivity extends BaseActivity {
     };
 
     public void onFragmentSelected(int position, Bundle bundle) {
-        hideKeyboard(this);
         switch (position) {
             case 1:
                 listFragment = new ShowListFragment();

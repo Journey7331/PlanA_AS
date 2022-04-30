@@ -1,6 +1,7 @@
 package com.example.plana.function.timer;
 
 import android.os.Bundle;
+import android.widget.RelativeLayout;
 
 import androidx.annotation.Nullable;
 import androidx.recyclerview.widget.DefaultItemAnimator;
@@ -25,11 +26,15 @@ import java.util.Comparator;
 public class TimerRecorderActivity extends BaseActivity {
 
     RecyclerView recyclerView;
+    RelativeLayout rlEmpty;
+    TimerRecorderAdapter adapter;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_show_timer_recorder);
+
+        rlEmpty = findViewById(R.id.rl_timer_list_empty_status);
 
         findViewById(R.id.bt_timer_recorder_back).setOnClickListener(l->{
             finish();
@@ -42,8 +47,10 @@ public class TimerRecorderActivity extends BaseActivity {
         recyclerView = findViewById(R.id.rv_record_timer);
         GridLayoutManager layoutManager = new GridLayoutManager(TimerRecorderActivity.this, 1);
         recyclerView.setLayoutManager(layoutManager);
-        recyclerView.setAdapter(new TimerRecorderAdapter(TimerRecorderActivity.this, getRecorderList()));
+        adapter = new TimerRecorderAdapter(TimerRecorderActivity.this, getRecorderList(),rlEmpty);
+        recyclerView.setAdapter(adapter);
         recyclerView.setItemAnimator(new DefaultItemAnimator());
+        adapter.checkEmpty();
     }
 
     /**

@@ -98,8 +98,6 @@ public class FocusFragment extends BaseFragment {
             intent.putExtra("time", times[index]);
             intent.putExtra("count_type", count_type);
             startActivity(intent);
-//            ActivityOptions options = ActivityOptions.makeCustomAnimation(getContext(), R.anim.slide_in_top, R.anim.slide_in_bottom);
-//            startActivity(intent, options.toBundle());
         });
         return view;
     }

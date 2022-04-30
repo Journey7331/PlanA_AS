@@ -1,5 +1,10 @@
 package com.example.plana.base;
 
+import static com.example.plana.utils.InputCheckUtil.checkEditTextEmpty;
+import static com.example.plana.utils.InputCheckUtil.checkEmailValid;
+import static com.example.plana.utils.InputCheckUtil.checkPhoneValid;
+import static com.example.plana.utils.InputCheckUtil.isTextEqual;
+
 import android.widget.EditText;
 import android.widget.Toast;
 
@@ -77,36 +82,6 @@ public class BaseRegisterActivity extends BaseActivity {
     }
 
 
-    /**
-     * 手机号正则验证
-     */
-    private boolean checkPhoneValid(String phoneString) {
-        boolean ans = true;
-//        String regex = "^1[3-9][0-9]{9}$";
-//        ans = phoneString.matches(regex);
-        return ans;
-    }
 
-    /**
-     * 邮箱地址正则表达式
-     */
-    private boolean checkEmailValid(String emailString) {
-        String regex = "^\\s*\\w+(?:\\.{0,1}[\\w-]+)*@[a-zA-Z0-9]+(?:[-.][a-zA-Z0-9]+)*\\.[a-zA-Z]+\\s*$";
-        return emailString.matches(regex);
-    }
-
-    /**
-     * 检验是否为空
-     */
-    private boolean checkEditTextEmpty(EditText editText) {
-        return editText.getText().toString().length() == 0;
-    }
-
-    /**
-     * 检验密码是否相等
-     */
-    private boolean isTextEqual(EditText et1, EditText et2) {
-        return et1.getText().toString().equals(et2.getText().toString());
-    }
 
 }

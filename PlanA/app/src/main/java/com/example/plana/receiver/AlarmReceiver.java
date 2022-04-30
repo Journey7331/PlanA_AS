@@ -7,6 +7,10 @@ import android.app.PendingIntent;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.graphics.drawable.BitmapDrawable;
+import android.graphics.drawable.Drawable;
 import android.util.Log;
 
 import androidx.core.app.NotificationCompat;
@@ -17,6 +21,7 @@ import com.example.plana.bean.MySubject;
 import com.example.plana.R;
 import com.example.plana.config.MyConfigConstant;
 import com.example.plana.base.MainApplication;
+import com.example.plana.function.SplashActivity;
 import com.example.plana.function.fragment.ScheduleFragment;
 import com.example.plana.utils.SharedPreferencesUtil;
 import com.example.plana.utils.SubjectRepertory;
@@ -35,32 +40,39 @@ public class AlarmReceiver extends BroadcastReceiver {
 
     private static final String TAG = "AlarmReceiver";
     private String myContentText = "Default Content";
-    private int curWeek, curDay;//当前周次，当前星期几
-    private int targetWeek, targetDay;//明天周次，明天星期几
+    private int curWeek, curDay;    // 当前周次，当前星期几
+    private int targetWeek, targetDay;  // 明天周次，明天星期几
+    Bitmap LargeBitmap;
     Boolean notIsShowWhen;
     Boolean notIsShowWhere;
     Boolean notIsShowStep;
 
+
+    /**
+     * 广播接收器接收到相应广播后，会自动回调 onReceive() 方法
+     * 下面写入接收广播后的操作
+     */
     @Override
     public void onReceive(Context context, Intent intent) {
-        //当系统到我们设定的时间点的时候会发送广播，执行这里
         Log.d(TAG, "onReceive");
-        //获取信息，决定通知的内容
+
+        // 获取信息，决定通知的内容
         Map<String, Boolean> notConfigMap = MyConfig.getNotConfigMap();
         notIsShowWhen = notConfigMap.get(MyConfigConstant.CONFIG_NOT_SHOW_WHEN);
         notIsShowWhere = notConfigMap.get(MyConfigConstant.CONFIG_NOT_SHOW_WHERE);
         notIsShowStep = notConfigMap.get(MyConfigConstant.CONFIG_NOT_SHOW_STEP);
-        //计算明天的日期
+
+        // 计算明天的日期
         curWeek = getCurWeek();
         curDay = getCurDay();
-        if (curDay == 6) {//周日的下一天为周一
+        if (curDay == 6) {  // 周日的下一天为周一
             targetDay = 0;
             targetWeek++;
         } else {
             targetDay = curDay + 1;
             targetWeek = curWeek;
         }
-        //还没有开学，不通知
+        // 还没有开学，不通知
         if (targetWeek <= 0) {
             Log.d(TAG, "targetWeek <= 0");
             return;
@@ -78,18 +90,22 @@ public class AlarmReceiver extends BroadcastReceiver {
         String myChannelID = "SCHEDULE_NOTIFY";
         String myChannelName = "次日课程提醒";
         int notID = 1001;
+
+        LargeBitmap = BitmapFactory.decodeResource(context.getResources(), R.mipmap.ic_launcher_round);
         NotificationManager manager = (NotificationManager) context.getSystemService(Context.NOTIFICATION_SERVICE);
-        String notChannel = createNotificationChannel(context,
-                myChannelID, myChannelName, NotificationManager.IMPORTANCE_DEFAULT);
-        Intent startIntent = new Intent(context, MainActivity.class);
-        Notification notification = new NotificationCompat.Builder(context, myChannelID)
-                .setTicker(context.getResources().getString(R.string.app_name))//APP名称
-                .setContentTitle("明日课程")//标题
-                .setContentText("展开以查看")
-                .setStyle(new NotificationCompat.BigTextStyle().bigText(myContentText))//内容 使用长文本展示
-                .setSmallIcon(R.mipmap.ic_launcher_round_small)
+        String notChannel = createNotificationChannel(context, myChannelID, myChannelName, NotificationManager.IMPORTANCE_HIGH);
+        Intent startIntent = new Intent(context, SplashActivity.class);
+        startIntent.putExtra("SCHEDULE_NOTIFY", "SCHEDULE_NOTIFY");
+
+        Notification notification = new NotificationCompat.Builder(context, notChannel)
+                .setTicker(context.getResources().getString(R.string.app_name))     // 收到通知时在顶部显示的文字信息
+                .setContentTitle("明日课程")    // 标题
+                .setContentText("展开以查看")    // 内容
+                .setStyle(new NotificationCompat.BigTextStyle().bigText(myContentText))     // 内容 使用长文本展示
+                .setSmallIcon(R.drawable.baseline_plan)     // 小图标
+                .setLargeIcon(LargeBitmap)
                 .setContentIntent(PendingIntent.getActivity(context, 0, startIntent, PendingIntent.FLAG_UPDATE_CURRENT))
-                .setAutoCancel(true)
+                .setAutoCancel(true)    // 用户点击 Notification 点击面板后让通知取消
                 .build();
         manager.notify(notID, notification);
 
@@ -123,7 +139,7 @@ public class AlarmReceiver extends BroadcastReceiver {
      */
     private List<MySubject> getOriginalData() {
         String subjectListJson = SharedPreferencesUtil.init(MainApplication.getAppContext(),
-                "SP_Data_List").getString("SUBJECT_LIST", null);
+                "COURSE_DATA").getString("SUBJECT_LIST", null);
         List<MySubject> mySubjects;
         if (subjectListJson == null) {
             mySubjects = SubjectRepertory.loadDefaultSubjects();
@@ -178,27 +194,26 @@ public class AlarmReceiver extends BroadcastReceiver {
      * @param showStep  是否通知上课时长（节数）
      * @return
      */
-    public String getContentText(List<Schedule> finalData, boolean showWhen, boolean showWhere
-            , boolean showStep) {
+    public String getContentText(List<Schedule> finalData, boolean showWhen, boolean showWhere, boolean showStep) {
         Log.d(TAG, "getContentText:" + showWhen + " " + showWhere + " " + showStep);
         StringBuilder contentTextBuilder = new StringBuilder();
         for (Schedule course : finalData) {
-            contentTextBuilder.append(course.getName());
+            contentTextBuilder.append("「").append(course.getName()).append("」");
             contentTextBuilder.append("\n");
             if (showWhen) {
-                contentTextBuilder.append("\t第").append(course.getStart()).append("节课;");
+                contentTextBuilder.append("\t第 ").append(course.getStart()).append(" 节课   ");
             }
             if (showWhere) {
-                contentTextBuilder.append("\t").append(course.getRoom()).append("；");
+                contentTextBuilder.append("\t教室：").append(course.getRoom()).append("  ");
             }
             if (showStep) {
-                contentTextBuilder.append("\t课程时长").append(course.getStep()).append("节课；");
+                contentTextBuilder.append("\t课程时长：").append(course.getStep()).append(" 节");
             }
             contentTextBuilder.append("\n");
         }
         Log.d(TAG, "contentText:" + contentTextBuilder.toString());
         if (contentTextBuilder.toString().isEmpty())
-            return "明天没有课程";
+            return "明天没有课程哦";
         return contentTextBuilder.toString();
     }
 

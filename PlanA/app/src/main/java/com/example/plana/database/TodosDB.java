@@ -67,6 +67,16 @@ public class TodosDB implements MyDatabaseHelper.TableCreateInterface {
         }
     }
 
+    public static void dropTable(MyDatabaseHelper dbHelper) {
+        SQLiteDatabase db = dbHelper.getWritableDatabase();
+        String sql = "delete from " + TodosDB.TableName + ";";
+        db.execSQL(sql);
+//        sql = "update sqlite_sequence SET seq = 0 where name = " + TodosDB.TableName + ";";
+//        db.execSQL(sql);
+        Log.i("dropTable", "dropTable:" + TodosDB.TableName);
+        db.close();
+    }
+
     // 插入Event
     public static void insertEvent(MyDatabaseHelper dbHelper, ContentValues eventValues) {
         SQLiteDatabase db = dbHelper.getWritableDatabase();

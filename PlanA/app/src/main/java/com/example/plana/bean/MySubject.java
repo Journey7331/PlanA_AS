@@ -22,11 +22,6 @@ public class MySubject implements ScheduleEnable {
     private String name;
 
     /**
-     * 时间
-     */
-//    private String time;
-
-    /**
      * 教室
      */
     private String room;

@@ -1,4 +1,4 @@
-package com.example.plana.function;
+package com.example.plana.function.setting;
 
 import android.content.ContentValues;
 import android.os.Bundle;

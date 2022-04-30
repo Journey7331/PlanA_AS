@@ -1,4 +1,4 @@
-package com.example.plana.function.user;
+package com.example.plana.function.setting;
 
 import android.os.Bundle;
 import android.widget.Button;

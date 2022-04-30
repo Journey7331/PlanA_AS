@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:id="@+id/rl_add_plan_item"
+    android:minHeight="55dp">
+
+    <TextView
+        android:id="@+id/tv_add_plan_list_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerVertical="true"
+        android:layout_marginStart="14dp"
+        android:text="title"
+        android:minWidth="120dp"
+        android:textSize="16sp" />
+
+    <TextView
+        android:id="@+id/tv_add_plan_list_count"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerVertical="true"
+        android:layout_toEndOf="@+id/tv_add_plan_list_title"
+        android:text="总节数："
+        android:textSize="16sp" />
+
+    <TextView
+        android:id="@+id/tv_add_plan_list_copy"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_centerVertical="true"
+        android:layout_marginEnd="15dp"
+        android:textColor="@color/google_grey_500"
+        android:text="复制到剪贴板"
+        android:textSize="12sp" />
+
+</RelativeLayout>

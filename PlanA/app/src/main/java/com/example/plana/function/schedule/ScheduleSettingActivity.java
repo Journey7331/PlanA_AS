@@ -4,6 +4,7 @@ import android.annotation.SuppressLint;
 import android.app.AlarmManager;
 import android.app.AlertDialog;
 import android.app.PendingIntent;
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
@@ -82,9 +83,6 @@ public class ScheduleSettingActivity extends BaseActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_schedule_setting);
 
-        //设置工具栏
-        initToolbar("课程表设置");
-
         //初始化configMap<String, String>
         configMap = new HashMap<String, String>();
 
@@ -134,6 +132,7 @@ public class ScheduleSettingActivity extends BaseActivity {
         etSchoolStartTime.setOnClickListener(l -> setupDate());
         etAlertTime.setOnClickListener(l -> setupTime());
         btSubmitConfig.setOnClickListener(l -> saveSettingConfig());
+        findViewById(R.id.bt_schedule_setting_back).setOnClickListener(l -> finish());
 
         //为switch添加监听器
         setNotOpenSwitch(switchNotOpen, setHour, setMinute);
@@ -151,23 +150,25 @@ public class ScheduleSettingActivity extends BaseActivity {
      * 存入设置的内容
      */
     private void saveSettingConfig() {
+        if (configMap.size() > 0) {
+            // 再一次更新通知设置
+            reStartRemind(notIsOpen, setHour, setMinute);
 
-        // 再一次更新通知设置
-        reStartRemind(notIsOpen, setHour, setMinute);
+            // 存入设置
+            MyConfig.saveScheduleConfig(configMap);
 
-        // 存入设置
-        MyConfig.saveScheduleConfig(configMap);
+            // DEBUG
+            Log.e(TAG, configMap.toString());
 
-        // DEBUG
-        Log.e(TAG, configMap.toString());
-
-        // 跳转回 MainActivity
-        if (MainActivity.mainActivity != null) {
-            MainActivity.mainActivity.finish();
+            // 跳转回 MainActivity
+            if (MainActivity.mainActivity != null) {
+                MainActivity.mainActivity.finish();
+            }
+            My.page = R.id.page_2;
+            startActivity(new Intent(ScheduleSettingActivity.this, MainActivity.class));
+//        overridePendingTransition(R.anim.fade_in, R.anim.slide_back2);
         }
-        My.page = R.id.page_2;
-        startActivity(new Intent(ScheduleSettingActivity.this, MainActivity.class));
-        overridePendingTransition(R.anim.fade_in, R.anim.slide_back2);
+
         finish();
     }
 
@@ -190,24 +191,6 @@ public class ScheduleSettingActivity extends BaseActivity {
                     break;
             }
         }
-    }
-
-
-    /**
-     * 初始化 toolbar
-     *
-     * @param title toolbar标题
-     */
-    protected void initToolbar(String title) {
-
-        Toolbar toolbar = findViewById(R.id.toolbar);
-        TextView textView = findViewById(R.id.toolbar_title);
-        setSupportActionBar(toolbar);
-
-        Toolbar.LayoutParams layoutParams = (Toolbar.LayoutParams) textView.getLayoutParams();
-        layoutParams.setMarginStart(160);
-        textView.setLayoutParams(layoutParams);
-        textView.setText(title);
     }
 
     /**
@@ -350,7 +333,7 @@ public class ScheduleSettingActivity extends BaseActivity {
                             Log.d(TAG, "default;    info:" + mySwitch.getId());
                             break;
                     }
-                    reStartRemind(notIsOpen, setHour, setMinute);
+//                    reStartRemind(notIsOpen, setHour, setMinute);
                     // 设定通知
                     if (isChecked) switchNotOpen.setChecked(true);
                 }
@@ -365,25 +348,24 @@ public class ScheduleSettingActivity extends BaseActivity {
      * @param setMinute 发出通知的时间-分钟
      */
     protected void startRemind(int setHour, int setMinute) {
-        //得到日历实例，主要是为了下面的获取时间
-        Calendar mCalendar = Calendar.getInstance();
-        mCalendar.setTimeInMillis(System.currentTimeMillis());
-
         long systemTime = System.currentTimeMillis();
-        // 是设置日历的时间，主要是让日历的年月日和当前同步
-        mCalendar.setTimeInMillis(System.currentTimeMillis());
-        // 这里时区需要设置一下，不然可能个别手机会有8个小时的时间差
-        mCalendar.setTimeZone(TimeZone.getTimeZone("GMT+8"));
-        mCalendar.set(Calendar.HOUR_OF_DAY, setHour);
-        mCalendar.set(Calendar.MINUTE, setMinute);
-        mCalendar.set(Calendar.SECOND, 0);
-        mCalendar.set(Calendar.MILLISECOND, 0);
 
-        long selectTime = mCalendar.getTimeInMillis();
+        Calendar cal = Calendar.getInstance();
+        cal.setTimeInMillis(System.currentTimeMillis());
+        // 这里时区需要设置一下，不然可能个别手机会有8个小时的时间差
+        cal.setTimeZone(TimeZone.getTimeZone("GMT+8"));
+        cal.set(Calendar.HOUR_OF_DAY, setHour);
+        cal.set(Calendar.MINUTE, setMinute);
+        cal.set(Calendar.SECOND, 0);
+        cal.set(Calendar.MILLISECOND, 0);
+
+        long selectTime = cal.getTimeInMillis();
 
         // 如果当前时间大于设置的时间，那么就从第二天的设定时间开始
         if (systemTime > selectTime) {
-            mCalendar.add(Calendar.DAY_OF_MONTH, 1);
+            Toast.makeText(ScheduleSettingActivity.this, "设置的时间小于当前时间，将于第二天提醒", Toast.LENGTH_SHORT).show();
+            cal.add(Calendar.DAY_OF_MONTH, 1);
+//            selectTime = cal.getTimeInMillis();
         }
 
         //**** AlarmReceiver.class为广播接受者 ****
@@ -394,9 +376,9 @@ public class ScheduleSettingActivity extends BaseActivity {
         intent.putExtra(MyConfigConstant.CONFIG_NOT_SHOW_STEP, notIsShowStep);
         PendingIntent pi = PendingIntent.getBroadcast(ScheduleSettingActivity.this, 0, intent, 0);
         //得到AlarmManager实例
-        AlarmManager alarm = (AlarmManager) getSystemService(ALARM_SERVICE);
+        AlarmManager alarm = (AlarmManager) getSystemService(Context.ALARM_SERVICE);
         //设定重复提醒，提醒周期为一天（24H）
-        alarm.setRepeating(AlarmManager.RTC_WAKEUP, mCalendar.getTimeInMillis(), (1000 * 60 * 60 * 24), pi);
+        alarm.setRepeating(AlarmManager.RTC_WAKEUP, cal.getTimeInMillis(), AlarmManager.INTERVAL_DAY, pi);
 
         Log.d(TAG, "开始倒计时提醒");
     }
@@ -422,8 +404,7 @@ public class ScheduleSettingActivity extends BaseActivity {
      */
     protected void stopRemind() {
         Intent intent = new Intent(ScheduleSettingActivity.this, AlarmReceiver.class);
-        PendingIntent pi = PendingIntent.getBroadcast(ScheduleSettingActivity.this, 0,
-                intent, 0);
+        PendingIntent pi = PendingIntent.getBroadcast(ScheduleSettingActivity.this, 0, intent, 0);
         AlarmManager am = (AlarmManager) getSystemService(ALARM_SERVICE);
         //取消警报
         am.cancel(pi);
@@ -452,7 +433,7 @@ public class ScheduleSettingActivity extends BaseActivity {
                     schoolStartTime = TimeCalcUtil.calToStr(cal);
                     configMap.put(MyConfigConstant.CONFIG_START_DATE, schoolStartTime);
                     configMap.put(MyConfigConstant.CONFIG_CUR_WEEK, schoolStartTime);
-                    MyConfig.saveScheduleConfig(configMap);     // 保存设置信息至本地配置文件
+//                    MyConfig.saveScheduleConfig(configMap);     // 保存设置信息至本地配置文件
                     etSchoolStartTime.setText(TimeCalcUtil.calToSimpleStr(cal));
                 }).create();
         alertDialog.show();
@@ -487,6 +468,10 @@ public class ScheduleSettingActivity extends BaseActivity {
 
                     etAlertTime.setText("提醒时间：" + alertTime);
                     tvNotify.setText("每天" + alertTime + "推送第二天的课程信息");
+
+                    if (notIsOpen) {
+                        Toast.makeText(ScheduleSettingActivity.this, "新的通知已设置", Toast.LENGTH_SHORT).show();
+                    }
 
                 }).create();
         alertDialog.show();

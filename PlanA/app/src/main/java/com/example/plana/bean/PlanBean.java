@@ -113,4 +113,18 @@ public class PlanBean {
     public void setIsLeafOrNot(Boolean leaf) {
         isLeaf = leaf;
     }
+
+    @Override
+    public String toString() {
+        return "PlanBean{" +
+                "id=" + id +
+                ", pid=" + pid +
+                ", title='" + title + '\'' +
+                ", level=" + level +
+                ", totalCnt=" + totalCnt +
+                ", doneCnt=" + doneCnt +
+                ", done=" + done +
+                ", isLeaf=" + isLeaf +
+                '}';
+    }
 }

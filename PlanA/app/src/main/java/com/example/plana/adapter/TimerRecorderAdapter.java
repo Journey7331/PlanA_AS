@@ -34,10 +34,12 @@ public class TimerRecorderAdapter extends RecyclerView.Adapter<TimerRecorderAdap
     Activity ctx;
     ArrayList<TimerRecorder> arr;
     MyDatabaseHelper sqlite;
+    RelativeLayout rlEmpty;
 
-    public TimerRecorderAdapter(Activity context, ArrayList<TimerRecorder> list) {
+    public TimerRecorderAdapter(Activity context, ArrayList<TimerRecorder> list, RelativeLayout rlEmpty) {
         this.arr = list;
         this.ctx = context;
+        this.rlEmpty = rlEmpty;
         this.sqlite = new MyDatabaseHelper(ctx);
     }
 
@@ -121,6 +123,7 @@ public class TimerRecorderAdapter extends RecyclerView.Adapter<TimerRecorderAdap
                 notifyItemRemoved(holder.getAdapterPosition());
                 notifyItemRangeChanged(position,arr.size()-position);   // 不可缺的步骤
 
+                checkEmpty();
                 Toast.makeText(ctx, "删除成功", Toast.LENGTH_SHORT).show();
             });
             cancel.setOnClickListener(v -> dialog.dismiss());
@@ -128,6 +131,17 @@ public class TimerRecorderAdapter extends RecyclerView.Adapter<TimerRecorderAdap
             return true;
         });
 
+    }
+
+    /**
+     * 显示列表为空图
+     */
+    public void checkEmpty() {
+        if (arr.size() > 0) {
+            rlEmpty.setVisibility(View.INVISIBLE);
+        } else {
+            rlEmpty.setVisibility(View.VISIBLE);
+        }
     }
 
 }

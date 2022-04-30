@@ -56,13 +56,21 @@ public class ParentViewHolder extends BaseViewHolder {
         pgBar.setProgressColor(Constant.rowColor[itemData.getTreeDepth()]);
 
         int progress = getProgress(itemData.getId());
-        if (progress > 0) pgBar.enableAnimation();
-        else pgBar.disableAnimation();
 
-        new Handler().postDelayed(() -> {
-            pgBar.setProgress(progress);
-            pgBar.setProgressText(progress+"%");
-        }, 100);
+        if (progress >= 90) {
+            pgBar.setTextProgressColor(Constant.MyColor.white);
+        } else if (progress >= 80) {
+            pgBar.setTextProgressColor(Constant.MyColor.grey);
+        } else {
+            pgBar.setTextProgressColor(Constant.rowColor[itemData.getTreeDepth()]);
+        }
+
+        if (progress >= 50) {
+            tvItemTitle.setTextColor(Constant.MyColor.white);
+        }
+
+        pgBar.setProgress(progress);
+        pgBar.setProgressText(progress + "%");
 
         rlPlanListItem.setOnClickListener(v -> {
             if (itemDataClickListener != null) {
