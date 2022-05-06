@@ -100,7 +100,7 @@ public class InfoModifyActivity extends BaseActivity {
             String pwd = user.getPwd();
             if (pwdChanged) pwd = etPassword.getText().toString();
             User input = new User(
-                    user.get_id(),
+                    user.getId(),
                     user.getPhone(),
                     pwd,
                     etNickName.getText().toString(),
@@ -112,7 +112,7 @@ public class InfoModifyActivity extends BaseActivity {
                 Toast.makeText(this, "无更改", Toast.LENGTH_SHORT).show();
             } else {
                 My.Account = input;
-                UserDB.updateUser(sqlite, user.get_id(), getUserContentValues(input));
+                UserDB.updateUser(sqlite, user.getId(), getUserContentValues(input));
                 updateToMainActivity();
                 Toast.makeText(this, "更改成功", Toast.LENGTH_SHORT).show();
             }

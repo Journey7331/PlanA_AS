@@ -25,16 +25,17 @@ public class SubjectRepertory {
      */
     public static List<MySubject> loadDefaultSubjects() {
         // String json = "sample data"
+        String json = "{\"courseInfos\":[{\"teacher\":\"王瑞平\",\"name\":\"概率论与数理统计\",\"weeks\":[1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16],\"room\":\"6304\",\"day\":1,\"start\":1,\"span\":2},{\"teacher\":\"闫昱\",\"name\":\"数据库系统概论\",\"weeks\":[1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16],\"room\":\"4314\",\"day\":3,\"start\":1,\"span\":2},{\"teacher\":\"王帅\",\"name\":\"算法设计与分析\",\"weeks\":[1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16],\"room\":\"6104\",\"day\":2,\"start\":3,\"span\":2},{\"teacher\":\"施汉明\",\"name\":\"线性代数\",\"weeks\":[1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16],\"room\":\"6302\",\"day\":3,\"start\":3,\"span\":2},{\"teacher\":\"王翔\",\"name\":\"通用学术英语A\",\"weeks\":[5,6,7,8,9,10,11,12,13,14,15,16],\"room\":\"4501\",\"day\":4,\"start\":3,\"span\":2},{\"teacher\":\"王翔\",\"name\":\"通用学术英语A\",\"day\":4,\"start\":3,\"span\":2,\"weeks\":[1,2,3,4],\"room\":\"5309\"},{\"teacher\":\"翁雯\",\"name\":\"可视化程序设计\",\"weeks\":[1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16],\"room\":\"4105\",\"day\":2,\"start\":6,\"span\":2},{\"teacher\":\"左坤\",\"name\":\"男篮-2\",\"weeks\":[1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16],\"room\":\"篮球场东北\",\"day\":4,\"start\":6,\"span\":2},{\"teacher\":\"唐姗\",\"name\":\"Java程序设计\",\"weeks\":[1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16],\"room\":\"7100\",\"day\":5,\"start\":6,\"span\":2},{\"teacher\":\"王胜利\",\"name\":\"大学物理B\",\"weeks\":[1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16],\"room\":\"4113\",\"day\":2,\"start\":8,\"span\":2},{\"teacher\":\"郭灿希\",\"name\":\"毛泽东思想和中国特色社会主义理论体系概论I\",\"weeks\":[1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16],\"room\":\"8302\",\"day\":3,\"start\":8,\"span\":3},{\"teacher\":\"张天祺\",\"name\":\"形势与政策（模块4）\",\"weeks\":[11,12],\"room\":\"4201\",\"day\":4,\"start\":8,\"span\":3},{\"teacher\":\"程路\",\"name\":\"英美影视语言与文化\",\"weeks\":[1,2,3,4,5,6,7,8,9,10,11],\"room\":\"5116\",\"day\":4,\"start\":11,\"span\":3}]}";
 
 //        SharedPreferences preferences = MainApplication.getAppContext().getSharedPreferences("COURSE_DATA", Context.MODE_PRIVATE);// 创建sp对象
 //        String htmlToSubject = preferences.getString("HTML_TO_SUBJECT",null);  // 取出key为"HTML_TO_SUBJECT"的值，如果值为空，则将第二个参数作为默认值赋值
 
-        String htmlToSubject = SharedPreferencesUtil.init(MainApplication.getAppContext(), "COURSE_DATA").getString("HTML_TO_SUBJECT", null);
-        Log.e(TAG, "HTML_TO_SUBJECT: " + htmlToSubject);//HTML_TO_SUBJECT便是取出的数据了
-        if (htmlToSubject == null) {
-            return new ArrayList<>();
-        }
-        return parse(htmlToSubject);
+//        String htmlToSubject = SharedPreferencesUtil.init(MainApplication.getAppContext(), "COURSE_DATA").getString("HTML_TO_SUBJECT", null);
+//        Log.e(TAG, "HTML_TO_SUBJECT: " + htmlToSubject);//HTML_TO_SUBJECT便是取出的数据了
+//        if (htmlToSubject == null) {
+//            return new ArrayList<>();
+//        }
+        return parse(json);
     }
 
     /**
@@ -50,14 +51,14 @@ public class SubjectRepertory {
         try {
             List<MysubjectDTO.CourseInfosDTO> courseinfo = jsonObject.getCourseInfos();
             for (int i = 0; i < courseinfo.size(); i++) {
-                int day = courseinfo.get(i).getDay();
-                String name = courseinfo.get(i).getName();
-                String position = courseinfo.get(i).getPosition();
                 String teacher = courseinfo.get(i).getTeacher();
+                String name = courseinfo.get(i).getName();
                 List<Integer> weeks = courseinfo.get(i).getWeeks();
-                int start = courseinfo.get(i).getSections().get(0).getSection();
-                int step = courseinfo.get(i).getSections().size();
-                course.add(new MySubject( name, position, teacher, weeks, start, step, day, -1));
+                String room = courseinfo.get(i).getRoom();
+                int day = courseinfo.get(i).getDay();
+                int start = courseinfo.get(i).getStart();
+                int step = courseinfo.get(i).getSpan();
+                course.add(new MySubject( name, room, teacher, weeks, start, step, day, -1));
             }
         } catch (Exception e) {
             e.printStackTrace();
@@ -70,7 +71,6 @@ public class SubjectRepertory {
      */
     public class MysubjectDTO {
         private List<CourseInfosDTO> courseInfos;
-        private List<SectionTimesDTO> sectionTimes;
 
         public List<CourseInfosDTO> getCourseInfos() {
             return courseInfos;
@@ -80,28 +80,21 @@ public class SubjectRepertory {
             this.courseInfos = courseInfos;
         }
 
-        public List<SectionTimesDTO> getSectionTimes() {
-            return sectionTimes;
-        }
-
-        public void setSectionTimes(List<SectionTimesDTO> sectionTimes) {
-            this.sectionTimes = sectionTimes;
-        }
-
         public class CourseInfosDTO {
-            private Integer day;
-            private String name;
-            private String position;
-            private List<SectionsDTO> sections;
             private String teacher;
+            private String name;
             private List<Integer> weeks;
+            private String room;
+            private Integer day;
+            private Integer start;
+            private Integer span;
 
-            public Integer getDay() {
-                return day;
+            public String getTeacher() {
+                return teacher;
             }
 
-            public void setDay(Integer day) {
-                this.day = day;
+            public void setTeacher(String teacher) {
+                this.teacher = teacher;
             }
 
             public String getName() {
@@ -112,30 +105,6 @@ public class SubjectRepertory {
                 this.name = name;
             }
 
-            public String getPosition() {
-                return position;
-            }
-
-            public void setPosition(String position) {
-                this.position = position;
-            }
-
-            public List<SectionsDTO> getSections() {
-                return sections;
-            }
-
-            public void setSections(List<SectionsDTO> sections) {
-                this.sections = sections;
-            }
-
-            public String getTeacher() {
-                return teacher;
-            }
-
-            public void setTeacher(String teacher) {
-                this.teacher = teacher;
-            }
-
             public List<Integer> getWeeks() {
                 return weeks;
             }
@@ -144,48 +113,38 @@ public class SubjectRepertory {
                 this.weeks = weeks;
             }
 
-            public class SectionsDTO {
-                private Integer section;
-
-                public Integer getSection() {
-                    return section;
-                }
-
-                public void setSection(Integer section) {
-                    this.section = section;
-                }
+            public String getRoom() {
+                return room;
             }
 
-        }
-
-        public class SectionTimesDTO {
-            private String endTime;
-            private Integer section;
-            private String startTime;
-
-            public String getEndTime() {
-                return endTime;
+            public void setRoom(String room) {
+                this.room = room;
             }
 
-            public void setEndTime(String endTime) {
-                this.endTime = endTime;
+            public Integer getDay() {
+                return day;
             }
 
-            public Integer getSection() {
-                return section;
+            public void setDay(Integer day) {
+                this.day = day;
             }
 
-            public void setSection(Integer section) {
-                this.section = section;
+            public Integer getStart() {
+                return start;
             }
 
-            public String getStartTime() {
-                return startTime;
+            public void setStart(Integer start) {
+                this.start = start;
             }
 
-            public void setStartTime(String startTime) {
-                this.startTime = startTime;
+            public Integer getSpan() {
+                return span;
             }
+
+            public void setSpan(Integer span) {
+                this.span = span;
+            }
+
         }
     }
 }

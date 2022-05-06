@@ -1,9 +1,7 @@
 package com.example.plana.function.plan;
 
 import android.graphics.Color;
-import android.os.Build;
 import android.os.Bundle;
-import android.util.Log;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -18,8 +16,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.plana.R;
 import com.example.plana.adapter.PlanListAdapter;
 import com.example.plana.adapter.viewholder.ItemData;
-import com.example.plana.adapter.viewholder.OnFreshStartToPoint;
-import com.example.plana.adapter.viewholder.OnScrollToListener;
+import com.example.plana.adapter.listener.OnScrollToListener;
 import com.example.plana.base.BaseActivity;
 
 import com.example.plana.base.MainApplication;
@@ -27,9 +24,7 @@ import com.example.plana.bean.My;
 import com.example.plana.bean.Plan;
 import com.example.plana.utils.SharedPreferencesUtil;
 import com.google.android.material.appbar.AppBarLayout;
-import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 import com.google.gson.Gson;
-import com.google.gson.reflect.TypeToken;
 
 import java.util.List;
 import java.util.Optional;

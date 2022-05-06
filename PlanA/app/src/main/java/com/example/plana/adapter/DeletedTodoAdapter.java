@@ -5,7 +5,6 @@ import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.ContentValues;
 import android.content.Context;
-import android.content.Intent;
 import android.content.res.ColorStateList;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -25,18 +24,10 @@ import com.example.plana.bean.Todos;
 import com.example.plana.config.Constant;
 import com.example.plana.database.DeletedTodosDB;
 import com.example.plana.database.MyDatabaseHelper;
-import com.example.plana.database.TimerDB;
 import com.example.plana.database.TodosDB;
-import com.example.plana.function.todo.EditTodoActivity;
-import com.example.plana.utils.TimeCalcUtil;
-import com.zhuangfei.timetable.model.Schedule;
 
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
-import java.util.Locale;
 
 /**
  * @program: PlanA
@@ -116,7 +107,7 @@ public class DeletedTodoAdapter extends ArrayAdapter {
                     .setPositiveButton("还原", (dialog, which) -> {
                         Todos item = getItem(position);
                         ContentValues todo_values = new ContentValues();
-                        todo_values.put(TodosDB._id, item.get_id());
+                        todo_values.put(TodosDB._id, item.getId());
                         todo_values.put(TodosDB.content, item.getContent());
                         todo_values.put(TodosDB.memo, item.getMemo());
                         todo_values.put(TodosDB.done, item.isDone());
@@ -125,7 +116,7 @@ public class DeletedTodoAdapter extends ArrayAdapter {
                         todo_values.put(TodosDB.level, item.getLevel());
 
                         TodosDB.insertEvent(sqlite, todo_values);
-                        DeletedTodosDB.deleteTodoById(sqlite, item.get_id() + "");
+                        DeletedTodosDB.deleteTodoById(sqlite, item.getId() + "");
                         My.todosList.add(item);
 
                         remove(item);
@@ -136,7 +127,7 @@ public class DeletedTodoAdapter extends ArrayAdapter {
                     })
                     .setNegativeButton("删除", (dialog, which) -> {
 
-                        DeletedTodosDB.deleteTodoById(sqlite, (getItem(position)).get_id() + "");
+                        DeletedTodosDB.deleteTodoById(sqlite, (getItem(position)).getId() + "");
                         remove(getItem(position));
                         notifyDataSetChanged();
 
@@ -176,7 +167,7 @@ public class DeletedTodoAdapter extends ArrayAdapter {
         List<Todos> list = new ArrayList<>(arrayList);
         for (Todos item : list) {
             ContentValues todo_values = new ContentValues();
-            todo_values.put(TodosDB._id, item.get_id());
+            todo_values.put(TodosDB._id, item.getId());
             todo_values.put(TodosDB.content, item.getContent());
             todo_values.put(TodosDB.memo, item.getMemo());
             todo_values.put(TodosDB.done, item.isDone());
@@ -185,7 +176,7 @@ public class DeletedTodoAdapter extends ArrayAdapter {
             todo_values.put(TodosDB.level, item.getLevel());
 
             TodosDB.insertEvent(sqlite, todo_values);
-            DeletedTodosDB.deleteTodoById(sqlite, item.get_id() + "");
+            DeletedTodosDB.deleteTodoById(sqlite, item.getId() + "");
             My.todosList.add(item);
             remove(item);
         }
@@ -206,7 +197,7 @@ public class DeletedTodoAdapter extends ArrayAdapter {
         List<Todos> list = new ArrayList<>(arrayList);
         for (Todos item : list) {
             remove(item);
-            DeletedTodosDB.deleteTodoById(sqlite, item.get_id() + "");
+            DeletedTodosDB.deleteTodoById(sqlite, item.getId() + "");
         }
         notifyDataSetChanged();
         rlEmpty.setVisibility(View.VISIBLE);

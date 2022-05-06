@@ -1,15 +1,13 @@
 package com.example.plana.adapter.viewholder;
 
-import android.os.Handler;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ListView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.akexorcist.roundcornerprogressbar.TextRoundCornerProgressBar;
 import com.example.plana.R;
-import com.example.plana.adapter.PlanListAdapter;
+import com.example.plana.adapter.listener.ItemDataClickListener;
 import com.example.plana.base.BaseViewHolder;
 import com.example.plana.bean.My;
 import com.example.plana.bean.Plan;

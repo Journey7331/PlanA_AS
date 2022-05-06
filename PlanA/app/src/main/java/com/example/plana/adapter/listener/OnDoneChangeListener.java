@@ -1,4 +1,6 @@
-package com.example.plana.adapter.viewholder;
+package com.example.plana.adapter.listener;
+
+import com.example.plana.adapter.viewholder.ItemData;
 
 public interface OnDoneChangeListener {
 

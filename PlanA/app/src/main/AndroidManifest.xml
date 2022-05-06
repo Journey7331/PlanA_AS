@@ -26,6 +26,7 @@
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
+        android:usesCleartextTraffic="true"
         android:theme="@style/Theme.PlanA">
 
         <!-- splash -->
@@ -49,6 +50,7 @@
         <!-- schedule -->
         <activity android:name=".function.schedule.CourseActivity" />
         <activity android:name=".function.schedule.ScheduleSettingActivity" />
+        <activity android:name=".function.schedule.LoadScheduleActivity"/>
 
         <!-- setting -->
         <activity android:name=".function.setting.InfoModifyActivity" />

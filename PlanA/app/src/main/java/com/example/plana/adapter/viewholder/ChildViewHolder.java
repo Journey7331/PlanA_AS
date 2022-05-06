@@ -2,22 +2,20 @@ package com.example.plana.adapter.viewholder;
 
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import androidx.emoji2.widget.EmojiButton;
 
 import com.akexorcist.roundcornerprogressbar.TextRoundCornerProgressBar;
 import com.example.plana.R;
+import com.example.plana.adapter.listener.OnDoneChangeListener;
 import com.example.plana.base.BaseViewHolder;
 import com.example.plana.bean.My;
 import com.example.plana.bean.Plan;
 import com.example.plana.bean.PlanBean;
 import com.example.plana.config.Constant;
 
-import java.sql.Struct;
 import java.util.List;
-import java.util.Optional;
 
 /**
  * @program: PlanA

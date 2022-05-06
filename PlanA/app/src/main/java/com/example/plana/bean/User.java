@@ -2,14 +2,13 @@ package com.example.plana.bean;
 
 import androidx.annotation.Nullable;
 
-import java.util.Objects;
 
 /**
  * @program: PlanA
  * @description:
  */
 public class User {
-    private int    _id;
+    private int id;
     private String phone;
     private String pwd;
     private String name;
@@ -19,14 +18,14 @@ public class User {
     public User() {
     }
 
-    public User(int _id, String phone, String name) {
-        this._id = _id;
+    public User(int id, String phone, String name) {
+        this.id = id;
         this.phone = phone;
         this.name = name;
     }
 
-    public User(int _id, String phone, String pwd, String name, String email, String birth) {
-        this._id = _id;
+    public User(int id, String phone, String pwd, String name, String email, String birth) {
+        this.id = id;
         this.phone = phone;
         this.pwd = pwd;
         this.name = name;
@@ -34,12 +33,12 @@ public class User {
         this.birth = birth;
     }
 
-    public int get_id() {
-        return _id;
+    public int getId() {
+        return id;
     }
 
-    public void set_id(int _id) {
-        this._id = _id;
+    public void setId(int id) {
+        this.id = id;
     }
 
     public String getPhone() {
@@ -85,7 +84,7 @@ public class User {
     @Override
     public String toString() {
         return "User{" +
-                "user_id=" + _id +
+                "user_id=" + id +
                 ", phone='" + phone + '\'' +
                 ", pwd='" + pwd + '\'' +
                 ", name='" + name + '\'' +
@@ -103,7 +102,7 @@ public class User {
         if (!(obj instanceof User)) {
             return false;
         }
-        return ((User) obj).get_id() == this.get_id()
+        return ((User) obj).getId() == this.getId()
                 && ((User) obj).getPhone().equals(this.getPhone())
                 && ((User) obj).getPwd().equals(this.getPwd())
                 && ((User) obj).getName().equals(this.getName())

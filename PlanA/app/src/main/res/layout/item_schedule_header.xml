@@ -6,9 +6,6 @@
     android:background="@color/bar_grey">
     <!--    android:background="@color/white"-->
 
-
-
-    <!-- todo add load schedule -->
     <ImageView
         android:id="@+id/load_schedule"
         android:layout_width="22dp"
@@ -16,7 +13,6 @@
         android:layout_alignParentStart="true"
         android:layout_centerInParent="true"
         android:layout_marginStart="25dp"
-        android:visibility="invisible"
         android:alpha="0.8"
         android:src="@drawable/icon_schedule_load" />
 
@@ -34,8 +30,8 @@
             android:layout_height="wrap_content"
             android:text="@string/schedule"
             android:textColor="@color/colorBlueGrey"
-            android:textStyle="bold"
-            android:textSize="16sp" />
+            android:textSize="16sp"
+            android:textStyle="bold" />
 
         <TextView
             android:layout_width="wrap_content"

@@ -118,7 +118,6 @@ public class EditTodoActivity extends BaseActivity
             MainActivity.mainActivity.finish();
         }
         startActivity(intent);
-//        overridePendingTransition(R.anim.fade_in, R.anim.slide_back2);
         finish();
     }
 
@@ -155,7 +154,7 @@ public class EditTodoActivity extends BaseActivity
 
         My.editTodo = null;
 
-        TodosDB.updateEventById(sqlite, todos.get_id() + "", values);
+        TodosDB.updateEventById(sqlite, todos.getId() + "", values);
         Toast.makeText(
                 EditTodoActivity.this,
                 "修改成功",

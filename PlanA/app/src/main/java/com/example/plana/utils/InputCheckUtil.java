@@ -36,15 +36,9 @@ public class InputCheckUtil {
      */
     public static boolean checkPhoneValid(String phoneString) {
         boolean ans = true;
-//        String regex = "^1[3-9][0-9]{9}$";
-//        ans = phoneString.matches(regex);
+        String regex = "^1[3-9][0-9]{9}$";
+        ans = phoneString.matches(regex);
         return ans;
     }
-
-
-
-
-
-
 
 }

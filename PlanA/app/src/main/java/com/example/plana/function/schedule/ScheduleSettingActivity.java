@@ -153,12 +153,11 @@ public class ScheduleSettingActivity extends BaseActivity {
         if (configMap.size() > 0) {
             // 再一次更新通知设置
             reStartRemind(notIsOpen, setHour, setMinute);
-
             // 存入设置
             MyConfig.saveScheduleConfig(configMap);
 
-            // DEBUG
-            Log.e(TAG, configMap.toString());
+//            // DEBUG
+//            Log.e(TAG, configMap.toString());
 
             // 跳转回 MainActivity
             if (MainActivity.mainActivity != null) {
@@ -166,9 +165,7 @@ public class ScheduleSettingActivity extends BaseActivity {
             }
             My.page = R.id.page_2;
             startActivity(new Intent(ScheduleSettingActivity.this, MainActivity.class));
-//        overridePendingTransition(R.anim.fade_in, R.anim.slide_back2);
         }
-
         finish();
     }
 
@@ -177,7 +174,6 @@ public class ScheduleSettingActivity extends BaseActivity {
      */
     private void initHideSet() {
         Map<String, String> myConfigMap = MyConfig.loadScheduleConfig();
-
         for (String key : myConfigMap.keySet()) {
             String value = myConfigMap.get(key);
             if (value == null)
@@ -201,7 +197,6 @@ public class ScheduleSettingActivity extends BaseActivity {
      * @param setMinute 定时通知的时间-分钟
      */
     protected void setNotOpenSwitch(SwitchCompat mySwitch, int setHour, int setMinute) {
-
         mySwitch.setOnCheckedChangeListener(
                 (buttonView, isChecked) -> {
                     if (isChecked) {
@@ -228,10 +223,11 @@ public class ScheduleSettingActivity extends BaseActivity {
                             switchShowWhen.setChecked(false);
                             switchShowWhere.setChecked(false);
                             switchShowStep.setChecked(false);
-                        } else      //禁止系统通知
+                        } else {
+                            //禁止系统通知
                             Toast.makeText(ScheduleSettingActivity.this, "请先在系统设置中允许通知", Toast.LENGTH_SHORT).show();
+                        }
                     }
-
                 }
         );
     }

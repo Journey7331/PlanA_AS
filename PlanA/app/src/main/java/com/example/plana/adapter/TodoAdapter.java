@@ -19,6 +19,8 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
 import com.example.plana.R;
+import com.example.plana.adapter.listener.OnScrollToListener;
+import com.example.plana.adapter.listener.OnTodoCheckedChangeListener;
 import com.example.plana.bean.My;
 import com.example.plana.bean.Todos;
 import com.example.plana.config.Constant;
@@ -26,11 +28,15 @@ import com.example.plana.database.DeletedTodosDB;
 import com.example.plana.database.TodosDB;
 import com.example.plana.database.MyDatabaseHelper;
 import com.example.plana.function.todo.EditTodoActivity;
+import com.example.plana.utils.ColorUtil;
 import com.example.plana.utils.TimeCalcUtil;
+
+import org.apache.commons.lang3.StringUtils;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.Date;
 import java.util.Locale;
 
@@ -44,6 +50,11 @@ public class TodoAdapter extends ArrayAdapter {
     ArrayList<Todos> arrayList;
     Activity ctx;
     MyDatabaseHelper sqlite;
+    OnTodoCheckedChangeListener checkedChangeListener;
+
+    public void setOnTodoCheckedChangeListener(OnTodoCheckedChangeListener checkedChangeListener) {
+        this.checkedChangeListener = checkedChangeListener;
+    }
 
     // 内部类
     class EventItemHolder {
@@ -73,8 +84,9 @@ public class TodoAdapter extends ArrayAdapter {
 
     @Override
     public long getItemId(int position) {
-        return position;
+        return arrayList.get(position).getId();
     }
+
 
     @SuppressLint("SetTextI18n")
     @NonNull
@@ -94,62 +106,41 @@ public class TodoAdapter extends ArrayAdapter {
             viewHolder = (EventItemHolder) convertView.getTag();
         }
 
+        Todos todos = arrayList.get(position);
+
         // init content & state
-        viewHolder.tvContent.setText(arrayList.get(position).getContent());
-        viewHolder.cbIsDone.setChecked(arrayList.get(position).isDone());
+        viewHolder.tvContent.setText(todos.getContent());
+        viewHolder.cbIsDone.setChecked(todos.isDone());
 
         // init datetime
-        String date = arrayList.get(position).getDate();
-        String time = arrayList.get(position).getTime();
-
-        // init remain time
-        if (!date.equals("")) {
-            long dateParse = 0;
-            try {
-                SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd", Locale.CHINA);
-                dateParse = sdf.parse(date).getTime();
-                if (!"".equals(time)) {
-                    SimpleDateFormat simpleDateFormat = new SimpleDateFormat("hh:mm", Locale.CHINA);
-                    dateParse += simpleDateFormat.parse(time).getTime();
-                    dateParse += 8 * 60 * 60 * 1000;        // 转化 time 需要加上 8 hours 【WHY?】
-                }
-            } catch (ParseException e) {
-                e.printStackTrace();
-            }
-
-            long nowtime = new Date().getTime();
-            if (nowtime > dateParse) {
-                String calc = TimeCalcUtil.leftTime(nowtime, dateParse);
-                // Today but no exact Time
-                if (calc.contains("H") && "".equals(time)) {
-                    viewHolder.tvDate.setText("今天");
-                } else {
-                    viewHolder.tvDate.setTextColor(0xFFDE3143);
-                    viewHolder.tvDate.setText(calc);
-                }
-            } else if (nowtime < dateParse) {
-                viewHolder.tvDate.setText(TimeCalcUtil.leftTime(dateParse, nowtime));
-            }
+        String dateTime = TimeCalcUtil.getTodoDateStr(todos.getDate(), todos.getTime());
+        if (dateTime.contains("-")) {
+            viewHolder.tvDate.setTextColor(0xFFDE3143);
+            dateTime = dateTime.substring(1);
         } else {
-            viewHolder.tvDate.setText("");
+            viewHolder.tvDate.setTextColor(ctx.getResources().getColor(R.color.dark_grey));
         }
+        viewHolder.tvDate.setText(dateTime);
 
         // CheckBox
         viewHolder.cbIsDone.setOnClickListener(v -> {
             boolean status = viewHolder.cbIsDone.isChecked();
-            arrayList.get(position).setDone(status);
-            TodosDB.updateEventDoneState(sqlite, arrayList.get(position).get_id() + "", status);
+            todos.setDone(status);
+            checkedChangeListener.freshTodoListOnCheckedChange(position, status);
+            TodosDB.updateEventDoneState(sqlite, todos.getId() + "", status);
         });
 
         // init CheckBox Color
-        if (arrayList.get(position).getLevel() != -1) {
-            viewHolder.cbIsDone.setButtonTintList(ColorStateList((int) (arrayList.get(position).getLevel() * 2)));
+        if (todos.getLevel() != -1) {
+            viewHolder.cbIsDone.setButtonTintList(ColorUtil.ColorStateList((int) (todos.getLevel() * 2)));
+        } else {
+            viewHolder.cbIsDone.setButtonTintList(ColorUtil.ColorDefaultList(ctx.getResources().getColor(R.color.grey)));
         }
 
         // Click to get detail
         convertView.setOnClickListener(v -> {
             String memo = getItem(position).getMemo();
-            if (!"".equals(memo)) {
+            if (StringUtils.isNotEmpty(memo)) {
                 Toast.makeText(getContext(), memo, Toast.LENGTH_SHORT).show();
             } else {
                 Toast.makeText(getContext(), "没有备注", Toast.LENGTH_SHORT).show();
@@ -172,7 +163,7 @@ public class TodoAdapter extends ArrayAdapter {
                     .setNegativeButton("删除", (dialog, which) -> {
                         Todos item = getItem(position);
                         ContentValues todo_values = new ContentValues();
-                        todo_values.put(TodosDB._id, item.get_id());
+                        todo_values.put(TodosDB._id, item.getId());
                         todo_values.put(TodosDB.content, item.getContent());
                         todo_values.put(TodosDB.memo, item.getMemo());
                         todo_values.put(TodosDB.done, item.isDone());
@@ -180,7 +171,7 @@ public class TodoAdapter extends ArrayAdapter {
                         todo_values.put(TodosDB.time, item.getTime());
                         todo_values.put(TodosDB.level, item.getLevel());
                         DeletedTodosDB.insertTodo(sqlite, todo_values);
-                        TodosDB.deleteEventById(sqlite,item.get_id()+"");
+                        TodosDB.deleteEventById(sqlite, item.getId() + "");
                         My.todosList.remove(item);
                         remove(item);
                         notifyDataSetChanged();
@@ -207,31 +198,26 @@ public class TodoAdapter extends ArrayAdapter {
     private void directToEditActivity() {
         Intent intent = new Intent(ctx, EditTodoActivity.class);
         ctx.startActivity(intent);
-        // transaction animation
-//        ctx.overridePendingTransition(R.anim.slide_in, R.anim.fade_out);
-//        thisContext.finish();
     }
 
-
-    // Override CheckBox TintColor
-    private ColorStateList ColorStateList(int level) {
-        // 【 FF -> transparency 】
-        int[] levelColors = new int[]{
-                0xFFB7EFC5, 0xFF92E6A7, 0xFF6EDE8A, 0xFF4AD66D, 0xFF2DC653,
-                0xFF25A244, 0xFF208B3A, 0xFF1A7431, 0xFF155D27, 0xFF10451D,
-        };
-        int color = levelColors[level - 1];
-        int[] colors = new int[]{color, color, color, color, color, color};
-        int[][] states = new int[6][];
-
-        states[0] = new int[]{android.R.attr.state_pressed, android.R.attr.state_enabled};
-        states[1] = new int[]{android.R.attr.state_enabled, android.R.attr.state_focused};
-        states[2] = new int[]{android.R.attr.state_enabled};
-        states[3] = new int[]{android.R.attr.state_focused};
-        states[4] = new int[]{android.R.attr.state_window_focused};
-        states[5] = new int[]{};
-        return new ColorStateList(states, colors);
+    public void sortDoneToBottom(int position, boolean check, boolean hide) {
+        Todos remove = arrayList.remove(position);
+        if (check) {
+            if (!hide) {
+                int i = 0;
+                for (; i < getCount(); i++) {
+                    if (arrayList.get(i).isDone()) break;
+                }
+                arrayList.add(i, remove);
+            }
+        } else {
+            int i = getCount() - 1;
+            for (; i >= 0; i--) {
+                if (!arrayList.get(i).isDone()) break;
+            }
+            arrayList.add(i + 1, remove);
+        }
+        notifyDataSetChanged();
     }
-
 
 }

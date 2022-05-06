@@ -6,7 +6,8 @@ package com.example.plana.bean;
  */
 public class Todos implements Comparable {
 
-    private int _id;
+    private int id;
+    private int owner_id;
     private String content;
     private String memo;
     private boolean done;
@@ -17,21 +18,21 @@ public class Todos implements Comparable {
 //    private String type;
 
     public Todos() {
-        this._id = 0;
+        this.id = 0;
         this.content = "";
         this.done = false;
         this.date = "";
     }
 
-    public Todos(int _id, String content, boolean done, String date) {
-        this._id = _id;
+    public Todos(int id, String content, boolean done, String date) {
+        this.id = id;
         this.content = content;
         this.done = done;
         this.date = date;
     }
 
-    public Todos(int _id, String content, String memo, boolean done, String date, String time, float level) {
-        this._id = _id;
+    public Todos(int id, String content, String memo, boolean done, String date, String time, float level) {
+        this.id = id;
         this.content = content;
         this.memo = memo;
         this.done = done;
@@ -56,12 +57,12 @@ public class Todos implements Comparable {
         this.time = time;
     }
 
-    public int get_id() {
-        return _id;
+    public int getId() {
+        return id;
     }
 
-    public void set_id(int _id) {
-        this._id = _id;
+    public void setId(int id) {
+        this.id = id;
     }
 
     public String getContent() {
@@ -98,15 +99,15 @@ public class Todos implements Comparable {
 
     @Override
     public int compareTo(Object o) {
-        int id = ((Todos) o).get_id();
+        int id = ((Todos) o).getId();
         // 按插入的顺序排序
-        return this.get_id() - id;
+        return this.getId() - id;
     }
 
     @Override
     public String toString() {
         return "Todos{" +
-                "_id=" + _id +
+                "_id=" + id +
                 ", content='" + content + '\'' +
                 ", memo='" + memo + '\'' +
                 ", done=" + done +

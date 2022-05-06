@@ -129,7 +129,7 @@ public class TodosDB implements MyDatabaseHelper.TableCreateInterface {
         if (cursor != null && cursor.getCount() > 0) {
             while (cursor.moveToNext()) {
                 Todos todos = new Todos();
-                todos.set_id(cursor.getInt(cursor.getColumnIndex(TodosDB._id)));
+                todos.setId(cursor.getInt(cursor.getColumnIndex(TodosDB._id)));
                 todos.setContent(cursor.getString(cursor.getColumnIndex(TodosDB.content)));
                 todos.setMemo(cursor.getString(cursor.getColumnIndex(TodosDB.memo)));
                 // Done  |  DateBase：String  |  Class: Boolean

@@ -97,7 +97,7 @@ public class DeletedTodosDB implements MyDatabaseHelper.TableCreateInterface {
         if (cursor != null && cursor.getCount() > 0) {
             while (cursor.moveToNext()) {
                 Todos todos = new Todos();
-                todos.set_id(cursor.getInt(cursor.getColumnIndex(DeletedTodosDB._id)));
+                todos.setId(cursor.getInt(cursor.getColumnIndex(DeletedTodosDB._id)));
                 todos.setContent(cursor.getString(cursor.getColumnIndex(DeletedTodosDB.content)));
                 todos.setMemo(cursor.getString(cursor.getColumnIndex(DeletedTodosDB.memo)));
                 // Done  |  DateBase：String  |  Class: Boolean

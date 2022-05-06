@@ -11,7 +11,7 @@ public class Constant {
     /**
      * 服务器的 URL
      */
-    public static final String URL = "http://192.168.1.105：8080/";
+    public static final String URL = "http://192.168.1.103:8086/";
 
 
     /**
@@ -56,6 +56,8 @@ public class Constant {
     public static class TAG {
         public static final String NOTIFY_TAG = "NOTIFY_TAG";
         public static final String DATE_BASE_TAG = "DATE_BASE_TAG";
+        public static final String NETWORK_TAG = "NETWORK_TAG";
+
     }
 
 }

@@ -7,7 +7,6 @@ import android.database.sqlite.SQLiteDatabase;
 import android.provider.BaseColumns;
 import android.util.Log;
 
-import com.example.plana.bean.Todos;
 import com.example.plana.bean.User;
 
 import java.util.ArrayList;
@@ -109,7 +108,7 @@ public class UserDB implements MyDatabaseHelper.TableCreateInterface {
         cursor.moveToFirst();
 
         User user = new User();
-        user.set_id(cursor.getInt(cursor.getColumnIndex(BaseColumns._ID)));
+        user.setId(cursor.getInt(cursor.getColumnIndex(BaseColumns._ID)));
         user.setPhone(cursor.getString(cursor.getColumnIndex(UserDB.phone)));
         user.setName(cursor.getString(cursor.getColumnIndex(UserDB.name)));
         user.setPwd(cursor.getString(cursor.getColumnIndex(UserDB.pwd)));
@@ -197,7 +196,7 @@ public class UserDB implements MyDatabaseHelper.TableCreateInterface {
         if (cursor != null && cursor.getCount() > 0) {
             while (cursor.moveToNext()) {
                 User user = new User();
-                user.set_id(cursor.getInt(cursor.getColumnIndex(BaseColumns._ID)));
+                user.setId(cursor.getInt(cursor.getColumnIndex(BaseColumns._ID)));
                 user.setPhone(cursor.getString(cursor.getColumnIndex(UserDB.phone)));
                 user.setName(cursor.getString(cursor.getColumnIndex(UserDB.name)));
                 user.setPwd(cursor.getString(cursor.getColumnIndex(UserDB.pwd)));

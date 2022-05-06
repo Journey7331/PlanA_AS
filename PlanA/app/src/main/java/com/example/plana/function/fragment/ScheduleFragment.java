@@ -32,6 +32,7 @@ import com.example.plana.base.BaseFragment;
 import com.example.plana.bean.MySubject;
 import com.example.plana.base.MainApplication;
 import com.example.plana.function.schedule.CourseActivity;
+import com.example.plana.function.schedule.LoadScheduleActivity;
 import com.example.plana.function.schedule.ScheduleSettingActivity;
 import com.example.plana.utils.SharedPreferencesUtil;
 import com.example.plana.utils.SubjectRepertory;
@@ -58,21 +59,21 @@ import java.util.Map;
  * @program: PlanA
  * @description:
  */
-public class ScheduleFragment extends BaseFragment
-        implements View.OnClickListener {
+public class ScheduleFragment extends BaseFragment {
 
     private static final String TAG = "ScheduleFragment";
     public static final String CONFIG_FILENAME = MyConfig.SCHEDULE_CONFIG_FILENAME;    // 本地配置文件 文件名称
 
     TimetableView timetableView;
     WeekView weekView;
-    List<MySubject> mySubjects;
 
+    List<MySubject> mySubjects;
     Map<String, String> myConfigMap;
 
     LinearLayout layout;
     TextView titleTextView;
     ImageView ivScheduleSetting;
+    ImageView ivLoadSchedule;
 
     int target = -1;     // 记录切换的周次，不一定是当前周
     String startDate = "2022-2-27"; // 开学时间
@@ -81,12 +82,26 @@ public class ScheduleFragment extends BaseFragment
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_schedule, container, false);
-
         titleTextView = view.findViewById(R.id.id_title);
         layout = view.findViewById(R.id.id_layout);
         ivScheduleSetting = view.findViewById(R.id.schedule_setting);
-        layout.setOnClickListener(this);
-        ivScheduleSetting.setOnClickListener(this);
+        ivLoadSchedule = view.findViewById(R.id.load_schedule);
+
+        layout.setOnClickListener(l -> {
+            // 查看，关闭周次
+            if (weekView.isShowing()) hideWeekView();
+            else showWeekView();
+        });
+
+        ivScheduleSetting.setOnClickListener(l -> {
+            Intent intent = new Intent(getContext(), ScheduleSettingActivity.class);
+            startActivity(intent);
+        });
+
+        ivLoadSchedule.setOnClickListener(l -> {
+            Intent intent = new Intent(getContext(), LoadScheduleActivity.class);
+            startActivity(intent);
+        });
 
         startDate = SharedPreferencesUtil.init(MainApplication.getAppContext(), CONFIG_FILENAME)
                 .getString(
@@ -128,28 +143,9 @@ public class ScheduleFragment extends BaseFragment
     @Override
     public void onResume() {
         super.onResume();
-
         loadSubjects();     // 加载课程
         loadLocalConfig();
-
-
     }
-
-    @Override
-    public void onClick(View view) {
-        switch (view.getId()) {
-            case R.id.id_layout:
-                // 查看，关闭周次
-                if (weekView.isShowing()) hideWeekView();
-                else showWeekView();
-                break;
-            case R.id.schedule_setting:
-                Intent intent = new Intent(getContext(), ScheduleSettingActivity.class);
-                startActivity(intent);
-                break;
-        }
-    }
-
 
     /**
      * 载入课程数据到list中
@@ -162,10 +158,11 @@ public class ScheduleFragment extends BaseFragment
         }
 
         String subjectListJson = SharedPreferencesUtil.init(MainApplication.getAppContext(), "COURSE_DATA").getString("SUBJECT_LIST", null);
-        if (subjectListJson != null) {
+        if (subjectListJson != null && subjectListJson.length() > 5) {
             mySubjects = toGetSubjects();
-        }else {
-            mySubjects = new ArrayList<>();
+        } else {
+            mySubjects = SubjectRepertory.loadDefaultSubjects();
+//            mySubjects = new ArrayList<>();
         }
         My.mySubjects = mySubjects;
     }
@@ -604,7 +601,7 @@ public class ScheduleFragment extends BaseFragment
         My.mySubjects = subject;
 
         SharedPreferencesUtil.init(MainApplication.getAppContext(), "COURSE_DATA").putString("SUBJECT_LIST", str_subjectJSON); //存入json串
-        Log.e(TAG, "toSaveSubjects: " + str_subjectJSON);
+        Log.i(TAG, "toSaveSubjects: " + str_subjectJSON);
 
     }
 

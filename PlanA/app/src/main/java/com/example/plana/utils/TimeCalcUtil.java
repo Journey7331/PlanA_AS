@@ -1,5 +1,7 @@
 package com.example.plana.utils;
 
+import org.apache.commons.lang3.StringUtils;
+
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
@@ -65,6 +67,40 @@ public class TimeCalcUtil {
         long seconds = (diff % (1000 * 60)) / 1000;
         if (seconds < 3) return "Now";
         else return "1M";
+    }
+
+
+    /**
+     * Todo条目中显示的时间
+     */
+    public static String getTodoDateStr(String date, String time) {
+        if (StringUtils.isEmpty(date) || "".equals(date)) return "";
+        long dateParse = 0;
+        try {
+            SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd", Locale.CHINA);
+            dateParse = sdf.parse(date).getTime();
+            if (StringUtils.isNotEmpty(time) && !"".equals(time)) {
+                SimpleDateFormat simpleDateFormat = new SimpleDateFormat("hh:mm", Locale.CHINA);
+                dateParse += simpleDateFormat.parse(time).getTime();
+                dateParse += 8 * 60 * 60 * 1000;        // 转化 time 需要加上 8 hours 【WHY?】
+            }
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+
+        long nowTime = new Date().getTime();
+        if (nowTime > dateParse) {
+            String calc = TimeCalcUtil.leftTime(nowTime, dateParse);
+            // Today but no exact Time
+            if (calc.contains("H") && "".equals(time)) {
+                return "今天";
+            } else {
+                return "-" + calc;
+            }
+        } else if (nowTime < dateParse) {
+            return TimeCalcUtil.leftTime(dateParse, nowTime);
+        }
+        return "";
     }
 
 
