@@ -24,17 +24,17 @@ public class SubjectRepertory {
      * @return List<MySubject>
      */
     public static List<MySubject> loadDefaultSubjects() {
-        // String json = "sample data"
-        String json = "{\"courseInfos\":[{\"teacher\":\"王瑞平\",\"name\":\"概率论与数理统计\",\"weeks\":[1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16],\"room\":\"6304\",\"day\":1,\"start\":1,\"span\":2},{\"teacher\":\"闫昱\",\"name\":\"数据库系统概论\",\"weeks\":[1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16],\"room\":\"4314\",\"day\":3,\"start\":1,\"span\":2},{\"teacher\":\"王帅\",\"name\":\"算法设计与分析\",\"weeks\":[1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16],\"room\":\"6104\",\"day\":2,\"start\":3,\"span\":2},{\"teacher\":\"施汉明\",\"name\":\"线性代数\",\"weeks\":[1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16],\"room\":\"6302\",\"day\":3,\"start\":3,\"span\":2},{\"teacher\":\"王翔\",\"name\":\"通用学术英语A\",\"weeks\":[5,6,7,8,9,10,11,12,13,14,15,16],\"room\":\"4501\",\"day\":4,\"start\":3,\"span\":2},{\"teacher\":\"王翔\",\"name\":\"通用学术英语A\",\"day\":4,\"start\":3,\"span\":2,\"weeks\":[1,2,3,4],\"room\":\"5309\"},{\"teacher\":\"翁雯\",\"name\":\"可视化程序设计\",\"weeks\":[1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16],\"room\":\"4105\",\"day\":2,\"start\":6,\"span\":2},{\"teacher\":\"左坤\",\"name\":\"男篮-2\",\"weeks\":[1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16],\"room\":\"篮球场东北\",\"day\":4,\"start\":6,\"span\":2},{\"teacher\":\"唐姗\",\"name\":\"Java程序设计\",\"weeks\":[1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16],\"room\":\"7100\",\"day\":5,\"start\":6,\"span\":2},{\"teacher\":\"王胜利\",\"name\":\"大学物理B\",\"weeks\":[1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16],\"room\":\"4113\",\"day\":2,\"start\":8,\"span\":2},{\"teacher\":\"郭灿希\",\"name\":\"毛泽东思想和中国特色社会主义理论体系概论I\",\"weeks\":[1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16],\"room\":\"8302\",\"day\":3,\"start\":8,\"span\":3},{\"teacher\":\"张天祺\",\"name\":\"形势与政策（模块4）\",\"weeks\":[11,12],\"room\":\"4201\",\"day\":4,\"start\":8,\"span\":3},{\"teacher\":\"程路\",\"name\":\"英美影视语言与文化\",\"weeks\":[1,2,3,4,5,6,7,8,9,10,11],\"room\":\"5116\",\"day\":4,\"start\":11,\"span\":3}]}";
+        String json = "sample data";
+//        String json = "{\"courseInfos\":[{\"teacher\":\"王瑞平\",\"name\":\"概率论与数理统计\",\"weeks\":[1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16],\"room\":\"6304\",\"day\":1,\"start\":1,\"span\":2},{\"teacher\":\"闫昱\",\"name\":\"数据库系统概论\",\"weeks\":[1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16],\"room\":\"4314\",\"day\":3,\"start\":1,\"span\":2},{\"teacher\":\"王帅\",\"name\":\"算法设计与分析\",\"weeks\":[1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16],\"room\":\"6104\",\"day\":2,\"start\":3,\"span\":2},{\"teacher\":\"施汉明\",\"name\":\"线性代数\",\"weeks\":[1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16],\"room\":\"6302\",\"day\":3,\"start\":3,\"span\":2},{\"teacher\":\"王翔\",\"name\":\"通用学术英语A\",\"weeks\":[5,6,7,8,9,10,11,12,13,14,15,16],\"room\":\"4501\",\"day\":4,\"start\":3,\"span\":2},{\"teacher\":\"王翔\",\"name\":\"通用学术英语A\",\"day\":4,\"start\":3,\"span\":2,\"weeks\":[1,2,3,4],\"room\":\"5309\"},{\"teacher\":\"翁雯\",\"name\":\"可视化程序设计\",\"weeks\":[1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16],\"room\":\"4105\",\"day\":2,\"start\":6,\"span\":2},{\"teacher\":\"左坤\",\"name\":\"男篮-2\",\"weeks\":[1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16],\"room\":\"篮球场东北\",\"day\":4,\"start\":6,\"span\":2},{\"teacher\":\"唐姗\",\"name\":\"Java程序设计\",\"weeks\":[1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16],\"room\":\"7100\",\"day\":5,\"start\":6,\"span\":2},{\"teacher\":\"王胜利\",\"name\":\"大学物理B\",\"weeks\":[1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16],\"room\":\"4113\",\"day\":2,\"start\":8,\"span\":2},{\"teacher\":\"郭灿希\",\"name\":\"毛泽东思想和中国特色社会主义理论体系概论I\",\"weeks\":[1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16],\"room\":\"8302\",\"day\":3,\"start\":8,\"span\":3},{\"teacher\":\"张天祺\",\"name\":\"形势与政策（模块4）\",\"weeks\":[11,12],\"room\":\"4201\",\"day\":4,\"start\":8,\"span\":3},{\"teacher\":\"程路\",\"name\":\"英美影视语言与文化\",\"weeks\":[1,2,3,4,5,6,7,8,9,10,11],\"room\":\"5116\",\"day\":4,\"start\":11,\"span\":3}]}";
 
 //        SharedPreferences preferences = MainApplication.getAppContext().getSharedPreferences("COURSE_DATA", Context.MODE_PRIVATE);// 创建sp对象
 //        String htmlToSubject = preferences.getString("HTML_TO_SUBJECT",null);  // 取出key为"HTML_TO_SUBJECT"的值，如果值为空，则将第二个参数作为默认值赋值
 
-//        String htmlToSubject = SharedPreferencesUtil.init(MainApplication.getAppContext(), "COURSE_DATA").getString("HTML_TO_SUBJECT", null);
-//        Log.e(TAG, "HTML_TO_SUBJECT: " + htmlToSubject);//HTML_TO_SUBJECT便是取出的数据了
-//        if (htmlToSubject == null) {
-//            return new ArrayList<>();
-//        }
+        String htmlToSubject = SharedPreferencesUtil.init(MainApplication.getAppContext(), "COURSE_DATA").getString("HTML_TO_SUBJECT", null);
+        Log.e(TAG, "HTML_TO_SUBJECT: " + htmlToSubject);//HTML_TO_SUBJECT便是取出的数据了
+        if (htmlToSubject == null) {
+            return new ArrayList<>();
+        }
         return parse(json);
     }
 

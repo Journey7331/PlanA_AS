@@ -163,7 +163,10 @@
             android:layout_width="wrap_content"
             android:layout_height="38dp"
             android:layout_below="@id/v_line_5"
-            android:layout_margin="3dp"
+            android:layout_marginStart="3dp"
+            android:layout_marginTop="3dp"
+            android:layout_marginEnd="3dp"
+            android:layout_marginBottom="3dp"
             android:background="@drawable/bg_rl_view_select">
 
             <androidx.emoji2.widget.EmojiButton
@@ -183,8 +186,9 @@
                 android:layout_centerVertical="true"
                 android:layout_marginStart="20dp"
                 android:layout_toEndOf="@+id/emoji_notify"
+                android:layout_toStartOf="@+id/switch_notification_tomorrow"
                 android:text="每天22:00推送第二天的课程信息"
-                android:textSize="15sp" />
+                android:textSize="12sp" />
 
             <androidx.appcompat.widget.SwitchCompat
                 android:id="@+id/switch_notification_tomorrow"

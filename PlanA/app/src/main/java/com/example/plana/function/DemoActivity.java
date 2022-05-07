@@ -12,6 +12,7 @@ import com.example.plana.base.BaseActivity;
 import com.example.plana.bean.User;
 import com.example.plana.bean.rawbean.RawTodo;
 import com.example.plana.config.Constant;
+import com.example.plana.service.SubjectService;
 import com.example.plana.service.TodoService;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
@@ -56,15 +57,53 @@ public class DemoActivity extends BaseActivity {
         list = new ArrayList<>();
 
         findViewById(R.id.bt_retrofit).setOnClickListener(l -> {
-            try {
+//            try {
 //                getDataRx();
-                getTodoListData();
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
+//                getTodoListData();
+                getSubjectData();
+//            } catch (IOException e) {
+//                e.printStackTrace();
+//            }
         });
 
     }
+
+    private void getSubjectData() {
+        Retrofit retrofit = new Retrofit.Builder()
+                .baseUrl(Constant.URL)
+                .addConverterFactory(GsonConverterFactory.create())
+                .build();
+
+        SubjectService subjectService = retrofit.create(SubjectService.class);
+        subjectService.getSubjectList(new User(1, "123","123"))
+                .enqueue(new Callback<ResponseBody>() {
+                    @Override
+                    public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
+                        if (response.isSuccessful()) {
+                            try {
+                                JSONObject object = new JSONObject(response.body().string());
+                                if (object.optString("result").equals("ok")) {
+                                    String dataString = object.optString("data");
+                                    System.out.println(dataString);
+//
+//                                    list.addAll(new Gson().fromJson(dataString, new TypeToken<ArrayList<RawTodo>>() {
+//                                    }.getType()));
+//                                    textView.setText(list.toString());
+                                } else Log.i(Constant.TAG.NETWORK_TAG, "数据导入失败");
+                            } catch (JSONException | IOException e) {
+                                e.printStackTrace();
+                                Log.i(Constant.TAG.NETWORK_TAG, "JSON解析失败：" + e.getMessage());
+                            }
+                        } else  Log.i(Constant.TAG.NETWORK_TAG, "错误代码：" + response.code());
+                    }
+
+                    @Override
+                    public void onFailure(Call<ResponseBody> call, Throwable t) {
+                        Log.i(Constant.TAG.NETWORK_TAG, "请求失败");
+                    }
+                });
+    }
+
 
     private void getTodoListData() throws IOException {
         TodoService todoService = retrofit.create(TodoService.class);

@@ -11,13 +11,13 @@ public class RawTodo {
     private String memo;
     private String due_date;
     private String due_time;
-    private int importance;
+    private float importance;
     private int done;
 
     public RawTodo() {
     }
 
-    public RawTodo(int id, int owner_id, String content, String memo, String due_date, String due_time, int importance, int done) {
+    public RawTodo(int id, int owner_id, String content, String memo, String due_date, String due_time, float importance, int done) {
         this.id = id;
         this.owner_id = owner_id;
         this.content = content;
@@ -76,11 +76,11 @@ public class RawTodo {
         this.due_time = due_time;
     }
 
-    public int getImportance() {
+    public float getImportance() {
         return importance;
     }
 
-    public void setImportance(int importance) {
+    public void setImportance(float importance) {
         this.importance = importance;
     }
 

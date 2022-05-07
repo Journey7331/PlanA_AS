@@ -7,7 +7,6 @@ package com.example.plana.bean;
 public class Todos implements Comparable {
 
     private int id;
-    private int owner_id;
     private String content;
     private String memo;
     private boolean done;

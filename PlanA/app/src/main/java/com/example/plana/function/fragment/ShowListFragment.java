@@ -177,13 +177,14 @@ public class ShowListFragment extends BaseFragment
         for (Todos todo : arr) if (!todo.isDone()) list.add(todo);
         for (Todos todo : arr) if (todo.isDone()) list.add(todo);
 
-        adapter = new TodoAdapter(getActivity(), list);
+        adapter = new TodoAdapter(getActivity(), list, emptyPage, pullToRefresh);
         listView.setAdapter(adapter);
         adapter.setOnTodoCheckedChangeListener((position, check) -> {
             adapter.sortDoneToBottom(position, check, hide);
+            adapter.checkViewEmpty();
         });
         adapter.notifyDataSetChanged();
-        checkViewEmpty(list);
+        adapter.checkViewEmpty();
     }
 
 
@@ -328,17 +329,6 @@ public class ShowListFragment extends BaseFragment
 
         filtered.sort(Comparator.comparingInt(Todos::getId));
         refreshListView(filtered);
-    }
-
-    /**
-     * 检查list是否为空，刷新不同的界面
-     */
-    private void checkViewEmpty(ArrayList<Todos> arr) {
-        if (arr.size() < 1) {
-            emptyPage.setVisibility(View.VISIBLE);
-        } else {
-            emptyPage.setVisibility(View.INVISIBLE);
-        }
     }
 
 }

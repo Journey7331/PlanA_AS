@@ -6,8 +6,13 @@ import android.view.inputmethod.InputMethodManager;
 
 import androidx.fragment.app.Fragment;
 
+import com.example.plana.config.Constant;
+
 import java.util.HashMap;
 import java.util.Map;
+
+import retrofit2.Retrofit;
+import retrofit2.converter.gson.GsonConverterFactory;
 
 /**
  * @program: PlanA
@@ -17,15 +22,10 @@ public class BaseFragment extends Fragment {
     Map<String, String> params = new HashMap<>();
     Map<String, String> header_params = new HashMap<>();
 
-
-    public void request(String url) {
-
-    }
-
-
-    public void sendNotification(String token, String title, String message) {
-
-    }
+    public Retrofit retrofit = new Retrofit.Builder()
+            .baseUrl(Constant.URL)
+            .addConverterFactory(GsonConverterFactory.create())
+            .build();
 
 
     public void hideKeyboard(Activity activity) {
@@ -35,9 +35,6 @@ public class BaseFragment extends Fragment {
             imm.hideSoftInputFromWindow(view.getWindowToken(), 0);
         }
     }
-
-
-
 
 
 }

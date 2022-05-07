@@ -12,6 +12,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.CheckBox;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -30,6 +31,7 @@ import com.example.plana.database.MyDatabaseHelper;
 import com.example.plana.function.todo.EditTodoActivity;
 import com.example.plana.utils.ColorUtil;
 import com.example.plana.utils.TimeCalcUtil;
+import com.yalantis.phoenix.PullToRefreshView;
 
 import org.apache.commons.lang3.StringUtils;
 
@@ -52,6 +54,9 @@ public class TodoAdapter extends ArrayAdapter {
     MyDatabaseHelper sqlite;
     OnTodoCheckedChangeListener checkedChangeListener;
 
+    RelativeLayout emptyPage;
+    PullToRefreshView pullToRefresh;
+
     public void setOnTodoCheckedChangeListener(OnTodoCheckedChangeListener checkedChangeListener) {
         this.checkedChangeListener = checkedChangeListener;
     }
@@ -63,10 +68,12 @@ public class TodoAdapter extends ArrayAdapter {
         TextView tvDate;
     }
 
-    public TodoAdapter(Activity context, ArrayList<Todos> arr) {
+    public TodoAdapter(Activity context, ArrayList<Todos> arr, RelativeLayout emptyPage, PullToRefreshView pullToRefresh) {
         super(context, R.layout.fragment_todo_list_home, arr);
         this.ctx = context;
         this.arrayList = arr;
+        this.emptyPage = emptyPage;
+        this.pullToRefresh = pullToRefresh;
         this.sqlite = new MyDatabaseHelper(context);
         inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
     }
@@ -218,6 +225,19 @@ public class TodoAdapter extends ArrayAdapter {
             arrayList.add(i + 1, remove);
         }
         notifyDataSetChanged();
+    }
+
+    /**
+     * 检查list是否为空，刷新不同的界面
+     */
+    public void checkViewEmpty() {
+        if (arrayList.size() < 1) {
+            emptyPage.setVisibility(View.VISIBLE);
+            pullToRefresh.setVisibility(View.INVISIBLE);
+        } else {
+            emptyPage.setVisibility(View.INVISIBLE);
+            pullToRefresh.setVisibility(View.VISIBLE);
+        }
     }
 
 }
